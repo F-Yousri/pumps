@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Decision Matrices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @decision_matrices.each do |decision_matrix| %>
+      <tr>
+        <td><%= link_to 'Show', decision_matrix %></td>
+        <td><%= link_to 'Edit', edit_decision_matrix_path(decision_matrix) %></td>
+        <td><%= link_to 'Destroy', decision_matrix, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Decision Matrix', new_decision_matrix_path %>
