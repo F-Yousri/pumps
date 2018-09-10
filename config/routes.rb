@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pump_properties
   resources :choices
   resources :properties
   resources :pumps

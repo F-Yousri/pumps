@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_122638) do
+ActiveRecord::Schema.define(version: 2018_09_10_202337) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2018_09_08_122638) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "property_id"
+    t.index ["property_id"], name: "index_choices_on_property_id"
   end
 
   create_table "properties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,10 +52,21 @@ ActiveRecord::Schema.define(version: 2018_09_08_122638) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pump_properties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "pump_id"
+    t.bigint "property_id"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_pump_properties_on_property_id"
+    t.index ["pump_id"], name: "index_pump_properties_on_pump_id"
+  end
+
   create_table "pumps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "choices", "properties"
 end

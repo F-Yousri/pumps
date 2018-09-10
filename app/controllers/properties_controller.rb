@@ -1,6 +1,4 @@
-class PropertiesController < InheritedResources::Base
-
-  private
+class PropertiesController < ApplicationController
 
     def property_params
       params.require(:property).permit()

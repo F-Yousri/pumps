@@ -1,0 +1,2 @@
+module PumpPropertiesHelper
+end

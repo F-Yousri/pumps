@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pump Properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pump_properties.each do |pump_property| %>
+      <tr>
+        <td><%= link_to 'Show', pump_property %></td>
+        <td><%= link_to 'Edit', edit_pump_property_path(pump_property) %></td>
+        <td><%= link_to 'Destroy', pump_property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pump Property', new_pump_property_path %>

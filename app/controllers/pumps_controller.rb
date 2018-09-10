@@ -1,4 +1,4 @@
-class PumpsController < InheritedResources::Base
+class PumpsController < ApplicationController
 
   private
 

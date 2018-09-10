@@ -1,6 +1,7 @@
 ActiveAdmin.register Choice do
     menu priority: 5
-    permit_params :name, :updated_at
+    belongs_to :property
+    permit_params :name, :property
   
     index do
       selectable_column

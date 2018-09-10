@@ -1,4 +1,4 @@
-class ChoicesController < InheritedResources::Base
+class ChoicesController < ApplicationController
 
   private
 
