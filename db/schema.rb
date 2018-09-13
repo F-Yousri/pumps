@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 2018_09_10_202337) do
   create_table "pump_properties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "pump_id"
     t.bigint "property_id"
+    t.bigint "choice_id"
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["choice_id"], name: "index_pump_properties_on_choice_id"
     t.index ["property_id"], name: "index_pump_properties_on_property_id"
     t.index ["pump_id"], name: "index_pump_properties_on_pump_id"
   end
