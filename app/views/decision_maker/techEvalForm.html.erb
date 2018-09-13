@@ -1,0 +1,7 @@
+<h1>Well Data</h1>
+<p>kindly enter all fields below</p>
+<%= form_tag do %>
+    <% for property in Property::all do%>
+        <%= property.name %>
+    <%end %>
+<% end %>

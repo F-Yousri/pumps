@@ -1,4 +1,6 @@
 class Choice < ApplicationRecord
-    belongs_to :pump_property
-    has_one :property, through: :Pump_property
+    has_many :pump_property
+    belongs_to :property
+    has_many :pumps, through: :Pump_property
+    
 end
