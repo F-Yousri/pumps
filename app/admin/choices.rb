@@ -1,5 +1,4 @@
 ActiveAdmin.register Choice do
-    menu priority: 5
     belongs_to :property
     permit_params :name, :property
   

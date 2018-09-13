@@ -3,7 +3,7 @@ class Property < ApplicationRecord
                         :length => { :maximum => 100 }
     has_many :choices
     accepts_nested_attributes_for :choices, allow_destroy: true
-
+    belongs_to :tab
     has_many :pump_properties, dependent: :destroy
     has_many :pumps, through: :pump_properties, dependent: :destroy
     accepts_nested_attributes_for :pump_properties, allow_destroy: true

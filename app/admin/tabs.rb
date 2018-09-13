@@ -1,14 +1,12 @@
-ActiveAdmin.register Property do
-    menu priority: 4
-    permit_params :name, tab_attributes: [:name], choices_attributes: [:id, :name, :_destroy]
+ActiveAdmin.register Tab do
+    permit_params :name, properties_attributes: [:id, :name, :_destroy]
   
     index do
       selectable_column
       id_column
       column :name
-      column :tab
-      column :choices do |property|
-        property.choices.map {|ch| ch.name}.join(", ").html_safe
+      column :properties do |tab|
+        tab.properties.map {|p| p.name}.join(", ").html_safe
       end
       column :updated_at
       actions
@@ -22,7 +20,7 @@ ActiveAdmin.register Property do
       f.inputs "Details" do
         f.input :name
       end
-      f.has_many :choices, allow_destroy: true do |n_f|
+      f.has_many :properties, allow_destroy: true do |n_f|
         n_f.input :name
         end
       f.actions

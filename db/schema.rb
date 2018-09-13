@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_202337) do
+ActiveRecord::Schema.define(version: 2018_09_13_191859) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2018_09_10_202337) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tab_id"
+    t.index ["tab_id"], name: "index_properties_on_tab_id"
   end
 
   create_table "pump_properties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,5 +72,10 @@ ActiveRecord::Schema.define(version: 2018_09_10_202337) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tabs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+  end
+
   add_foreign_key "choices", "properties"
+  add_foreign_key "properties", "tabs"
 end
