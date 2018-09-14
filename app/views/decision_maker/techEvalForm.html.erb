@@ -1,30 +1,41 @@
+
 <div class="container">
     <h1>Technical Evaluation </h1>
     <p>kindly enter all fields below</p>
     <%= form_tag do %>
-        <% for tab in Tab::all do%>
-            <h2><%= tab.name %> </h2> 
-            <!-- <button data-toggle="collapse" data-target="#<%= tab.name %>">+</button> -->
-            <div id="<%= tab.name%>" class="row ">
-                <div class="container">
-                    <% for property in tab.properties %>
-                        <div class="form-group-col-sm-6" style="white-space:nowrap">
-                            <label><%= property.name %> </label>:  &nbsp;
-                            <% if property.choice_type == "list_box" %>
-                                <select name="<%= property.name %>" class="form-control" value="">
-                                    <% for choice in property.choices %>
-                                        <option value="<%= choice.id %>"> <%=choice.name %> </option>
+        <div class="accordion" id="tabs">
+            <% for tab in Tab::all do%>
+                <div class="card">
+                    <div class="card-header" id="heading <%= tab.name %>">
+                        <h5 class="mb-0">
+                            <button class="btn " type="button" data-toggle="collapse" data-target="#<%= tab.id %>" aria-expanded="true" aria-controls="<%= tab.id%>">
+                                <%= tab.name %>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="<%= tab.id %>" class="show collapse in" aria-expanded="true" aria-labelledby="heading <%= tab.name %>" data-parent="#tabs">
+                        <div class="card-body">
+                              <% for property in tab.properties %>
+                                <div class="form-group-col-sm-6" style="white-space:nowrap">
+                                    <label><%= property.name %> </label>:  &nbsp;
+                                    <% if property.choice_type == "list_box" %>
+                                        <select name="<%= property.name %>" class="form-control" value="">
+                                            <% for choice in property.choices %>
+                                                <option value="<%= choice.id %>"> <%=choice.name %> </option>
+                                            <% end %>
+                                        </select>
+                                        <br/>
+                                    <% else %>
+                                        <input required name="<%= property.name%>" placeholder="<%= property.name %>" class="form-control"/> <br/>
                                     <% end %>
-                                </select>
-                                <br/>
-                            <% else %>
-                                <input name="<%= property.name%>" placeholder="<%= property.name %>" class="form-control"/> <br/>
-                            <% end %>
+                                </div>
+                            <%end %>
                         </div>
-                    <%end %>
+                    </div>
                 </div>
-            </div>
-
-        <% end %>
+            <% end %>
+        </div>
+        <button type="submit">submit</button>
     <% end %>
 </div>
+

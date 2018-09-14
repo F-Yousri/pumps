@@ -37,7 +37,7 @@ gem 'activeadmin'
 #jquery for bootstarap
 gem 'jquery-rails'
 #bootstrap for front-end styles
-gem 'bootstrap'
+gem 'bootstrap', '~>4.0.0.alpha3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
