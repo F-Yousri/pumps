@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root to: 'decision_maker#techEvalForm'
-  get '/well-properties', to: 'decision_maker#techEvalForm', as: 'techEvalForm'
+  get '/', to: 'decision_maker#techEvalForm', as: 'techEvalForm'
 end

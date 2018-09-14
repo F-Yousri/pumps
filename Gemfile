@@ -34,6 +34,10 @@ gem 'devise'
 
 #use activeAdmin for admin interface
 gem 'activeadmin'
+#jquery for bootstarap
+gem 'jquery-rails'
+#bootstrap for front-end styles
+gem 'bootstrap'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

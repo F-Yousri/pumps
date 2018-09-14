@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_191859) do
+ActiveRecord::Schema.define(version: 2018_09_14_113808) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(version: 2018_09_13_191859) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "tab_id"
+    t.string "description"
+    t.integer "type"
+    t.integer "choice_type"
     t.index ["tab_id"], name: "index_properties_on_tab_id"
   end
 

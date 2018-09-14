@@ -1,7 +1,8 @@
 class Property < ApplicationRecord
+    enum choice_type: [:list_box, :text_box]
     validates   :name,  :presence => true,
                         :length => { :maximum => 100 }
-    has_many :choices
+    has_many :choices, dependent: :destroy
     accepts_nested_attributes_for :choices, allow_destroy: true
     belongs_to :tab
     has_many :pump_properties, dependent: :destroy
