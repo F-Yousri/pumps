@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2018_09_14_113808) do
 
-  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_09_14_113808) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_09_14_113808) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "choices", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,18 +49,17 @@ ActiveRecord::Schema.define(version: 2018_09_14_113808) do
     t.index ["property_id"], name: "index_choices_on_property_id"
   end
 
-  create_table "properties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "properties", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "tab_id"
     t.string "description"
-    t.integer "type"
     t.integer "choice_type"
     t.index ["tab_id"], name: "index_properties_on_tab_id"
   end
 
-  create_table "pump_properties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "pump_properties", force: :cascade do |t|
     t.bigint "pump_id"
     t.bigint "property_id"
     t.bigint "choice_id"
@@ -69,13 +71,13 @@ ActiveRecord::Schema.define(version: 2018_09_14_113808) do
     t.index ["pump_id"], name: "index_pump_properties_on_pump_id"
   end
 
-  create_table "pumps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "pumps", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "tabs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tabs", force: :cascade do |t|
     t.string "name"
   end
 

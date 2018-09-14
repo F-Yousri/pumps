@@ -38,6 +38,8 @@ gem 'activeadmin'
 gem 'jquery-rails'
 #bootstrap for front-end styles
 gem 'bootstrap', '~>4.0.0.alpha3'
+#use pg to sync with production
+gem 'pg', '~> 0.18'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -69,9 +71,6 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-group :production do
-  gem 'pg', '~> 0.18'
-end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
