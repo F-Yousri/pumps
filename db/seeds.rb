@@ -4,6 +4,15 @@
 Pump.create!([
   {name: "ESP"}
 ])
+Tab.create!([
+    {name: "Well Data"},
+    {name: "Fluid Characteristics"},
+    {name: "Production Parameters"},
+    {name: "Staff Experience"},
+    {name: "PVT Data at Pump Depth"},
+    {name: "Additional Criteria"},
+    {name: "Selection Criteria"}
+  ])
 Property.create!([
   {name: "MD", tab_id: 1, description: "Measured Well depth", choice_type: "text_box", note: "should not exceed 16000 ft or 4800 m.", unit_type: "depth"},
   {name: "TVD", tab_id: 1, description: "Total vertical Depth", choice_type: "text_box", note: "Shouldn't exceed Measured Well Depth", unit_type: "depth"},
@@ -93,12 +102,4 @@ Property.create!([
   {name: "W_PR", tab_id: 7, description: "PLS Reliability", choice_type: "text_box", note: "PLS Reliability", unit_type: nil},
   {name: "W_SE", tab_id: 7, description: "System Efficiency", choice_type: "text_box", note: "Percentage.", unit_type: nil}
 ])
-Tab.create!([
-  {name: "Well Data"},
-  {name: "Fluid Characteristics"},
-  {name: "Production Parameters"},
-  {name: "Staff Experience"},
-  {name: "PVT Data at Pump Depth"},
-  {name: "Additional Criteria"},
-  {name: "Selection Criteria"}
-])
+
