@@ -1,0 +1,234 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.5 (Debian 10.5-1.pgdg90+1)
+-- Dumped by pg_dump version 10.5 (Debian 10.5-1.pgdg90+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: active_admin_comments; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+
+
+--
+-- Data for Name: admin_users; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+INSERT INTO public.admin_users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, created_at, updated_at) VALUES (1, 'admin@example.com', '$2a$11$hNEZbV46ozBlDw12wxGSYeuodhGnwsBTQ0WEdJ6v0Ug5WHm3OGXYO', NULL, NULL, NULL, '2018-09-14 23:21:53.288383', '2018-09-14 23:21:53.288383');
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+INSERT INTO public.ar_internal_metadata (key, value, created_at, updated_at) VALUES ('environment', 'development', '2018-09-14 23:20:46.94137', '2018-09-14 23:20:46.94137');
+
+
+--
+-- Data for Name: tabs; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+INSERT INTO public.tabs (id, name) VALUES (1, 'Well Data');
+INSERT INTO public.tabs (id, name) VALUES (2, 'Fluid Characteristics');
+INSERT INTO public.tabs (id, name) VALUES (3, 'Production Parameters');
+INSERT INTO public.tabs (id, name) VALUES (4, 'Staff Experience');
+INSERT INTO public.tabs (id, name) VALUES (5, 'PVT Data at Pump Depth');
+INSERT INTO public.tabs (id, name) VALUES (6, 'Additional Criteria');
+INSERT INTO public.tabs (id, name) VALUES (7, 'Selection Criteria');
+
+
+--
+-- Data for Name: properties; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (2, 'MD', '2018-09-15 09:52:39.071247', '2018-09-15 09:52:39.071247', 1, 'Measured Well depth', 1, 'should not exceed 16000 ft or 4800 m.', 0);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (3, 'TVD', '2018-09-15 09:52:39.072393', '2018-09-15 09:52:39.072393', 1, 'Total vertical Depth', 1, 'Shouldn''t exceed Measured Well Depth', 0);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (1, 'WL', '2018-09-15 09:52:39.069611', '2018-09-15 09:54:47.779396', 1, 'Well Location', 0, '', 5);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (4, 'WD', '2018-09-15 09:52:39.0735', '2018-09-15 09:54:47.781002', 1, 'Well Deviation', 1, 'Should not exceed 90 deg.', 3);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (5, 'D_perf', '2018-09-15 09:54:47.782029', '2018-09-15 10:04:45.063873', 1, 'Perforation Vertical Depth', 1, 'Shouldn''t exceed Measured Depth', 0);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (6, 'DS', '2018-09-15 10:04:45.067918', '2018-09-15 10:04:45.067918', 1, 'Dogleg Severity', 1, 'Shouldn''t exceed 15.', 4);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (7, 'CSG_ND', '2018-09-15 10:04:45.072161', '2018-09-15 10:04:45.072161', 1, 'Casing Nominal Diameter', 0, '', 5);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (8, 'TBG_ND', '2018-09-15 10:04:45.07599', '2018-09-15 10:04:45.07599', 1, 'Tubing Nominal Diameter', 0, 'Maximum 3.5" for 5" casings.', 5);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (9, 'T_bh', '2018-09-15 10:04:45.079417', '2018-09-15 10:10:31.652854', 1, 'Bottomhole Temperature', 1, '', 5);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (10, 'T_sc', '2018-09-15 10:10:31.656885', '2018-09-15 10:10:31.656885', 1, 'Surface Temperature', 1, '', 5);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (11, 'MD_pump', '2018-09-15 10:10:31.661306', '2018-09-15 10:10:31.661306', 1, 'Pump Measured Depth', 1, 'Shouldn''t exceed Measured Depth', 0);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (12, 'VD_pump', '2018-09-15 10:10:31.665', '2018-09-15 10:10:31.665', 1, 'Pump Vertical Depth', 1, 'Shouldn''t exceed Perforation Depth.', 0);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (13, 'VD_FL', '2018-09-15 10:10:31.668521', '2018-09-15 10:10:31.668521', 1, 'Fluid Level Vertical Depth', 1, 'Shouldn''t exceed Perforation Depth.', 0);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (14, 'SG_g', '2018-09-15 10:23:17.994592', '2018-09-15 10:25:16.580782', 2, 'Gas Specific Gravity', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (15, 'GGD', '2018-09-15 10:23:17.996179', '2018-09-15 10:25:16.585162', 2, 'Gas Grediant', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (16, 'SG_w', '2018-09-15 10:23:17.997315', '2018-09-15 10:25:16.588815', 2, 'Water Specific Gradient', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (17, 'API', '2018-09-15 10:23:17.998436', '2018-09-15 10:25:16.592202', 2, 'API Gravity', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (18, 'SG_o', '2018-09-15 10:23:17.999696', '2018-09-15 10:25:16.595802', 2, 'Oil Gravity', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (19, 'AP', '2018-09-15 10:23:18.000794', '2018-09-15 10:25:16.59933', 2, 'Abrasives Production', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (20, 'CP', '2018-09-15 10:23:18.001923', '2018-09-15 10:25:16.602743', 2, 'Corrosive Fluid Production', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (21, 'ArP', '2018-09-15 10:23:18.002975', '2018-09-15 10:25:16.60616', 2, 'Aromatics Production', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (22, 'EP', '2018-09-15 10:23:18.004022', '2018-09-15 10:25:16.609443', 2, 'Emulsion Production', 2, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (23, 'SP', '2018-09-15 10:25:16.612746', '2018-09-15 10:25:16.612746', 2, 'Scale Production', 2, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (24, 'PP', '2018-09-15 10:25:16.616029', '2018-09-15 10:25:16.616029', 2, 'Parafin Production', 2, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (25, 'PR', '2018-09-15 10:27:08.250973', '2018-09-15 10:31:20.804814', 3, 'Reservoir Pressure', 1, '', 1);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (26, 'WHP', '2018-09-15 10:31:20.806335', '2018-09-15 10:31:20.806335', 3, 'Wellhead Pressure', 1, '', 1);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (27, 'CHP', '2018-09-15 10:31:20.808049', '2018-09-15 10:31:20.808049', 3, 'Casing Head Pressure', 1, 'Shouldn''t exceed Wellhead Pressure', 1);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (50, 'PF_esp', '2018-09-15 12:17:00.957795', '2018-09-15 12:17:00.957795', 6, 'ESP PLS Flexibility', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (28, 'GQ', '2018-09-15 10:31:20.809202', '2018-09-15 11:47:34.699693', 3, 'Desired Gross Rate', 1, 'Shouldn''t exceed 9000', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (29, 'J', '2018-09-15 10:32:50.747136', '2018-09-15 11:47:34.700965', 3, 'Productivity Index', 1, '', 3);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (30, 'Q_g', '2018-09-15 11:47:34.702079', '2018-09-15 11:47:34.702079', 3, 'Anticipated Gas Rate', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (31, 'WC', '2018-09-15 11:47:34.703477', '2018-09-15 11:47:34.703477', 3, 'Anticipated W.C', 1, 'From 0 to 100 %', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (32, 'GOR', '2018-09-15 11:47:34.704604', '2018-09-15 11:48:46.241714', 3, 'Gas Oil ratio', 3, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (33, 'GLR', '2018-09-15 11:48:46.245573', '2018-09-15 11:48:46.245573', 3, 'Gas Liqued Ratio', 3, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (34, 'SE_esp', '2018-09-15 11:56:36.385783', '2018-09-15 11:56:36.385783', 4, 'ESP', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (35, 'SE_wspcp', '2018-09-15 11:56:36.39073', '2018-09-15 11:56:36.39073', 4, 'ESPCP', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (36, 'SE_pcp', '2018-09-15 11:56:36.394619', '2018-09-15 11:56:36.394619', 4, 'PCP', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (37, 'SE_srp', '2018-09-15 11:56:36.399291', '2018-09-15 11:56:36.399291', 4, 'SRP', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (38, 'SE_lrp', '2018-09-15 11:56:36.402827', '2018-09-15 11:56:36.402827', 4, 'LRP', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (39, 'AST', '2018-09-15 11:56:36.406254', '2018-09-15 11:56:36.406254', 4, 'Available Servicing Type', 0, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (40, 'EC', '2018-09-15 11:56:36.409788', '2018-09-15 11:56:36.409788', 4, 'Electrical Consumption rate', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (41, 'GC', '2018-09-15 11:56:36.413274', '2018-09-15 11:56:36.413274', 4, 'Gas Consumption Rate', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (42, 'V_ml', '2018-09-15 11:56:36.416638', '2018-09-15 11:56:36.416638', 4, 'Main Voltage Line', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (43, 'meo_o', '2018-09-15 12:07:00.342544', '2018-09-15 12:07:00.342544', 5, 'Oil Viscosity', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (44, 'beta_o', '2018-09-15 12:07:00.347571', '2018-09-15 12:07:00.347571', 5, 'Oil volume Factor', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (45, 'beta_g', '2018-09-15 12:07:00.351426', '2018-09-15 12:07:00.351426', 5, 'Gas Volume factor', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (46, 'R_s', '2018-09-15 12:07:00.354949', '2018-09-15 12:07:00.354949', 5, 'Gas Solubility', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (47, 'Z', '2018-09-15 12:07:00.358578', '2018-09-15 12:07:00.358578', 5, 'Gas Compressibility Factor', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (48, 'meo_w', '2018-09-15 12:07:00.362302', '2018-09-15 12:07:00.362302', 5, 'Water Viscosity', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (49, 'beta_w', '2018-09-15 12:07:00.36594', '2018-09-15 12:07:00.36594', 5, 'Water Volume Factor', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (51, 'PF_espcp', '2018-09-15 12:17:00.95939', '2018-09-15 12:17:00.95939', 6, 'ESPCP PLS Flexibility', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (52, 'PF_pcp', '2018-09-15 12:17:00.960581', '2018-09-15 12:17:00.960581', 6, 'PCP PLS Flexibility', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (53, 'PF_srp', '2018-09-15 12:17:00.961615', '2018-09-15 12:17:00.961615', 6, 'SRP PLS Flecibility', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (54, 'PF_lrp', '2018-09-15 12:17:00.962779', '2018-09-15 12:17:00.962779', 6, 'LRP PLS Flexibility', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (55, 'PR_esp', '2018-09-15 12:17:00.963881', '2018-09-15 12:17:00.963881', 6, 'ESP PLS Reliability', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (56, 'PR_espcp', '2018-09-15 12:17:00.964987', '2018-09-15 12:17:00.964987', 6, 'ESPCP PLS Reliability', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (57, 'PR_pcp', '2018-09-15 12:17:00.966081', '2018-09-15 12:17:00.966081', 6, 'PCP PLS Reliability', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (58, 'PR_srp', '2018-09-15 12:17:00.967257', '2018-09-15 12:17:00.967257', 6, 'SRP PLS Reliability', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (59, 'PR_lrp', '2018-09-15 12:17:00.9684', '2018-09-15 12:17:00.9684', 6, 'LRP PLS Reliability', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (60, 'SE_esp', '2018-09-15 12:17:00.969449', '2018-09-15 12:17:00.969449', 6, 'ESP System Efficiency', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (61, 'SE_espcp', '2018-09-15 12:17:00.970518', '2018-09-15 12:17:00.970518', 6, 'ESPCP System Efficiency', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (62, 'SE_pcp', '2018-09-15 12:17:00.971488', '2018-09-15 12:17:00.971488', 6, 'PCP System Efficiency', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (63, 'SE_srp', '2018-09-15 12:17:00.972434', '2018-09-15 12:17:00.972434', 6, 'SRP System Efficiency', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (64, 'SE_lrp', '2018-09-15 12:17:00.973469', '2018-09-15 12:17:00.973469', 6, 'LRP System Efficiency', 1, '', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (65, 'W_WL', '2018-09-15 12:29:42.732251', '2018-09-15 12:29:42.732251', 7, 'Well Location Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (66, 'W_MD', '2018-09-15 12:29:42.734674', '2018-09-15 12:29:42.734674', 7, 'Measured Depth Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (67, 'W_WD', '2018-09-15 12:29:42.736182', '2018-09-15 12:29:42.736182', 7, 'Well Deviation Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (68, 'W_CSG_ND', '2018-09-15 12:29:42.737836', '2018-09-15 12:29:42.737836', 7, 'Casing Diameter Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (69, 'W_DS', '2018-09-15 12:29:42.739362', '2018-09-15 12:29:42.739362', 7, 'Dogleg Severity Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (70, 'W_GQ', '2018-09-15 12:29:42.740898', '2018-09-15 12:29:42.740898', 7, 'Desired Gross Rate weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (71, 'W_J', '2018-09-15 12:29:42.742417', '2018-09-15 12:29:42.742417', 7, 'Productivity Index Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (72, 'W_T_bh', '2018-09-15 12:29:42.743982', '2018-09-15 12:29:42.743982', 7, 'Bottomhole Temperature Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (73, 'W_meo_m', '2018-09-15 12:29:42.746252', '2018-09-15 12:29:42.746252', 7, 'Fluid Viscosity Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (74, 'W_API', '2018-09-15 12:29:42.748645', '2018-09-15 12:29:42.748645', 7, 'Oil gravity Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (75, 'W_AP', '2018-09-15 12:29:42.750187', '2018-09-15 12:29:42.750187', 7, 'Abrasives Production Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (76, 'W_CP', '2018-09-15 12:29:42.751537', '2018-09-15 12:29:42.751537', 7, 'Corrosive Fluid Production Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (77, 'W_ArP', '2018-09-15 12:29:42.752704', '2018-09-15 12:29:42.752704', 7, 'Aromatics Production Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (78, 'W_EP', '2018-09-15 12:29:42.753942', '2018-09-15 12:29:42.753942', 7, 'Emulsion Production Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (79, 'W_SP', '2018-09-15 12:29:42.755126', '2018-09-15 12:29:42.755126', 7, 'Scale Production Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (80, 'W_PP', '2018-09-15 12:29:42.756298', '2018-09-15 12:29:42.756298', 7, 'Parafin Production Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (81, 'W_GLR', '2018-09-15 12:29:42.757589', '2018-09-15 12:29:42.757589', 7, 'Gas Liqued Ratio Weight', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (82, 'W_APM', '2018-09-15 12:29:42.759161', '2018-09-15 12:29:42.759161', 7, 'Available Prime Mover', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (83, 'W_SE', '2018-09-15 12:29:42.760728', '2018-09-15 12:29:42.760728', 7, 'Staff Experience', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (84, 'W_AST', '2018-09-15 12:29:42.761773', '2018-09-15 12:29:42.761773', 7, 'Available Servicing Type', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (85, 'W_PF', '2018-09-15 12:29:42.763136', '2018-09-15 12:29:42.763136', 7, 'PLS Flexibility', 1, 'Percentage.', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (86, 'W_PR', '2018-09-15 12:29:42.764427', '2018-09-15 12:29:42.764427', 7, 'PLS Reliability', 1, 'PLS Reliability', NULL);
+INSERT INTO public.properties (id, name, created_at, updated_at, tab_id, description, choice_type, note, unit_type) VALUES (87, 'W_SE', '2018-09-15 12:29:42.765563', '2018-09-15 12:29:42.765563', 7, 'System Efficiency', 1, 'Percentage.', NULL);
+
+
+--
+-- Data for Name: choices; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+
+
+--
+-- Data for Name: pump_properties; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+
+
+--
+-- Data for Name: pumps; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+INSERT INTO public.pumps (id, name, created_at, updated_at) VALUES (1, 'ESP', '2018-09-14 23:22:38.353089', '2018-09-14 23:22:38.353089');
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: pumps
+--
+
+INSERT INTO public.schema_migrations (version) VALUES ('20180914113808');
+INSERT INTO public.schema_migrations (version) VALUES ('20180908113215');
+INSERT INTO public.schema_migrations (version) VALUES ('20180908113218');
+INSERT INTO public.schema_migrations (version) VALUES ('20180908122607');
+INSERT INTO public.schema_migrations (version) VALUES ('20180908122623');
+INSERT INTO public.schema_migrations (version) VALUES ('20180908122638');
+INSERT INTO public.schema_migrations (version) VALUES ('20180908214506');
+INSERT INTO public.schema_migrations (version) VALUES ('20180910202337');
+INSERT INTO public.schema_migrations (version) VALUES ('20180913191500');
+INSERT INTO public.schema_migrations (version) VALUES ('20180913191859');
+INSERT INTO public.schema_migrations (version) VALUES ('20180914112409');
+INSERT INTO public.schema_migrations (version) VALUES ('20180915084706');
+INSERT INTO public.schema_migrations (version) VALUES ('20180915085340');
+
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pumps
+--
+
+SELECT pg_catalog.setval('public.active_admin_comments_id_seq', 1, false);
+
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pumps
+--
+
+SELECT pg_catalog.setval('public.admin_users_id_seq', 1, true);
+
+
+--
+-- Name: choices_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pumps
+--
+
+SELECT pg_catalog.setval('public.choices_id_seq', 1, false);
+
+
+--
+-- Name: properties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pumps
+--
+
+SELECT pg_catalog.setval('public.properties_id_seq', 87, true);
+
+
+--
+-- Name: pump_properties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pumps
+--
+
+SELECT pg_catalog.setval('public.pump_properties_id_seq', 1, false);
+
+
+--
+-- Name: pumps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pumps
+--
+
+SELECT pg_catalog.setval('public.pumps_id_seq', 1, true);
+
+
+--
+-- Name: tabs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pumps
+--
+
+SELECT pg_catalog.setval('public.tabs_id_seq', 7, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

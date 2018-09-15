@@ -36,6 +36,8 @@ gem 'devise'
 gem 'activeadmin'
 #jquery for bootstarap
 gem 'jquery-rails'
+#dump database to upload data
+gem 'seed_dump'
 #bootstrap for front-end styles
 gem 'bootstrap', '~>4.0.0.alpha3'
 #use pg to sync with production
