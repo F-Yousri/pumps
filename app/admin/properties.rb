@@ -1,12 +1,14 @@
 ActiveAdmin.register Property do
     menu priority: 4
-    permit_params :name, :description, :choice_type, tab_attributes: [:name], choices_attributes: [:id, :name, :_destroy]
+    permit_params :name, :description, :choice_type, :note, :unit_type, tab_attributes: [:name], choices_attributes: [:id, :name, :_destroy]
   
     index do
       selectable_column
       id_column
       column :name
       column :description
+      column :note
+      column :unit_type    
       column :choice_type
       column :tab
       column :choices do |property|
@@ -26,6 +28,8 @@ ActiveAdmin.register Property do
       f.inputs "Details" do
         f.input :name
         f.input :description
+        f.input :note
+        f.input :unit_type
         f.input :choice_type
       end
       f.has_many :choices, allow_destroy: true do |n_f|

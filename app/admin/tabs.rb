@@ -1,5 +1,5 @@
 ActiveAdmin.register Tab do
-    permit_params :name, properties_attributes: [:id, :name, :description, :choice_type, :_destroy]
+    permit_params :name, properties_attributes: [:id, :name, :description, :choice_type, :note, :unit_type, :_destroy]
   
     index do
       selectable_column
@@ -23,6 +23,8 @@ ActiveAdmin.register Tab do
       f.has_many :properties, allow_destroy: true do |n_f|
         n_f.input :name
         n_f.input :description
+        n_f.input :note
+        n_f.input :unit_type
         n_f.input :choice_type
         end
       f.actions

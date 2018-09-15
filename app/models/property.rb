@@ -1,5 +1,7 @@
 class Property < ApplicationRecord
-    enum choice_type: [:list_box, :text_box]
+    enum choice_type: [:list_box, :text_box, :radio_box, :calculated]
+    enum unit_type: [:depth, :pressure, :rate, :rate_per_pressure, :weight, :viscosity, :angle, :angle_per_depth, :temperature, :non]
+
     validates   :name,  :presence => true,
                         :length => { :maximum => 100 }
     has_many :choices, dependent: :destroy

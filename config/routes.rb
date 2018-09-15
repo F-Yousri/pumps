@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   root to: 'decision_maker#techEvalForm'
   get '/', to: 'decision_maker#techEvalForm', as: 'techEvalForm'
+  post '/', to: 'decision_maker#techEval', as: 'techEval'
 end
