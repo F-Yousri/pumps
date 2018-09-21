@@ -1,6 +1,6 @@
 <h1>decision</h1>
     <div class="flash">
-        <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% @params.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= key %> rating is <%= value %></div>
         <% end %>
     </div>

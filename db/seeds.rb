@@ -1,6 +1,4 @@
-# AdminUser.create!([
-#   {email: "admin@example.com", encrypted_password: "$2a$11$hNEZbV46ozBlDw12wxGSYeuodhGnwsBTQ0WEdJ6v0Ug5WHm3OGXYO", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil}
-# ])
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 Pump.create!([
   {name: "ESP"}
 ])

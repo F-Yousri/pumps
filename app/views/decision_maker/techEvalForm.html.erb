@@ -19,14 +19,14 @@
                                 <div class="form-group-col-sm-6" style="white-space:nowrap">
                                     <label><%= property.name %> </label>:  &nbsp;
                                     <% if property.choice_type == "list_box" %>
-                                        <select name="<%= property.id %>" class="form-control" value="">
+                                        <select name="<%= property.name %>" class="form-control" value="">
                                             <% for choice in property.choices %>
                                                 <option value="<%= choice.id %>"> <%=choice.name %> </option>
                                             <% end %>
                                         </select>
                                         <br/>
                                     <% else %>
-                                        <input name="<%= property.id%>" placeholder="<%= property.name %>" class="form-control"/> <br/>
+                                        <input name="<%= property.name%>" placeholder="<%= property.name %>" class="form-control"/> <br/>
                                     <% end %>
                                 </div>
                             <%end %>

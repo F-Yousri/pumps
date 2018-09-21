@@ -4,11 +4,7 @@ class DecisionMakerController < ApplicationController
 
     def techEval
         @params = DecisionMakerService.make(params)
-        if @decision === true
-            flash.notice ='decision made'
-        else
-            flash.notice = 'nana'
-        end
+
         @params
     end
 end

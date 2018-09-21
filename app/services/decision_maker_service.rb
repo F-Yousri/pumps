@@ -4,8 +4,11 @@ module DecisionMakerService
 
         def make params
             params = self.mixtureCalc params
+            params = self.check params
+            self.match params
         end
 
+        #calculate some props and add it to input params
         def mixtureCalc params
              #calculate Mixture Viscosity in cp and add it to params object
              if params['EP'] == true
@@ -18,18 +21,13 @@ module DecisionMakerService
             params['SG_m'] = ( params['SG_o'].to_f *  ( 1 - params['WC'].to_f )) + (params['SG_w'].to_f * params['WC'].to_f ) 
             params
         end
-
-        def match params
-            matrix = PumpProperty::all
-            params.each do |k, param|
-                params[k] = {params[k]=>matrix.select { |pumpProperty| pumpProperty.property.id == k }}
-            end
-            params
-        end
         
+        #match input with the corresponding property choice
+        #this function can be refractored to do better matching but wasn't due to time constraint
         def check params
-            case params['MD']
+            case params['MD'].to_f
             when 0..4499
+                abort( params['MD'])
                 params['MD'] = "shallow"
             when 4500..5999
                 params['MD'] = "intermediate"
@@ -39,7 +37,7 @@ module DecisionMakerService
                 params['MD'] = "extremely deep"
             end
 
-            case params['WD']
+            case params['WD'].to_f
             when 0..19
                 params['WD'] = "vertical"
             when 20..49
@@ -60,7 +58,7 @@ module DecisionMakerService
             # else
             #     params['MD'] = "extremely deep"
             # end
-            case params['DS']
+            case params['DS'].to_f
             when 0..6
                 params['DS'] = "6"
             else
@@ -78,14 +76,14 @@ module DecisionMakerService
                 params['GQ'] = "4501"
             end
 
-            case params['J']
+            case params['J'].to_f
             when 0..0.5
                 params['J'] = "0.5"
             else
                 params['J'] = "0.51"
             end
 
-            case params['T_bh']
+            case params['T_bh'].to_f
             when 0..149
                 params['T_bh'] = "150"
             when 150..249
@@ -96,7 +94,7 @@ module DecisionMakerService
                 params['T_bh'] = "401"
             end
 
-            case params['meo_m']
+            case params['meo_m'].to_f
             when 0..199
                 params['meo_m'] = "200"
             when 200..499
@@ -105,7 +103,7 @@ module DecisionMakerService
                 params['meo_m'] = "501"
             end
 
-            case params['API']
+            case params['API'].to_f
             when 0..14
                 params['API'] = "15"
             when 15..34
@@ -114,7 +112,7 @@ module DecisionMakerService
                 params['API'] = "36"
             end
 
-            case params['GLR']
+            case params['GLR'].to_f
             when 0..499
                 params['GLR'] = "500"
             when 500..1999
@@ -122,6 +120,29 @@ module DecisionMakerService
             else
                 params['GLR'] = "3000"
             end
+            params
+        end
+        #match the input with the corresponding pumpProperty rating and increments the pump rating
+        def match params
+            matrix = PumpProperty::all
+            pumpsArray = Pump::select(:name).as_json
+            #build a hash of {pump.name =>rating = 0, ..} to increment ratings into pumps
+            pumpsHash = pumpsArray.map { |pump| [pump['name'], 0] }.to_h
+
+            params.each do |k, val|
+                #build a hash of {inputValue => [all pump properties associated to that property]}
+                params[k] = {val=>matrix.select { |pumpProperty| pumpProperty.property.name == k }}
+                
+                # Iterate through the pump properties to get the ones matching the inputValue
+                params[k].each do |val, pumpProperty|
+                    # if pumpProperty.choice# && pumpProperty.choice.name == val
+                        prop = pumpProperty.select { |prop| prop.choice.name == val }[0]
+                        if prop
+                            pumpsHash[prop.pump.name] += prop.rating.to_f
+                        end
+                end
+            end
+            pumpsHash
         end
     end
 end
