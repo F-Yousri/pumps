@@ -1,6 +1,13 @@
-<h1>decision</h1>
+<div class='container'>
+    <h1>decision</h1>
     <div class="flash">
-        <% @params.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= key %> rating is <%= value %></div>
-        <% end %>
+        <h3> pumps sorted by technical preference "best First" :</h3>
+        <div >
+            <% @params.each do |pump, properties| %>
+                <%= pump %> <br/>
+            <% end %>
+        </div>
+
+        
     </div>
+</div>

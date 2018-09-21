@@ -17,7 +17,7 @@
                         <div class="card-body">
                               <% for property in tab.properties %>
                                 <div class="form-group-col-sm-6" style="white-space:nowrap">
-                                    <label><%= property.name %> </label>:  &nbsp;
+                                    <label><%= property.description %> </label>:  &nbsp;
                                     <% if property.choice_type == "list_box" %>
                                         <select name="<%= property.name %>" class="form-control" value="">
                                             <% for choice in property.choices %>
