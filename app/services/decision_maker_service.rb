@@ -60,21 +60,20 @@ module DecisionMakerService
                 params['WD'] = "horizontal or extended reach"
             end
 
-            # case params['CSG_ND']
-            # when 0..4499
-            #     params['MD'] = "shallow"
-            # when 4500..5999
-            #     params['MD'] = "intermediate"
-            # when 6000..10000
-            #     params['MD'] = "deep"
-            # else
-            #     params['MD'] = "extremely deep"
-            # end
+            case params['CSG_ND']
+            when 1..3
+                params['CSG_ND'] = 1
+            else
+                params['CSG_ND'] = 4
+            end
+
+
+
             case params['DS'].to_f
             when 0..6
                 params['DS'] = "6"
             else
-                params['DS'] = "6-15"
+                params['DS'] = "7"
             end
 
             case params['GQ']

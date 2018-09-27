@@ -42,6 +42,8 @@ gem 'seed_dump'
 gem 'bootstrap', '~>4.0.0.alpha3'
 #use pg to sync with production
 gem 'pg', '~> 0.18'
+#sprockets required by bootstrap and sass
+gem 'sprockets-rails', '~> 3.1', '>= 3.1.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
