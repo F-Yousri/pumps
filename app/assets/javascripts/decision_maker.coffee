@@ -19,6 +19,7 @@ $ ->
         valueDependants = valueDependants.map (property) ->
             "[name=#{property}]"
 
+        #create the property object and fill with data
         PropertyFactory
             .getProperty($(this).prop('name'))
             .setNode($(this))
@@ -61,13 +62,13 @@ $ ->
                 event.preventDefault();
                 event.stopPropagation();
                 $(this).closest('.collapse').collapse('show')
-                $(this).siblings('.alert-required').removeClass('hidden').focus()
+                $(this).removeClass('valid').siblings('.alert-required').removeClass('hidden').focus()
     
     #check all inputs value validity on change
     $('.property').change ->
         if $(this).val()
             $(this).siblings('.alert-required').addClass('hidden')
-            if +$(this).val() > +$(this).prop('max')
+            if $(this).prop('max') and +$(this).val() > +$(this).prop('max')
                 $(this).addClass('invalid').removeClass('valid').siblings('.alert-wrong').removeClass('hidden')
             else
                 $(this).addClass('valid').removeClass('invalid').siblings('.alert-wrong').addClass('hidden')
