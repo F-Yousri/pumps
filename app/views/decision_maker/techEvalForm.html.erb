@@ -27,7 +27,7 @@
                                         </select>
                                         <br/>
                                     <% else %>
-                                        <input name="<%= property.name%>" placeholder="<%= property.name %>" class="form-control property"/> <br/>
+                                        <input type="number" min="0" name="<%= property.name%>" placeholder="<%= property.name %>" <%= property.choice_type == "calculated" ? "disabled" :""  %> class="form-control property"/> <br/>
                                     <% end %>
                                     <span class='error alert-required hidden' role='alert'>
                                         This Field Is Required For Calculations

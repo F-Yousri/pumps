@@ -64,7 +64,8 @@ $ ->
             
             #disable unit select in dependants and attach event to leader to instruct their units
             if options and options.length > 1
-                obj.unitDependants.not("[name=#{name}]").siblings("select").prop("disabled", "disabled")
+                obj.unitDependants.not("[name=#{name}]")
+                .siblings("select").prop("disabled", "disabled")
             else
                 obj.unitDependants.siblings("select").prop("disabled", "disabled")
 
@@ -94,7 +95,7 @@ $ ->
     $('.property').change ->
         if $(this).val()
             $(this).siblings('.alert-required').addClass('hidden')
-            if $(this).prop('max') and +$(this).val() > +$(this).prop('max')
+            if +$(this).val() > +$(this).prop('max') or +$(this).val() < +$(this).prop('min')
                 $(this).addClass('invalid').removeClass('valid')
                 .siblings('.alert-wrong').removeClass('hidden')
             else
@@ -103,8 +104,6 @@ $ ->
 
     #If a field is empty on submit open its tab and show error msg
     $('#tech-form').submit (event) ->
-        event.preventDefault()
-        event.stopPropagation()
 
         $('.property').each ->
             if ! $(this).val()
@@ -129,5 +128,20 @@ $ ->
             event.preventDefault()
             event.stopPropagation()
 
+    $('[unit=percentage').find('input').prop('max', 100)
+
+    $('[name=GQ], [name=Q_g], [name=WC]').change (event) ->
+        GQ = parseFloat( $('[name=GQ]').val() ) or 0
+        Q_g = parseFloat( $('[name=Q_g]').val() ) or 0
+        WC = parseFloat( $('[name=WC]').val() ) or 0
+        GOR = 0
+        GLR = 0
+        dominator =  GQ * (1.0 - WC/100)
+        if dominator and Q_g
+            GOR = Q_g * 1000 / dominator
+        if dominator = GQ
+            GLR = Q_g * 1000 / dominator
+        $('[name=GOR]').val(GOR)
+        $('[name=GLR]').val(GLR)
 
 
