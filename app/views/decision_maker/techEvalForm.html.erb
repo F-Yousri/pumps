@@ -13,8 +13,8 @@
                             </button>
                         </h5>
                     </div>
-                    <div id="<%= tab.id %>" class="show collapse in" aria-expanded="true" aria-labelledby="heading <%= tab.name %>" data-parent="#tabs">
-                        <div class="card-body">
+                    <div id="<%= tab.id %>" class="tab show collapse in" aria-expanded="true" aria-labelledby="heading <%= tab.name %>" data-parent="#tabs">
+                        <div class="card-body" name = "<%= tab.name%>">
                               <% for property in tab.properties %>
                                     <label><%= property.description %> </label>:  &nbsp;
                                     <div id="<%= property.name %>" class="form-group row" style="white-space:nowrap" unit="<%= property.unit_type %>" >

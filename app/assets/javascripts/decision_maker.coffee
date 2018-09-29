@@ -27,7 +27,20 @@ $ ->
                 .setCategory($(this).closest('[unit]').attr('unit'))
                 .setUnitDependants($("#{unitDependants.join(',')}"))
                 .setValueDependants($("#{valueDependants.join(',')}"))
-        
+
+    #check weights sum is 100%
+    weights = []
+    do ( properties = PropertyFactory.properties ) ->
+        for name, obj of properties
+            if name.includes('W_')
+                weights.push(obj.node)
+        weights
+
+    weightsValidate = ( propWeights ) ->
+        total = propWeights.map( (node) -> parseInt(node.val()) or 0)
+                        .reduce((sum, percentage) -> percentage + sum)
+        total
+
     #loop on property objects to create validations
     do ( properties = PropertyFactory.properties ) ->
         
@@ -86,6 +99,9 @@ $ ->
 
     #If a field is empty on submit open its tab and show error msg
     $('#tech-form').submit (event) ->
+        event.preventDefault()
+        event.stopPropagation()
+
         $('.property').each ->
             if ! $(this).val()
                 event.preventDefault()
@@ -93,7 +109,18 @@ $ ->
                 $(this).closest('.collapse').collapse('show')
                 $(this).removeClass('valid')
                 .siblings('.alert-required').removeClass('hidden').focus()
+        
+        totalWeight = weightsValidate weights
+        if totalWeight != 100
+            event.preventDefault()
+            event.stopPropagation()
+            $("[name='Selection Criteria']").children(".alert-wrong").remove()
+            $("[name='Selection Criteria']").collapse('show').prepend("<div class=' alert alert-danger alert-wrong'> Weights sum must be 100% currently #{totalWeight} </div>").find('input').addClass('invalid')
 
+        wrong = $('.alert-wrong:not(.hidden)')
+        if wrong.length
+            event.preventDefault()
+            event.stopPropagation()
 
 
 
