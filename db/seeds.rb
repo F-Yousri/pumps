@@ -3,6 +3,15 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 Pump.create!([
   {name: "ESP"}
 ])
+Tab.create!([
+  {name: "Well Data"},
+  {name: "Fluid Characteristics"},
+  {name: "Production Parameters"},
+  {name: "Staff Experience"},
+  {name: "PVT Data at Pump Depth"},
+  {name: "Additional Criteria"},
+  {name: "Selection Criteria"}
+])
 Property.create!([
   {name: "MD", tab_id: 1, description: "Measured Well depth", choice_type: "text_box", note: "should not exceed 16000 ft or 4800 m.", unit_type: "depth"},
   {name: "TVD", tab_id: 1, description: "Total vertical Depth", choice_type: "text_box", note: "Shouldn't exceed Measured Well Depth", unit_type: "depth"},
@@ -108,12 +117,4 @@ Choice.create!([
   {name: "3 1/2\" (88.9 mm) 9.3 lb./ft.", property_id: 8},
   {name: "4 1/2\" (114.3 mm) 12.75 lb./ft.", property_id: 8}
 ])
-Tab.create!([
-  {name: "Well Data"},
-  {name: "Fluid Characteristics"},
-  {name: "Production Parameters"},
-  {name: "Staff Experience"},
-  {name: "PVT Data at Pump Depth"},
-  {name: "Additional Criteria"},
-  {name: "Selection Criteria"}
-])
+
