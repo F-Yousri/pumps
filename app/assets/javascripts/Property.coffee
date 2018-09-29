@@ -1,5 +1,5 @@
 exports = this
-exports.PropertyFactory = do -> 
+exports.PropertyFactory = do ->
     class @Property
         constructor: (@name) ->
         

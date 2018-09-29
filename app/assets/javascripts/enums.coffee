@@ -1,7 +1,7 @@
-exports = this;
+exports = this
 exports.enums = {
     unitDependants: {
-        MD : [
+        MD: [
             'MD',
             'TVD',
             'MD_pump'

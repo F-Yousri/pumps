@@ -7,72 +7,71 @@
 $ ->
 
     #variable used
-    MDInput = {}
     inputs = $('input.property')
-    #loop on properties to create their objects
-    inputs.each ->
-        unitDependants = enums.unitDependants[$(this).prop('name')] or []
-        unitDependants = unitDependants.map (property) ->
-            "[name=#{property}]"
-        
-        valueDependants = enums.valueDependants[$(this).prop('name')] or []
-        valueDependants = valueDependants.map (property) ->
-            "[name=#{property}]"
 
-        #create the property object and fill with data
-        PropertyFactory
-            .getProperty($(this).prop('name'))
-            .setNode($(this))
-            .setCategory($(this).closest('[unit]').attr('unit'))
-            .setUnitDependants($("#{unitDependants.join(',')}"))
-            .setValueDependants($("#{valueDependants.join(',')}"))
-
-
-    #loop on property objects to create validations
-    properties = PropertyFactory.properties
-    for name, obj of properties
-        obj.valueDependants.parent()
-        .append("<span class=' alert-wrong hidden' role='alert'> Can't Exceed #{name} </span>")
-        obj.unitDependants.prop('type', enums.inputTypes[obj.category]).addClass('col-sm-9')
-        .after('<select class="col-sm-3 form-control"></select>')
-        options = enums.units[obj.category]
-        #append options to select
-        if options
-            for option, index in options
-                obj.unitDependants
-                .siblings('select').append("<option value='#{index + 1}'> #{option} </option>")
-        #set max if number input and has max
-        if enums.inputTypes[obj.category] == "number" and enums.max["#{obj.name}"]?
-            unit = obj.node.siblings('select').children('option:selected').text().trim()
-            max = enums.max[ "#{name}" ][ "#{unit}" ]
-            obj.node.prop( 'max', max )
+    #construct properties and fill PropertyFactory
+    do ( inputs ) ->
+        inputs.each ->
+            unitDependants = enums.unitDependants[$(this).prop('name')] or []
+            unitDependants = unitDependants.map (property) ->
+                "[name=#{property}]"
             
+            valueDependants = enums.valueDependants[$(this).prop('name')] or []
+            valueDependants = valueDependants.map (property) ->
+                "[name=#{property}]"
+
+            #create the property object and fill with data
+            PropertyFactory
+                .getProperty($(this).prop('name'))
+                .setNode($(this))
+                .setCategory($(this).closest('[unit]').attr('unit'))
+                .setUnitDependants($("#{unitDependants.join(',')}"))
+                .setValueDependants($("#{valueDependants.join(',')}"))
+        
+    #loop on property objects to create validations
+    do ( properties = PropertyFactory.properties ) ->
+        
+        for name, obj of properties
+            obj.unitDependants.prop('type', enums.inputTypes[obj.category]).addClass('col-sm-9')
+            .after('<select class="col-sm-3 form-control"></select>')
+            
+            #append options to select
+            options = enums.units[obj.category]
+            if options
+                for option, index in options
+                    obj.unitDependants
+                    .siblings('select').append("<option value='#{index + 1}'> #{option} </option>")
+            
+            #set max of node
+            if enums.inputTypes[obj.category] == "number" and enums.max["#{obj.name}"]?
+                unit = obj.node.siblings('select').children('option:selected').text().trim()
+                max = enums.max[ "#{name}" ][ "#{unit}" ]
+                obj.node.prop( 'max', max )
+                
+            
+            #disable unit select in dependants and attach event to leader to instruct their units
+            obj.unitDependants.not("[name=#{name}]").siblings("select").prop("disabled", "disabled")
             obj.node.siblings('select').change (event) ->
                 property = $(this).siblings('input')
                 unit =  $(this).children('option:selected').text().trim()
-                placeholder = "#{property.prop('name')} max allowable #{obj.category} is #{max}"
+                category = property.closest('[unit]').attr('unit')
+                
+                #set placeholder and max according to unit limit
                 max = enums.max["#{property.prop('name')}"]["#{unit}"]
+                placeholder = "#{property.prop('name')} max allowable #{category} is #{max} #{unit}"
                 property.prop('max', max )
                 .prop('placeholder', placeholder)
                 PropertyFactory.properties["#{property.prop('name')}"]
                 .unitDependants.trigger('change')
                 .siblings('select').val($(this).val())
-
+            
+            #set max to nodes dependant in value on current node and set error message
+            obj.valueDependants.parent()
+            .append("<span class=' alert-wrong hidden' role='alert'> Can't Exceed #{name} </span>")
             obj.node.change (event) ->
                 property =  PropertyFactory.properties["#{$(this).prop('name')}"]
                 property.valueDependants.prop('max', $(this).val()).trigger('change')
-        #disable unit select in dependants
-        obj.unitDependants.not("[name=#{name}]").siblings("select").prop("disabled", "disabled")
 
-    #If a field is empty on submit open its tab and show error msg
-    $('#tech-form').submit (event) ->
-        $('.property').each ->
-            if ! $(this).val()
-                event.preventDefault()
-                event.stopPropagation()
-                $(this).closest('.collapse').collapse('show')
-                $(this).removeClass('valid')
-                .siblings('.alert-required').removeClass('hidden').focus()
     
     #check all inputs value validity on change
     $('.property').change ->
@@ -84,5 +83,17 @@ $ ->
             else
                 $(this).addClass('valid').removeClass('invalid')
                 .siblings('.alert-wrong').addClass('hidden')
+
+    #If a field is empty on submit open its tab and show error msg
+    $('#tech-form').submit (event) ->
+        $('.property').each ->
+            if ! $(this).val()
+                event.preventDefault()
+                event.stopPropagation()
+                $(this).closest('.collapse').collapse('show')
+                $(this).removeClass('valid')
+                .siblings('.alert-required').removeClass('hidden').focus()
+
+
 
 
