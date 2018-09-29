@@ -1,6 +1,9 @@
 class Property < ApplicationRecord
     enum choice_type: [:list_box, :text_box, :radio_box, :calculated]
-    enum unit_type: [:depth, :pressure, :rate, :rate_per_pressure, :weight, :viscosity, :angle, :angle_per_depth, :temperature, :non]
+    enum unit_type: [:depth, :pressure, :rate, :rate_per_pressure, :weight, :viscosity,
+                    :angle, :angle_per_depth, :temperature, :non, :pressure_rate, :volume, 
+                    :gas_rate, :percentage, :gas_oil_ratio, :electricity_price, :main_line_voltage,
+                    :gas_consumption_rate, :gas_solubility, :gas_volume_vactor, :liquid_volume_factor]
 
     validates   :name,  :presence => true,
                         :length => { :maximum => 100 }

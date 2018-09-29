@@ -63,7 +63,11 @@ $ ->
                 
             
             #disable unit select in dependants and attach event to leader to instruct their units
-            obj.unitDependants.not("[name=#{name}]").siblings("select").prop("disabled", "disabled")
+            if options and options.length > 1
+                obj.unitDependants.not("[name=#{name}]").siblings("select").prop("disabled", "disabled")
+            else
+                obj.unitDependants.siblings("select").prop("disabled", "disabled")
+
             obj.node.siblings('select').change (event) ->
                 property = $(this).siblings('input')
                 unit =  $(this).children('option:selected').text().trim()
@@ -115,7 +119,10 @@ $ ->
             event.preventDefault()
             event.stopPropagation()
             $("[name='Selection Criteria']").children(".alert-wrong").remove()
-            $("[name='Selection Criteria']").collapse('show').prepend("<div class=' alert alert-danger alert-wrong'> Weights sum must be 100% currently #{totalWeight} </div>").find('input').addClass('invalid')
+            $("[name='Selection Criteria']").collapse('show')
+            error = "<div class='alert alert-danger alert-wrong'>Weights sum must be 100% currently #{totalWeight}</div>"
+            .prepend(error)
+            .find('input').addClass('invalid')
 
         wrong = $('.alert-wrong:not(.hidden)')
         if wrong.length
