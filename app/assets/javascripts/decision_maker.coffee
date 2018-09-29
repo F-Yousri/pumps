@@ -6,9 +6,9 @@
 
 $ ->
 
-    #variable used
+    #apply max 100 on all percentages
+    $('[unit=percentage').find('input').prop('max', 100)
     inputs = $('input.property')
-
     #construct properties and fill PropertyFactory
     do ( inputs ) ->
         inputs.each ->
@@ -75,10 +75,11 @@ $ ->
                 category = property.closest('[unit]').attr('unit')
                 
                 #set placeholder and max according to unit limit
-                max = enums.max["#{property.prop('name')}"]["#{unit}"]
-                placeholder = "#{property.prop('name')} max allowable #{category} is #{max} #{unit}"
-                property.prop('max', max )
-                .prop('placeholder', placeholder)
+                if enums.max["#{property.prop('name')}"]
+                    max = enums.max["#{property.prop('name')}"]["#{unit}"]
+                    placeholder = "#{property.prop('name')} max allowable #{category} is #{max} #{unit}"
+                    property.prop('max', max )
+                    .prop('placeholder', placeholder)
                 PropertyFactory.properties["#{property.prop('name')}"]
                 .unitDependants.trigger('change')
                 .siblings('select').val($(this).val())
@@ -90,7 +91,9 @@ $ ->
                 property =  PropertyFactory.properties["#{$(this).prop('name')}"]
                 property.valueDependants.prop('max', $(this).val()).trigger('change')
 
-    
+    #make inputs full width if no select
+    inputs.not('.col-sm-9').addClass('col-sm-12')
+
     #check all inputs value validity on change
     $('.property').change ->
         if $(this).val()
@@ -127,16 +130,14 @@ $ ->
         if wrong.length
             event.preventDefault()
             event.stopPropagation()
-
-    $('[unit=percentage').find('input').prop('max', 100)
-
+    #claculate GOR and GLR on properties change
     $('[name=GQ], [name=Q_g], [name=WC]').change (event) ->
         GQ = parseFloat( $('[name=GQ]').val() ) or 0
         Q_g = parseFloat( $('[name=Q_g]').val() ) or 0
         WC = parseFloat( $('[name=WC]').val() ) or 0
         GOR = 0
         GLR = 0
-        dominator =  GQ * (1.0 - WC/100)
+        dominator =  GQ * (1.0 - WC / 100)
         if dominator and Q_g
             GOR = Q_g * 1000 / dominator
         if dominator = GQ

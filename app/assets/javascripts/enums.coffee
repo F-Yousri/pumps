@@ -5,7 +5,9 @@ exports.enums = {
             'MD',
             'TVD',
             'MD_pump',
-            'VD_pump'
+            'VD_pump',
+            'D_perf',
+            'VD_FL'
         ],
         WD: [
             'WD'
@@ -40,6 +42,45 @@ exports.enums = {
         ],
         GLR: [
             'GLR'
+        ],
+        DS: [
+            'DS'
+        ],
+        T_sc: [
+            'T_bh',
+            'T_sc'
+        ],
+        W_WL: [
+            'W_WL',
+            'W_MD',
+            'W_WD',
+            'W_CSG_ND',
+            'W_DS',
+            'W_GQ',
+            'W_J',
+            'W_T_bh',
+            'W_meo_m',
+            'W_PR',
+            'W_API',
+            'W_AP',
+            'W_CP',
+            'W_ArP',
+            'W_EP',
+            'W_SP',
+            'W_PP',
+            'W_GLR',
+            'W_APM',
+            'W_SE',
+            'W_AST',
+            'W_PF',
+            'W_ES'
+        ],
+        ES_espcp: [
+            'ES_espcp',
+            'ES_pcp',
+            'ES_srp',
+            'ES_lrp',
+            'ES_esp'
         ]
     }
 
@@ -75,6 +116,10 @@ exports.enums = {
         ],
         volume: [
             'bbl'
+        ],
+        temperature: [
+            '&#176;C',
+            '&#176;F'
         ],
         rate_per_pressure: [
             'BPD/psi'
