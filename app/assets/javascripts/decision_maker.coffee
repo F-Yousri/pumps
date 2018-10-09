@@ -8,6 +8,7 @@ $ ->
 
     #apply max 100 on all percentages
     $('[unit=percentage').find('input').prop('max', 100)
+    
     inputs = $('input.property')
     #construct properties and fill PropertyFactory
     do ( inputs ) ->
@@ -98,12 +99,12 @@ $ ->
     $('.property').change ->
         if $(this).val()
             $(this).siblings('.alert-required').addClass('hidden')
-            if +$(this).val() > +$(this).prop('max') or +$(this).val() < +$(this).prop('min')
-                $(this).addClass('invalid').removeClass('valid')
-                .siblings('.alert-wrong').removeClass('hidden')
-            else
-                $(this).addClass('valid').removeClass('invalid')
-                .siblings('.alert-wrong').addClass('hidden')
+            if ($(this).prop('max') && $(this).val() > +$(this).prop('max')) or +$(this).val() < +$(this).prop('min')
+                    $(this).addClass('invalid').removeClass('valid')
+                    .siblings('.alert-wrong').removeClass('hidden')
+                else
+                    $(this).addClass('valid').removeClass('invalid')
+                    .siblings('.alert-wrong').addClass('hidden')
 
     #If a field is empty on submit open its tab and show error msg
     $('#tech-form').submit (event) ->
