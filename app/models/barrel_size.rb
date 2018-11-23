@@ -1,0 +1,2 @@
+class BarrelSize < ApplicationRecord
+end

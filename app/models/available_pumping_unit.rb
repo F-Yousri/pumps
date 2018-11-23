@@ -1,0 +1,2 @@
+class AvailablePumpingUnit < ApplicationRecord
+end

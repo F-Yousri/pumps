@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Rod: 
+  size_118: 1.5
+  size_1: 1.5
+  size: MyString
+  _78: 1.5
+  size_34: 1.5
+
+two:
+  Rod: 
+  size_118: 1.5
+  size_1: 1.5
+  size: MyString
+  _78: 1.5
+  size_34: 1.5

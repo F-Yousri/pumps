@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  motor_hp: 1.5
+  cost1: 1.5
+  cost2: 1.5
+  cost3: 1.5
+
+two:
+  motor_hp: 1.5
+  cost1: 1.5
+  cost2: 1.5
+  cost3: 1.5

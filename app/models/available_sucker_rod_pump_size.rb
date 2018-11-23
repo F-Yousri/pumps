@@ -1,0 +1,2 @@
+class AvailableSuckerRodPumpSize < ApplicationRecord
+end

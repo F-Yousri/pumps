@@ -1,18 +1,22 @@
 class DecisionMakerController < ApplicationController
     require "#{Rails.root}/lib/phasetwo/table_generate.rb"
     require "#{Rails.root}/app/services/phasetwo/table_service.rb"
+    skip_before_action :verify_authenticity_token  
+
     def techEvalForm        
     end
 
     def techEval
+        session[:params] ||= params
         @params = DecisionMakerService.make(params)
-
-        @params
+        session[:result] ||= @params
+        render json:  @params
     end
 
-    def phasetwo
-        table = Tablegenerate.new('mina').get_table
-        data = TableService.new(table,50).final
-        render html:  data
+    def phasetwo 
+        params = session[:params] 
+        data = TableService.new(Tablegenerate.new('mina').get_table,params['WC']).final
+        data2 = TableService.new(Tablegenerate.new('fahd').get_table,50).final
+        render json:  data2
     end
 end

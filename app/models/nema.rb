@@ -1,0 +1,2 @@
+class Nema < ApplicationRecord
+end

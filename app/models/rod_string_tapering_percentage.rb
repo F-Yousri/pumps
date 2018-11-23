@@ -1,0 +1,2 @@
+class RodStringTaperingPercentage < ApplicationRecord
+end

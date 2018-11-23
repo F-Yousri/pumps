@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_085340) do
+ActiveRecord::Schema.define(version: 2018_11_23_115321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,42 @@ ActiveRecord::Schema.define(version: 2018_09_15_085340) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "available_pumping_units", force: :cascade do |t|
+    t.float "Max_GR"
+    t.float "PPRL"
+    t.float "Max_Stroke_Length"
+    t.float "Stroke_lengths_1"
+    t.float "Stroke_lengths_3"
+    t.float "Stroke_lengths_2"
+    t.float "Stroke_lengths_4"
+    t.float "cost"
+  end
+
+  create_table "available_sucker_rod_pump_sizes", force: :cascade do |t|
+    t.float "Plunger_Diameter"
+    t.float "Plunger_Area"
+    t.float "Barrel_OD"
+    t.float "min_Tubing_size"
+    t.float "max_Tubing_size"
+  end
+
+  create_table "barrel_sizes", force: :cascade do |t|
+    t.float "size"
+  end
+
   create_table "choices", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "property_id"
     t.index ["property_id"], name: "index_choices_on_property_id"
+  end
+
+  create_table "nemas", force: :cascade do |t|
+    t.float "motor_hp"
+    t.float "cost1"
+    t.float "cost2"
+    t.float "cost3"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -77,6 +107,24 @@ ActiveRecord::Schema.define(version: 2018_09_15_085340) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rod_string_tapering_percentages", force: :cascade do |t|
+    t.float "Rod"
+    t.float "plunger_Diameter"
+    t.float "Rod_Weight"
+    t.float "size_118"
+    t.float "size_1"
+    t.float "size"
+    t.float "_78"
+    t.float "size_34"
+  end
+
+  create_table "sucker_rods", force: :cascade do |t|
+    t.string "api"
+    t.string "Weatherford"
+    t.float "yield_strength"
+    t.string "corrosion_resistance"
   end
 
   create_table "tabs", force: :cascade do |t|
