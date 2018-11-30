@@ -9,4 +9,3 @@ class CreateSuckerRods < ActiveRecord::Migration[5.2]
     end
   end
 end
-rails g model Available_sucker_rod_pump_sizes Plunger_Diameter:float	Plunger_Area:float	Barrel_OD:float	min_Tubing_size:float	max_Tubing_size:float

@@ -115,8 +115,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_115321) do
     t.float "Rod_Weight"
     t.float "size_118"
     t.float "size_1"
-    t.float "size"
-    t.float "_78"
+    t.float "size_78"
     t.float "size_34"
   end
 

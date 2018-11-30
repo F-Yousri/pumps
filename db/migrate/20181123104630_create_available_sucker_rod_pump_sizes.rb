@@ -6,7 +6,6 @@ class CreateAvailableSuckerRodPumpSizes < ActiveRecord::Migration[5.2]
       t.float :Barrel_OD
       t.float :min_Tubing_size
       t.float :max_Tubing_size
-
     end
   end
 end
