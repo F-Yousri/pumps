@@ -14,10 +14,10 @@ class DecisionMakerController < ApplicationController
         phasetwo params
     end
 
-    def phasetwo  params
-        SR_ND=params[:SR_ND]
-        SR_ND1=1
-        RT='D'
+    def phasetwo  
+        # SR_ND=params[:SR_ND]
+        # SR_ND1=1
+        # RT='D'
 
         # params = session[:params] 
         data = TableService.new(Tablegenerate.new('mina').get_table,params['WC']).final
@@ -25,4 +25,3 @@ class DecisionMakerController < ApplicationController
         render json:  data2
     end
 end
-ESP_Performance_Curves
