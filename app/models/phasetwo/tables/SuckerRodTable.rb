@@ -1,4 +1,4 @@
-class FahdTable 
+  class SuckerRodTable 
 
     def prepare_input input
         final_input = input
@@ -6,7 +6,7 @@ class FahdTable
     end
 
     def get_data input
-        @all=SuckerRod::all()
+        SuckerRod.select('yield_strength').where(Weatherford: input).limit(1)
     end 
   end
 

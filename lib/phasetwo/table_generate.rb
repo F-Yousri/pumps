@@ -9,10 +9,14 @@ class Tablegenerate
 
     def get_table
         case self.name 
-        when 'mina'
-            MinaTable.new 
-        when 'fahd'
-            FahdTable.new
+        when 'SuckerRodTable'
+            SuckerRodTable.new 
+        when 'AvailableSuckerRodPumpSize'
+            AvailableSuckerRodPumpSizeTable.new
+        when 'RodStringTaperingPercentagesTable'
+            RodStringTaperingPercentagesTable.new
+        when 'BarrelSizesTable'
+            BarrelSizesTable.new
         else
           raise 'Unsupported type of report'
         end

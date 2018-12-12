@@ -1,4 +1,4 @@
-# class CreateEspPerformanceCurves < ActiveRecord::Migration[5.2]
+class CreateEspPerformanceCurves < ActiveRecord::Migration[5.2]
 #   def change
 #     create_table :esp_performance_curves do |t|
 #       t.string :pump_seris
@@ -8,4 +8,4 @@
 #       t.timestamps
 #     end
 #   end
-# end
+end
