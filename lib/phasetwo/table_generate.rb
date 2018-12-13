@@ -17,6 +17,10 @@ class Tablegenerate
             RodStringTaperingPercentagesTable.new
         when 'BarrelSizesTable'
             BarrelSizesTable.new
+        when 'AvailablePumpingUnitTable'
+            AvailablePumpingUnitTable.new
+        when 'NemaTable'
+            NemaTable.new
         else
           raise 'Unsupported type of report'
         end

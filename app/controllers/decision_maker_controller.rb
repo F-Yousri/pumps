@@ -41,8 +41,12 @@ class DecisionMakerController < ApplicationController
         @S_axial=20550.674
         @MPRL=6012.820
         @PT=303829.271
-        @L_bs = TableService.new(Tablegenerate.new('BarrelSizesTable').get_table,@L_b).final
-
+        @data = TableService.new(Tablegenerate.new('AvailablePumpingUnitTable').get_table,{PT: @PT,PPRL: @PPRL}).final
+        @PPRL100=@data[:PPRL100]
+        @PT1000=@data[:PT1000]
+        @SL=@data[:SL]
+        @MHP_srp=64.468
+        @L_bs = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
     end
 end
 # ESP_Performance_Curves
