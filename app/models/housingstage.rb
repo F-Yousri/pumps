@@ -1,0 +1,2 @@
+class Housingstage < ApplicationRecord
+end
