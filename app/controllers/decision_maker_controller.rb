@@ -14,14 +14,14 @@ class DecisionMakerController < ApplicationController
         # phasetwo params
     end
 
-    def phasetwo  
+    def phaseTwoPump1
         @SR_ND=params[:SR_ND]
         @SR1_ND=1
-        @RT='D'
+        @RT=params[:RT]
         data = TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
         @YS_min=data[0]['yield_strength']
-        @SL=120
-        @N_SRP=10
+        @SL=params[:SL]
+        @N_SRP=params[:N_SRP]
         @ID_SRP=2.155
         @ID_p = TableService.new(Tablegenerate.new('AvailableSuckerRodPumpSize').get_table,@ID_SRP).final
         @array=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{ID_p: @ID_p,SR_ND: @SR_ND}).final
@@ -30,6 +30,8 @@ class DecisionMakerController < ApplicationController
         @R3=@array[0]['size_78']
         @R4=@array[0]['size_34']
         @SW_r=@array[0]['Rod_Weight']
+        @PEff_srp=params[:PEff_srp]
+        @MEff_srp=params[:MEff_srp]
         @L_p=5
         @L_spacing=54
         @L_b=19.5
@@ -47,6 +49,75 @@ class DecisionMakerController < ApplicationController
         @SL=@data[:SL]
         @MHP_srp=64.468
         @L_bs = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
+    end
+
+
+    def phaseTwoPump2
+
+        @PIP  = 1532.565
+        @V_o =178.750
+        @V_w = 487.500
+        @Q_gt = 500
+        @Q_gs = 32.5
+        @Q_gf = 467.5
+        @V_g = 16.363
+        @V_t = 682.613
+        @fgas  = 2.397
+        @GHE = 'NO GAS'
+        @SG_comp = 1.127
+        @H_L = 358.962
+        @H_WHP = 10.248
+        @F_t = 4.918
+        @H_f = 17.213
+        @TDH = 386.423
+        @series='series400'
+        @type=
+        @HC1
+        @HC2
+        @HC3
+        @HC4
+        @HC5
+        @HC6
+        @HPC1
+        @HPC2
+        @HPC3
+        @HPC4
+        @HPC5
+        @HPC6
+        @Hst
+        @HPst
+        @No_st
+        @ESP_Eff
+        @SH_st
+        @HP_ESP
+        @HP_seal
+        @HP_AGH
+        @HP_ESPm
+        @HP_ESPsm
+        @V_ESPsm
+        @I_ESPsm
+        @ML
+        @PCT
+        @a_c6
+        @a_c4
+        @a_c2
+        @a_c1
+        @T_c6
+        @T_c4
+        @T_c2
+        @T_c1
+        @dV6
+        @dV4
+        @dV2
+        @dV1
+        @L_sl
+        @CL
+        @V_surf
+        @kVA_surf
+        @kVA_SB
+        @kVA_t
+        @EC_esp
+
     end
 end
 # ESP_Performance_Curves

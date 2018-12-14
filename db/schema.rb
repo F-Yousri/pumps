@@ -72,6 +72,28 @@ ActiveRecord::Schema.define(version: 2018_12_02_215940) do
     t.index ["property_id"], name: "index_choices_on_property_id"
   end
 
+  create_table "esp_performance_curves", force: :cascade do |t|
+    t.string "pump_seris"
+    t.string "pump_type"
+    t.integer "minRate"
+    t.integer "maxRate"
+    t.integer "minCsg"
+    t.float "c1head"
+    t.float "c1hp"
+    t.float "c2head"
+    t.float "c2hp"
+    t.float "c3head"
+    t.float "c3hp"
+    t.float "c4head"
+    t.float "c4hp"
+    t.float "c5head"
+    t.float "c5hp"
+    t.float "c6head"
+    t.float "c6hp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "nemas", force: :cascade do |t|
     t.float "motor_hp"
     t.float "cost1"

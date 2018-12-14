@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   root to: 'decision_maker#techEvalForm'
   get '/', to: 'decision_maker#techEvalForm', as: 'techEvalForm'
   post '/', to: 'decision_maker#techEval', as: 'techEval'
-  post '/test' ,to: 'decision_maker#phasetwo'
+  post '/test' ,to: 'decision_maker#phaseTwoPump1'
+  post '/test2' ,to: 'decision_maker#phaseTwoPump2'
 end
