@@ -120,4 +120,3 @@ class DecisionMakerController < ApplicationController
 
     end
 end
-# ESP_Performance_Curves
