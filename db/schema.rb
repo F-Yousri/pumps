@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_14_084757) do
+ActiveRecord::Schema.define(version: 2018_12_14_113952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,26 @@ ActiveRecord::Schema.define(version: 2018_12_14_084757) do
     t.index ["property_id"], name: "index_choices_on_property_id"
   end
 
+  create_table "electrical_cables", force: :cascade do |t|
+    t.string "model"
+    t.integer "maxTemp"
+    t.integer "gasResistanceIndex"
+    t.string "CorrosionResistance"
+    t.string "Insulation"
+    t.string "Jacket"
+    t.string "GasResistance"
+    t.float "a6"
+    t.float "a4"
+    t.float "a2"
+    t.float "a1"
+    t.float "price6"
+    t.float "price4"
+    t.float "price2"
+    t.float "price1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "esp_performance_curves", force: :cascade do |t|
     t.string "pump_seris"
     t.string "pump_type"
@@ -99,6 +119,13 @@ ActiveRecord::Schema.define(version: 2018_12_14_084757) do
     t.integer "stages"
     t.float "cost"
     t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "junction_boxselections", force: :cascade do |t|
+    t.float "kv"
+    t.float "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
