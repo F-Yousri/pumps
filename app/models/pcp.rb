@@ -1,0 +1,2 @@
+class Pcp < ApplicationRecord
+end

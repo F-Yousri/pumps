@@ -1,0 +1,2 @@
+class Stator < ApplicationRecord
+end

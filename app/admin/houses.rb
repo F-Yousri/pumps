@@ -1,8 +1,8 @@
-ActiveAdmin.register Housingstage do
+ActiveAdmin.register House do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :housing, :stages, :cost, :type
+permit_params :housing, :stages, :cost, :pump
 #
 # or
 #

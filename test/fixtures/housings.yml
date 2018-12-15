@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  housing: 1
+  stages: 1
+  cost: 1.5
+  type: 
+
+two:
+  housing: 1
+  stages: 1
+  cost: 1.5
+  type: 

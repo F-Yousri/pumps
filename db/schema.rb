@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_14_113952) do
+ActiveRecord::Schema.define(version: 2018_12_15_085043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,24 @@ ActiveRecord::Schema.define(version: 2018_12_14_113952) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "houses", force: :cascade do |t|
+    t.integer "housing"
+    t.integer "stages"
+    t.float "cost"
+    t.string "pump"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "housings", force: :cascade do |t|
+    t.integer "housing"
+    t.integer "stages"
+    t.float "cost"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "housingstages", force: :cascade do |t|
     t.integer "housing"
     t.integer "stages"
@@ -135,6 +153,22 @@ ActiveRecord::Schema.define(version: 2018_12_14_113952) do
     t.float "cost1"
     t.float "cost2"
     t.float "cost3"
+  end
+
+  create_table "pcps", force: :cascade do |t|
+    t.integer "Imperial_Q"
+    t.integer "Imperial_H"
+    t.float "min_tube_saize"
+    t.integer "min_casing_diameter"
+    t.float "Stator_max_od"
+    t.float "rotor_drift_diameter"
+    t.float "rotor_orbital_diameter"
+    t.float "eccentricity"
+    t.float "rotor_minor_diameter"
+    t.integer "hydraulic_torque"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "properties", force: :cascade do |t|
@@ -175,6 +209,34 @@ ActiveRecord::Schema.define(version: 2018_12_14_113952) do
     t.float "size_1"
     t.float "size_78"
     t.float "size_34"
+  end
+
+  create_table "rod_type_torqu_limits", force: :cascade do |t|
+    t.string "API"
+    t.string "Weatherford"
+    t.float "t34"
+    t.float "t78"
+    t.float "t1"
+    t.float "t118"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stators", force: :cascade do |t|
+    t.string "Elastomer_type"
+    t.float "max_temp"
+    t.integer "Oil_API_from"
+    t.integer "Oil_API_to"
+    t.string "Mechanical_resistance"
+    t.string "Api_index"
+    t.string "Corrosives_resistance"
+    t.string "Aromatics"
+    t.string "Gas_Handling"
+    t.integer "GLR"
+    t.string "Application"
+    t.float "price_factor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sucker_rods", force: :cascade do |t|

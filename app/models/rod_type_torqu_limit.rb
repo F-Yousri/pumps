@@ -1,0 +1,2 @@
+class RodTypeTorquLimit < ApplicationRecord
+end
