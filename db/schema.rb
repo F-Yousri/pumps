@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_15_085043) do
+ActiveRecord::Schema.define(version: 2018_12_15_092801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,30 @@ ActiveRecord::Schema.define(version: 2018_12_15_085043) do
     t.float "c5hp"
     t.float "c6head"
     t.float "c6hp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "espcp_models", force: :cascade do |t|
+    t.string "pump_rating"
+    t.string "pump_maodel"
+    t.float "flow_rate350"
+    t.float "flow_rate500"
+    t.float "head"
+    t.float "motor_power"
+    t.float "Voltage"
+    t.float "Current"
+    t.float "min_casing_size"
+    t.float "Efficiency"
+    t.float "power_factor"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "espcps", force: :cascade do |t|
+    t.string "model"
+    t.float "thrust_load"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -248,6 +272,21 @@ ActiveRecord::Schema.define(version: 2018_12_15_085043) do
 
   create_table "tabs", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "transformers", force: :cascade do |t|
+    t.integer "kva"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vfds", force: :cascade do |t|
+    t.string "model"
+    t.float "PMM"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "choices", "properties"
