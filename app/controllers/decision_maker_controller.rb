@@ -95,7 +95,7 @@ class DecisionMakerController < ApplicationController
         @HP_ESP=16.721
         @HP_seal=0.836
         @HP_AGH=0
-        @HP_ESPm-17.558
+        @HP_ESPm=17.558
         @data2=TableService.new(Tablegenerate.new('HouseTable').get_table,{No_st:@No_st,type:@type}).final
         # @HP_ESPsm
         # @V_ESPsm
