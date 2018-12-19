@@ -71,52 +71,56 @@ class DecisionMakerController < ApplicationController
         @H_f = 17.213
         @TDH = 386.423
         @series='series400'
-        @type=
-        @HC1
-        @HC2
-        @HC3
-        @HC4
-        @HC5
-        @HC6
-        @HPC1
-        @HPC2
-        @HPC3
-        @HPC4
-        @HPC5
-        @HPC6
-        @Hst
-        @HPst
-        @No_st
-        @ESP_Eff
-        @SH_st
-        @HP_ESP
-        @HP_seal
-        @HP_AGH
-        @HP_ESPm
-        @HP_ESPsm
-        @V_ESPsm
-        @I_ESPsm
-        @ML
-        @PCT
-        @a_c6
-        @a_c4
-        @a_c2
-        @a_c1
-        @T_c6
-        @T_c4
-        @T_c2
-        @T_c1
-        @dV6
-        @dV4
-        @dV2
-        @dV1
-        @L_sl
-        @CL
-        @V_surf
-        @kVA_surf
-        @kVA_SB
-        @kVA_t
-        @EC_esp
+        @array=TableService.new(Tablegenerate.new('EspPerformanceCurfTable').get_table,{V_t: @V_t,series: @series  }).final
+        @type=@array[:pump_type]
+        @HC1=@array[:c1head]
+        @HC2=@array[:c2head]
+        @HC3=@array[:c3head]
+        @HC4=@array[:c4head]
+        @HC5=@array[:c5head]
+        @HC6=@array[:c6head]
+        @HPC1=@array[:c1hp]
+        @HPC2=@array[:c2hp]
+        @HPC3=@array[:c3hp]
+        @HPC4=@array[:c4hp]
+        @HPC5=@array[:c5hp]
+        @HPC6=@array[:c6hp]
+        @Hst=24.391
+        @HPst=0.212
+        @No_st=16
+        @ESP_Eff=57.750
+        @data=TableService.new(Tablegenerate.new('HouseTable').get_table,{No_st:@No_st,type:@type}).final
+        @SH_st=@data[:No_st]
+        @HN=@data[:housing]
+        @HP_ESP=16.721
+        @HP_seal=0.836
+        @HP_AGH=0
+        @HP_ESPm-17.558
+        @data2=TableService.new(Tablegenerate.new('HouseTable').get_table,{No_st:@No_st,type:@type}).final
+        # @HP_ESPsm
+        # @V_ESPsm
+        # @I_ESPsm
+        # @ML
+        # @PCT
+        # @a_c6
+        # @a_c4
+        # @a_c2
+        # @a_c1
+        # @T_c6
+        # @T_c4
+        # @T_c2
+        # @T_c1
+        # @dV6
+        # @dV4
+        # @dV2
+        # @dV1
+        # @L_sl
+        # @CL
+        # @V_surf
+        # @kVA_surf
+        # @kVA_SB
+        # @kVA_t
+        # @EC_esp
 
     end
 end

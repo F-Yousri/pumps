@@ -21,6 +21,10 @@ class Tablegenerate
             AvailablePumpingUnitTable.new
         when 'NemaTable'
             NemaTable.new
+        when 'EspPerformanceCurfTable'
+            EspPerformanceCurfTable.new
+        when 'HouseTable'
+            HouseTable.new
         else
           raise 'Unsupported type of report'
         end
