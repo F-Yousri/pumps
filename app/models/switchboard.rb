@@ -1,0 +1,2 @@
+class Switchboard < ApplicationRecord
+end

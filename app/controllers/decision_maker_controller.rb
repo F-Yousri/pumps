@@ -24,7 +24,7 @@ class DecisionMakerController < ApplicationController
         @N_SRP=params[:N_SRP]
         @ID_SRP=2.155
         @ID_p = TableService.new(Tablegenerate.new('AvailableSuckerRodPumpSize').get_table,@ID_SRP).final
-        @array=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{ID_p: @ID_p,SR_ND: @SR_ND}).final
+        @array=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{ID_p: @ID_p,SR_ND: @SR_ND,pump: 2}).final
         @R1= @array[0]['size_118']
         @R2=@array[0]['size_1']
         @R3=@array[0]['size_78']
@@ -96,31 +96,60 @@ class DecisionMakerController < ApplicationController
         @HP_seal=0.836
         @HP_AGH=0
         @HP_ESPm=17.558
-        @data2=TableService.new(Tablegenerate.new('HouseTable').get_table,{No_st:@No_st,type:@type}).final
-        # @HP_ESPsm
-        # @V_ESPsm
-        # @I_ESPsm
-        # @ML
-        # @PCT
-        # @a_c6
-        # @a_c4
-        # @a_c2
-        # @a_c1
-        # @T_c6
-        # @T_c4
-        # @T_c2
-        # @T_c1
-        # @dV6
-        # @dV4
-        # @dV2
-        # @dV1
-        # @L_sl
-        # @CL
-        # @V_surf
-        # @kVA_surf
+        @data2=TableService.new(Tablegenerate.new('ESPMotorSpecification').get_table,{HP_ESPm: @HP_ESPm,series:@series}).final
+        @HP_ESPsm=@data2[:hp]
+        @V_ESPsm=@data2[:Voltage]
+        @I_ESPsm=@data2[:Amperage]
+        @x1=86
+        @x2=769.231
+        @x3='Moderate'
+        @data3=TableService.new(Tablegenerate.new('ElectricalCable').get_table,{maxTemp:@x1,gasResistanceIndex:@x2,CorrosionResistance:@x3}).final
+        @ML=97.54
+        @PCT=@data3[:model]
+        @a_c6=@data3[:a6]
+        @a_c4=@data3[:a4]
+        @a_c2=@data3[:a2]
+        @a_c1=@data3[:a1]
+        @T_c6=103.188
+        @T_c4=96.188
+        @T_c2=92
+        @T_c1=90.313
+        @dV6=17.601
+        @dV4=17.351
+        @dV2=17.202
+        @dV1=17.141
+        @L_sl=17.601
+        @CL=4200
+        @V_surf=531.602
+        @kVA_surf=25.320
+        @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surf).final
+        @ssb='2C-CG'
         # @kVA_SB
         # @kVA_t
         # @EC_esp
 
+    end
+
+
+    def phaseTwoPump3
+        @PR_ND=77
+        @OD_r=0.87
+        @RT='D'
+        @data=TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
+        @YS_min=@data[0]['yield_strength']
+        @SPW_r=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{SR_ND: @PR_ND,pump: 3}).final
+        render json: @SPW_r
+        @P_DL=1532.565
+        @P_IL=1094.690
+        @P_G=0.805
+        @rho_m=63.103
+        @Re=86.032
+        @FR='Laminar Flow'
+        @P_losses=302.179
+        @P_d=1894.744
+        @P_i=1150.495
+        @C_min=90.00
+        @PCNL=826.944
+        @H_PCP=1888.535
     end
 end

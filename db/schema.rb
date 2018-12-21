@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_15_142811) do
+ActiveRecord::Schema.define(version: 2018_12_20_151353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(version: 2018_12_15_142811) do
 
   create_table "electrical_cables", force: :cascade do |t|
     t.string "model"
-    t.integer "maxTemp"
-    t.integer "gasResistanceIndex"
-    t.string "CorrosionResistance"
+    t.integer "maxtemp"
+    t.integer "gasresistanceindex"
+    t.string "corrosionresistance"
     t.string "Insulation"
     t.string "Jacket"
     t.string "GasResistance"
@@ -88,6 +88,17 @@ ActiveRecord::Schema.define(version: 2018_12_15_142811) do
     t.float "price4"
     t.float "price2"
     t.float "price1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "esp_motor_specifications", force: :cascade do |t|
+    t.integer "motor"
+    t.string "pump"
+    t.integer "hp"
+    t.integer "Voltage"
+    t.integer "Amperage"
+    t.integer "Price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -268,6 +279,16 @@ ActiveRecord::Schema.define(version: 2018_12_15_142811) do
     t.string "Weatherford"
     t.float "yield_strength"
     t.string "corrosion_resistance"
+  end
+
+  create_table "switchboards", force: :cascade do |t|
+    t.string "model"
+    t.integer "kva"
+    t.integer "amperage"
+    t.integer "voltage"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tabs", force: :cascade do |t|

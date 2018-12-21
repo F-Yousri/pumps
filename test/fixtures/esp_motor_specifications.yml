@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  motor: 1
+  pump: MyString
+  hp: 1
+  Voltage: 1
+  Amperage: 1
+  Price: 
+
+two:
+  motor: 1
+  pump: MyString
+  hp: 1
+  Voltage: 1
+  Amperage: 1
+  Price: 

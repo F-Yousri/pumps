@@ -1,0 +1,2 @@
+class EspMotorSpecification < ApplicationRecord
+end

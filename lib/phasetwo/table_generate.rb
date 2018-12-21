@@ -25,6 +25,12 @@ class Tablegenerate
             EspPerformanceCurfTable.new
         when 'HouseTable'
             HouseTable.new
+        when 'ESPMotorSpecification'
+            ESPMotorSpecificationTable.new
+        when 'ElectricalCable'
+            ElectricalCableTable.new
+        when 'JunctionBoxselectionTable'
+            JunctionBoxselectionTable.new
         else
           raise 'Unsupported type of report'
         end
