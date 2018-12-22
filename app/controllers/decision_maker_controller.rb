@@ -184,14 +184,20 @@ class DecisionMakerController < ApplicationController
         @Tao_h=259.619
         @Tao_p=@data2[:hydraulic_torque]
         @mina=TableService.new(Tablegenerate.new('RodTypeTorquLimitTable').get_table,{OD_r:@OD_r,RT:@RT}).final #mina
+        @T_tot=363.467
         @Tlim=735
         @S_e=59.501
         @HHP_PCP=24.679
         @MF=0.890
         @Eff_m=0.920
         @MHP_P=30.141
-
-        render json:@mina
-
+        @data4=TableService.new(Tablegenerate.new('DriveheadTable').get_table,{T_tot:@T_tot,AL:@AL,MHP_P:@MHP_P}).final
+        @SN_pcpm=600
+        @ST_tot=@data4[:Torque]
+        @TB=@data4[:TB]
+        @MHP_Ps=@data4[:MHP_Ps]
+        @Drive_Head=@data4[:gm]
+        @I_pcp=33.027
+        @EC_pcp=13043.269
     end
 end

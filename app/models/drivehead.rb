@@ -1,0 +1,2 @@
+class Drivehead < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_113219) do
+ActiveRecord::Schema.define(version: 2018_12_22_161948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,17 @@ ActiveRecord::Schema.define(version: 2018_12_22_113219) do
     t.datetime "updated_at", null: false
     t.bigint "property_id"
     t.index ["property_id"], name: "index_choices_on_property_id"
+  end
+
+  create_table "driveheads", force: :cascade do |t|
+    t.string "gm"
+    t.float "max_torque"
+    t.float "max_speed"
+    t.integer "thrust_bearing"
+    t.integer "hp"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "electrical_cables", force: :cascade do |t|

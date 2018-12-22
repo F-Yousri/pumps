@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  max_torque: 1.5
+  max_speed: 1.5
+  thrust_bearing: 1
+  hp: 1
+  price: 1.5
+
+two:
+  type: 
+  max_torque: 1.5
+  max_speed: 1.5
+  thrust_bearing: 1
+  hp: 1
+  price: 1.5
