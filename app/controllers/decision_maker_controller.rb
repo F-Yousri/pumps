@@ -129,7 +129,7 @@ class DecisionMakerController < ApplicationController
         # @EC_esp
 
     end
-
+ 
 
     def phaseTwoPump3
         @PR_ND=77
@@ -138,7 +138,6 @@ class DecisionMakerController < ApplicationController
         @data=TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
         @YS_min=@data[0]['yield_strength']
         @SPW_r=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{SR_ND: @PR_ND,pump: 3}).final
-        render json: @SPW_r
         @P_DL=1532.565
         @P_IL=1094.690
         @P_G=0.805
@@ -150,6 +149,24 @@ class DecisionMakerController < ApplicationController
         @P_i=1150.495
         @C_min=90.00
         @PCNL=826.944
-        @H_PCP=1888.535
+        # @H_PCP=1888.535
+        @H_PCP=1500 #mina
+        @conditions="Moderate"
+        @meo_m=212.5  #mina
+        if(@conditions == "No or Minor")
+            @Eff_pcp=85
+            if (@meo_m < 500)
+                @rpm=500
+            elsif (@meo_m.between?(500, 5000))
+                @rpm=400
+            else 
+                @rpm=250
+            end
+        else
+            @rpm=TableService.new(Tablegenerate.new('PcpConditionTable').get_table,@conditions).final
+        end
+        @data2=TableService.new(Tablegenerate.new('PcpTable').get_table,{H_PCP:@H_PCP ,Imperial_Q:@rpm}).final
+        render json: @data2[:d_r]
+
     end
 end

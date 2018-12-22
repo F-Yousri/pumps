@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  abrasives: MyString
+  rpm: 1.5
+  eff_pcp: 1.5
+
+two:
+  abrasives: MyString
+  rpm: 1.5
+  eff_pcp: 1.5

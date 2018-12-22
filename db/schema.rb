@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_151353) do
+ActiveRecord::Schema.define(version: 2018_12_21_200537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,14 @@ ActiveRecord::Schema.define(version: 2018_12_20_151353) do
     t.float "cost1"
     t.float "cost2"
     t.float "cost3"
+  end
+
+  create_table "pcp_conditions", force: :cascade do |t|
+    t.string "abrasives"
+    t.float "rpm"
+    t.float "eff_pcp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pcps", force: :cascade do |t|

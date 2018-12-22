@@ -31,6 +31,10 @@ class Tablegenerate
             ElectricalCableTable.new
         when 'JunctionBoxselectionTable'
             JunctionBoxselectionTable.new
+        when 'PcpConditionTable'
+            PcpConditionTable.new
+        when 'PcpTable'
+            PcpTable.new
         else
           raise 'Unsupported type of report'
         end
