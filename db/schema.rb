@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_21_200537) do
+ActiveRecord::Schema.define(version: 2018_12_22_113219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -266,16 +266,16 @@ ActiveRecord::Schema.define(version: 2018_12_21_200537) do
   end
 
   create_table "stators", force: :cascade do |t|
-    t.string "Elastomer_type"
+    t.string "elastomer_type"
     t.float "max_temp"
-    t.integer "Oil_API_from"
-    t.integer "Oil_API_to"
-    t.string "Mechanical_resistance"
+    t.integer "oil_api_from"
+    t.integer "oil_api_to"
+    t.string "mechanical_resistance"
     t.string "Api_index"
     t.string "Corrosives_resistance"
     t.string "Aromatics"
-    t.string "Gas_Handling"
-    t.integer "GLR"
+    t.string "gas_handling"
+    t.integer "glr"
     t.string "Application"
     t.float "price_factor"
     t.datetime "created_at", null: false

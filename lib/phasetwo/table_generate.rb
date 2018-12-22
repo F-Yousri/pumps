@@ -35,6 +35,10 @@ class Tablegenerate
             PcpConditionTable.new
         when 'PcpTable'
             PcpTable.new
+        when 'StatorTable'
+            StatorTable.new
+            when 'RodTypeTorquLimitTable'
+                RodTypeTorquLimitTable.new
         else
           raise 'Unsupported type of report'
         end

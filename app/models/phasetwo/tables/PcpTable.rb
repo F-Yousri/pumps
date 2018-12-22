@@ -11,10 +11,13 @@
         @IH_PC=@array.find { |e| e > input[:H_PCP] }
         @e=Pcp.select('eccentricity').where(Imperial_Q:  input[:Imperial_Q]).map(&:eccentricity)
         @d_r=Pcp.select('rotor_minor_diameter').where(Imperial_Q:  input[:Imperial_Q]).map(&:rotor_minor_diameter)
+        @hydraulic_torque=Pcp.select('hydraulic_torque').where(Imperial_Q:  input[:Imperial_Q]).map(&:hydraulic_torque)
+
         @data={
             e: @e[0],
             d_r: @d_r[0],
-            IH_PC:@IH_PC
+            IH_PC:@IH_PC,
+            hydraulic_torque:@hydraulic_torque[0]
         }
     end 
   end
