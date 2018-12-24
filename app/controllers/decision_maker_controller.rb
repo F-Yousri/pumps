@@ -200,4 +200,30 @@ class DecisionMakerController < ApplicationController
         @I_pcp=33.027
         @EC_pcp=13043.269
     end
+
+
+    def phaseTwoPump4
+        @P_DL=1532.565
+        @P_IL=1094.690
+        @P_G=0.805
+        @rho_m=63.103
+        @ERe=116.872
+        @EFR="Laminar Flow"
+        @EP_losses=108.388
+        @EP_d=1700.954
+        @P_i=1150.495
+        @C_min=0.900
+        @PCNL_e=611.621
+        @EH_PCP=1396.791
+        @Eff_espcp=80%
+        @V_espcpmin=812.500
+        @TL=7.172
+        @data1=TableService.new(Tablegenerate.new('EspcpTable').get_table,@TL).final
+        @TC_s=@data1[:TC_s]
+        @Model=@data1[:model]
+        @data2=TableService.new(Tablegenerate.new('EspcpModelTable').get_table,{EH_PCP:@EH_PCP,Model:@Model,V_espcpmin:@V_espcpmin}).final
+        render json: @data2
+
+    end
+
 end

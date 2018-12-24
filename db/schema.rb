@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_161948) do
+ActiveRecord::Schema.define(version: 2018_12_24_180758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 2018_12_22_161948) do
   create_table "espcp_models", force: :cascade do |t|
     t.string "pump_rating"
     t.string "pump_maodel"
-    t.float "flow_rate350"
+    t.float "flow_rate350_from"
     t.float "flow_rate500"
     t.float "head"
     t.float "motor_power"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 2018_12_22_161948) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "flow_rate350_to"
   end
 
   create_table "espcps", force: :cascade do |t|

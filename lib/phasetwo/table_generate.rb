@@ -41,7 +41,12 @@ class Tablegenerate
             RodTypeTorquLimitTable.new
         when 'DriveheadTable'
             DriveheadTable.new
+        when 'EspcpTable'
+            EspcpTable.new
+        when 'EspcpModelTable'
+            EspcpModelTable.new
         else
+
           raise 'Unsupported type of report'
         end
     end
