@@ -1,0 +1,2 @@
+class ConductorSize < ApplicationRecord
+end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cable: 1
+  max_armp: 1.5
+  voltage: 1.5
+
+two:
+  cable: 1
+  max_armp: 1.5
+  voltage: 1.5
