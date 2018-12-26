@@ -2,7 +2,7 @@ ActiveAdmin.register PcpCondition do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :abrasives, :rpm, :eff_pcp
+permit_params :abrasives, :rpm, :eff_pcp_from, :eff_pcp_to , :viscosity
 #
 # or
 #

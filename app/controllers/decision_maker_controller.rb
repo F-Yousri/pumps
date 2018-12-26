@@ -7,10 +7,10 @@ class DecisionMakerController < ApplicationController
     end
 
     def techEval
-        # session[:params] ||= params
-        @params = DecisionMakerService.make(params)
+        session[:params] ||= params
+        # @params = DecisionMakerService.make(params)
         # session[:result] ||= @params
-        render json:  @params
+        render json:  params
         # phasetwo params
     end
 
