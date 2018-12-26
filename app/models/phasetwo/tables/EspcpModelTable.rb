@@ -6,7 +6,7 @@
     end
 
     def get_data params
-        data=EspcpModel.select('head').where(pump_rating: params[:Model]).where("minrate < ?", params[:V_espcpmin]).where("maxrate > ?", params[:V_espcpmin]).limit(1)
+        data=EspcpModel.select('head').where(pump_rating: params[:Model]).where("flow_rate350_from < ?", params[:V_espcpmin]).where("flow_rate750_to > ?", params[:V_espcpmin]).limit(1)
     end 
   end
 
