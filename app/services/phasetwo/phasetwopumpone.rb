@@ -1,0 +1,45 @@
+require "#{Rails.root}/lib/phasetwo/table_generate.rb"
+module PhaseTwoPumpOne
+    class << self
+
+
+        def pumpone params
+            @SR_ND=params[:SR_ND]
+            @SR1_ND=1
+            @RT=params[:RT]
+            data = TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
+            @YS_min=data[0]['yield_strength']
+            @SL=params[:SL]
+            @N_SRP=params[:N_SRP]
+            @ID_SRP=2.155
+            @ID_p = TableService.new(Tablegenerate.new('AvailableSuckerRodPumpSize').get_table,@ID_SRP).final
+            @array=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{ID_p: @ID_p,SR_ND: @SR_ND,pump: 2}).final
+            @R1= @array[0]['size_118']
+            @R2=@array[0]['size_1']
+            @R3=@array[0]['size_78']
+            @R4=@array[0]['size_34']
+            @SW_r=@array[0]['Rod_Weight']
+            @PEff_srp=params[:PEff_srp]
+            @MEff_srp=params[:MEff_srp]
+            @L_p=5
+            @L_spacing=54
+            @L_b=19.5
+            @L_bs = TableService.new(Tablegenerate.new('BarrelSizesTable').get_table,@L_b).final
+            @Delta=0.170
+            @W_r=8585.500
+            @Fo=6093.600
+            @PPRL=16140.462
+            @S_axial=20550.674
+            @MPRL=6012.820
+            @PT=303829.271
+            @data = TableService.new(Tablegenerate.new('AvailablePumpingUnitTable').get_table,{PT: @PT,PPRL: @PPRL}).final
+            @PPRL100=@data[:PPRL100]
+            @PT1000=@data[:PT1000]
+            @SL=@data[:SL]
+            @MHP_srp=64.468
+            @L_bs = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
+            @L_bs
+        end
+        
+    end
+end
