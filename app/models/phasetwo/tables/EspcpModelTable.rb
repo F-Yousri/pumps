@@ -6,7 +6,11 @@
     end
 
     def get_data params
-        data=EspcpModel.select('head').where(pump_rating: params[:Model]).where("flow_rate350_from < ?", params[:V_espcpmin]).where("flow_rate750_to > ?", params[:V_espcpmin]).limit(1)
+        @allhead=EspcpModel.select('head').where(pump_rating: params[:Model]).where("flow_rate350_from < ?", params[:V_espcpmin]).where("flow_rate750_to > ?", params[:V_espcpmin]).map(&:head)
+        @new=@allhead.sort 
+        @head=@new.find { |e| e > params[:EH_PCP] }
+        @data=EspcpModel.where(pump_rating: params[:Model]).where(head:@head)
+        @data[0]
     end 
   end
 

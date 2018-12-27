@@ -45,6 +45,10 @@ class Tablegenerate
             EspcpTable.new
         when 'EspcpModelTable'
             EspcpModelTable.new
+        when 'VfsTable'
+            VfsTable.new
+        when 'TransformerTable'
+            TransformerTable.new
         else
 
           raise 'Unsupported type of report'
