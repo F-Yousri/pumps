@@ -24,7 +24,7 @@ class DecisionMakerController < ApplicationController
 
 
     def phaseTwoPump2
-        @mina=PhaseTwoPumpTwo.pumptwo(params)
+        @mina=PhaseTwoPumpTwo.pumptwo(params ,$phaseoneparams)
         render json:@mina
     end
  
