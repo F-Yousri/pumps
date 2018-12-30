@@ -30,13 +30,13 @@ class DecisionMakerController < ApplicationController
  
 
     def phaseTwoPump3
-        @mina=PhaseTwoPumpThree.pumpthree(params)
+        @mina=PhaseTwoPumpThree.pumpthree(params ,$phaseoneparams)
         render json:@mina
     end
 
 
     def phaseTwoPump4
-        @mina=PhaseTwoPumpFour.pumpfour(params)
+        @mina=PhaseTwoPumpFour.pumpfour(params ,$phaseoneparams)
         render json:@mina
       
     end
