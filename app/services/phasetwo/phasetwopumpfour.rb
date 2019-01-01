@@ -38,7 +38,7 @@ module PhaseTwoPumpFour
             @IH_ESPCP=@data[:head]
             @MHP_espcp=@data[:motor_power]
             @V_espcp=@data[:Voltage]
-            @I_espcp=@data[:Current]
+            @I_ESPCP=@data[:Current]
             @PF_espcp=@data[:power_factor]
             @T_bh=phaseoneparams[:T_bh].to_f
             @GLR=769.231 #mina gat menen
@@ -62,17 +62,16 @@ module PhaseTwoPumpFour
             @dV4=(5.0/11.0)*@I_ESPCP*(1+0.00214*(@T_c4-77))
             @dV2=(3.0/11.0)*@I_ESPCP*(1+0.00214*(@T_c2-77))
             @dV1=(3.0/14.0)*@I_ESPCP*(1+0.00214*(@T_c1-77))
-            @L_sl=100
-            @CL=4200.000
-            @V_surfe=1091.916
-            @HP_surfe=51.254
+            @L_sl=params[:params].to_f
+            @CL=phaseoneparams[:MD_pump].to_f+@L_sl
+            @V_surfe=@V_ESPCP+@dV6*phaseoneparams[:VD_pump].to_f/1000
+            @HP_surfe=1.732*@V_surfe*@I_espcp*@PF_espcp*phaseoneparams[:eff_espcpm].to_f/746  #mina  eff_espcpm gat mnen
             @vfs=TableService.new(Tablegenerate.new('VfsTable').get_table,@HP_surfe).final
-            @kVA_espcp=51.062
+            @kVA_espcp=1.732*@V_surfe*@I_espcp/1000
             @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surfe).final
             @st=TableService.new(Tablegenerate.new('TransformerTable').get_table,@HP_surfe).final
             @EC_espcp=11501.548
-    
-            @data3
+            @data
     
         end
         
