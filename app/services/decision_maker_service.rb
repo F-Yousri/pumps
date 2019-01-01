@@ -6,7 +6,10 @@ module DecisionMakerService
             techParams = self.extractTechParams params
             weightParams = self.extractWeightParams params
             params = self.mixtureCalc techParams
+            # leh hena fe fun el check bya5od techParams mesh params 
+            # w gwa el fun de bta3et el check b access  maslan params['meo_o'] w hwa mesh mawgood fe el techParams
             params = self.check techParams
+            # de ba2a mesh fahem ay 7aga feha :D
             pumps = self.match( techParams, weightParams )
             pumpsSeparation = self.findSeparation( pumps[:pumps], pumps[:solutions] ) 
             sortedPumps = self.sortByCi pumpsSeparation
