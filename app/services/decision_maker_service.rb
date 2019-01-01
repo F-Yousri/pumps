@@ -5,11 +5,13 @@ module DecisionMakerService
         def make params
             techParams = self.extractTechParams params
             weightParams = self.extractWeightParams params
+            #de ana bgeb meo_m men el front end f mesh lazem 27sebo hena
             params = self.mixtureCalc techParams
             # leh hena fe fun el check bya5od techParams mesh params 
             # w gwa el fun de bta3et el check b access  maslan params['meo_o'] w hwa mesh mawgood fe el techParams
             params = self.check techParams
             # de ba2a mesh fahem ay 7aga feha :D
+            # el comments gwa 
             pumps = self.match( techParams, weightParams )
             pumpsSeparation = self.findSeparation( pumps[:pumps], pumps[:solutions] ) 
             sortedPumps = self.sortByCi pumpsSeparation
@@ -149,10 +151,13 @@ module DecisionMakerService
 
             techParams.each do |k, val|
                 #build a hash of {inputValue => [all pump properties associated to that property]}
+                #el satr de elly mesh fahmo 
                 techParams[k] = {val=>matrix.select { |pumpProperty| pumpProperty.property.name == k }}
                 
                 # Iterate through the pump properties to get the ones matching the inputValue
+                # w da kaman
                 techParams[k].each do |val, pumpProperty|
+                    #w da kaman
                         propArray = pumpProperty.select { |prop| prop.choice.name == val }
                         if propArray
                             # determine value of X_i which is sqrt(sum(each row value ^2))
