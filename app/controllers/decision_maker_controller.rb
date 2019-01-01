@@ -13,7 +13,8 @@ class DecisionMakerController < ApplicationController
         session[:params] ||= params
         $phaseoneparams=params
         @params = DecisionMakerService.make(params)
-        render json:$phaseoneparams
+        render json:@params
+        # render json:$phaseoneparams
         # render  template: 'resultphaseone' , locals: { pumps: @params }
     end
 

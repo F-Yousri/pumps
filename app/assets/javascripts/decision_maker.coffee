@@ -146,4 +146,16 @@ $ ->
         $('[name=GOR]').val(GOR)
         $('[name=GLR]').val(GLR)
 
+    $('[name=meo_o], [name=meo_w]').change (event) ->
+        meo_o  = parseFloat( $('[name=meo_o]').val() )
+        meo_w  = parseFloat( $('[name=meo_w]').val() )
+        EP = parseFloat( $('[name=EP]').val() )
+        WC = parseFloat( $('[name=WC]').val() )
+        if EP == 54
+            meo_m = meo_o * (1.0 +( 2.5 * (WC / 100.0))+ (10 * Math.pow((WC /100.0 ), 2))  ) 
+        else
+            meo_m = meo_o * (1.0 -  (WC / 100.0) )  + meo_w * ( WC / 100.0 )
+        $('[name=meo_m]').val(meo_m)
+
+
 

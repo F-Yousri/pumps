@@ -61,7 +61,7 @@ module DecisionMakerService
             end
 
             case params['CSG_ND']
-            when 1..3
+            when 103..106
                 params['CSG_ND'] = 1
             else
                 params['CSG_ND'] = 4
