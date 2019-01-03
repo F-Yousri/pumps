@@ -709,6 +709,7 @@ PumpProperty.create!([
   {pump_id: 2, property_id: 55, choice_id: 29, rating: 1},
   {pump_id: 2, property_id: 21, choice_id: 30, rating: 5},
   {pump_id: 2, property_id: 21, choice_id: 31, rating: 5},
+  {pump_id: 2, property_id: 40, choice_id: 32, rating: 5},
   {pump_id: 2, property_id: 40, choice_id: 33, rating: 5},
   {pump_id: 2, property_id: 40, choice_id: 34, rating: 4},
   {pump_id: 2, property_id: 40, choice_id: 35, rating: 2},
@@ -797,6 +798,7 @@ PumpProperty.create!([
   {pump_id: 4, property_id: 55, choice_id: 29, rating: 1},
   {pump_id: 4, property_id: 21, choice_id: 30, rating: 5},
   {pump_id: 4, property_id: 21, choice_id: 31, rating: 5},
+  {pump_id: 4, property_id: 40, choice_id: 32, rating: 5},
   {pump_id: 4, property_id: 40, choice_id: 33, rating: 5},
   {pump_id: 4, property_id: 40, choice_id: 34, rating: 4},
   {pump_id: 4, property_id: 40, choice_id: 35, rating: 2},
@@ -890,7 +892,5 @@ PumpProperty.create!([
   {pump_id: 4, property_id: 1, choice_id: 95, rating: 3},
   {pump_id: 4, property_id: 15, choice_id: 56, rating: 4},
   {pump_id: 4, property_id: 15, choice_id: 57, rating: 5},
-  {pump_id: 3, property_id: 1, choice_id: 95, rating: 1},
-  {pump_id: 4, property_id: 40, choice_id: 32, rating: 70},
-  {pump_id: 2, property_id: 40, choice_id: 32, rating: 100}
+  {pump_id: 3, property_id: 1, choice_id: 95, rating: 1}
 ])
