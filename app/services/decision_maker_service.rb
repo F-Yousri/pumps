@@ -159,7 +159,7 @@ module DecisionMakerService
                     end
                 end
             end
-            return techParams
+            # return techParams
             pumps ={   :pumps=>pumpsHash, 
                 :solutions=>{ 
                     :best=>bestSolutions, :worst=>worstSolutions
