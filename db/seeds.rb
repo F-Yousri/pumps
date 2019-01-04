@@ -621,7 +621,6 @@ PcpCondition.create!([
   {abrasives: "Severe (0.1 - 3%)", rpm: 250.0, eff_pcp_to: 70.0, viscosity: 5001.0, eff_pcp_from: 15000.0},
   {abrasives: "Extremely severe (>3%)", rpm: 250.0, eff_pcp_to: 60.0, viscosity: 0.0, eff_pcp_from: 15000.0}
 ])
-
 JunctionBoxselection.create!([
   {kv: 2.7, cost: 600.0},
   {kv: 5.0, cost: 940.0}

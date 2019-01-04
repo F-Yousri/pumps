@@ -65,12 +65,12 @@ module DecisionMakerService
                 params['WD'] = "horizontal or extended reach"
             end
 
-            case params['CSG_ND']
-            when 103..106
-                params['CSG_ND'] = 1
-            else
-                params['CSG_ND'] = 4
-            end
+            # case params['CSG_ND']
+            # when 103..106
+            #     params['CSG_ND'] = 1
+            # else
+            #     params['CSG_ND'] = 4
+            # end
 
 
 
