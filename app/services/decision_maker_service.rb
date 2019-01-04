@@ -5,14 +5,9 @@ module DecisionMakerService
         def make params
             techParams = self.extractTechParams params
             weightParams = self.extractWeightParams params
-            #de ana bgeb meo_m men el front end f mesh lazem 27sebo hena
-            params = self.mixtureCalc techParams
-            # leh hena fe fun el check bya5od techParams mesh params 
-            # w gwa el fun de bta3et el check b access  maslan params['meo_o'] w hwa mesh mawgood fe el techParams
+            params = self.mixtureCalc params
             params = self.check techParams
-            # de ba2a mesh fahem ay 7aga feha :D
-            # el comments gwa 
-            pumps = self.match( techParams, weightParams )
+            pumps = self.match( techParams, weightParams )            
             pumpsSeparation = self.findSeparation( pumps[:pumps], pumps[:solutions] ) 
             sortedPumps = self.sortByCi pumpsSeparation
         end
@@ -47,94 +42,86 @@ module DecisionMakerService
             when 0..4499
                 params['MD'] = "shallow"
             when 4500..5999
-                params['MD'] = "intermediate"
+                params['MD'] = "Intermediate"
             when 6000..10000
-                params['MD'] = "deep"
+                params['MD'] = "Deep"
             else
-                params['MD'] = "extremely deep"
+                params['MD'] = "Extremely Deep"
             end
 
             case params['WD'].to_f
             when 0..19
-                params['WD'] = "vertical"
+                params['WD'] = "Vertical"
             when 20..49
-                params['WD'] = "deviated"
+                params['WD'] = "Deviated"
             when 50..79
-                params['WD'] = "extremely deviated"
+                params['WD'] = "Extremely Deviated"
             else
-                params['WD'] = "horizontal or extended reach"
+                params['WD'] = "Horizontal"
             end
-
-            # case params['CSG_ND']
-            # when 103..106
-            #     params['CSG_ND'] = 1
-            # else
-            #     params['CSG_ND'] = 4
-            # end
-
 
 
             case params['DS'].to_f
             when 0..6
-                params['DS'] = "6"
+                params['DS'] = "Normal"
             else
-                params['DS'] = "7"
+                params['DS'] = "Severe"
             end
 
             case params['GQ']
             when 0..199
-                params['GQ'] = "200"
+                params['GQ'] = "Low Production"
             when 200..1499
-                params['GQ'] = "1500"
+                params['GQ'] = "Intermediate Production"
             when 1500..4500
-                params['GQ'] = "4500"
+                params['GQ'] = "High Production"
             else
-                params['GQ'] = "4501"
+                params['GQ'] = "Extremely high production"
             end
 
             case params['J'].to_f
             when 0..0.5
-                params['J'] = "0.5"
+                params['J'] = "Low productivity reservoir"
             else
-                params['J'] = "0.51"
+                params['J'] = "High productivity reservoir"
             end
 
             case params['T_bh'].to_f
             when 0..149
-                params['T_bh'] = "150"
+                params['T_bh'] = "Normal"
             when 150..249
-                params['T_bh'] = "250"
+                params['T_bh'] = "Intermediate"
             when 250..399
-                params['T_bh'] = "400"
+                params['T_bh'] = "Hot"
             else
-                params['T_bh'] = "401"
+                params['T_bh'] = "Extremely Hot"
             end
 
             case params['meo_m'].to_f
             when 0..199
-                params['meo_m'] = "200"
+                params['meo_m'] = "Thin fluid"
             when 200..499
-                params['meo_m'] = "500"
+                params['meo_m'] = "Viscous fluid"
             else
-                params['meo_m'] = "501"
+                params['meo_m'] = "High viscous fluid"
             end
 
             case params['API'].to_f
             when 0..14
-                params['API'] = "15"
+                params['API'] = "Heavy Oil"
             when 15..34
-                params['API'] = "35"
+                params['API'] = "Intermediate Oil"
             else
-                params['API'] = "36"
+                params['API'] = "Light Oil"
             end
 
             case params['GLR'].to_f
             when 0..499
-                params['GLR'] = "500"
+                params['GLR'] = "Low gas production"
             when 500..1999
-                params['GLR'] = "2000"
+                params['GLR'] = "Intermediate gas production"
             else
-                params['GLR'] = "3000"
+                params['GLR'] = "High gas production"
             end
             params
         end
@@ -148,35 +135,31 @@ module DecisionMakerService
             #define hashes to store properties best solution and worst solotuion {property.name =>value}
             bestSolutions = {}
             worstSolutions = {}
-
             techParams.each do |k, val|
                 #build a hash of {inputValue => [all pump properties associated to that property]}
-                #el satr de elly mesh fahmo 
                 techParams[k] = {val=>matrix.select { |pumpProperty| pumpProperty.property.name == k }}
-                
                 # Iterate through the pump properties to get the ones matching the inputValue
-                # w da kaman
                 techParams[k].each do |val, pumpProperty|
-                    #w da kaman
-                        propArray = pumpProperty.select { |prop| prop.choice.name == val }
-                        if propArray
-                            # determine value of X_i which is sqrt(sum(each row value ^2))
-                            xi = Math.sqrt(propArray.inject(0) {|sum, p| sum + p.rating.to_f ** 2})
-                            
-                            propArray.each do |prop|
-                                solution = prop.rating.to_f * weightParams["W_" + k].to_f / xi
-                                #add {property.name => ( pumpProperty.rating * property weight / X_i ) } to pumpsHash
-                                pumpsHash[prop.pump.name][k] = solution
-                                if ! bestSolutions[k] || bestSolutions[k] < solution
-                                    bestSolutions[k] = solution
-                                end
-                                if ! worstSolutions[k] || worstSolutions[k] > solution
-                                    worstSolutions[k] = solution
-                                end
+                    propArray = pumpProperty.select { |prop| (prop.property.choice_type == "list_box") ? (prop.choice_id == val.to_f) : (prop.choice.name == val) }
+                    if propArray
+                        # determine value of X_i which is sqrt(sum(each row value ^2))
+                        xi = Math.sqrt(propArray.inject(0) {|sum, p| sum + p.rating.to_f ** 2})
+                        
+                        propArray.each do |prop|
+                            solution = prop.rating.to_f * weightParams["W_" + k].to_f / xi
+                            #add {property.name => ( pumpProperty.rating * property weight / X_i ) } to pumpsHash
+                            pumpsHash[prop.pump.name][k] = solution
+                            if ! bestSolutions[k] || bestSolutions[k] < solution
+                                bestSolutions[k] = solution
+                            end
+                            if ! worstSolutions[k] || worstSolutions[k] > solution
+                                worstSolutions[k] = solution
                             end
                         end
+                    end
                 end
             end
+            return techParams
             pumps ={   :pumps=>pumpsHash, 
                 :solutions=>{ 
                     :best=>bestSolutions, :worst=>worstSolutions
