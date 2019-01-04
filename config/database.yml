@@ -21,13 +21,13 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: postgres
-  password: 123
+  username: pumps
+  password: pumps
   host: localhost
 
 development:
   <<: *default
-  database: pumps_development
+  database: pumps
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
