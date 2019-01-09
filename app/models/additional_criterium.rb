@@ -1,0 +1,2 @@
+class AdditionalCriterium < ApplicationRecord
+end
