@@ -49,6 +49,8 @@ class Tablegenerate
             VfsTable.new
         when 'TransformerTable'
             TransformerTable.new
+        when 'AdditionalCriteriumTable'
+            AdditionalCriteriumTable.new
         else
 
           raise 'Unsupported type of report'

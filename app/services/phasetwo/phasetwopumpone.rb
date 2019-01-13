@@ -27,29 +27,54 @@ module PhaseTwoPumpOne
             @R3=@array[0]['size_78'] 
             @R4=@array[0]['size_34']  
             @SW_r=@array[0]['Rod_Weight']
-            @SE_rrp=params[:SE_rrp].to_f  #mina admin
-            @m_eff=params[:m_eff].to_f  #mina admin 
-            # @L_p=5 #mina
-            # @L_spacing=54 #mina
-            # @L_b=(@SL+(@L_p*12)+@L_spacing)/12
-            # @L_bs = TableService.new(Tablegenerate.new('BarrelSizesTable').get_table,@L_b).final
-            # @Delta=@SL*(@N_SRP**2)/70500
-            # @W_r=@SW_r*phaseoneparams[:VD_pump].to_f
-            # @Fo=phaseoneparams[:WGD].to_f*phaseoneparams[:VD_pump].to_f*(Math::PI/4*@ID_p**2)*phaseoneparams[:SG_m].to_f #(pi()/4*ID_p^2)*SG_m  =C28*C20*(PI()/4*H11^2)*C61
-            # @PPRL=@Fo+@W_r*(1+@Delta)
-            # @S_axial=@PPRL/(Math::PI/(4*@SR1_ND**2))
-            # @MPRL=@W_r*(1-0.128**phaseoneparams[:SG_m].to_f-@Delta)
-            # @PT=@SL/4*(@PPRL-@MPRL)
-            # @data = TableService.new(Tablegenerate.new('AvailablePumpingUnitTable').get_table,{PT: @PT,PPRL: @PPRL}).final
-            # @PPRL100=@data[:PPRL100]
-            # @PT1000=@data[:PT1000]
-            # @SL=@data[:SL]
-            # @HHP_srp=phaseoneparams[:GQ].to_f*phaseoneparams[:VD_pump].to_f/56000
-            # @FHP_srp=0.000000631*@W_r*@SL*@N_SRP
-            # @MHP_srp=(@HHP_srp+@FHP_srp)/(@PEff_srp*@MEff_srp)
-            # @L_bs = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
-            # @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
-            @array
+            @se_rrp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,50).final
+            @m_eff=params[:m_eff].to_f
+            @MD_pump=phaseoneparams[:MD_pump].to_f
+            if @MD_pump < 3000
+            @L_p= 3
+            elsif (((@MD_pump-3000)/1000.0)+3 < 6)
+            @L_p=(((@MD_pump-3000)/1000.0)+3 ).ceil
+            else
+            @L_p= 6 
+            end
+            if @MD_pump < 4000
+            @L_spacing =24
+            else 
+            @L_spacing =24 + 6*(@MD_pump/1000.0).ceil
+            end
+            @L_b=(@SL+(@L_p*12)+@L_spacing)/12
+            @L_bs = TableService.new(Tablegenerate.new('BarrelSizesTable').get_table,@L_b).final
+            @Delta=@SL*(@N_SRP**2)/70500
+            @W_r=@SW_r*phaseoneparams[:VD_pump].to_f
+            @sg_m=(phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:SG_w].to_f+(1-(phaseoneparams[:WC].to_f/100.0))*phaseoneparams[:SG_o].to_f
+            @Fo=phaseoneparams[:WGD].to_f*phaseoneparams[:VD_pump].to_f*(Math::PI/4*@ID_p**2)*@sg_m #(pi()/4*ID_p^2)*SG_m  =C28*C20*(PI()/4*H11^2)*C61
+            @PPRL=@Fo+@W_r*(1+@Delta)
+            @S_axial=@PPRL/(Math::PI/(4*@SR1_ND**2))
+            @MPRL=@W_r*(1-0.128*@sg_m-@Delta)
+            @PT=@SL/4*(@PPRL-@MPRL)
+            @data = TableService.new(Tablegenerate.new('AvailablePumpingUnitTable').get_table,{PT: @PT,PPRL: @PPRL}).final
+            @PPRL100=@data[:PPRL100]
+            @PT1000=@data[:PT1000]
+            @SL=@data[:SL]
+            @HHP_srp=phaseoneparams[:GQ].to_f*phaseoneparams[:VD_pump].to_f/56000
+            @FHP_srp=0.000000631*@W_r*@SL*@N_SRP
+            @MHP_srp=(@HHP_srp+@FHP_srp).to_f/(@se_rrp*@m_eff).to_f
+            @MHP_srps = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
+            @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
+            {
+                MHP_srps:@MHP_srps,
+                FHP_srp:@FHP_srp,
+                MHP_srp:@MHP_srp,
+                HHP_srp:@HHP_srp,
+                se_rrp:@se_rrp,
+                m_eff:@m_eff,
+                W_r:@W_r,
+                SL:@SL,
+                N_SRP:@N_SRP,
+                EC_srp:@EC_srp
+
+                
+            }
         end
         
     end
