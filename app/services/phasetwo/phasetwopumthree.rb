@@ -51,6 +51,8 @@ module PhaseTwoPumpThree
             @C_min=phaseoneparams[:C_min].to_f / 100.0
             @PCNL=(@P_d-@P_i)/@C_min
             @H_PCP=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)
+            @AP=phaseoneparams[:AP].to_f
+            @AP = TableService.new(Tablegenerate.new('MatchTable').get_table,@AP).final
             
             # @conditions="Moderate"
             # @meo_m=212.5  #mina
