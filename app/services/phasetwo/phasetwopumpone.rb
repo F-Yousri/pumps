@@ -4,7 +4,9 @@ module PhaseTwoPumpOne
 
 
         def pumpone (params,phaseoneparams)
-            @SR_ND=params[:SR_ND].to_f
+            @SR_ND=phaseoneparams[:SR_ND].to_f
+            @SR_ND = TableService.new(Tablegenerate.new('MatchTable').get_table,@SR_ND).final
+            @SR_ND=@SR_ND.to_f
             if @SR_ND == 66
             @SR1_ND=6.0/8.0
             elsif  @SR_ND == 76 ||  @SR_ND == 77
@@ -14,7 +16,7 @@ module PhaseTwoPumpOne
             else
             @SR1_ND=1.125   
             end 
-            @RT=params[:RT] #mina
+            @RT=phaseoneparams[:RT] #mina
             data = TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
             @YS_min=data[0]['yield_strength']
             @SL=params[:SL].to_f
@@ -62,16 +64,7 @@ module PhaseTwoPumpOne
             @MHP_srps = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
             @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
             {
-                MHP_srps:@MHP_srps,
-                FHP_srp:@FHP_srp,
-                MHP_srp:@MHP_srp,
-                HHP_srp:@HHP_srp,
-                se_rrp:@se_rrp,
-                m_eff:@m_eff,
-                W_r:@W_r,
-                SL:@SL,
-                N_SRP:@N_SRP,
-                EC_srp:@EC_srp
+                SR1_ND:@SR1_ND
 
                 
             }

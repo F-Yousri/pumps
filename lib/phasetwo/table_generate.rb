@@ -51,6 +51,10 @@ class Tablegenerate
             TransformerTable.new
         when 'AdditionalCriteriumTable'
             AdditionalCriteriumTable.new
+        when 'SwitchboardTable'
+            SwitchboardTable.new
+        when 'MatchTable'
+            MatchTable.new
         else
 
           raise 'Unsupported type of report'

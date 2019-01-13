@@ -71,57 +71,73 @@ module PhaseTwoPumpTwo
         @HPC6=@array[:c6hp]
         @Hst=@V_t**5*@HC1+@V_t**4*@HC2+@V_t**3*@HC3+@V_t**2*@HC4+@V_t**1*@HC5+@HC6
         @HPst=@V_t**5*@HPC1+@V_t**4*@HPC2+@V_t**3*@HPC3+@V_t**2*@HPC4+@V_t**1*@HPC5+@HPC6
-        @No_st=(@TDH/@Hst).ceil(0) # mina 3ayza tet2ara bas
-        # @ESP_Eff=(@V_t*@Hst)/(@HPst*1360)
-        # @data=TableService.new(Tablegenerate.new('HouseTable').get_table,{No_st:@No_st,type:@type}).final
-        # @SH_st=@data[:No_st] 
-        # @HN=@data[:housing]
-        # @HP_ESP=@SH_st*@HPst*@SG_comp
-        # @HP_seal=@HP_ESP*5/100
-        # @HP_AGH=0 #mina eih ba2a el mo3adla 
-        # @HP_ESPm=@HP_ESP+@HP_seal+@HP_AGH
-        # @data2=TableService.new(Tablegenerate.new('ESPMotorSpecification').get_table,{HP_ESPm: @HP_ESPm,series:@series}).final
-        # @HP_ESPsm=@data2[:hp]
-        # @V_ESPsm=@data2[:Voltage]
-        # @I_ESPsm=@data2[:Amperage]
-        # @x1=86 #eih dol 2slan :D
-        # @x2=769.231 #eih dol 2slan :D
-        # @x3='Moderate' #eih dol 2slan :D
-        # @data3=TableService.new(Tablegenerate.new('ElectricalCable').get_table,{maxTemp:@x1,gasResistanceIndex:@x2,CorrosionResistance:@x3}).final
-        # @ML=@HP_ESPm/@HP_ESPsm
-        # @PCT=@data3[:model]
-        # @a_c6=@data3[:a6]
-        # @a_c4=@data3[:a4]
-        # @a_c2=@data3[:a2]
-        # @a_c1=@data3[:a1]
-        # @T_c6=@a_c6*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
-        # @T_c4=@a_c4*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
-        # @T_c2=@a_c2*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
-        # @T_c1=@a_c1*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
-        # @dV6=(2.0/3.0)*@I_ESPsm*(1+0.00214*(@T_c6-77))
-        # @dV4=(5.0/11.0)*@I_ESPsm*(1+0.00214*(@T_c6-77))
-        # @dV2=(3.0/11.0)*@I_ESPsm*(1+0.00214*(@T_c6-77))
-        # @dV1=(3.0/14.0)*@I_ESPsm*(1+0.00214*(@T_c6-77))
-        # @L_sl=params[:L_sl].to_f
-        # @CL=phaseoneparams[:MD_pump].to_f+@L_sl
-        # @V_surf=531.602 #mina eih ba2a el mmo3adla  (in this case)
-        # @kVA_surf=1.732*@V_surf*@I_ESPsm*1.1/1000
-        # @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surf).final
-        # @ssb='2C-CG' #mina fen el gadwal
-        # # @kVA_SB #mina 
-        # @kVA_SB=37 #mina
-        # @kVA_t=75 #mina
-        # @EC_esp=9873.049 #mina
-        
-        {
+        @No_st=(@TDH/@Hst).ceil(0) 
+        @ESP_Eff=(@V_t*@Hst)/(@HPst*1360)
+        @data=TableService.new(Tablegenerate.new('HouseTable').get_table,{No_st:@No_st,type:@type}).final
+        @SH_st=@data[:No_st] 
+        @HN=@data[:housing]
+        @HP_ESP=@SH_st*@HPst*@SG_comp
+        @HP_seal=@HP_ESP*5/100
+        if ( @GHE == 'AGH is required' )
+        @HP_AGH=0.1*@HP_ESP
+        else
+        @HP_AGH=0.0
+        end
+        @HP_ESPm=@HP_ESP+@HP_seal+@HP_AGH
+        @data2=TableService.new(Tablegenerate.new('ESPMotorSpecification').get_table,{HP_ESPm: @HP_ESPm,series:@series}).final
+        @HP_ESPsm=@data2[:hp]
+        @V_ESPsm=@data2[:Voltage]
+        @I_ESPsm=@data2[:Amperage]
 
-            array:@array,
-            series:@series,
-            Hst:@Hst,
-            HPst:@HPst,
-            No_st:@No_st
-            
-        }
+        @x1=phaseoneparams[:T_bh].to_f
+        @x2=phaseoneparams[:Q_g].to_f*1000/phaseoneparams[:GQ].to_f
+        if (phaseoneparams[:CP].to_f == 49)
+            @x3='Moderate'
+        elsif ( phaseoneparams[:CP].to_f == 47 || phaseoneparams[:CP].to_f == 48) 
+            @x3='Weak'
+        elsif ( phaseoneparams[:CP].to_f == 50) 
+            @x3='Excellent'
+        end
+        @data3=TableService.new(Tablegenerate.new('ElectricalCable').get_table,{maxTemp:@x1,gasResistanceIndex:@x2,CorrosionResistance:@x3}).final
+        @ML=@HP_ESPm/@HP_ESPsm
+        @PCT=@data3[:model]
+        @a_c6=@data3[:a6]
+        @a_c4=@data3[:a4]
+        @a_c2=@data3[:a2]
+        @a_c1=@data3[:a1]
+        @T_c6=@a_c6*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
+        @T_c4=@a_c4*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
+        @T_c2=@a_c2*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
+        @T_c1=@a_c1*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
+        @dV6=(2.0/3.0)*@I_ESPsm*(1+0.00214*(@T_c6-77))
+        @dV4=(5.0/11.0)*@I_ESPsm*(1+0.00214*(@T_c4-77))
+        @dV2=(3.0/11.0)*@I_ESPsm*(1+0.00214*(@T_c2-77))
+        @dV1=(3.0/14.0)*@I_ESPsm*(1+0.00214*(@T_c1-77))
+        @max=0
+        if ( @dV1 > @dV2 && @dV1 > @dV4 && @dV1 > @dV6)
+            @SC="#1"
+            @max=@dV1
+        elsif ( @dV2 > @dV1 && @dV2 > @dV4 && @dV2 > @dV6)
+            @SC="#2"
+            @max=@dV2
+        elsif ( @dV4 > @dV1 && @dV4 > @dV2 && @dV4 > @dV6)
+            @SC="#4"
+            @max=@dV4
+        elsif ( @dV6 > @dV1 && @dV6 > @dV2 && @dV6 > @dV4)
+            @SC="#6"
+            @max=@dV6
+        end
+        @L_sl=phaseoneparams[:L_sl].to_f
+        @CL=phaseoneparams[:MD_pump].to_f+@L_sl
+        @V_surf=@V_ESPsm+@max*(phaseoneparams[:MD_pump].to_f/1000.0)
+        @kVA_surf=1.732*@V_surf*@I_ESPsm*1.1/1000
+        @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surf).final
+        @data4=TableService.new(Tablegenerate.new('SwitchboardTable').get_table,@kVA_surf).final
+        @ssw=@data4[:ssw] 
+        @kVA_SB=@data4[:kva]
+        @kVA_t=TableService.new(Tablegenerate.new('TransformerTable').get_table,@kVA_surf).final
+        @EC_esp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPsm*0.89*365*24*phaseoneparams[:EC].to_f/1000.0
+        
 
         end
         
