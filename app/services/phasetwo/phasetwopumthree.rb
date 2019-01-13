@@ -41,12 +41,17 @@ module PhaseTwoPumpThree
             else
                 @FR='Laminar Flow'
             end
-            # @P_losses=302.179  # mina eih ba2a el mo3adla 
-            # @P_d=phaseoneparams[:WHP].to_f+@P_DL+@P_losses
-            # @P_i=phaseoneparams[:CHP].to_f+@P_G+@P_IL
-            # @C_min=params[:C_min].to_f
-            # @PCNL=(@P_d-@P_i)/@C_min
-            # @H_PCP=1500 #PCNL/(phaseoneparams[:WGD].to_f*phaseoneparams[:SG_m].to_f)
+            if ( @FR == 'Laminar Flow' )
+                @P_losses = (0.00000796* phaseoneparams[:GQ].to_f * phaseoneparams[:VD_pump].to_f * phaseoneparams[:meo_m].to_f )/((@TBG_ID - @PR1_ND)**2 * (@TBG_ID **2 - @PR1_ND**2))
+            else
+                @P_losses=( 0.00000004317 * phaseoneparams[:GQ].to_f**1.8 * phaseoneparams[:VD_pump].to_f * phaseoneparams[:meo_m].to_f**0.2 * @rho_m**0.8)/((@TBG_ID - @PR1_ND)**1.2 * (@TBG_ID**2 - @PR1_ND**2)**1.8 )
+            end
+            @P_d=phaseoneparams[:WHP].to_f+@P_DL+@P_losses
+            @P_i=phaseoneparams[:CHP].to_f+@P_G+@P_IL
+            @C_min=phaseoneparams[:C_min].to_f / 100.0
+            @PCNL=(@P_d-@P_i)/@C_min
+            @H_PCP=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)
+            
             # @conditions="Moderate"
             # @meo_m=212.5  #mina
             # if(@conditions == "No or Minor")
@@ -101,12 +106,8 @@ module PhaseTwoPumpThree
             # @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
             # @EC_pcp
             {
-                P_DL:@P_DL,
-                P_IL:@P_IL,
-                P_G:@P_G,
-                rho_m:@rho_m,
-                Re:@Re,
-                FR:@FR,
+                H_PCP:@H_PCP
+
                 
             }
         end
