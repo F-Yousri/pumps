@@ -67,9 +67,8 @@ module PhaseTwoPumpThree
             @GLR=phaseoneparams[:GLR].to_f
             @API=phaseoneparams[:API].to_f
             @ArP=phaseoneparams[:ArP].to_f
-            @ArP = TableService.new(Tablegenerate.new('MatchTable').get_table,@ArP).final
             @CP=phaseoneparams[:CP].to_f
-            @CP = TableService.new(Tablegenerate.new('MatchTable').get_table,@CP).final
+            @AP=phaseoneparams[:AP].to_f
             @data3=TableService.new(Tablegenerate.new('StatorTable').get_table,{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}).final
             # @stator_type=@data3[:elastomer_type]
             # @PW_r=@SPW_r*phaseoneparams[:VD_pump].to_f
@@ -95,10 +94,12 @@ module PhaseTwoPumpThree
             # @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
             # @EC_pcp
             {
-                data3:@data3
+                data3:@data3,
+                T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP
 
                 
             }
+            # {T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}
         end
         
     end

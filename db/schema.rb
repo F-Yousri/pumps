@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_230115) do
+ActiveRecord::Schema.define(version: 2019_01_15_214036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -300,9 +300,9 @@ ActiveRecord::Schema.define(version: 2019_01_13_230115) do
     t.integer "oil_api_from"
     t.integer "oil_api_to"
     t.string "mechanical_resistance"
-    t.string "Api_index"
-    t.string "Corrosives_resistance"
-    t.string "Aromatics"
+    t.integer "api_index"
+    t.integer "corrosives_resistance"
+    t.integer "aromatics"
     t.string "gas_handling"
     t.integer "glr"
     t.string "Application"
