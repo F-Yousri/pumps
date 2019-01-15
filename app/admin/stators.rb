@@ -2,7 +2,7 @@ ActiveAdmin.register Stator do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 # 
-permit_params :elastomer_type, :max_temp, :oil_api_from, :oil_api_to, :mechanical_resistance ,:Api_index , :Corrosives_resistance , :Aromatics ,:gas_handling ,:glr ,:Application , :price_factor
+permit_params :elastomer_type, :max_temp, :oil_api_from, :oil_api_to, :mechanical_resistance ,:api_index , :corrosives_resistance , :aromatics ,:gas_handling ,:glr ,:Application , :price_factor
 #
 # or
 #
