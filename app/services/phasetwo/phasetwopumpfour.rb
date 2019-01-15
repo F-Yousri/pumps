@@ -5,27 +5,39 @@ module PhaseTwoPumpFour
 
 
         def pumpfour (params,phaseoneparams)
-            @P_DL=phaseoneparams[:WGD].to_f*phaseoneparams[:VD_pump].to_f*phaseoneparams[:SG_m].to_f
-            @P_IL=phaseoneparams[:WGD].to_f*(phaseoneparams[:VD_pump].to_f-phaseoneparams[:VD_FL].to_f)*phaseoneparams[:SG_m].to_f
+            @sg_m=(phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:SG_w].to_f+(1-(phaseoneparams[:WC].to_f/100.0))*phaseoneparams[:SG_o].to_f
+            @P_DL=phaseoneparams[:WGD].to_f*phaseoneparams[:VD_pump].to_f*@sg_m
+            @P_IL=phaseoneparams[:WGD].to_f*(phaseoneparams[:VD_pump].to_f-phaseoneparams[:VD_FL].to_f)*@sg_m
             @P_G=phaseoneparams[:GGD].to_f*phaseoneparams[:SG_g].to_f*phaseoneparams[:VD_FL].to_f
-            @rho_m=phaseoneparams[:SG_m].to_f*62.4
-            @TBG_ID=2.441 #mina gat menen
-            @ERe=1.478*phaseoneparams[:GQ].to_f*@rho_m/(phaseoneparams[:meo_m].to_f*@TBG_ID)
-            if(@ERe>2100) #mina hia Re wala ERe
-                @FR='Turbelant Flow'
-            else
-                @FR='Laminar Flow'
+            @rho_m=@sg_m*62.4
+            if (  phaseoneparams[:TBG_ND].to_f == 119 )
+                @TBG_ID=1.995
+            elsif (  phaseoneparams[:TBG_ND].to_f == 120 )
+                @TBG_ID=2.441
+            elsif (  phaseoneparams[:TBG_ND].to_f == 121 )
+                @TBG_ID=2.992
+            elsif (  phaseoneparams[:TBG_ND].to_f == 122 )
+                @TBG_ID=3.958
             end
-            @EFR="Laminar Flow"
-            @EP_losses=108.388 #mina eih ba2a el mo3adla
+            @ERe=1.478*phaseoneparams[:GQ].to_f*@rho_m/(phaseoneparams[:meo_m].to_f*@TBG_ID)
+            if(@ERe>2100)
+                @EFR='Turbelant Flow'
+            else
+                @EFR='Laminar Flow'
+            end
+            if ( @EFR == 'Laminar Flow' )
+                @EP_losses = (0.00000796* phaseoneparams[:GQ].to_f * phaseoneparams[:VD_pump].to_f * phaseoneparams[:meo_m].to_f )/((@TBG_ID )**2 * (@TBG_ID **2 ))
+            else
+                @EP_losses=( 0.00000004317 * phaseoneparams[:GQ].to_f**1.8 * phaseoneparams[:VD_pump].to_f * phaseoneparams[:meo_m].to_f**0.2 * @rho_m**0.8)/((@TBG_ID)**1.2 * (@TBG_ID**2  )**1.8 )
+            end
             @EP_d=phaseoneparams[:WHP].to_f+@P_DL+@EP_losses
             @P_i=phaseoneparams[:CHP].to_f+@P_G+@P_IL
             @C_min=params[:C_min].to_f
             @PCNL=(@EP_d-@P_i)/@C_min
-            @EH_PCP=@PCNL/(phaseoneparams[:WGD].to_f*phaseoneparams[:SG_m].to_f)
-            @Eff_espcp=params[:Eff_espcp].to_f
-            @V_espcpmin=phaseoneparams[:GQ].to_f/@Eff_espcp
-            @TL=phaseoneparams[:VD_pump].to_f*phaseoneparams[:WGD].to_f*phaseoneparams[:SG_m].to_f*Math::PI/4*@TBG_ID**2/1000
+            @EH_PCP=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)
+            @SE_espcp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_espcp').final
+            @V_espcpmin=phaseoneparams[:GQ].to_f/@SE_espcp
+            @TL=phaseoneparams[:VD_pump].to_f*phaseoneparams[:WGD].to_f*@sg_m*Math::PI/4*@TBG_ID**2/1000
             @data1=TableService.new(Tablegenerate.new('EspcpTable').get_table,@TL).final
             @TC_s=@data1[:TC_s]
             @Model=@data1[:model]
@@ -34,20 +46,32 @@ module PhaseTwoPumpFour
             @ESPCP_350Q=@data[:flow_rate350_from]
             @ESPCP_750Q=@data[:flow_rate750_to]
             @ESPCP_500Q=@data[:flow_rate500]
-            @N_ESPCP=516.858  #mina eih ba2a el mo3adla
+            if ( @V_espcpmin > @ESPCP_500Q )
+              @N_ESPCP =  750-((@ESPCP_750Q - @V_espcpmin)* (750-500)/(@ESPCP_750Q -@ESPCP_500Q ))
+            else
+                @N_ESPCP= 500- ((@ESPCP_500Q - @V_espcpmin)*(500-350)/(@ESPCP_500Q - @ESPCP_350Q))
+            end
             @IH_ESPCP=@data[:head]
             @MHP_espcp=@data[:motor_power]
             @V_espcp=@data[:Voltage]
             @I_ESPCP=@data[:Current]
             @PF_espcp=@data[:power_factor]
+            @eff_espcpm=@data[:Efficiency]
             @T_bh=phaseoneparams[:T_bh].to_f
-            @GLR=769.231 #mina gat menen
+            @GLR=phaseoneparams[:GLR].to_f
             @API=phaseoneparams[:API].to_f
-            @ArP='Moderate' #mina gat menen
-            @AP='Moderate' #mina gat menen  w eih el 27tmalat tany 8er  Moderate
-            @CP='Moderate'  #mina gat menen
+            @ArP=phaseoneparams[:ArP].to_f
+            @CP=phaseoneparams[:CP].to_f
+            @AP=phaseoneparams[:AP].to_f
             @data2=TableService.new(Tablegenerate.new('StatorTable').get_table,{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}).final
             @stator_type=@data2[:elastomer_type]
+            if (phaseoneparams[:CP].to_f == 49)
+                @CP='Moderate'
+            elsif ( phaseoneparams[:CP].to_f == 47 || phaseoneparams[:CP].to_f == 48) 
+                @CP='Weak'
+            elsif ( phaseoneparams[:CP].to_f == 50) 
+                @CP='Excellent'
+            end
             @data3=TableService.new(Tablegenerate.new('ElectricalCable').get_table,{maxTemp:@T_bh,gasResistanceIndex:@GLR,CorrosionResistance:@CP}).final
             @type=@data3[:model]
             @a_c6=@data3[:a6]
@@ -62,17 +86,65 @@ module PhaseTwoPumpFour
             @dV4=(5.0/11.0)*@I_ESPCP*(1+0.00214*(@T_c4-77))
             @dV2=(3.0/11.0)*@I_ESPCP*(1+0.00214*(@T_c2-77))
             @dV1=(3.0/14.0)*@I_ESPCP*(1+0.00214*(@T_c1-77))
-            @L_sl=params[:params].to_f
+            @max=0
+            if ( @dV1 > @dV2 && @dV1 > @dV4 && @dV1 > @dV6)
+                @SC="#1"
+                @max=@dV1
+            elsif ( @dV2 > @dV1 && @dV2 > @dV4 && @dV2 > @dV6)
+                @SC="#2"
+                @max=@dV2
+            elsif ( @dV4 > @dV1 && @dV4 > @dV2 && @dV4 > @dV6)
+                @SC="#4"
+                @max=@dV4
+            elsif ( @dV6 > @dV1 && @dV6 > @dV2 && @dV6 > @dV4)
+                @SC="#6"
+                @max=@dV6
+            end
+            @L_sl=phaseoneparams[:L_sl].to_f
+            @SE_espcp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_espcp').final
             @CL=phaseoneparams[:MD_pump].to_f+@L_sl
-            @V_surfe=@V_ESPCP+@dV6*phaseoneparams[:VD_pump].to_f/1000
-            @HP_surfe=1.732*@V_surfe*@I_espcp*@PF_espcp*phaseoneparams[:eff_espcpm].to_f/746  #mina  eff_espcpm gat mnen
+            @V_surfe=@V_espcp+@max*(phaseoneparams[:MD_pump].to_f/1000.0)
+
+            @HP_surfe=1.732*@V_surfe*@I_ESPCP*@PF_espcp*@eff_espcpm/746.0/100.0
             @vfs=TableService.new(Tablegenerate.new('VfsTable').get_table,@HP_surfe).final
-            @kVA_espcp=1.732*@V_surfe*@I_espcp/1000
+            @kVA_espcp=1.732*@V_surfe*@I_ESPCP/1000
             @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surfe).final
             @st=TableService.new(Tablegenerate.new('TransformerTable').get_table,@HP_surfe).final
-            @EC_espcp=11501.548
-            @data
-    
+            @EC_espcp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPCP*@PF_espcp*365*24.0*phaseoneparams[:EC].to_f/1000.0
+            {
+                EP_d:@EP_d,
+                P_i:@P_i,
+                C_min:@C_min,
+                PCNL:@PCNL,
+                EH_PCP:@EH_PCP,
+                Eff_espcp:@SE_espcp,
+                V_espcpmin:@V_espcpmin,
+                TL:@TL,
+                data:@data1,
+                data:@data,
+                N_ESPCP:@N_ESPCP,
+                data3:@data3,
+                T_c6:@T_c6,
+                T_c4:@T_c4,
+                T_c2:@T_c2,
+                T_c1:@T_c1,
+                dV6:@dV6,
+                dV4:@dV4,
+                dV2:@dV2,
+                dV1:@dV1,
+                SC:@SC,
+                I_ESPCP:@I_ESPCP,
+                SE_espcp:@SE_espcp,
+                CL:@CL,
+                V_surfe:@V_surfe,
+                max:@max,
+                HP_surfe:@HP_surfe,
+                vfs:@vfs,
+                kVA_espcp:@kVA_espcp,
+                sjb:@sjb,
+                st:@st,
+                EC_espcp:@EC_espcp
+            }
         end
         
     end

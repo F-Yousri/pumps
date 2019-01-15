@@ -70,36 +70,33 @@ module PhaseTwoPumpThree
             @CP=phaseoneparams[:CP].to_f
             @AP=phaseoneparams[:AP].to_f
             @data3=TableService.new(Tablegenerate.new('StatorTable').get_table,{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}).final
-            # @stator_type=@data3[:elastomer_type]
-            # @PW_r=@SPW_r*phaseoneparams[:VD_pump].to_f
-            # @A_PCP=4*@e*@d_r
-            # @PAL=@A_PCP*@PCNL
-            # @AL=@PAL+@PW_r 
-            # @Tao_h=(8.97e-4)*@IQ_PCP*@PCNL
-            # @Tao_p=@data2[:hydraulic_torque]
-            # @Tlim=TableService.new(Tablegenerate.new('RodTypeTorquLimitTable').get_table,{OD_r:@OD_r,RT:@RT}).final #mina
-            # @T_tot=@Tao_h*(1+(@Tao_p.to_f/100))
-            # @S_e=Math.sqrt(0.000016*@AL**2/Math::PI**2/@OD_r**4+0.1106*@T_tot**2/Math::PI**2/@OD_r**6)
-            # @HHP_PCP=1.94e-4*@T_tot*@N_pcpm
-            # @MF=params[:MF].to_f
-            # @Eff_m=params[:Eff_m].to_f
-            # @MHP_P=@HHP_PCP/(@MF*@Eff_m) #mina el mo3adla sa7 wala eih ?
-            # @data4=TableService.new(Tablegenerate.new('DriveheadTable').get_table,{T_tot:@T_tot,AL:@AL,MHP_P:@MHP_P}).final
-            # @SN_pcpm=600
-            # @ST_tot=@data4[:Torque]
-            # @TB=@data4[:TB]
-            # @MHP_Ps=@data4[:MHP_Ps]
-            # @Drive_Head=@data4[:gm]
-            # @I_pcp=@MHP_P/(0.002322*phaseoneparams[:V_ml].to_f*@Eff_m*@MF)
-            # @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
-            # @EC_pcp
+            @stator_type=@data3[:elastomer_type]
+            @PW_r=@SPW_r*phaseoneparams[:VD_pump].to_f
+            @A_PCP=4*@e*@d_r
+            @PAL=@A_PCP*@PCNL
+            @AL=@PAL+@PW_r 
+            @Tao_h=(8.97e-4)*@IQ_PCP*@PCNL
+            @Tao_p=@data2[:hydraulic_torque]
+            @Tlim=TableService.new(Tablegenerate.new('RodTypeTorquLimitTable').get_table,{OD_r:@PR1_ND,RT:@RT}).final #mina
+            @Tlim=@Tlim[0]
+            @T_tot=@Tao_h*(1+(@Tao_p.to_f/100))
+            @S_e=Math.sqrt(0.000016*@AL**2/Math::PI**2/@PR1_ND**4+0.1106*@T_tot**2/Math::PI**2/@PR1_ND**6)
+            @HHP_PCP=1.94e-4*@T_tot*@rpm
+            @MF=phaseoneparams[:MF].to_f
+            @Eff_m=phaseoneparams[:m_eff].to_f
+            @MHP_P=@HHP_PCP/(@MF*@Eff_m) #mina el mo3adla sa7 wala eih ?
+            @data4=TableService.new(Tablegenerate.new('DriveheadTable').get_table,{T_tot:@T_tot,AL:@AL,MHP_P:@MHP_P}).final
+            @SN_pcpm=600
+            @ST_tot=@data4[:Torque]
+            @TB=@data4[:TB]
+            @MHP_Ps=@data4[:MHP_Ps]
+            @Drive_Head=@data4[:gm]
+            @I_pcp=@MHP_P/(0.002322*phaseoneparams[:V_ml].to_f*@Eff_m*@MF)
+            @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
             {
-                data3:@data3,
-                T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP
-
-                
+                I_pcp:@I_pcp,
+                EC_pcp:@EC_pcp
             }
-            # {T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}
         end
         
     end

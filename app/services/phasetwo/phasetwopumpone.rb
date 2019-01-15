@@ -29,8 +29,8 @@ module PhaseTwoPumpOne
             @R3=@array[0]['size_78'] 
             @R4=@array[0]['size_34']  
             @SW_r=@array[0]['Rod_Weight']
-            @se_rrp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,50).final
-            @m_eff=params[:m_eff].to_f
+            @se_rrp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_rrp').final
+            @m_eff=phaseoneparams[:m_eff].to_f
             @MD_pump=phaseoneparams[:MD_pump].to_f
             if @MD_pump < 3000
             @L_p= 3
@@ -65,7 +65,7 @@ module PhaseTwoPumpOne
             @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
             {
                 Delta:@Delta,
-                W_r:@w_r,
+                W_r:@W_r,
                 sg_m:@sg_m,
                 Fo:@Fo,
                 PPRL:@PPRL,
@@ -99,7 +99,8 @@ module PhaseTwoPumpOne
                 MD_pump:@MD_pump,
                 L_p:@L_p,
                 L_bs:@L_bs,
-                array:@array
+                array:@array,
+                mina:phaseoneparams[:VD_pump].to_f
             }
         end
         

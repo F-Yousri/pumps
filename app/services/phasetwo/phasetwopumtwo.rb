@@ -25,7 +25,7 @@ module PhaseTwoPumpTwo
         elsif ( @fgas > 16.0 && @fgas < 30.0)
         @GHE = 'GS is required'
         else
-        @GHE = 'AGH is required'   
+        @GHE = 'AGH is required'
         end
         @check= @V_g*75.0/@V_t*100.0
         if( @GHE == 'GS is required' && @check < 15.0 )
