@@ -64,9 +64,41 @@ module PhaseTwoPumpOne
             @MHP_srps = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
             @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
             {
-                SR1_ND:@SR1_ND
-
-                
+                Delta:@Delta,
+                W_r:@w_r,
+                sg_m:@sg_m,
+                Fo:@Fo,
+                # @PPRL
+                # @S_axial
+                # @MPRL
+                # @PT
+                # @data
+                # @PPRL100
+                # @PT1000
+                # @S
+                # @HHP_srp
+                # @FHP_srp
+                # @MHP_srp
+                # @MHP_srps
+                # @EC_srp
+                SR_ND:@SR_ND,
+                SR1_ND:@SR1_ND,
+                RT:@RT,
+                YS_min:@YS_min,
+                SL:@SL,
+                N_SRP:@N_SRP,
+                ID_SRP:ID_SRP,
+                ID_p:@ID_p,
+                R1:@R1,
+                R2:@R2,
+                R3:@R3,
+                R4:@R4,
+                SW_r:@SW_r,
+                se_rrp:@se_rrp,
+                m_eff:@m_eff,
+                MD_pump:@MD_pump,
+                L_p:@L_p,
+                L_bs:@L_bs
             }
         end
         

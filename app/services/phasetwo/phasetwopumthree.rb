@@ -53,37 +53,24 @@ module PhaseTwoPumpThree
             @H_PCP=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)
             @AP=phaseoneparams[:AP].to_f
             @AP = TableService.new(Tablegenerate.new('MatchTable').get_table,@AP).final
-            
-            # @conditions="Moderate"
-            # @meo_m=212.5  #mina
-            # if(@conditions == "No or Minor")
-            #     @Eff_pcp=85
-            #     if (@meo_m < 500)
-            #         @rpm=500
-            #     elsif (@meo_m.between?(500, 5000))
-            #         @rpm=400
-            #     else 
-            #         @rpm=250
-            #     end
-            # else
-            #     @rpm=TableService.new(Tablegenerate.new('PcpConditionTable').get_table,@conditions).final
-            # end
-            # @N_pcpm=350 #mina mesh 3aref gom menen
-            # @Eff_pcp=0.7 #mina mesh 3aref gom mnen
-            # @V_min=100*phaseoneparams[:GQ].to_f/(@N_pcpm*@Eff_pcp)
-            # @data2=TableService.new(Tablegenerate.new('PcpTable').get_table,{H_PCP:@H_PCP ,Imperial_Q:@rpm,V_min:@V_min}).final
-            # #mina feh moshkela kbera hena fe el gadwal
-            # @IH_PCP=@data2[:IH_PC]
-            # @IQ_PCP=@data2[:IQ_PCP]
-            # @e=@data2[:e]
-            # @d_r=@data2[:d_r]
-            # @T_bh=phaseoneparams[:T_bh].to_f
-            # @GLR=769.231 #mina gat menen
-            # @API=phaseoneparams[:API].to_f
-            # @ArP='Moderate' #mina gat menen
-            # @AP='Moderate' #mina gat menen  w eih el 27tmalat tany 8er  Moderate
-            # @CP='Moderate'  #mina gat menen
-            # @data3=TableService.new(Tablegenerate.new('StatorTable').get_table,{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}).final
+            @meo_m=phaseoneparams[:meo_m].to_f
+            @data5=TableService.new(Tablegenerate.new('PcpConditionTable').get_table,{AP:@AP , meo_m:@meo_m}).final
+            @rpm=@data5['rpm']
+            @Eff_pcp=@data5['eff_pcp']
+            @V_min=100*phaseoneparams[:GQ].to_f/(@rpm*@Eff_pcp /100.0)
+            @data2=TableService.new(Tablegenerate.new('PcpTable').get_table,{H_PCP:@H_PCP ,Imperial_Q:@rpm,V_min:@V_min}).final
+            @IH_PCP=@data2[:IH_PC]
+            @IQ_PCP=@data2[:IQ_PCP]
+            @e=@data2[:e]
+            @d_r=@data2[:d_r]
+            @T_bh=phaseoneparams[:T_bh].to_f
+            @GLR=phaseoneparams[:GLR].to_f
+            @API=phaseoneparams[:API].to_f
+            @ArP=phaseoneparams[:ArP].to_f
+            @ArP = TableService.new(Tablegenerate.new('MatchTable').get_table,@ArP).final
+            @CP=phaseoneparams[:CP].to_f
+            @CP = TableService.new(Tablegenerate.new('MatchTable').get_table,@CP).final
+            @data3=TableService.new(Tablegenerate.new('StatorTable').get_table,{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}).final
             # @stator_type=@data3[:elastomer_type]
             # @PW_r=@SPW_r*phaseoneparams[:VD_pump].to_f
             # @A_PCP=4*@e*@d_r
@@ -108,7 +95,7 @@ module PhaseTwoPumpThree
             # @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
             # @EC_pcp
             {
-                H_PCP:@H_PCP
+                data3:@data3
 
                 
             }

@@ -7,9 +7,9 @@
 
     def get_data input   #{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}
     @data=Stator.where("max_temp > ?", input[:T_bh])
-    .where(Aromatics: input[:ArP])
-    .where(Api_index: input[:AP])
-    .where(Corrosives_resistance: input[:CP])
+    .where("aromatics LIKE ?", "%#{input[:ArP]}%")
+    .where("api_index LIKE ?", "%#{input[:AP]}%")
+    .where("corrosives_resistance LIKE ?", "%#{input[:CP]}%")
     .where("glr > ?" ,input[:GLR])
     .where("oil_api_from <= ?",input[:API])
     .where("oil_api_to >= ?", input[:API])
