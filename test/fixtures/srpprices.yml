@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pump_d: 1.5
+  tbg_p: 1.5
+  rod_p: 1.5
+  corrosivity: 1
+
+two:
+  pump_d: 1.5
+  tbg_p: 1.5
+  rod_p: 1.5
+  corrosivity: 1

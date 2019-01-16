@@ -1,0 +1,2 @@
+class Srpprice < ApplicationRecord
+end
