@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_15_214036) do
+ActiveRecord::Schema.define(version: 2019_01_16_203147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,6 +269,18 @@ ActiveRecord::Schema.define(version: 2019_01_15_214036) do
 
   create_table "pumps", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rod_string_prices", force: :cascade do |t|
+    t.string "size"
+    t.float "k"
+    t.float "md"
+    t.float "d"
+    t.float "kd"
+    t.float "xd"
+    t.float "hd"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

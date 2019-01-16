@@ -1,0 +1,2 @@
+class RodStringPrice < ApplicationRecord
+end

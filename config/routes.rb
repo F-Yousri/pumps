@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/test2' ,to: 'decision_maker#phaseTwoPump2'
   post '/test3' ,to: 'decision_maker#phaseTwoPump3'
   post '/test4' ,to: 'decision_maker#phaseTwoPump4'
+  post '/phasethree' , to: 'decision_maker#phasethreepump1'
 
 
 end

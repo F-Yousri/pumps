@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  size: MyString
+  k: 1.5
+  md: 1.5
+  d: 1.5
+  kd: 1.5
+  xd: 1.5
+  hd: 1.5
+
+two:
+  size: MyString
+  k: 1.5
+  md: 1.5
+  d: 1.5
+  kd: 1.5
+  xd: 1.5
+  hd: 1.5

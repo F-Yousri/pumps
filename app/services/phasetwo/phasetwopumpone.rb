@@ -3,7 +3,7 @@ module PhaseTwoPumpOne
     class << self
 
 
-        def pumpone (params,phaseoneparams)
+        def pumpone (phaseoneparams)
             @SR_ND=phaseoneparams[:SR_ND].to_f
             @SR_ND = TableService.new(Tablegenerate.new('MatchTable').get_table,@SR_ND).final
             @SR_ND=@SR_ND.to_f
@@ -16,11 +16,12 @@ module PhaseTwoPumpOne
             else
             @SR1_ND=1.125   
             end 
-            @RT=phaseoneparams[:RT] #mina
-            data = TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
-            @YS_min=data[0]['yield_strength']
-            @SL=params[:SL].to_f
-            @N_SRP=params[:N_SRP].to_f
+            @RT=phaseoneparams[:RT].to_f
+            @RT = TableService.new(Tablegenerate.new('MatchTable').get_table,@RT).final
+            @data = TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
+            @YS_min=@data[0]['yield_strength']
+            @SL=phaseoneparams[:SL].to_f
+            @N_SRP=phaseoneparams[:N_SRP].to_f
             @ID_SRP=Math.sqrt(phaseoneparams[:GQ].to_f/(0.1166*@SL*@N_SRP))
             @ID_p = TableService.new(Tablegenerate.new('AvailableSuckerRodPumpSize').get_table,@ID_SRP).final
             @array=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{ID_p: @ID_p,SR_ND: @SR_ND,pump: 2}).final
@@ -100,7 +101,6 @@ module PhaseTwoPumpOne
                 L_p:@L_p,
                 L_bs:@L_bs,
                 array:@array,
-                mina:phaseoneparams[:VD_pump].to_f
             }
         end
         

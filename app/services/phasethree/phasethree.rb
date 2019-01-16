@@ -1,7 +1,7 @@
 module PhaseThree
     class << self
-        def phasethree params
-
+        def phasethreepump1 params
+            params
         end
             
     end

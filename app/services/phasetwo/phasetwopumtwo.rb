@@ -38,7 +38,15 @@ module PhaseTwoPumpTwo
         @SG_comp=(5.615*62.4*phaseoneparams[:GQ].to_f*((1-phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:SG_o].to_f+phaseoneparams[:WC].to_f/100.0*phaseoneparams[:SG_w].to_f)+0.0752*phaseoneparams[:SG_g].to_f*phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*@GOR)/(5.615*62.4*phaseoneparams[:GQ].to_f)
         @H_L =(phaseoneparams[:VD_pump].to_f-(@PIP)/(phaseoneparams[:WGD].to_f*@SG_comp))
         @H_WHP =(phaseoneparams[:WHP].to_f-phaseoneparams[:CHP].to_f)/(phaseoneparams[:WGD].to_f*@SG_comp)
-        @TBG_ID=2.441 #mina gat menen
+        if (  phaseoneparams[:TBG_ND].to_f == 119 )
+            @TBG_ID=1.995
+        elsif (  phaseoneparams[:TBG_ND].to_f == 120 )
+            @TBG_ID=2.441
+        elsif (  phaseoneparams[:TBG_ND].to_f == 121 )
+            @TBG_ID=2.992
+        elsif (  phaseoneparams[:TBG_ND].to_f == 122 )
+            @TBG_ID=3.958
+        end
         @F_t =15.11*(@V_t/120)**1.852/(@TBG_ID**4.8655)
         @H_f =@F_t*phaseoneparams[:VD_pump].to_f/1000
         @TDH =@H_L+@H_WHP+@H_f
@@ -138,6 +146,79 @@ module PhaseTwoPumpTwo
         @kVA_t=TableService.new(Tablegenerate.new('TransformerTable').get_table,@kVA_surf).final
         @EC_esp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPsm*0.89*365*24*phaseoneparams[:EC].to_f/1000.0
         
+        {
+            sg_m: @sg_m,
+              BHP: @BHP,
+              PIP: @PIP,
+              V_o: @V_o,
+              V_w: @V_w,
+              GOR: @GOR,
+              Q_gt: @Q_gt,
+              Q_gs: @Q_gs,
+              Q_gf: @Q_gf,
+              V_g: @V_g,
+              V_t: @V_t,
+              fgas: @fgas,
+              GHE: @GHE,
+              ts: @ts,
+              SG_comp: @SG_comp,
+              H_L: @H_L,
+              H_WHP: @H_WHP,
+              TBG_ID: @TBG_ID,
+              F_t: @F_t,
+              H_f: @H_f,
+              TDH: @TDH,
+              series: @series,
+              type: @type,
+              HC1: @HC1,
+            HC2: @HC2,
+            HC3: @HC3,
+            HC4: @HC4,
+            HC5: @HC5,
+            HC6: @HC6,
+            HPC1: @HPC1,
+            HPC2: @HPC2,
+            HPC3: @HPC3,
+            HPC4: @HPC4,
+            HPC5: @HPC5,
+            HPC6: @HPC6,
+            Hst: @Hst,
+            HPst: @HPst,
+            No_st: @No_st,
+            ESP_Eff: @ESP_Eff,
+            SH_st: @SH_st,
+            HN: @HN,
+            HP_ESP: @HP_ESP,
+            HP_seal: @HP_seal,
+            HP_AGH: @HP_AGH,
+            HP_ESPm: @HP_ESPm,
+            HP_ESPsm: @HP_ESPsm,
+            V_ESPsm: @V_ESPsm,
+            I_ESPsm: @I_ESPsm,
+            ML: @ML,
+            PCT: @PCT,
+            a_c6: @a_c6,
+            a_c4: @a_c4,
+            a_c2: @a_c2,
+            a_c1: @a_c1,
+            T_c6: @T_c6,
+            T_c4: @T_c4,
+            T_c2: @T_c2,
+            T_c1:@T_c1,
+            dV6: @dV6,
+            dV4:@dV4,
+            dV2:@dV2,
+            dV1:@dV1,
+            SC:@SC,
+            CL:@CL,
+            V_surf:@V_surf,
+            kVA_surf:@kVA_surf,
+            sjb:@sjb,
+            ssw:@ssw, 
+            kVA_SB:@kVA_SB,
+            kVA_t:@kVA_t,
+            EC_esp:@EC_esp,
+        }
 
         end
         
