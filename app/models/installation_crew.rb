@@ -1,0 +1,2 @@
+class InstallationCrew < ApplicationRecord
+end
