@@ -112,6 +112,15 @@ module PhaseTwoPumpFour
             @st=TableService.new(Tablegenerate.new('TransformerTable').get_table,@HP_surfe).final
             @EC_espcp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPCP*@PF_espcp*365*24.0*phaseoneparams[:EC].to_f/1000.0
             {
+                sg_m:@sg_m,
+                P_DL: @P_DL,
+                P_IL:@P_IL,
+                P_G:@P_G,
+                rho_m: @rho_m,
+                TBG_ID: @TBG_ID,
+                ERe:@ERe,
+                EFR: @EFR,
+                EP_losses:@EP_losses,
                 EP_d:@EP_d,
                 P_i:@P_i,
                 C_min:@C_min,
