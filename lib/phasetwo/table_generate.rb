@@ -55,8 +55,13 @@ class Tablegenerate
             SwitchboardTable.new
         when 'MatchTable'
             MatchTable.new
+        when 'SrppriceTable'
+            SrppriceTable.new
+        when 'InstallationCrewTable'
+            InstallationCrewTable.new
+        when 'RodStringPriceTable'
+            RodStringPriceTable.new
         else
-
           raise 'Unsupported type of report'
         end
     end

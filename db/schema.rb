@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_203147) do
+ActiveRecord::Schema.define(version: 2019_01_16_204714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,13 @@ ActiveRecord::Schema.define(version: 2019_01_16_203147) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "installation_crews", force: :cascade do |t|
+    t.string "service"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "junction_boxselections", force: :cascade do |t|
     t.float "kv"
     t.float "cost"
@@ -302,6 +309,15 @@ ActiveRecord::Schema.define(version: 2019_01_16_203147) do
     t.float "t78"
     t.float "t1"
     t.float "t118"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "srpprices", force: :cascade do |t|
+    t.float "pump_d"
+    t.float "tbg_p"
+    t.float "rod_p"
+    t.integer "corrosivity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

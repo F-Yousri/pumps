@@ -19,8 +19,10 @@ class DecisionMakerController < ApplicationController
         @params = DecisionMakerService.make(params)
         @resultpump1=self.phaseTwoPump1
         @resultpump2=self.phaseTwoPump2
-        @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 }
-        # render json:@FinalPhase2
+        @resultpump3=self.phaseTwoPump3
+        @resultpump4=self.phaseTwoPump4
+        @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
+        render json:@FinalPhase2
         # render json:$phaseoneparams
         # render  template: 'resultphaseone' , locals: { pumps: @params }
     end
@@ -38,6 +40,7 @@ class DecisionMakerController < ApplicationController
         @pump2=PhaseTwoPumpTwo.pumptwo(params ,$phaseoneparams)
         session[:pump2] ||= @pump2
         $pump2=@pump2
+        @pump2
         # render json:@pump2
     end
  
@@ -46,6 +49,7 @@ class DecisionMakerController < ApplicationController
         @pump3=PhaseTwoPumpThree.pumpthree(params ,$phaseoneparams)
         session[:pump3] ||= @pump3
         $pump3=@pump3
+        @pump3
         # render json:@pump3
     end
 
@@ -54,12 +58,13 @@ class DecisionMakerController < ApplicationController
         @pump4=PhaseTwoPumpFour.pumpfour(params ,$phaseoneparams)
         session[:pump4] ||= @pump4
         $pump4=@pump4
+        @pump4
         # render json:@pump4
       
     end
 
     def phasethreepump1
-        @cost=PhaseThree.phasethreepump1($pump1)
+        @cost=PhaseThree.phasethreepump1($pump1,$phaseoneparams)
         render json:@cost
     end
 
