@@ -18,7 +18,8 @@ module PhaseTwoPumpThree
             else
             @PR1_ND=1.125   
             end 
-            @RT=phaseoneparams[:RT] 
+            @RT=phaseoneparams[:RT].to_f
+            @RT = TableService.new(Tablegenerate.new('MatchTable').get_table,@RT).final
             @data=TableService.new(Tablegenerate.new('SuckerRodTable').get_table,@RT).final
             @YS_min=@data[0]['yield_strength']
             @SPW_r=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{SR_ND: @PR_ND,pump: 3}).final

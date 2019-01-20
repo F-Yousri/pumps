@@ -29,7 +29,7 @@ class DecisionMakerController < ApplicationController
 
     def phaseTwoPump1
         @pump1=PhaseTwoPumpOne.pumpone($phaseoneparams)
-        session[:pump1] ||= @pump1
+        # session[:pump1] ||= @pump1
         $pump1=@pump1
         @pump1
         # render json:@pump1
@@ -38,7 +38,7 @@ class DecisionMakerController < ApplicationController
 
     def phaseTwoPump2
         @pump2=PhaseTwoPumpTwo.pumptwo(params ,$phaseoneparams)
-        session[:pump2] ||= @pump2
+        # session[:pump2] ||= @pump2
         $pump2=@pump2
         @pump2
         # render json:@pump2
@@ -47,7 +47,7 @@ class DecisionMakerController < ApplicationController
 
     def phaseTwoPump3
         @pump3=PhaseTwoPumpThree.pumpthree(params ,$phaseoneparams)
-        session[:pump3] ||= @pump3
+        # session[:pump3] ||= @pump3
         $pump3=@pump3
         @pump3
         # render json:@pump3
@@ -56,7 +56,7 @@ class DecisionMakerController < ApplicationController
 
     def phaseTwoPump4
         @pump4=PhaseTwoPumpFour.pumpfour(params ,$phaseoneparams)
-        session[:pump4] ||= @pump4
+        # session[:pump4] ||= @pump4
         $pump4=@pump4
         @pump4
         # render json:@pump4
