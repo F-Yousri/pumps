@@ -6,7 +6,7 @@ class InstallationCrewTable
     end
 
     def get_data input
-        input
-
+        @price=InstallationCrew.select('price').where(service: input).map(&:price)
+        @price[0]
     end 
   end

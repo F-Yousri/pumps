@@ -60,7 +60,24 @@ module PhaseThree
             @trsc=(params[:spuc]+params[:mcost])*1.1
             @trdc=(@ctot+@prprice)*1.1
             @capr=@trsc+@trdc
-            {
+            @AST=phaseoneparams[:AST].to_f
+            @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
+            @WL=phaseoneparams[:WL].to_f
+            @WL = TableService.new(Tablegenerate.new('MatchTable').get_table,@WL).final
+            if ( (@WL  == 'Onshore' || @WL == 'Urban' ) && (@AST == 'Pulling Unit' ||  @AST == 'Both') && params[:rrpt]  == 'Rod Pump')
+                @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Pulling Unit').final
+            elsif ( (@WL  == 'Onshore' || @WL == 'Urban' ) && (@AST == 'W/O Rig' ||  @AST == 'Both')  )
+                @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Onshore W/O rig').final
+            elsif ( @WL  == 'Offshore'  && @AST == 'W/O Rig' )
+                @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Offshore W/O rig').final
+            else 
+                @error ='W/O rig is a must'
+            end
+            @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'RRP Crew Daily Rate').final
+            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @papd=(phaseoneparams[:PAP].to_f/365.0).floor
+            @ecry=@papd*params[:EC_srp]
+            pumpone = {
                 R1result: @R1result,
                 R2result: @R2result,
                 R3result: @R3result,
@@ -82,8 +99,16 @@ module PhaseThree
                 prprice:@prprice,
                 trsc:@trsc,
                 capr:@capr,
-                trdc:@trdc
+                trdc:@trdc,
+                spr:@spr,
+                scc:@scc,
+                ecry:@ecry,
+                papd:@papd,
+                ic:@ic
             }
+            @finalpumpone = PhaseThreeCalc.phasethreecalc(pumpone , phaseoneparams )
+            @finalpumpone
+
         end
             
     end
