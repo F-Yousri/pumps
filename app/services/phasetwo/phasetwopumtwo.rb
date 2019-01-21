@@ -82,8 +82,9 @@ module PhaseTwoPumpTwo
         @No_st=(@TDH/@Hst).ceil(0) 
         @ESP_Eff=(@V_t*@Hst)/(@HPst*1360)
         @data=TableService.new(Tablegenerate.new('HouseTable').get_table,{No_st:@No_st,type:@type}).final
-        @SH_st=@data[:No_st] 
+        @SH_st=@data[:stages] 
         @HN=@data[:housing]
+        @espp=@data[:cost]
         @HP_ESP=@SH_st*@HPst*@SG_comp
         @HP_seal=@HP_ESP*5/100
         if ( @GHE == 'AGH is required' )
@@ -96,7 +97,7 @@ module PhaseTwoPumpTwo
         @HP_ESPsm=@data2[:hp]
         @V_ESPsm=@data2[:Voltage]
         @I_ESPsm=@data2[:Amperage]
-
+        @espmp=@data2[:Price]
         @x1=phaseoneparams[:T_bh].to_f
         @x2=phaseoneparams[:Q_g].to_f*1000/phaseoneparams[:GQ].to_f
         if (phaseoneparams[:CP].to_f == 49)
@@ -113,6 +114,10 @@ module PhaseTwoPumpTwo
         @a_c4=@data3[:a4]
         @a_c2=@data3[:a2]
         @a_c1=@data3[:a1]
+        @Price1=@data3[:price1]
+        @Price2=@data3[:price2]
+        @Price4=@data3[:price4]
+        @Price6=@data3[:price6]
         @T_c6=@a_c6*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
         @T_c4=@a_c4*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
         @T_c2=@a_c2*@I_ESPsm**2+phaseoneparams[:T_bh].to_f
@@ -218,7 +223,14 @@ module PhaseTwoPumpTwo
             kVA_SB:@kVA_SB,
             kVA_t:@kVA_t,
             EC_esp:@EC_esp,
+            espp:@espp,
+            espmp:@espmp,
+            price1:@Price1,
+            price2:@Price2,
+            price4:@Price4,
+            price6:@Price6,
         }
+
 
         end
         

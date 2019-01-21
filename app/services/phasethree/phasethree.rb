@@ -107,7 +107,64 @@ module PhaseThree
                 ic:@ic
             }
             @finalpumpone = PhaseThreeCalc.phasethreecalc(pumpone , phaseoneparams )
+            @finalpumpone=@finalpumpone.merge(pumpone) 
             @finalpumpone
+
+        end
+
+        def phasethreepump2 (params,phaseoneparams)
+
+        #     @GHE = 'GS is required'
+        # else
+        # @GHE =
+        # end
+        # @check= @V_g*75.0/@V_t*100.0
+        # if( @GHE == 'GS is required' && @check < 15.0 )
+        # @ts = 'Static GS'
+        # elsif ( @check > 15.0 && @GHE == 'GS is required' )
+        # @ts= 'Dynamic GS'
+
+
+        if ( params[:GHE] == 'AGH is required' ||  params[:ts]= 'Dynamic GS')
+        @esppg=1.1*params[:espp]
+        else
+        @esppg= params[:espp]
+        end
+        if( phaseoneparams[:CP].to_f == 47 || phaseoneparams[:CP].to_f == 48)
+            @corrosivity=0
+        else
+            @corrosivity=1
+        end
+        if( @corrosivity == 0 )
+            @esppg= params[:espp]
+        else
+            @esppg= params[:espp]*1.25  
+        end
+        if( @corrosivity == 0 )
+            @espmp= params[:espmp]
+        else
+            @espmp= params[:espmp]*1.1
+        end
+        if (params[:SC] == '#6')
+            @ecp =params[:price6]
+        elsif  (params[:SC] == '#4')
+            @ecp =params[:price4]
+        elsif (params[:SC] == '#2')
+            @ecp =params[:price2]
+        elsif (params[:SC] == '#1')
+            @ecp =params[:price]
+        end
+        @ecpt=@ecp*(params[:CL])
+        
+
+        {
+            esppg:@esppg,
+            espmp:@espmp,
+            ecpt:@ecpt
+        }
+
+
+
 
         end
             

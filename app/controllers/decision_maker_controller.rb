@@ -68,4 +68,9 @@ class DecisionMakerController < ApplicationController
         render json:@cost
     end
 
+    def phasethreepump2
+        @cost=PhaseThree.phasethreepump2($pump2,$phaseoneparams)
+        render json:@cost
+    end
+
 end

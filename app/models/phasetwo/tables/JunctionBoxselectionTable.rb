@@ -9,6 +9,7 @@
         @Availablekv=JunctionBoxselection.select('kv').map(&:kv)
         @new=@Availablekv.sort 
         @kv=@new.find { |e| e > input }
+        
         @kv
     end 
   end
