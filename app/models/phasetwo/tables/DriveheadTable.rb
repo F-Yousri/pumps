@@ -21,11 +21,13 @@
         @index=[@num,@num2,@num3].max
         @index+1
         @gm=Drivehead.select('gm').where(id: @index+1).map(&:gm)
+        @price=Drivehead.select('price').where(gm: @gm).map(&:price)
         @data={
             Torque:@Torque,
             TB:@TB,
             MHP_Ps:@MHP_Ps,
-            gm:@gm
+            gm:@gm[0],
+            phc:@price[0]
         }
 
     end 

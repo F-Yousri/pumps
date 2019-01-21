@@ -57,6 +57,7 @@ module PhaseTwoPumpFour
             @I_ESPCP=@data[:Current]
             @PF_espcp=@data[:power_factor]
             @eff_espcpm=@data[:Efficiency]
+            @espp=@data[:price]
             @T_bh=phaseoneparams[:T_bh].to_f
             @GLR=phaseoneparams[:GLR].to_f
             @API=phaseoneparams[:API].to_f
@@ -65,6 +66,7 @@ module PhaseTwoPumpFour
             @AP=phaseoneparams[:AP].to_f
             @data2=TableService.new(Tablegenerate.new('StatorTable').get_table,{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}).final
             @stator_type=@data2[:elastomer_type]
+            @pafc=@data2[:price_factor]
             if (phaseoneparams[:CP].to_f == 49)
                 @CP='Moderate'
             elsif ( phaseoneparams[:CP].to_f == 47 || phaseoneparams[:CP].to_f == 48) 
@@ -78,6 +80,10 @@ module PhaseTwoPumpFour
             @a_c4=@data3[:a4]
             @a_c2=@data3[:a2]
             @a_c1=@data3[:a1]
+            @Price1=@data3[:price1]
+            @Price2=@data3[:price2]
+            @Price4=@data3[:price4]
+            @Price6=@data3[:price6]
             @T_c6=@a_c6*@I_ESPCP**2+@T_bh
             @T_c4=@a_c4*@I_ESPCP**2+@T_bh
             @T_c2=@a_c2*@I_ESPCP**2+@T_bh
@@ -130,7 +136,7 @@ module PhaseTwoPumpFour
                 V_espcpmin:@V_espcpmin,
                 TL:@TL,
                 data:@data1,
-                data:@data,
+                espp:@espp,
                 N_ESPCP:@N_ESPCP,
                 data3:@data3,
                 T_c6:@T_c6,
@@ -152,7 +158,12 @@ module PhaseTwoPumpFour
                 kVA_espcp:@kVA_espcp,
                 sjb:@sjb,
                 st:@st,
-                EC_espcp:@EC_espcp
+                EC_espcp:@EC_espcp,
+                pafc:@pafc,
+                price1:@Price1,
+                price2:@Price2,
+                price4:@Price4,
+                price6:@Price6,
             }
         end
         

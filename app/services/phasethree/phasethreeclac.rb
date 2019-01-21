@@ -170,6 +170,7 @@ module PhaseThreeCalc
         @sumop= (@sumop + @sse + @dse)
 
         @ncf=@sumop/5.0-@sumo-@summ-@sumop-params[:capr]
+        # @mpp=@sumop/@papd-@cuo*(1-phaseoneparams[:DR].to_f)**@papd
         {
             pdt:@pdt,
             nsr:@nsr,
@@ -192,8 +193,8 @@ module PhaseThreeCalc
             summ:@summ,
             sumo:@sumo,
             sumop:@sumop,
-            opt:@opt
-        }
+            opt:@opt,
+                }
         end
             
     end

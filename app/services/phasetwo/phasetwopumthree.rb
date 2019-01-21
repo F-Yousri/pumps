@@ -64,6 +64,7 @@ module PhaseTwoPumpThree
             @IQ_PCP=@data2[:IQ_PCP]
             @e=@data2[:e]
             @d_r=@data2[:d_r]
+            @ppp=@data2[:price]
             @T_bh=phaseoneparams[:T_bh].to_f
             @GLR=phaseoneparams[:GLR].to_f
             @API=phaseoneparams[:API].to_f
@@ -71,6 +72,7 @@ module PhaseTwoPumpThree
             @CP=phaseoneparams[:CP].to_f
             @AP=phaseoneparams[:AP].to_f
             @data3=TableService.new(Tablegenerate.new('StatorTable').get_table,{T_bh:@T_bh,GLR:@GLR,API:@API,ArP:@ArP,AP:@AP,CP:@CP}).final
+            @pafc=@data3[:price_factor]
             @stator_type=@data3[:elastomer_type]
             @PW_r=@SPW_r*phaseoneparams[:VD_pump].to_f
             @A_PCP=4*@e*@d_r
@@ -92,6 +94,7 @@ module PhaseTwoPumpThree
             @TB=@data4[:TB]
             @MHP_Ps=@data4[:MHP_Ps]
             @Drive_Head=@data4[:gm]
+            @phc=@data4[:phc]
             @I_pcp=@MHP_P/(0.002322*phaseoneparams[:V_ml].to_f*@Eff_m*@MF)
             @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
             {
@@ -141,7 +144,10 @@ module PhaseTwoPumpThree
                 MHP_Ps:@MHP_Ps,
                 Drive_Head: @Drive_Head,
                 I_pcp: @I_pcp,
-                EC_pcp: @EC_pcp
+                EC_pcp: @EC_pcp,
+                pafc:@pafc,
+                ppp:@ppp,
+                phc:@phc
             }
         end
         

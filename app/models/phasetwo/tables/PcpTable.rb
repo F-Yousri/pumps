@@ -15,13 +15,14 @@
         @e=Pcp.select('eccentricity').where(Imperial_Q: @Imperial_Q).map(&:eccentricity)
         @d_r=Pcp.select('rotor_minor_diameter').where(Imperial_Q: @Imperial_Q).map(&:rotor_minor_diameter)
         @hydraulic_torque=Pcp.select('hydraulic_torque').where(Imperial_Q:  @Imperial_Q).map(&:hydraulic_torque)
-
+        @price=Pcp.select('price').where(Imperial_H:  @IH_PC).where(Imperial_Q:  @Imperial_Q).map(&:price)
         @data={
             e: @e[0],
             d_r: @d_r[0],
             IH_PC:@IH_PC,
             hydraulic_torque:@hydraulic_torque[0],
-            IQ_PCP: @Imperial_Q
+            IQ_PCP: @Imperial_Q,
+            price:@price[0]
         }
     end 
   end

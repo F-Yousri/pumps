@@ -70,7 +70,7 @@ class DecisionMakerController < ApplicationController
     def phasethreepump1
         @costpump1=PhaseThree.phasethreepump1($pump1,$phaseoneparams)
         $costpump1=@costpump1
-        render json:@cost
+        render json:@costpump1
     end
 
     def phasethreepump2
@@ -80,9 +80,15 @@ class DecisionMakerController < ApplicationController
     end
 
     def phasethreepump3
-        @costpump3=PhaseThree.phasethreepump2($pump2,$phaseoneparams)
+        @costpump3=PhaseThree.phasethreepump3($pump3,$phaseoneparams)
         $costpump3=@costpump3
         render json:@costpump3
+    end
+
+    def phasethreepump4 
+        @costpump4=PhaseThree.phasethreepump4($pump4,$phaseoneparams)
+        $costpump4=@costpump4
+        render json:@costpump4
     end
 
 end
