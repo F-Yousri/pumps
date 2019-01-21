@@ -9,6 +9,10 @@ class DecisionMakerController < ApplicationController
     $pump2
     $pump3
     $pump4
+    $costpump1
+    $costpump2
+    $costpump3
+    $costpump4
     
     def techEvalForm        
     end
@@ -64,13 +68,21 @@ class DecisionMakerController < ApplicationController
     end
 
     def phasethreepump1
-        @cost=PhaseThree.phasethreepump1($pump1,$phaseoneparams)
+        @costpump1=PhaseThree.phasethreepump1($pump1,$phaseoneparams)
+        $costpump1=@costpump1
         render json:@cost
     end
 
     def phasethreepump2
-        @cost=PhaseThree.phasethreepump2($pump2,$phaseoneparams)
-        render json:@cost
+        @costpump2=PhaseThree.phasethreepump2($pump2,$phaseoneparams)
+        $costpump2=@costpump2
+        render json:@costpump2
+    end
+
+    def phasethreepump3
+        @costpump3=PhaseThree.phasethreepump2($pump2,$phaseoneparams)
+        $costpump3=@costpump3
+        render json:@costpump3
     end
 
 end

@@ -9,8 +9,11 @@
         @Availablekv=JunctionBoxselection.select('kv').map(&:kv)
         @new=@Availablekv.sort 
         @kv=@new.find { |e| e > input }
-        
-        @kv
+        @price=JunctionBoxselection.select('cost').where(kv: @kv).map(&:cost)
+        @data={
+            kv:@kv,
+            Junctioncost:@price[0]
+        }
     end 
   end
 

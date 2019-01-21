@@ -155,12 +155,24 @@ module PhaseThree
             @ecp =params[:price]
         end
         @ecpt=@ecp*(params[:CL])
+        @jbp=params[:Junctioncost]
+        @sbp=params[:switchprice]
+        @trp=params[:trp]
+        @tesc=@jbp+@sbp+@trp
+        @tedc=@esppg+@espmp+@ecpt
+        @cape=(@tesc + @tedc)*1.1
         
 
         {
             esppg:@esppg,
             espmp:@espmp,
-            ecpt:@ecpt
+            ecpt:@ecpt,
+            jbp:@jbp,
+            sbp:@sbp,
+            trp:@trp,
+            tesc:@tesc,
+            tedc:@tedc,
+            cape:@cape
         }
 
 

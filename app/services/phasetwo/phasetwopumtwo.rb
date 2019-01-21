@@ -144,11 +144,16 @@ module PhaseTwoPumpTwo
         @CL=phaseoneparams[:MD_pump].to_f+@L_sl
         @V_surf=@V_ESPsm+@max*(phaseoneparams[:MD_pump].to_f/1000.0)
         @kVA_surf=1.732*@V_surf*@I_ESPsm*1.1/1000
-        @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surf).final
+        @data5=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surf).final
+        @sjb=@data5[:kv]
+        @Junctioncost=@data5[:Junctioncost]
         @data4=TableService.new(Tablegenerate.new('SwitchboardTable').get_table,@kVA_surf).final
-        @ssw=@data4[:ssw] 
+        @ssw=@data4[:ssw]
+        @switchprice=@data4[:switchprice]
         @kVA_SB=@data4[:kva]
-        @kVA_t=TableService.new(Tablegenerate.new('TransformerTable').get_table,@kVA_surf).final
+        @data6=TableService.new(Tablegenerate.new('TransformerTable').get_table,@kVA_surf).final
+        @kVA_t=@data6[:kvce]
+        @trp=@data6[:price]
         @EC_esp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPsm*0.89*365*24*phaseoneparams[:EC].to_f/1000.0
         
         {
@@ -229,6 +234,9 @@ module PhaseTwoPumpTwo
             price2:@Price2,
             price4:@Price4,
             price6:@Price6,
+            switchprice:@switchprice,
+            Junctioncost:@Junctioncost,
+            trp:@trp
         }
 
 

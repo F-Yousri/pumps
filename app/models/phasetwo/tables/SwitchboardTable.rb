@@ -9,11 +9,13 @@
       @Availablekva=Switchboard.select('kva').map(&:kva)
       @new=@Availablekva.sort 
       @kva=@new.find { |e| e > input }  
-      @ssw=Switchboard.select('model').where(kva: @kva)
-      @ssw=@ssw[0]['model']
+      @data=Switchboard.where(kva: @kva)
+      @ssw=@data[0]['model']
+      @switchprice=@data[0]['price']
       {
         ssw:@ssw,
-        kva:@kva
+        kva:@kva,
+        switchprice:@switchprice
       }
       
     end 

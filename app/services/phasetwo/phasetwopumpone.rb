@@ -127,7 +127,7 @@ module PhaseTwoPumpOne
                 L_b:@L_b,
                 MHP_srpsL:@MHP_srps,
                 mcost:@mcost,
-                spuc:@spuc
+                spuc:@spuc,
             }
         end
         

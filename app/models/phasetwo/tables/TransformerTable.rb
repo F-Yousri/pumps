@@ -9,6 +9,12 @@
       @AvailableTransformer=Transformer.select('kva').map(&:kva)
       @new=@AvailableTransformer.sort 
       @kva=@new.find { |e| e > input }
-      @kva
+      @data=Transformer.where(kva: @kva)
+      @price=@data[0][:price]
+      {
+        kva:@kva,
+        price:@price
+      }
+
     end 
   end
