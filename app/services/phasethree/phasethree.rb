@@ -293,16 +293,49 @@ module PhaseThree
                 @ecp =params[:price]
             end
             @ecpt=@ecp*(params[:CL])
+            @pfsc=params[:pfsc]
+            @trp=params[:trp]
 
+            @tpdc=@espp+@ecpt
+            @tpsc=@trp+@pfsc
+            @capr=(@tpdc+@tpsc)*1.1
+            @AST=phaseoneparams[:AST].to_f
+            @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
+            @WL=phaseoneparams[:WL].to_f
+            @WL = TableService.new(Tablegenerate.new('MatchTable').get_table,@WL).final
+            if ( (@WL  == 'Onshore' || @WL == 'Urban' ) && ( @AST == 'Both')  )
+                @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Onshore W/O rig').final
+            elsif ( (@WL  == 'Onshore' || @WL == 'Urban' ) && (@AST == 'W/O Rig' ||  @AST == 'Both')  )
+                @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Onshore W/O rig').final
+            elsif ( @WL  == 'Offshore'  && @AST == 'W/O Rig' )
+                @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Offshore W/O rig').final
+            else 
+                @error ='W/O rig is a must'
+            end
+            @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESPCP Crew Daily Rate').final
+            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @papd=(phaseoneparams[:PAP].to_f/365.0).floor
+            @ecry=@papd*params[:EC_espcp]
 
-            {
+          pumpfour=  {
                 ecp:@ecp,
                 pafc:@pafc,
                 espp:@espp,
-                ecpt:@ecpt
-
+                ecpt:@ecpt,
+                pfsc:@pfsc,
+                trp:@trp,
+                trdc:@tpdc,
+                trsc:@tpsc,
+                capr:@capr,
+                spr:@spr,
+                scc:@scc,
+                ic:@ic,
+                papd:@papd,
+                ecry:@ecry
             }
-
+            @finalpumpfour = PhaseThreeCalc.phasethreecalc(pumpfour , phaseoneparams )
+            @finalpumpfour=@finalpumpfour.merge(pumpfour) 
+            @finalpumpfour
 
         end
             

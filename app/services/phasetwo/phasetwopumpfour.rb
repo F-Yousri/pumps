@@ -112,10 +112,14 @@ module PhaseTwoPumpFour
             @V_surfe=@V_espcp+@max*(phaseoneparams[:MD_pump].to_f/1000.0)
 
             @HP_surfe=1.732*@V_surfe*@I_ESPCP*@PF_espcp*@eff_espcpm/746.0/100.0
-            @vfs=TableService.new(Tablegenerate.new('VfsTable').get_table,@HP_surfe).final
+            @data4=TableService.new(Tablegenerate.new('VfsTable').get_table,@HP_surfe).final
+            @vfs=@data4[:vfs]
+            @pfsc=@data4[:price]
             @kVA_espcp=1.732*@V_surfe*@I_ESPCP/1000
             @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surfe).final
-            @st=TableService.new(Tablegenerate.new('TransformerTable').get_table,@HP_surfe).final
+            @data5=TableService.new(Tablegenerate.new('TransformerTable').get_table,@HP_surfe).final
+            @st=@data5[:kva]
+            @trp=@data5[:price]
             @EC_espcp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPCP*@PF_espcp*365*24.0*phaseoneparams[:EC].to_f/1000.0
             {
                 sg_m:@sg_m,
@@ -164,6 +168,8 @@ module PhaseTwoPumpFour
                 price2:@Price2,
                 price4:@Price4,
                 price6:@Price6,
+                pfsc:@pfsc,
+                trp:@trp,
             }
         end
         

@@ -26,9 +26,9 @@ class DecisionMakerController < ApplicationController
         @resultpump3=self.phaseTwoPump3
         @resultpump4=self.phaseTwoPump4
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
-        render json:@FinalPhase2
+        # render json:@FinalPhase2
         # render json:$phaseoneparams
-        # render  template: 'resultphaseone' , locals: { pumps: @params }
+        render  template: 'resultphaseone' , locals: { FinalPhase2: @FinalPhase2 }
     end
 
     def phaseTwoPump1

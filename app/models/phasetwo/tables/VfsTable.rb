@@ -11,6 +11,10 @@
       @pmm=@new.find { |e| e > input }
       @pmm
       @vfs=Vfd.select('model').where(PMM: @pmm).map(&:model)
-      @vfs[0]
+      @price=Vfd.select('price').where(PMM: @pmm).map(&:price)
+      {
+        price:@price[0],
+        vfs:@vfs[0]
+      }
     end 
   end
