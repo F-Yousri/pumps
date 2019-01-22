@@ -1,0 +1,2 @@
+class EconomicWeight < ApplicationRecord
+end
