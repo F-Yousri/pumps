@@ -229,6 +229,11 @@ module PhaseThreeCalc
         @bcr=@cdi/@cdo
         @irr=((@sumop/@cuo)**(1.0/(@papd))-1.0)*100.0
         @eac=-params[:ic]*((phaseoneparams[:DR].to_f*(1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))-params[:trsc]*((phaseoneparams[:DR].to_f*(phaseoneparams[:DR].to_f+1.0)**(phaseoneparams[:SMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:SMTTF].to_f/365.0)-1.0))*(1.0+@nsr)-params[:trdc]*((phaseoneparams[:DR].to_f*(1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))*(1.0+@ndr)+@sse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:SMTTF].to_f/365.0)-1.0))+@dse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))-@sumo-@summ
+        @bcrw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'BCR').final
+        @irrw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'IRR').final
+        @eacw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'EAC').final
+        @wsm=@bcr*@bcrw+@irr*@irrw+@eac.abs*@eacw
+
         {
             pdt:@pdt,
             nsr:@nsr,
@@ -268,7 +273,12 @@ module PhaseThreeCalc
             cuo:@cuo,
             irr:@irr,
             bcr:@bcr,
-            eac:@eac
+            eac:@eac,
+            bcrw:@bcrw,
+            irrw:@irrw,
+            eacw:@eacw,
+            wsm:@wsm
+
                 }
         end
             

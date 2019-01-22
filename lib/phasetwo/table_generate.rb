@@ -61,6 +61,8 @@ class Tablegenerate
             InstallationCrewTable.new
         when 'RodStringPriceTable'
             RodStringPriceTable.new
+        when 'EconomicWeightTable'
+            EconomicWeightTable.new
         else
           raise 'Unsupported type of report'
         end
