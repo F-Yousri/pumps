@@ -26,9 +26,9 @@ class DecisionMakerController < ApplicationController
         @resultpump3=self.phaseTwoPump3
         @resultpump4=self.phaseTwoPump4
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
-        # render json:@FinalPhase2
+        render json:@FinalPhase2
         # render json:$phaseoneparams
-        render  template: 'resultphaseone' , locals: { FinalPhase2: @FinalPhase2 }
+        # render  template: 'resultphaseone' , locals: { FinalPhase2: @FinalPhase2 }
     end
 
     def phaseTwoPump1
@@ -67,28 +67,42 @@ class DecisionMakerController < ApplicationController
       
     end
 
+    def phasethree
+        @costpump1=self.phasethreepump1
+        @costpump2=self.phasethreepump2
+        @costpump3=self.phasethreepump3
+        @costpump4=self.phasethreepump4
+        @FinalPhase3={ "pump1" => @costpump1, "pump2" => @costpump2 , "pump3" =>@costpump3, "pump4" => @costpump4}
+        render json:@FinalPhase3
+
+    end
+
     def phasethreepump1
         @costpump1=PhaseThree.phasethreepump1($pump1,$phaseoneparams)
         $costpump1=@costpump1
-        render json:@costpump1
+        @costpump1
+        # render json:@costpump1
     end
 
     def phasethreepump2
         @costpump2=PhaseThree.phasethreepump2($pump2,$phaseoneparams)
         $costpump2=@costpump2
-        render json:@costpump2
+        @costpump2
+        # render json:@costpump2
     end
 
     def phasethreepump3
         @costpump3=PhaseThree.phasethreepump3($pump3,$phaseoneparams)
         $costpump3=@costpump3
-        render json:@costpump3
+        @costpump3
+        # render json:@costpump3
     end
 
     def phasethreepump4 
         @costpump4=PhaseThree.phasethreepump4($pump4,$phaseoneparams)
         $costpump4=@costpump4
-        render json:@costpump4
+        @costpump4
+        # render json:@costpump4
     end
 
 end

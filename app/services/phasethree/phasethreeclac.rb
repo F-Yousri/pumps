@@ -143,34 +143,92 @@ module PhaseThreeCalc
             @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*5)/365.0)
         end
         @pdt=(@nsr+@nsr1+@nsr2+@nsr3+@nsr4+@nsr5)*phaseoneparams[:SDT].to_f+(@ndr+@ndr1+@ndr2+@ndr3+@ndr4+@ndr5)*phaseoneparams[:DDT].to_f
-        @tem=@mrc/5.0
+        @tem=@mrc/@papd
         @summ=@tem
+        @arraysumm=[]
+        @arraysumm.push(@tem)
         for i in 0..(@papd -2.0)
             @tem=@tem*(1.0+phaseoneparams[:MIR].to_f)
             @summ=@summ+@tem
+            @arraysumm.push(@tem)
          end
-        @summ= @summ/5.0
+        @summ= @summ/@papd
         
         @tem=@ecry/@papd
         @sumo=@tem
+        @arraysumo=[]
+        @arraysumo.push(@tem)
         for i in 0..(@papd -2.0)
             @tem=@tem*(1.0+phaseoneparams[:OIR].to_f)
             @sumo=@sumo+@tem
+            @arraysumo.push(@tem)
          end
-        @sumo= @sumo/5.0
-        @opt=phaseoneparams[:OP].to_f*(365.0-@pdt/5.0)*phaseoneparams[:GQ].to_f
-        
+        @sumo= @sumo/@papd
+        @opt=phaseoneparams[:OP].to_f*(365.0-@pdt/@papd)*phaseoneparams[:GQ].to_f
+        @tse=@dse+@sse
+        @arraycapr=[]
+        @arrayic=[]
+        @arraytse=[]
+        @arraycapr.push(params[:capr])
+        @arrayic.push(params[:ic])
+        for i in 0..(@papd -2.0)
+            @arraycapr.push(0)    
+            @arrayic.push(0)  
+            @arraytse.push(0)
+        end
+        @arraytse.push(@tse)
         @tem=@opt
         @sumop=@tem
+        @arrayopt=[]
+        @arrayopt.push(@tem)
+
         for i in 0..(@papd -2.0)
             @tem=@tem*(1.0+phaseoneparams[:OPIR].to_f)
             @sumop=@sumop+@tem
-            
+            @arrayopt.push(@tem)
          end
         @sumop= (@sumop + @sse + @dse)
 
-        @ncf=@sumop/5.0-@sumo-@summ-@sumop-params[:capr]
-        # @mpp=@sumop/@papd-@cuo*(1-phaseoneparams[:DR].to_f)**@papd
+        @ncf=@sumop/@papd-@sumo-@summ-@sumop-params[:capr]
+        @arrayipi=[]
+        for i in 0..(@papd - 1.0)
+            @arrayipi[i]=@arrayopt[i]+@arraytse[i] 
+        end
+        @arrayofi=[]
+        for i in 0..(@papd - 1.0)
+            @arrayofi[i]=@arraycapr[i]+@arrayic[i]+@arraysumm[i]+@arraysumo[i]
+        end
+        @num=[]
+        for i in 0..(@papd - 1.0)
+            @num[i]=i+1
+        end
+        @arraynpvi=[]
+        for i in 0..(@papd - 1.0)
+            @arraynpvi[i]=@arrayipi[i]/((1.0+phaseoneparams[:DR].to_f)**(@num[i]-1))
+        end
+        @arraynpvo=[]
+        for i in 0..(@papd - 1.0)
+            @arraynpvo[i]=@arrayofi[i]/((1.0+phaseoneparams[:DR].to_f)**(@num[i]-1))
+        end
+        @arrayncf=[]
+        for i in 0..(@papd - 1.0)
+            @arrayncf[i]=@arraynpvi[i]-@arraynpvo[i]
+        end
+        @cdi=0
+        for i in 0..(@papd - 1.0)
+            @cdi=@cdi+@arraynpvi[i]
+        end
+        @cdo=0
+        for i in 0..(@papd - 1.0)
+            @cdo=@cdo+@arraynpvo[i]
+        end
+        @cuo=0
+        for i in 0..(@papd - 1.0)
+            @cuo=@cuo+@arrayofi[i]
+        end
+        @bcr=@cdi/@cdo
+        @irr=((@sumop/@cuo)**(1.0/(@papd))-1.0)*100.0
+        @eac=-params[:ic]*((phaseoneparams[:DR].to_f*(1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))-params[:trsc]*((phaseoneparams[:DR].to_f*(phaseoneparams[:DR].to_f+1.0)**(phaseoneparams[:SMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:SMTTF].to_f/365.0)-1.0))*(1.0+@nsr)-params[:trdc]*((phaseoneparams[:DR].to_f*(1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))*(1.0+@ndr)+@sse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:SMTTF].to_f/365.0)-1.0))+@dse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))-@sumo-@summ
         {
             pdt:@pdt,
             nsr:@nsr,
@@ -194,6 +252,23 @@ module PhaseThreeCalc
             sumo:@sumo,
             sumop:@sumop,
             opt:@opt,
+            arraysumm:@arraysumm,
+            arraysumo:@arraysumo,
+            arrayopt:@arrayopt,
+            arraycapr:@arraycapr,
+            arrayic:@arrayic,
+            arraytse:@arraytse,
+            arrayipi:@arrayipi,
+            arrayofi:@arrayofi,
+            arraynpvi:@arraynpvi,
+            arraynpvo:@arraynpvo,
+            arrayncf:@arrayncf,
+            cdi:@cdi,
+            cdo:@cdo,
+            cuo:@cuo,
+            irr:@irr,
+            bcr:@bcr,
+            eac:@eac
                 }
         end
             

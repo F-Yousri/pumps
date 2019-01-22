@@ -122,8 +122,9 @@ $ ->
             event.preventDefault()
             event.stopPropagation()
             $("[name='Selection Criteria']").children(".alert-wrong").remove()
-            $("[name='Selection Criteria']").collapse('show')
+            $("[name='Selection Criteria Weights']").collapse('show')
             error = "<div class='alert alert-danger alert-wrong'>Weights sum must be 100% currently #{totalWeight}</div>"
+            $("[name='Selection Criteria Weights']")
             .prepend(error)
             .find('input').addClass('invalid')
 
