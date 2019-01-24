@@ -13,24 +13,976 @@
 <div class="container">
   <h2>Pumps Resaults </h2>
   <p>The table show pumps results :</p>            
-  <table class="table table-hover">
+  <table class="table table-striped">
     <thead>
       <tr>
-        <th>pump</th>
-        <th>positive Sep</th>
-        <th>negative Sep</th>
+        <th></th>
+        <th>Abb.</th>
+        <th>ESP</th>
+         <th>ESPCP</th>
+        <th>PCP</th>
+         <th>RRP</th>
       </tr>
     </thead>
     <tbody>
-      <% pumps.each do |pump| %>
-     <tr>
-        <td><%= pump[0]  %>  </td>
-        <td><%= pump[1]['positiveSep'] %></td>
-        <td><%= pump[1]['negativeSep']  %></td>
+      <tr>
+      <td>
+      Well Location
+      </td>
+      <td>
+      WL
+      </td>
+      <td>
+        1
+      </td>
+       <td>
+        1
+      </td>
+       <td>
+        1
+      </td>
+       <td>
+        1
+      </td>
       </tr>
-<% end %>
     </tbody>
   </table>
+
+<br>
+<h2>Pump 1 : RRP</h2>
+
+<h3>Phase 2 </h3>
+  <b>Surface Equipment :</b>            
+  <table class="table table-striped">
+
+    <tbody>
+    
+      <tr>
+      <td>
+      Pumping Unit Designation 
+      </td>
+      <td>
+      C
+      </td>
+       <td>
+         <%= @pump1[:PT1000] %>
+      </td>
+       <td>
+         <%= @pump1[:PPRL100] %>
+      </td>
+       <td>
+         <%= @pump1[:SL] %>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      NEMA D Motor
+      </td>
+      <td>
+         <%= @pump1[:MHP_srps] %>
+      </td>
+      <td>
+      HP
+      </td>
+     
+      </tr>
+    </tbody>
+  </table>
+  <b>Downhole Equipment :</b> 
+<table class="table table-striped">
+    <tbody>
+  <tr>
+  <td>
+  1-Rod-Characteristics
+  </td>
+  </tr>
+
+  <tr>
+  <td>
+  Rod Size :
+  </td> 
+  <td>
+  
+   <%= @pump1[:SR_ND] %>
+  </td> 
+  </tr>
+    <tr>
+  <td>
+  NO.  Rods for each size :
+  </td> 
+  </tr>
+
+     <tr>
+  <td>
+  6/8 "
+  </td> 
+   <td>
+   <%= @costpump1[:no6] %>
+  </td> 
+  </tr>
+
+   <tr>
+  <td>
+  7/8 "
+  </td> 
+   <td>
+   <%= @costpump1[:no7]  %>
+  </td> 
+  </tr>
+
+    <tr>
+  <td>
+  1 "
+  </td> 
+   <td>
+   <%= @costpump1[:no8]  %>
+  </td> 
+  </tr>
+
+
+    <tr>
+  <td>
+  1 1/8"
+  </td> 
+   <td>
+   <%= @costpump1[:no9]  %>
+  </td> 
+  </tr>
+
+  <tr>
+  <td>
+  Rod Type ( Weatherford Nomenclature ) : 
+  </td>
+   <td>
+    <%= @pump1[:RT]  %> 
+  </td>
+  </tr>
+
+  
+
+</tbody>
+  </table>
+
+
+ <b> 2-Downhole Pump -Characteristics</b> 
+ <table class="table table-striped">
+    <tbody>
+
+    <tr>
+    <td>
+        Pump Designation :
+
+    </td>
+      <td>
+      <% if @pump1[:TBG_ID] == 1.995 %>
+  20
+<% elsif  @pump1[:TBG_ID] == 2.441  %>
+ 25
+ <% elsif  @pump1[:TBG_ID] == 2.992  %>
+ 30
+ <% elsif  @pump1[:TBG_ID] == 3.958  %>
+ 40
+
+<% end %>
+
+    </td>
+
+    <td>
+     <%=   @pump1[:ID_p]*100.0  %>
+    </td>
+    <td>
+    
+       <% if @pump1[:rrpt] == 'Tubing Pump' %>
+  T
+<% elsif  @pump1[:TBG_ID] == 'Rod Pump'  %>
+ RA
+<% end %>
+    </td>
+    <td>
+    HC
+    </td>
+    <td>
+   <%=   @pump1[:L_bs] %> 
+    </td>
+    <td>
+ <%=   @pump1[:L_p] %> 
+    </td>
+       <td>
+ 0
+    </td>
+
+    <tr>
+   <td>
+Pump Service Material :
+    </td>
+       <td>
+    <% if @costpump1[:corrosivity] == 1 %>
+    Corrosive Service
+    <% elsif  @costpump1[:corrosivity] == 0  %>
+     Non-corrosive Service
+    <% end %>
+    </td>
+    </tr>
+    </tr>
+    </tbody>
+    </table>
+
+
+<h3>Phase 3 </h3>
+
+
+ <table class="table table-striped">
+    <tbody>
+    <tr>
+    <td>
+      Years
+    </td>
+  <% for i in 1..@costpump1[:papd] do-%>
+  <td>
+   <%=   i-1  %>-<%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+    <tr>
+    <td>
+    Cashflows
+    </td>
+    <% for i in 1..@costpump1[:papd] do-%>
+  <td>
+   <%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+
+
+        <tr>
+    <td>
+    Capital Cost
+    </td>
+    <% @costpump1[:arraycapr].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+    <tr>
+    <td>
+    Installation Cost
+    </td>
+    <% @costpump1[:arrayic].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+      
+      <tr>
+       <td>
+    M. & R. Costs per Cashflow
+    </td>
+  <td>
+ <%=  (@costpump1[:mrc]/@costpump1[:papd]).ceil()  %>
+  </td>
+    </tr>
+
+      <tr>
+       <td>
+    M.& R. Costs Change Rate (%)
+    </td>
+  <td>
+ <%=  @costpump1[:mir]*100  %>
+  </td>
+    </tr>
+
+      <tr>
+    <td>
+    M. & R. Costs After Change Rate 
+    </td>
+    <% @costpump1[:arraysumm].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+    Anuual M. & R. After Change Rate
+    </td>
+  <td>
+ <%=  @costpump1[:summ].ceil()  %>
+  </td>
+    </tr>
+
+              <tr>
+       <td>
+    Operating Cost
+    </td>
+  <td>
+ <%=  @pump1[:EC_srp].ceil()  %>
+  </td>
+    </tr>
+
+                <tr>
+       <td>
+    Operating Cost Change Rate (%)
+    </td>
+  <td>
+ <%=  (@costpump1[:oir]*100).round() %>
+  </td>
+    </tr>
+
+         <tr>
+    <td>
+    Operating Cost After Change Rate 
+    </td>
+    <% @costpump1[:arraysumo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+               <tr>
+       <td>
+   Anuual Operating Cost After Change Rate 
+    </td>
+  <td>
+ <%=  @costpump1[:sumo].ceil()  %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Salvage Cost After Project Assessment 
+    </td>
+    <% @costpump1[:arraytse].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+    Oil Production Value
+    </td>
+  <td>
+ <%=  @costpump1[:opt].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+       <td>
+    Oil Prices Change Rate (%)
+        </td>
+  <td>
+ <%=  (@costpump1[:opir]*100.0).round() %>
+  </td>
+    </tr>
+
+    <tr>
+    <td>
+    Oil Production Value After Change Rate
+    </td>
+    <% @costpump1[:arrayopt].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+    <td>
+    Inflow After Rates Of Inflation 
+    </td>
+    <% @costpump1[:arrayipi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+         <tr>
+       <td>
+      Cumulative Inflow
+        </td>
+  <td>
+ <%=  @costpump1[:sumop].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+    <td>
+    Outflow After Rates Of Inflation 
+    </td>
+    <% @costpump1[:arrayofi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+          <tr>
+       <td>
+      Cumulative Outflow
+        </td>
+  <td>
+ <%=  @costpump1[:cuo].ceil() %>
+  </td>
+    </tr>
+
+        <tr>
+       <td>
+      Discount Rate 
+        </td>
+  <td>
+ <%=  (@costpump1[:dr]*100).round() %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Present Inflow Value 
+    </td>
+    <% @costpump1[:arraynpvi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+      Cumulative Discounted Inflow  
+        </td>
+  <td>
+ <%=  (@costpump1[:cdi]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Present Outflow Value 
+    </td>
+    <% @costpump1[:arraynpvo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+      Cumulative Discounted Outflow  
+        </td>
+  <td>
+ <%=  (@costpump1[:cdo]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Net Persent Cashflow Value
+    </td>
+    <% @costpump1[:arrayncf].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+      <tr>
+       <td>
+       Cumulative Discounted Cashflow  
+        </td>
+  <td>
+ <%=  (@costpump1[:cdc]).ceil() %>
+  </td>
+    </tr>
+
+</tbody>
+  </table>
+
+<h2>Pump 2 : ESP</h2>
+
+<h3>Phase 2 </h3>
+  <b>Surface Equipment :</b>            
+  <table class="table table-striped">
+
+    <tbody>
+    
+      <tr>
+      <td>
+  Switchboard 
+      </td>
+      <td>
+<%= @pump2[:ssw] %>
+      </td>
+      </tr>
+
+        <tr>
+      <td>
+  Junctionbox Voltage 
+      </td>
+      <td>
+<%= @pump2[:sjb] %>
+      </td>
+          <td>
+        kV
+      </td>
+      </tr>
+
+             <tr>
+      <td>
+  Transformer Power
+      </td>
+      <td>
+<%= @pump2[:kVA_t] %>
+      </td>
+          <td>
+        kVA
+      </td>
+      </tr>
+    </tbody>
+  </table>
+  <b>Downhole Equipment :</b>            
+
+  <table class="table table-striped">
+
+    <tbody>
+      <tr>
+      <td>
+      1- Downhole Pump Characteristics
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Pump Series
+      </td>
+      <td>
+<%= @pump2[:series] %>
+      </td>
+      </tr>
+
+          <tr>
+      <td>
+      Pump Type
+      </td>
+      <td>
+<%= @pump2[:type] %>
+      </td>
+      </tr>
+
+                <tr>
+      <td>
+      Pump Service
+      </td>
+      <td>
+  <% if @costpump2[:corrosivity] == 1 %>
+    Corrosive Service
+    <% elsif  @costpump2[:corrosivity] == 0  %>
+     Non-corrosive Service
+    <% end %>
+      </td>
+      </tr>
+
+       <tr>
+      <td>
+      Housing Number
+      </td>
+      <td>
+  <%= @pump2[:HN]%>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      2 - Motor Characteristics
+      </td>
+      </tr>
+
+     <tr>
+      <td>
+      Motor Series
+      </td>
+      <td>
+  <%= @pump2[:motor]%>
+      </td>
+      </tr> 
+
+      <tr>
+      <td>
+      Motor Horse Power
+      </td>
+      <td>
+  <%= @pump2[:HP_ESPsm]%>
+      </td>
+        <td>
+        HP
+      </td>
+      </tr> 
+
+        <tr>
+      <td>
+      Motor Voltage
+      </td>
+      <td>
+  <%= @pump2[:V_ESPsm]%>
+      </td>
+        <td>
+        V
+      </td>
+      </tr> 
+
+         <tr>
+      <td>
+      Motor Amperage
+      </td>
+      <td>
+  <%= @pump2[:I_ESPsm]%>
+      </td>
+        <td>
+        A
+      </td>
+      </tr> 
+
+       <tr>
+      <td>
+      3 - Gas Separator Characteristics
+      </td>
+      </tr>
+
+       <tr>
+      <td>
+      Gas Handling Equipment
+      </td>
+      <td>
+  <%= @pump2[:GHE]%>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Type Of Gas Separator
+      </td>
+      <td>
+  <%= @pump2[:ts]%>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      3 - Electric Cable Characteristics
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Cable Type
+      </td>
+      <td>
+  <%= @pump2[:PCT]%>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Cable Length, ft: 
+      </td>
+      <td>
+  <%= @pump2[:CL]%>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Conductor Size 
+      </td>
+      <td>
+  <%= @pump2[:SC]%>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<h3>Phase 3 </h3>
+<table class="table table-striped">
+    <tbody>
+    <tr>
+    <td>
+      Years
+    </td>
+  <% for i in 1..@costpump2[:papd] do-%>
+  <td>
+   <%=   i-1  %>-<%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+    <tr>
+    <td>
+    Cashflows
+    </td>
+    <% for i in 1..@costpump2[:papd] do-%>
+  <td>
+   <%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+
+
+        <tr>
+    <td>
+    Capital Cost
+    </td>
+    <% @costpump2[:arraycapr].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+    <tr>
+    <td>
+    Installation Cost
+    </td>
+    <% @costpump2[:arrayic].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+      
+      <tr>
+       <td>
+    M. & R. Costs per Cashflow
+    </td>
+  <td>
+ <%=  (@costpump2[:mrc]/@costpump2[:papd]).ceil()  %>
+  </td>
+    </tr>
+
+      <tr>
+       <td>
+    M.& R. Costs Change Rate (%)
+    </td>
+  <td>
+ <%=  @costpump2[:mir]*100  %>
+  </td>
+    </tr>
+
+      <tr>
+    <td>
+    M. & R. Costs After Change Rate 
+    </td>
+    <% @costpump2[:arraysumm].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+    Anuual M. & R. After Change Rate
+    </td>
+  <td>
+ <%=  @costpump2[:summ].ceil()  %>
+  </td>
+    </tr>
+
+              <tr>
+       <td>
+    Operating Cost
+    </td>
+  <td>
+ <%=  @pump2[:EC_esp].ceil()  %>
+  </td>
+    </tr>
+
+                <tr>
+       <td>
+    Operating Cost Change Rate (%)
+    </td>
+  <td>
+ <%=  (@costpump2[:oir]*100).round() %>
+  </td>
+    </tr>
+
+         <tr>
+    <td>
+    Operating Cost After Change Rate 
+    </td>
+    <% @costpump2[:arraysumo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+               <tr>
+       <td>
+   Anuual Operating Cost After Change Rate 
+    </td>
+  <td>
+ <%=  @costpump2[:sumo].ceil()  %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Salvage Cost After Project Assessment 
+    </td>
+    <% @costpump2[:arraytse].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+    Oil Production Value
+    </td>
+  <td>
+ <%=  @costpump2[:opt].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+       <td>
+    Oil Prices Change Rate (%)
+        </td>
+  <td>
+ <%=  (@costpump2[:opir]*100.0).round() %>
+  </td>
+    </tr>
+
+    <tr>
+    <td>
+    Oil Production Value After Change Rate
+    </td>
+    <% @costpump2[:arrayopt].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+    <td>
+    Inflow After Rates Of Inflation 
+    </td>
+    <% @costpump2[:arrayipi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+         <tr>
+       <td>
+      Cumulative Inflow
+        </td>
+  <td>
+ <%=  @costpump2[:sumop].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+    <td>
+    Outflow After Rates Of Inflation 
+    </td>
+    <% @costpump2[:arrayofi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+          <tr>
+       <td>
+      Cumulative Outflow
+        </td>
+  <td>
+ <%=  @costpump2[:cuo].ceil() %>
+  </td>
+    </tr>
+
+        <tr>
+       <td>
+      Discount Rate 
+        </td>
+  <td>
+ <%=  (@costpump2[:dr]*100).round() %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Present Inflow Value 
+    </td>
+    <% @costpump2[:arraynpvi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+      Cumulative Discounted Inflow  
+        </td>
+  <td>
+ <%=  (@costpump2[:cdi]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Present Outflow Value 
+    </td>
+    <% @costpump2[:arraynpvo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+      Cumulative Discounted Outflow  
+        </td>
+  <td>
+ <%=  (@costpump2[:cdo]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Net Persent Cashflow Value
+    </td>
+    <% @costpump2[:arrayncf].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+      <tr>
+       <td>
+       Cumulative Discounted Cashflow  
+        </td>
+  <td>
+ <%=  (@costpump2[:cdc]).ceil() %>
+  </td>
+    </tr>
+
+</tbody>
+  </table>
+
 </div>
 
 </body>

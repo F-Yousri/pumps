@@ -18,17 +18,21 @@ class DecisionMakerController < ApplicationController
     end
 
     def techEval
-        session[:params] ||= params
         $phaseoneparams=params
         @params = DecisionMakerService.make(params)
         @resultpump1=self.phaseTwoPump1
         @resultpump2=self.phaseTwoPump2
         @resultpump3=self.phaseTwoPump3
         @resultpump4=self.phaseTwoPump4
+        @resultphasthree=self.phasethree
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
-        render json:@FinalPhase2
+        @Final=@FinalPhase2.merge(@resultphasthree) 
+        # render json:@Final
+        # render json:@Final[:phasethreepump1]
+        # render json:@FinalPhase2
         # render json:$phaseoneparams
-        # render  template: 'resultphaseone' , locals: { FinalPhase2: @FinalPhase2 }
+        # render json:@resultphasthree['phasethreepump1']
+        render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1
@@ -72,8 +76,9 @@ class DecisionMakerController < ApplicationController
         @costpump2=self.phasethreepump2
         @costpump3=self.phasethreepump3
         @costpump4=self.phasethreepump4
-        @FinalPhase3={ "pump1" => @costpump1, "pump2" => @costpump2 , "pump3" =>@costpump3, "pump4" => @costpump4}
-        render json:@FinalPhase3
+        @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4}
+        # render json:@FinalPhase3
+        @FinalPhase3
 
     end
 
@@ -103,6 +108,12 @@ class DecisionMakerController < ApplicationController
         $costpump4=@costpump4
         @costpump4
         # render json:@costpump4
+    end
+
+
+    def showpumps 
+        # render json:$pump2
+        render  template: 'pump2',locals: { pump2: @pump2 }
     end
 
 end

@@ -222,6 +222,11 @@ module PhaseThreeCalc
         for i in 0..(@papd - 1.0)
             @cdo=@cdo+@arraynpvo[i]
         end
+
+        @cdc=0
+        for i in 0..(@papd - 1.0)
+            @cdc=@cdc+@arrayncf[i]
+        end
         @cuo=0
         for i in 0..(@papd - 1.0)
             @cuo=@cuo+@arrayofi[i]
@@ -277,7 +282,12 @@ module PhaseThreeCalc
             bcrw:@bcrw,
             irrw:@irrw,
             eacw:@eacw,
-            wsm:@wsm
+            wsm:@wsm,
+            mir:phaseoneparams[:MIR].to_f,
+            oir:phaseoneparams[:OIR].to_f,
+            opir:phaseoneparams[:OPIR].to_f,
+            dr:phaseoneparams[:DR].to_f,
+            cdc:@cdc
 
                 }
         end

@@ -98,6 +98,7 @@ module PhaseTwoPumpTwo
         @V_ESPsm=@data2[:Voltage]
         @I_ESPsm=@data2[:Amperage]
         @espmp=@data2[:Price]
+        @motor=@data2[:motor]
         @x1=phaseoneparams[:T_bh].to_f
         @x2=phaseoneparams[:Q_g].to_f*1000/phaseoneparams[:GQ].to_f
         if (phaseoneparams[:CP].to_f == 49)
@@ -237,6 +238,7 @@ module PhaseTwoPumpTwo
             switchprice:@switchprice,
             Junctioncost:@Junctioncost,
             trp:@trp,
+            motor:@motor
         }
 
 

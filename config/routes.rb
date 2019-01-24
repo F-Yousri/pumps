@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/phasethree2' , to: 'decision_maker#phasethreepump2'
   post '/phasethree3' , to: 'decision_maker#phasethreepump3'
   post '/phasethree4' , to: 'decision_maker#phasethreepump4'
+  get '/pump2' , to: 'decision_maker#showpumps'
 
 
 

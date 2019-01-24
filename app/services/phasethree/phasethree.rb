@@ -84,12 +84,12 @@ module PhaseThree
                 R4result: @R4result,
                 no6:@no6,
                 no7:@no7,
-                np8:@no8,
+                no8:@no8,
                 no9:@no9,
                 pn6:@pn6,
                 pn7:@pn7,
                 pn8:@pn8,
-                pn9:@pn8,
+                pn9:@pn9,
                 c6:@c6,
                 c7:@c7,
                 c8:@c8,
@@ -104,7 +104,8 @@ module PhaseThree
                 scc:@scc,
                 ecry:@ecry,
                 papd:@papd,
-                ic:@ic
+                ic:@ic,
+                corrosivity:@corrosivity
             }
             @finalpumpone = PhaseThreeCalc.phasethreecalc(pumpone , phaseoneparams )
             @finalpumpone=@finalpumpone.merge(pumpone) 
@@ -185,7 +186,8 @@ module PhaseThree
             ecry:@ecry,
             wl:@WL,
             ic:@ic,
-            AST:@AST
+            AST:@AST,
+            corrosivity:@corrosivity
         }
 
         @finalpumptwo = PhaseThreeCalc.phasethreecalc(pumptwo , phaseoneparams )
