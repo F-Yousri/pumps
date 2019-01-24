@@ -248,6 +248,7 @@ module PhaseThree
             @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_pcp]
+            @ndp=phaseoneparams[:MD_pump].to_f/25.0
             pumpthree= {
                 prc:@prc,
                 cpc:@cpc,
@@ -263,7 +264,9 @@ module PhaseThree
                 scc:@scc,
                 ic:@ic,
                 papd:@papd,
-                ecry:@ecry
+                ecry:@ecry,
+                ndp:@ndp,
+                corrosivity:@corrosivity
             }
 
             @finalpumpthree = PhaseThreeCalc.phasethreecalc(pumpthree , phaseoneparams )
@@ -333,7 +336,8 @@ module PhaseThree
                 scc:@scc,
                 ic:@ic,
                 papd:@papd,
-                ecry:@ecry
+                ecry:@ecry,
+                corrosivity:@corrosivity
             }
             @finalpumpfour = PhaseThreeCalc.phasethreecalc(pumpfour , phaseoneparams )
             @finalpumpfour=@finalpumpfour.merge(pumpfour) 

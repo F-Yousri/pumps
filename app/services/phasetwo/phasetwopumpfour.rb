@@ -46,6 +46,7 @@ module PhaseTwoPumpFour
             @ESPCP_350Q=@data[:flow_rate350_from]
             @ESPCP_750Q=@data[:flow_rate750_to]
             @ESPCP_500Q=@data[:flow_rate500]
+            @pump_maodel=@data[:pump_maodel]
             if ( @V_espcpmin > @ESPCP_500Q )
               @N_ESPCP =  750-((@ESPCP_750Q - @V_espcpmin)* (750-500)/(@ESPCP_750Q -@ESPCP_500Q ))
             else
@@ -117,6 +118,7 @@ module PhaseTwoPumpFour
             @pfsc=@data4[:price]
             @kVA_espcp=1.732*@V_surfe*@I_ESPCP/1000
             @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surfe).final
+            @kv=@sjb[:kv]
             @data5=TableService.new(Tablegenerate.new('TransformerTable').get_table,@HP_surfe).final
             @st=@data5[:kva]
             @trp=@data5[:price]
@@ -170,6 +172,11 @@ module PhaseTwoPumpFour
                 price6:@Price6,
                 pfsc:@pfsc,
                 trp:@trp,
+                pump_maodel:@pump_maodel,
+                Model:@Model,
+                type:@type,
+                kv:@kv,
+                stator_type:@stator_type
             }
         end
         

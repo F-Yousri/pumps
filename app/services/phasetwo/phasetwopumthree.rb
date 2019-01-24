@@ -98,6 +98,7 @@ module PhaseTwoPumpThree
             @I_pcp=@MHP_P/(0.002322*phaseoneparams[:V_ml].to_f*@Eff_m*@MF)
             @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
             {
+                RT:@RT,
                 sg_m: @sg_m,
                 PR_ND: @PR_ND,
                 PR1_ND: @PR1_ND,
