@@ -87,7 +87,7 @@ module PhaseTwoPumpThree
             @HHP_PCP=1.94e-4*@T_tot*@rpm
             @MF=phaseoneparams[:MF].to_f
             @Eff_m=phaseoneparams[:m_eff].to_f
-            @MHP_P=@HHP_PCP/(@MF*@Eff_m) #mina el mo3adla sa7 wala eih ?
+            @MHP_P=@HHP_PCP/(@MF*@Eff_m)
             @data4=TableService.new(Tablegenerate.new('DriveheadTable').get_table,{T_tot:@T_tot,AL:@AL,MHP_P:@MHP_P}).final
             @SN_pcpm=600
             @ST_tot=@data4[:Torque]
@@ -97,6 +97,10 @@ module PhaseTwoPumpThree
             @phc=@data4[:phc]
             @I_pcp=@MHP_P/(0.002322*phaseoneparams[:V_ml].to_f*@Eff_m*@MF)
             @EC_pcp=1.73*phaseoneparams[:V_ml].to_f*@I_pcp*@MF*365*24*phaseoneparams[:EC].to_f/1000
+            @SMTTF=phaseoneparams[:SMTTF].to_f
+            @SMTBF=phaseoneparams[:SMTBF].to_f
+            @DMTBF=phaseoneparams[:DMTBF].to_f
+            @DMTTF=phaseoneparams[:DMTTF].to_f
             {
                 RT:@RT,
                 sg_m: @sg_m,
@@ -148,7 +152,11 @@ module PhaseTwoPumpThree
                 EC_pcp: @EC_pcp,
                 pafc:@pafc,
                 ppp:@ppp,
-                phc:@phc
+                phc:@phc,
+                SMTT:@SMTTF,
+                SMTB:@SMTBF,
+                DMTB:@DMTBF,
+                DMTT:@DMTTF
             }
         end
         

@@ -156,6 +156,10 @@ module PhaseTwoPumpTwo
         @kVA_t=@data6[:kva]
         @trp=@data6[:price]
         @EC_esp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPsm*0.89*365*24*phaseoneparams[:EC].to_f/1000.0
+        @SMTTF=phaseoneparams[:SMTTF].to_f
+        @SMTBF=phaseoneparams[:SMTBF].to_f
+        @DMTBF=phaseoneparams[:DMTBF].to_f
+        @DMTTF=phaseoneparams[:DMTTF].to_f
         
         {
             sg_m: @sg_m,
@@ -238,7 +242,11 @@ module PhaseTwoPumpTwo
             switchprice:@switchprice,
             Junctioncost:@Junctioncost,
             trp:@trp,
-            motor:@motor
+            motor:@motor,
+            SMTT:@SMTTF,
+            SMTB:@SMTBF,
+            DMTB:@DMTBF,
+            DMTT:@DMTTF
         }
 
 

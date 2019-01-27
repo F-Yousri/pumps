@@ -123,6 +123,10 @@ module PhaseTwoPumpFour
             @st=@data5[:kva]
             @trp=@data5[:price]
             @EC_espcp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPCP*@PF_espcp*365*24.0*phaseoneparams[:EC].to_f/1000.0
+            @SMTTF=phaseoneparams[:SMTTF].to_f
+            @SMTBF=phaseoneparams[:SMTBF].to_f
+            @DMTBF=phaseoneparams[:DMTBF].to_f
+            @DMTTF=phaseoneparams[:DMTTF].to_f
             {
                 sg_m:@sg_m,
                 P_DL: @P_DL,
@@ -176,9 +180,19 @@ module PhaseTwoPumpFour
                 Model:@Model,
                 type:@type,
                 kv:@kv,
-                stator_type:@stator_type
+                stator_type:@stator_type,
+                SMTT:@SMTTF,
+                SMTB:@SMTBF,
+                DMTB:@DMTBF,
+                DMTT:@DMTTF
+
             }
         end
         
     end
 end
+
+# [{"key":"SMTTF","value":"3650"}
+# ,{"key":"SMTBF","value":"500"}
+# ,{"key":"DMTBF","value":"180"}
+# ,{"key":"DMTTF","value":"400"}]

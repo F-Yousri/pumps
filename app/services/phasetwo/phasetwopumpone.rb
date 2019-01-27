@@ -84,6 +84,12 @@ module PhaseTwoPumpOne
             @MHP_srps=@data3[:MHP_srps]
             @mcost=@data3[:mcost]
             @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
+            @SMTTF=phaseoneparams[:SMTTF].to_f
+            @SMTBF=phaseoneparams[:SMTBF].to_f
+            @DMTBF=phaseoneparams[:DMTBF].to_f
+            @DMTTF=phaseoneparams[:DMTTF].to_f
+
+
             {
                 Delta:@Delta,
                 W_r:@W_r,
@@ -128,6 +134,10 @@ module PhaseTwoPumpOne
                 MHP_srpsL:@MHP_srps,
                 mcost:@mcost,
                 spuc:@spuc,
+                SMTT:@SMTTF,
+                SMTB:@SMTBF,
+                DMTB:@DMTBF,
+                DMTT:@DMTTF
             }
         end
         
