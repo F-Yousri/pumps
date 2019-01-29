@@ -158,5 +158,8 @@ $ ->
             meo_m = meo_o * (1.0 -  (WC / 100.0) )  + meo_w * ( WC / 100.0 )
         $('[name=meo_m]').val(meo_m)
 
-
-
+    $('[name=RT]').change (event) ->
+        alert('Kindly be noted that grades MD, D & XD are used for non corrosive or minor corrosive fluid production. Otherwise, K, KD & HD are used')
+    
+    $('[name=W_WL]').change (event) ->
+        alert('Weigths represent the importance of these parameters in pumping system assessment')

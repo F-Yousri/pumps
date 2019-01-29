@@ -1794,8 +1794,118 @@ Variable Frequency  Drive (VFD)
 
 </tbody>
   </table>
+  <h2>Economic Parameters Comparison :</h2>
 
+<table class="table table-striped">
+    <tbody>
+    <tr>
+    <td>
+    Economic Parameter
+    </td>
+    <td>
+    BCR
+    </td>
+     <td>
+    IRR (%)
+    </td>
+    <td>
+    EAC ($)
+    </td>
+   
+     <td>
+    WSM
+    </td>
+    </tr>
 
+    <tr>
+    <td>
+  Weight To Compare
+    </td>
+ <td>
+   <%=  @costpump1[:bcrw]  %>
+    </td>
+    <td>
+   <%=  @costpump1[:irrw]  %>
+    </td>
+    <td>
+   <%=  @costpump1[:eacw]  %>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    RRP
+    </td>
+    <td>
+     <%=  @costpump1[:bcr].round()   %>
+    </td>
+    <td>
+     <%=  @costpump1[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump1[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump1[:wsm].round()  %>
+    </td>
+    </tr>
+
+     <tr>
+    <td>
+    ESP
+    </td>
+    <td>
+     <%=  @costpump2[:bcr].round()  %>
+    </td>
+    <td>
+     <%=  @costpump2[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump2[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump2[:wsm].round()  %>
+    </td>
+    </tr>
+
+     <tr>
+    <td>
+    PCP
+    </td>
+    <td>
+     <%=  @costpump3[:bcr].round()  %>
+    </td>
+    <td>
+     <%=  @costpump3[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump3[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump3[:wsm].round()  %>
+    </td>
+    </tr>
+
+      <tr>
+    <td>
+    ESPCP
+    </td>
+    <td>
+     <%=  @costpump4[:bcr].round()  %>
+    </td>
+    <td>
+     <%=  @costpump4[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump4[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump4[:wsm].round()  %>
+    </td>
+    </tr>
+
+    </tbody>
+
+    </table>
 </div>
 
 </body>

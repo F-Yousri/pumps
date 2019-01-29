@@ -13,6 +13,7 @@ class DecisionMakerController < ApplicationController
     $costpump2
     $costpump3
     $costpump4
+    $sorted
     
     def techEvalForm        
     end
@@ -31,7 +32,7 @@ class DecisionMakerController < ApplicationController
         # render json:@Final[:phasethreepump1]
         # render json:@FinalPhase2
         # render json:$phaseoneparams
-        # render json:@resultphasthree['phasethreepump1']
+        # render json:@resultphasthree
         render  template: 'resultphaseone' 
     end
 
@@ -76,7 +77,16 @@ class DecisionMakerController < ApplicationController
         @costpump2=self.phasethreepump2
         @costpump3=self.phasethreepump3
         @costpump4=self.phasethreepump4
-        @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4}
+        @wsm={
+            'RRP' => @costpump1[:wsm],
+            'PCP' =>@costpump2[:wsm],
+            'ESP' => @costpump3[:wsm],
+            'ESPCP' =>@costpump4[:wsm]
+        }
+
+        @sorted=@wsm.sort.to_h
+        $sorted=@sorted.keys
+        @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4 ,'finalsorted' =>@finalsorted}
         # render json:@FinalPhase3
         @FinalPhase3
 
