@@ -32,7 +32,7 @@ module PhaseTwoPumpFour
             end
             @EP_d=phaseoneparams[:WHP].to_f+@P_DL+@EP_losses
             @P_i=phaseoneparams[:CHP].to_f+@P_G+@P_IL
-            @C_min=params[:C_min].to_f
+            @C_min=phaseoneparams[:C_min].to_f
             @PCNL=(@EP_d-@P_i)/@C_min
             @EH_PCP=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)
             @SE_espcp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_espcp').final
