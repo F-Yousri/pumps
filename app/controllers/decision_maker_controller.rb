@@ -29,7 +29,7 @@ class DecisionMakerController < ApplicationController
         @Final=@FinalPhase2.merge(@resultphasthree) 
         # render json:@Final
         # render json:@Final[:phasethreepump1]
-        # render json:@FinalPhase2
+        # render json:@resultpump3
         # render json:$phaseoneparams
         # render json:@resultphasthree['phasethreepump1']
         render  template: 'resultphaseone' 

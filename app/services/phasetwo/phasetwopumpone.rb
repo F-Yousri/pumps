@@ -48,7 +48,7 @@ module PhaseTwoPumpOne
             @R4=@array[0]['size_34']  
             @SW_r=@array[0]['Rod_Weight']
             @se_rrp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_rrp').final
-            @m_eff=phaseoneparams[:m_eff].to_f
+            @m_eff=phaseoneparams[:M_eff].to_f
             @MD_pump=phaseoneparams[:MD_pump].to_f
             if @MD_pump < 3000
             @L_p= 3
