@@ -33,6 +33,7 @@ class DecisionMakerController < ApplicationController
         # render json:@FinalPhase2
         # render json:$phaseoneparams
         # render json:@resultphasthree
+        # render json:@resultphasthree
         render  template: 'resultphaseone' 
     end
 
@@ -79,16 +80,16 @@ class DecisionMakerController < ApplicationController
         @costpump4=self.phasethreepump4
         @wsm={
             'RRP' => @costpump1[:wsm],
-            'PCP' =>@costpump2[:wsm],
-            'ESP' => @costpump3[:wsm],
+            'PCP' =>@costpump3[:wsm],
+            'ESP' => @costpump2[:wsm],
             'ESPCP' =>@costpump4[:wsm]
         }
 
-        @sorted=@wsm.sort.to_h
-        $sorted=@sorted.keys
-        @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4 ,'finalsorted' =>@finalsorted}
-        # render json:@FinalPhase3
-        @FinalPhase3
+        @sorted=Hash[@wsm.sort_by{|k, v| v}]
+        @keys=@sorted.keys
+        @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4 }
+         # render json:@FinalPhase3
+
 
     end
 
