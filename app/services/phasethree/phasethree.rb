@@ -105,7 +105,14 @@ module PhaseThree
                 ecry:@ecry,
                 papd:@papd,
                 ic:@ic,
-                corrosivity:@corrosivity
+                corrosivity:@corrosivity,
+                SMTTF:phaseoneparams[:SMTTFR].to_f,
+                SMTBF:phaseoneparams[:SMTBFR].to_f,
+                RIT:phaseoneparams[:RITR].to_f,
+                DMTTF:phaseoneparams[:DMTTFR].to_f,
+                DMTBF:phaseoneparams[:DMTBFR].to_f,
+                SDT:phaseoneparams[:SDTR].to_f,
+                DDT:phaseoneparams[:DDTR].to_f,
             }
             @finalpumpone = PhaseThreeCalc.phasethreecalc(pumpone , phaseoneparams )
             @finalpumpone=@finalpumpone.merge(pumpone) 
@@ -187,7 +194,14 @@ module PhaseThree
             wl:@WL,
             ic:@ic,
             AST:@AST,
-            corrosivity:@corrosivity
+            corrosivity:@corrosivity,
+            SMTTF:phaseoneparams[:SMTTFE].to_f,
+            SMTBF:phaseoneparams[:SMTBFE].to_f,
+            RIT:phaseoneparams[:RITE].to_f,
+            DMTTF:phaseoneparams[:DMTTFE].to_f,
+            DMTBF:phaseoneparams[:DMTBFE].to_f,
+            SDT:phaseoneparams[:SDTE].to_f,
+            DDT:phaseoneparams[:DDTE].to_f,
         }
 
         @finalpumptwo = PhaseThreeCalc.phasethreecalc(pumptwo , phaseoneparams )
@@ -263,8 +277,16 @@ module PhaseThree
                 scc:@scc,
                 ic:@ic,
                 papd:@papd,
-                ecry:@ecry
+                ecry:@ecry,
+                SMTTF:phaseoneparams[:SMTTFP].to_f,
+                SMTBF:phaseoneparams[:SMTBFP].to_f,
+                RIT:phaseoneparams[:RITP].to_f,
+                DMTTF:phaseoneparams[:DMTTFP].to_f,
+                DMTBF:phaseoneparams[:DMTBFP].to_f,
+                SDT:phaseoneparams[:SDTP].to_f,
+                DDT:phaseoneparams[:DDTP].to_f,
             }
+            
 
             @finalpumpthree = PhaseThreeCalc.phasethreecalc(pumpthree , phaseoneparams )
             @finalpumpthree=@finalpumpthree.merge(pumpthree) 
@@ -333,7 +355,14 @@ module PhaseThree
                 scc:@scc,
                 ic:@ic,
                 papd:@papd,
-                ecry:@ecry
+                ecry:@ecry,
+                SMTTF:phaseoneparams[:SMTTFEP].to_f,
+                SMTBF:phaseoneparams[:SMTBFEP].to_f,
+                RIT:phaseoneparams[:RITEP].to_f,
+                DMTTF:phaseoneparams[:DMTTFEP].to_f,
+                DMTBF:phaseoneparams[:DMTBFEP].to_f,
+                SDT:phaseoneparams[:SDTEP].to_f,
+                DDT:phaseoneparams[:DDTEP].to_f,
             }
             @finalpumpfour = PhaseThreeCalc.phasethreecalc(pumpfour , phaseoneparams )
             @finalpumpfour=@finalpumpfour.merge(pumpfour) 

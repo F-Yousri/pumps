@@ -238,7 +238,7 @@ module PhaseTwoPumpTwo
             switchprice:@switchprice,
             Junctioncost:@Junctioncost,
             trp:@trp,
-            motor:@motor
+            motor:@motor,
         }
 
 
