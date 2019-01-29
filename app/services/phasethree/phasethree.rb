@@ -211,6 +211,7 @@ module PhaseThree
         end
 
         def phasethreepump3 (params,phaseoneparams)
+            @ndp=phaseoneparams[:MD_pump].to_f/25.0
             @RT=phaseoneparams[:RT].to_f
             @RT = TableService.new(Tablegenerate.new('MatchTable').get_table,@RT).final
             @data = TableService.new(Tablegenerate.new('RodStringPriceTable').get_table,@RT).final
@@ -263,6 +264,7 @@ module PhaseThree
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_pcp]
             pumpthree= {
+                ndp:@ndp,
                 prc:@prc,
                 cpc:@cpc,
                 ppp:@ppp,
