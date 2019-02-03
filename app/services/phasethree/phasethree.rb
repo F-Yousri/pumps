@@ -244,7 +244,7 @@ module PhaseThree
             @data = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_Ps).final
             @pmc=@data[:mcost]
             @tpdc=(@ppp+@cpc)*1.1
-            @tpsc=(@pmc+@phc)1.1
+            @tpsc=(@pmc+@phc)*1.1
             @capr=@tpdc+@tpsc
             @AST=phaseoneparams[:AST].to_f
             @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
