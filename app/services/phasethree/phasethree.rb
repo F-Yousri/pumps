@@ -74,7 +74,7 @@ module PhaseThree
                 @error ='W/O rig is a must'
             end
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'RRP Crew Daily Rate').final
-            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @ic=(@scc+@spr)*phaseoneparams[:RITR].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_srp]
             pumpone = {
@@ -173,7 +173,7 @@ module PhaseThree
         @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESP Crew Daily Rate').final
         @papd=(phaseoneparams[:PAP].to_f/365.0).floor
         @ecry=@papd*params[:EC_esp]
-        @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+        @ic=(@scc+@spr)*phaseoneparams[:RITE].to_f
 
         pumptwo={
             esppg:@esppg,
@@ -260,7 +260,7 @@ module PhaseThree
                 @error ='W/O rig is a must'
             end
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'PCP Crew Daily Rate').final
-            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @ic=(@scc+@spr)*phaseoneparams[:RITP].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_pcp]
             pumpthree= {
@@ -339,7 +339,7 @@ module PhaseThree
                 @error ='W/O rig is a must'
             end
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESPCP Crew Daily Rate').final
-            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @ic=(@scc+@spr)*phaseoneparams[:RITEP].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_espcp]
 
