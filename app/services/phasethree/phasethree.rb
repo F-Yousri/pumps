@@ -154,9 +154,9 @@ module PhaseThree
         @jbp=params[:Junctioncost]
         @sbp=params[:switchprice]
         @trp=params[:trp]
-        @tesc=@jbp+@sbp+@trp
-        @tedc=@esppg+@espmp+@ecpt
-        @cape=(@tesc + @tedc)*1.1
+        @tesc=(@jbp+@sbp+@trp)*1.1
+        @tedc=(@esppg+@espmp+@ecpt)*1.1
+        @cape=@tesc + @tedc
         @AST=phaseoneparams[:AST].to_f
         @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
         @WL=phaseoneparams[:WL].to_f
@@ -243,9 +243,9 @@ module PhaseThree
             @MHP_Ps=params[:MHP_Ps]
             @data = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_Ps).final
             @pmc=@data[:mcost]
-            @tpdc=@ppp+@cpc
-            @tpsc=@pmc+@phc
-            @capr=(@tpdc+@tpsc)*1.1
+            @tpdc=(@ppp+@cpc)*1.1
+            @tpsc=(@pmc+@phc)1.1
+            @capr=@tpdc+@tpsc
             @AST=phaseoneparams[:AST].to_f
             @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
             @WL=phaseoneparams[:WL].to_f
@@ -322,9 +322,9 @@ module PhaseThree
             @pfsc=params[:pfsc]
             @trp=params[:trp]
 
-            @tpdc=@espp+@ecpt
-            @tpsc=@trp+@pfsc
-            @capr=(@tpdc+@tpsc)*1.1
+            @tpdc=(@espp+@ecpt)*1.1
+            @tpsc=(@trp+@pfsc)*1.1
+            @capr=@tpdc+@tpsc
             @AST=phaseoneparams[:AST].to_f
             @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
             @WL=phaseoneparams[:WL].to_f

@@ -28,13 +28,13 @@ class DecisionMakerController < ApplicationController
         @resultphasthree=self.phasethree
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
         @Final=@FinalPhase2.merge(@resultphasthree) 
-        # render json:@Final
+        render json:@Final
         # render json:@Final[:phasethreepump1]
         # render json:@FinalPhase2
         # render json:$phaseoneparams
         # render json:@resultphasthree
         # render json:@resultphasthree
-        render  template: 'resultphaseone' 
+        # render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1
