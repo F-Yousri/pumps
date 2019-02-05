@@ -6,6 +6,7 @@ COPY Gemfile /pumps/Gemfile
 COPY Gemfile.lock /pumps/Gemfile.lock
 RUN bundle install
 COPY . /pumps
+Run touch /db.dump
 COPY latest.dump /db.dump
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
         && apt-get install -y nodejs
