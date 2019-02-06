@@ -90,6 +90,9 @@ exports.enums = {
             'TVD',
             'MD_pump'
         ],
+        TVD: [
+            'D_perf'
+        ],
         MD_pump: [
             'VD_pump'
         ],
