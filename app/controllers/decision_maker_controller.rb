@@ -16,7 +16,8 @@ class DecisionMakerController < ApplicationController
     $costpump4
     $sorted
     
-    def techEvalForm        
+    def techEvalForm
+        @additionalCriteria = Tab.find(6)
     end
 
     def techEval
