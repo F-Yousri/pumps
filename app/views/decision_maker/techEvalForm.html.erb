@@ -8,12 +8,12 @@
                 <div class="card">
                     <div class="card-header" id="heading <%= tab.name %>">
                         <h5 class="mb-0">
-                            <button class="btn " type="button" data-toggle="collapse" data-target="#<%= tab.id %>" aria-expanded="true" aria-controls="<%= tab.id%>">
+                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#<%= tab.id %>" aria-expanded="true" aria-controls="<%= tab.id%>">
                                 <%= tab.name %>
                             </button>
                         </h5>
                     </div>
-                    <div id="<%= tab.id %>" class="tab show collapse in" aria-expanded="true" aria-labelledby="heading <%= tab.name %>" data-parent="#tabs">
+                    <div id="<%= tab.id %>" class="tab collapse in" aria-expanded="true" aria-labelledby="heading <%= tab.name %>" data-parent="#tabs">
                         <div class="card-body" name = "<%= tab.name%>">
                               <% for property in tab.properties %>
                                     <label><%= property.description %> </label>:  &nbsp;
