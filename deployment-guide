@@ -1,0 +1,8 @@
+install docker and docker-compose
+run:
+    sudo docker-compose run web rails new . --force --no-deps --database=postgresql
+    sudo chown -R $USER:$USER
+    sudo docker-compose build
+    docker-compose up
+    docker-compose run web rake db:create
+    docker-compose run web pg_restore --verbose --clean --no-acl --no-owner -h db -U postgres -d pumps latest.dumprestore --verbose --clean --no-acl --no-owner -h db -U postgres -d pumps db.dump

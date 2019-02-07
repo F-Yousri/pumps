@@ -1,19 +1,19 @@
 
 <div class="container">
     <h1>Technical Evaluation </h1>
-    <p>kindly enter all fields below</p>
+    <p>kindly click the below buttons to fill the technical data</p>
     <%= form_tag techEvalForm_path, :id => 'tech-form' do %>
         <div class="accordion" id="tabs">
             <% for tab in Tab::all do%>
                 <div class="card">
                     <div class="card-header" id="heading <%= tab.name %>">
                         <h5 class="mb-0">
-                            <button class="btn " type="button" data-toggle="collapse" data-target="#<%= tab.id %>" aria-expanded="true" aria-controls="<%= tab.id%>">
+                            <button class="btn btn-dark collapsed " type="button" data-toggle="collapse" data-target="#<%= tab.id %>" aria-expanded="true" aria-controls="<%= tab.id%>">
                                 <%= tab.name %>
                             </button>
                         </h5>
                     </div>
-                    <div id="<%= tab.id %>" class="tab show collapse in" aria-expanded="true" aria-labelledby="heading <%= tab.name %>" data-parent="#tabs">
+                    <div id="<%= tab.id %>" class="tab collapse in" aria-expanded="true" aria-labelledby="heading <%= tab.name %>" data-parent="#tabs">
                         <div class="card-body" name = "<%= tab.name%>">
                               <% for property in tab.properties %>
                                     <label><%= property.description %> </label>:  &nbsp;
@@ -27,7 +27,7 @@
                                         </select>
                                         <br/>
                                     <% else %>
-                                        <input type="number" step=0.000001  name="<%= property.name%>" placeholder="<%= property.name %>" <%= property.choice_type == "calculated" ? "disabled" :""  %> class="form-control property"/> <br/>
+                                        <input type="number" step=0.000001  name="<%= property.name%>" placeholder="<%= property.name %>" <%= (property.choice_type == "calculated" or tab.id == 6) ? "readonly" :""  %> class="form-control property"/> <br/>
                                     <% end %>
                                     <span class='error alert-required hidden' role='alert'>
                                         This Field Is Required For Calculations
@@ -39,7 +39,7 @@
                 </div>
             <% end %>
         </div>
-        <button type="submit">submit</button>
+        <button class="btn btn-primary"  type="submit">submit</button>
     <% end %>
 </div>
 

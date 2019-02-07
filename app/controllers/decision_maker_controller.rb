@@ -3,6 +3,7 @@ class DecisionMakerController < ApplicationController
     Dir["#{Rails.root}/app/services/phasetwo/*.rb"].each {|file| require file }
     Dir["#{Rails.root}/app/services/phasethree/*.rb"].each {|file| require file }
 
+    before_action :authenticate_user!
     skip_before_action :verify_authenticity_token
     $phaseoneparams
     $pump1
@@ -15,7 +16,8 @@ class DecisionMakerController < ApplicationController
     $costpump4
     $sorted
     
-    def techEvalForm        
+    def techEvalForm
+        @additionalCriteria = Tab.find(6)
     end
 
     def techEval

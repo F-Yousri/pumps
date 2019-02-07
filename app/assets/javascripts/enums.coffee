@@ -90,6 +90,9 @@ exports.enums = {
             'TVD',
             'MD_pump'
         ],
+        TVD: [
+            'D_perf'
+        ],
         MD_pump: [
             'VD_pump'
         ],
@@ -118,8 +121,8 @@ exports.enums = {
             'bbl'
         ],
         temperature: [
-            '&#176;C',
-            '&#176;F'
+            '&#176;F',
+            '&#176;C'
         ],
         rate_per_pressure: [
             'BPD/psi'
