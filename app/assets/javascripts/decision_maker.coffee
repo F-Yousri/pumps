@@ -34,7 +34,7 @@ $ ->
         for name, obj of properties
             #fill readonly fields "additional criteria" with data
             index = gon.readonlyProps.indexOf(name)
-            if index
+            if index >= 0
                 obj.node.val(gon.vals[index])
                 obj.node.prop('readonly', true)
             if name.includes('W_')
