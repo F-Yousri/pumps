@@ -8,7 +8,6 @@ $ ->
 
     #apply max 100 on all percentages
     $('[unit=percentage').find('input').prop('max', 100)
-    
     inputs = $('input.property')
     #construct properties and fill PropertyFactory
     do ( inputs ) ->
@@ -33,6 +32,11 @@ $ ->
     weights = []
     do ( properties = PropertyFactory.properties ) ->
         for name, obj of properties
+            #fill readonly fields "additional criteria" with data
+            index = gon.readonlyProps.indexOf(name)
+            if index
+                obj.node.val(gon.vals[index])
+                obj.node.prop('readonly', true)
             if name.includes('W_')
                 weights.push(obj.node)
         weights

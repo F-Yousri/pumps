@@ -17,7 +17,8 @@ class DecisionMakerController < ApplicationController
     $sorted
     
     def techEvalForm
-        @additionalCriteria = Tab.find(6)
+        gon.readonlyProps = AdditionalCriterium.all.pluck( :name )
+        gon.vals = AdditionalCriterium.all.pluck( :value )
     end
 
     def techEval
