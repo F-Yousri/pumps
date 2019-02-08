@@ -5,31 +5,28 @@ module DecisionMakerService
         def make params
             techParams = self.extractTechParams params
             weightParams = self.extractWeightParams params
+            additionalCriteria = self.extractAdditionalCriteria params
             params = self.mixtureCalc params
             params = self.check techParams
-            pumps = self.match( techParams, weightParams )            
+            pumps = self.match( techParams, weightParams, additionalCriteria )            
             pumpsSeparation = self.findSeparation( pumps[:pumps], pumps[:solutions] ) 
             sortedPumps = self.sortByCi pumpsSeparation
         end
 
         def extractTechParams params
-            techParams = params.slice( :WL, :MD, :WD, :CSG_ND, :DS, :GQ, :J, :T_bh, :meo_m, :API, :AP, :CP, :ArP, :EP, :SP, :PP, :GLR, :APM, :SE, :AST, :PF, :PR, :SE )
-            techParams
+            techParams = params.slice(:WL, :MD, :WD, :CSG_ND, :DS, :GQ, :J, :T_bh, :meo_m, :API, :AP, :CP, :ArP, :EP, :SP, :PP, :GLR, :APM, :SE, :AST, :PF, :PR )
         end
 
         def extractWeightParams params
-            weightParams = params.slice( :W_WL, :W_MD, :W_WD, :W_CSG_ND, :W_DS, :W_GQ, :W_J, :W_T_bh, :W_meo_m, :W_API, :W_AP, :W_CP, :W_ArP, :W_EP, :W_SP, :W_PP, :W_GLR, :W_APM, :W_SE, :W_AST, :W_PF, :W_PR, :W_SE )
-            weightParams
+            weightParams = params.slice( :W_WL, :W_MD, :W_WD, :W_CSG_ND, :W_DS, :W_GQ, :W_J, :W_T_bh, :W_meo_m, :W_API, :W_AP, :W_CP, :W_ArP, :W_EP, :W_SP, :W_PP, :W_GLR, :W_APM, :W_SE, :W_AST, :W_PF, :W_PR, :W_ES )
         end
+        
+        def extractAdditionalCriteria params
+            additionalCriteria = params.slice(:PF_esp, :PF_espcp, :PF_pcp, :PR_esp, :PR_espcp, :PR_pcp, :PF_rrp, :SE_espcp, :SE_pcp, :SE_esp, :PR_rrp, :SE_rrp)
+        end
+
         #calculate some props and add it to input params
         def mixtureCalc params
-             #calculate Mixture Viscosity in cp and add it to params object
-            #  if params['EP'] == true
-            #     params['meo_m'] = params['meo_o'].to_f * ( 1 + 2.5 * params['WC'].to_f /100.0 + 10 * ( params['WC'].to_f /100.0 ** 2 ) )
-            # else
-            #     params['meo_m'] = params['WC'].to_f /100.0 * params['meo_w'].to_f + params['meo_o'].to_f * ( 1 - params['WC'].to_f /100.0)
-            # end
-
             #calculate Liqued Mixture Specific Gravity and add it to params object
             params['SG_m'] = ( params['SG_o'].to_f *  ( 1 - params['WC'].to_f )) + (params['SG_w'].to_f * params['WC'].to_f ) 
             params
@@ -126,7 +123,7 @@ module DecisionMakerService
             params
         end
         #match the input with the corresponding pumpProperty rating and increments the pump rating
-        def match(techParams, weightParams)
+        def match(techParams, weightParams, additionalCriteria)
             matrix = PumpProperty::all
             pumpsArray = Pump::select(:name).as_json
             #build a hash of { pump.name => { property.name => pumpProperty.rating, .. }, ..}
@@ -156,6 +153,50 @@ module DecisionMakerService
                                 worstSolutions[k] = solution
                             end
                         end
+                    end
+                end
+            end
+            xi_es = Math.sqrt(additionalCriteria['SE_espcp'].to_f ** 2 + additionalCriteria['SE_pcp'].to_f ** 2 + additionalCriteria['SE_esp'].to_f ** 2 + additionalCriteria['SE_rrp'].to_f ** 2)
+            bestSolutions['SE'] = additionalCriteria.values.map(&:to_i).max * weightParams["W_ES"].to_f / xi_es
+            worstSolutions['SE'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_ES"].to_f / xi_es
+            
+            xi_pr = Math.sqrt(additionalCriteria['PR_espcp'].to_f ** 2 + additionalCriteria['PR_pcp'].to_f ** 2 + additionalCriteria['PR_esp'].to_f ** 2 + additionalCriteria['PR_rrp'].to_f ** 2)
+            bestSolutions['PR'] = additionalCriteria.values.map(&:to_i).max * weightParams["W_PR"].to_f / xi_pr
+            worstSolutions['PR'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_PR"].to_f / xi_pr
+            
+            xi_pf = Math.sqrt(additionalCriteria['PF_espcp'].to_f ** 2 + additionalCriteria['PF_pcp'].to_f ** 2 + additionalCriteria['PF_esp'].to_f ** 2 + additionalCriteria['PF_rrp'].to_f ** 2)
+            bestSolutions['PF'] = additionalCriteria.values.map(&:to_i).max * weightParams["W_PF"].to_f / xi_pf
+            worstSolutions['PF'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_PF"].to_f / xi_pf
+            additionalCriteria.each do |k, val|
+                if k.include? "SE"
+                    if k.include? 'espcp'
+                        pumpsHash['ESPCP']['ES'] = val.to_f * weightParams["W_ES"].to_f / xi_es
+                    elsif k.include? 'esp'
+                        pumpsHash['ESP']['ES'] = val.to_f * weightParams["W_ES"].to_f / xi_es
+                    elsif k.include? 'pcp'
+                        pumpsHash['PCP']['ES'] = val.to_f * weightParams["W_ES"].to_f / xi_es
+                    elsif k.include? 'rrp'
+                        pumpsHash['RRP']['ES'] = val.to_f * weightParams["W_ES"].to_f / xi_es
+                    end
+                elsif k.include? "PF"
+                    if k.include? 'espcp'
+                        pumpsHash['ESPCP']['PF'] = val.to_f * weightParams["W_PF"].to_f / xi_pf
+                    elsif k.include? 'esp'
+                        pumpsHash['ESP']['PF'] = val.to_f * weightParams["W_PF"].to_f / xi_pf
+                    elsif k.include? 'pcp'
+                        pumpsHash['PCP']['PF'] = val.to_f * weightParams["W_PF"].to_f / xi_pf
+                    elsif k.include? 'rrp'
+                        pumpsHash['RRP']['PF'] = val.to_f * weightParams["W_PF"].to_f / xi_pf
+                    end
+                elsif k.include? "PR"
+                    if k.include? 'espcp'
+                        pumpsHash['ESPCP']['PR'] = val.to_f * weightParams["W_PR"].to_f / xi_pr
+                    elsif k.include? 'esp'
+                        pumpsHash['ESP']['PR'] = val.to_f * weightParams["W_PR"].to_f / xi_pr
+                    elsif k.include? 'pcp'
+                        pumpsHash['PCP']['PR'] = val.to_f * weightParams["W_PR"].to_f / xi_pr
+                    elsif k.include? 'rrp'
+                        pumpsHash['RRP']['PR'] = val.to_f * weightParams["W_PR"].to_f / xi_pr
                     end
                 end
             end
