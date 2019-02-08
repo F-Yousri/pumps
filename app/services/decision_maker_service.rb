@@ -143,10 +143,11 @@ module DecisionMakerService
                         xi = Math.sqrt(propArray.inject(0) {|sum, p| sum + p.rating.to_f ** 2})
                         
                         propArray.each do |prop|
-                            weightFactor = if prop.property.name.include? "StE" then weightParams["W_SE"] else weightParams["W_" + k] end
+                            weightFactor = if prop.property.name.include? "StE" then weightParams["W_SE"]  else weightParams["W_" + k] end
+                            k = if prop.property.name.include? "StE" then "StE"  else k end
                             solution = prop.rating.to_f * weightFactor.to_f / (xi * 100)
                             #add {property.name => ( pumpProperty.rating * property weight / X_i ) } to pumpsHash
-                            pumpsHash[prop.pump.name][k] = prop.rating.to_f
+                            pumpsHash[prop.pump.name][k] = [prop.rating.to_f, solution]
                             if ! bestSolutions[k] || bestSolutions[k] < solution
                                 bestSolutions[k] = solution
                             end
@@ -170,34 +171,43 @@ module DecisionMakerService
             worstSolutions['PF'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_PF"].to_f / (xi_pf * 100)
             additionalCriteria.each do |k, val|
                 if k.include? "SE"
+                    weightFactor = weightParams['W_ES'].to_f
+                    xi = xi_es
+                    solution = val.to_f * weightFactor / xi
                     if k.include? 'espcp'
-                        pumpsHash['ESPCP']['ES'] = val.to_f
+                        pumpsHash['ESPCP']['ES'] = [val.to_f, solution]
                     elsif k.include? 'esp'
-                        pumpsHash['ESP']['ES'] = val.to_f
+                        pumpsHash['ESP']['ES'] = [val.to_f, solution]
                     elsif k.include? 'pcp'
-                        pumpsHash['PCP']['ES'] = val.to_f
+                        pumpsHash['PCP']['ES'] = [val.to_f, solution]
                     elsif k.include? 'rrp'
-                        pumpsHash['RRP']['ES'] = val.to_f
+                        pumpsHash['RRP']['ES'] = [val.to_f, solution]
                     end
                 elsif k.include? "PF"
+                    weightFactor = weightParams['W_PF'].to_f
+                    xi = xi_pf
+                    solution = val.to_f * weightFactor / xi
                     if k.include? 'espcp'
-                        pumpsHash['ESPCP']['PF'] = val.to_f
+                        pumpsHash['ESPCP']['PF'] = [val.to_f, solution]
                     elsif k.include? 'esp'
-                        pumpsHash['ESP']['PF'] = val.to_f
+                        pumpsHash['ESP']['PF'] = [val.to_f, solution]
                     elsif k.include? 'pcp'
-                        pumpsHash['PCP']['PF'] = val.to_f
+                        pumpsHash['PCP']['PF'] = [val.to_f, solution]
                     elsif k.include? 'rrp'
-                        pumpsHash['RRP']['PF'] = val.to_f
+                        pumpsHash['RRP']['PF'] = [val.to_f, solution]
                     end
                 elsif k.include? "PR"
+                    weightFactor = weightParams['W_PR'].to_f
+                    xi = xi_pr
+                    solution = val.to_f * weightFactor / xi
                     if k.include? 'espcp'
-                        pumpsHash['ESPCP']['PR'] = val.to_f
+                        pumpsHash['ESPCP']['PR'] = [val.to_f, solution]
                     elsif k.include? 'esp'
-                        pumpsHash['ESP']['PR'] = val.to_f
+                        pumpsHash['ESP']['PR'] = [val.to_f, solution]
                     elsif k.include? 'pcp'
-                        pumpsHash['PCP']['PR'] = val.to_f
+                        pumpsHash['PCP']['PR'] = [val.to_f, solution]
                     elsif k.include? 'rrp'
-                        pumpsHash['RRP']['PR'] = val.to_f
+                        pumpsHash['RRP']['PR'] = [val.to_f, solution]
                     end
                 end
             end
@@ -217,11 +227,11 @@ module DecisionMakerService
                 pump[1].each do |property|
                     if solutions[:best][property[0]]
 
-                        positiveSep = ( solutions[:best][property[0]].to_f - pump[1][property[0]].to_f ) **2
+                        positiveSep = ( solutions[:best][property[0]] - pump[1][property[0]][1] ) **2
                         pump[1]['positiveSep'] += positiveSep
                     end
                     if solutions[:worst][property[0]]
-                        negativeSep = ( solutions[:worst][property[0]].to_f - pump[1][property[0]].to_f ) **2
+                        negativeSep = ( solutions[:worst][property[0]] - pump[1][property[0]][1] ) **2
                         pump[1]['negativeSep'] += negativeSep
                     end
                 end
