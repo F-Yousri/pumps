@@ -25,7 +25,7 @@ class DecisionMakerController < ApplicationController
         $phaseoneparams=params
         @params = DecisionMakerService.make(params)
         @phaseone=@params
-        render json:@params
+        # render json:@params
         @resultpump1=self.phaseTwoPump1
         @resultpump2=self.phaseTwoPump2
         @resultpump3=self.phaseTwoPump3
@@ -39,7 +39,7 @@ class DecisionMakerController < ApplicationController
         # render json:$phaseoneparams
         # render json:@resultphasthree
         # render json:@resultphasthree
-        # render  template: 'resultphaseone' 
+        render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1
