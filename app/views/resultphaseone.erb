@@ -19,10 +19,9 @@
       <tr>
         <th></th>
         <th>Abb.</th>
-        <th> <%= @phaseone[0][0] %></th>
-         <th> <%= @phaseone[1][0] %></th>
-        <th> <%= @phaseone[2][0] %></th>
-         <th> <%= @phaseone[3][0] %></th>
+        <%for pump in @pumps do%>
+          <th> <%= pump[0] %></th>
+        <%end%>
       </tr>
     </thead>
     <tbody>
@@ -34,17 +33,17 @@
       WL
       </td>
       <td>
-        <%= @phaseone[0][1]["WL"][0] %>
+        <%= @pumps[0][1]["WL"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["WL"][0] %>
+          <%= @pumps[1][1]["WL"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["WL"][0] %>
+          <%= @pumps[2][1]["WL"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["WL"][0] %>
+          <%= @pumps[3][1]["WL"][0] %>
       </td>
       </tr>
 
@@ -57,17 +56,17 @@
       MD
       </td>
       <td>
-        <%= @phaseone[0][1]["MD"][0] %>
+        <%= @pumps[0][1]["MD"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["MD"][0] %>
+          <%= @pumps[1][1]["MD"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["MD"][0] %>
+          <%= @pumps[2][1]["MD"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["MD"][0] %>
+          <%= @pumps[3][1]["MD"][0] %>
       </td>
       </tr>
 
@@ -79,17 +78,17 @@
       WD
       </td>
       <td>
-        <%= @phaseone[0][1]["WD"][0] %>
+        <%= @pumps[0][1]["WD"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["WD"][0] %>
+          <%= @pumps[1][1]["WD"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["WD"][0] %>
+          <%= @pumps[2][1]["WD"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["WD"][0] %>
+          <%= @pumps[3][1]["WD"][0] %>
       </td>
       </tr>
 
@@ -101,17 +100,17 @@
       CSG_ND
       </td>
       <td>
-        <%= @phaseone[0][1]["CSG_ND"][0] %>
+        <%= @pumps[0][1]["CSG_ND"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["CSG_ND"][0] %>
+          <%= @pumps[1][1]["CSG_ND"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["CSG_ND"][0] %>
+          <%= @pumps[2][1]["CSG_ND"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["CSG_ND"][0] %>
+          <%= @pumps[3][1]["CSG_ND"][0] %>
       </td>
       </tr>
 
@@ -123,17 +122,17 @@
       DS
       </td>
       <td>
-        <%= @phaseone[0][1]["DS"][0] %>
+        <%= @pumps[0][1]["DS"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["DS"][0] %>
+          <%= @pumps[1][1]["DS"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["DS"][0] %>
+          <%= @pumps[2][1]["DS"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["DS"][0] %>
+          <%= @pumps[3][1]["DS"][0] %>
       </td>
       </tr>
 
@@ -145,17 +144,17 @@
       GQ
       </td>
       <td>
-        <%= @phaseone[0][1]["GQ"][0] %>
+        <%= @pumps[0][1]["GQ"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["GQ"][0] %>
+          <%= @pumps[1][1]["GQ"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["GQ"][0] %>
+          <%= @pumps[2][1]["GQ"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["GQ"][0] %>
+          <%= @pumps[3][1]["GQ"][0] %>
       </td>
       </tr>
 
@@ -167,17 +166,17 @@
       J
       </td>
       <td>
-        <%= @phaseone[0][1]["J"][0] %>
+        <%= @pumps[0][1]["J"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["J"][0] %>
+          <%= @pumps[1][1]["J"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["J"][0] %>
+          <%= @pumps[2][1]["J"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["J"][0] %>
+          <%= @pumps[3][1]["J"][0] %>
       </td>
       </tr>
 
@@ -189,17 +188,17 @@
       T_bh
       </td>
       <td>
-        <%= @phaseone[0][1]["T_bh"][0] %>
+        <%= @pumps[0][1]["T_bh"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["T_bh"][0] %>
+          <%= @pumps[1][1]["T_bh"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["T_bh"][0] %>
+          <%= @pumps[2][1]["T_bh"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["T_bh"][0] %>
+          <%= @pumps[3][1]["T_bh"][0] %>
       </td>
       </tr>
 
@@ -211,17 +210,17 @@
       meo_m
       </td>
       <td>
-        <%= @phaseone[0][1]["meo_m"][0] %>
+        <%= @pumps[0][1]["meo_m"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["meo_m"][0] %>
+          <%= @pumps[1][1]["meo_m"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["meo_m"][0] %>
+          <%= @pumps[2][1]["meo_m"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["meo_m"][0] %>
+          <%= @pumps[3][1]["meo_m"][0] %>
       </td>
       </tr>
 
@@ -233,17 +232,17 @@
       API
       </td>
       <td>
-        <%= @phaseone[0][1]["API"][0] %>
+        <%= @pumps[0][1]["API"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["API"][0] %>
+          <%= @pumps[1][1]["API"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["API"][0] %>
+          <%= @pumps[2][1]["API"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["API"][0] %>
+          <%= @pumps[3][1]["API"][0] %>
       </td>
       </tr>
             <tr>
@@ -254,17 +253,17 @@
       AP
       </td>
       <td>
-        <%= @phaseone[0][1]["AP"][0] %>
+        <%= @pumps[0][1]["AP"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["AP"][0] %>
+          <%= @pumps[1][1]["AP"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["AP"][0] %>
+          <%= @pumps[2][1]["AP"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["AP"][0] %>
+          <%= @pumps[3][1]["AP"][0] %>
       </td>
       </tr>
             <tr>
@@ -275,17 +274,17 @@
       CP
       </td>
       <td>
-        <%= @phaseone[0][1]["CP"][0] %>
+        <%= @pumps[0][1]["CP"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["CP"][0] %>
+          <%= @pumps[1][1]["CP"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["CP"][0] %>
+          <%= @pumps[2][1]["CP"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["CP"][0] %>
+          <%= @pumps[3][1]["CP"][0] %>
       </td>
       </tr>
             <tr>
@@ -296,17 +295,17 @@
       ArP
       </td>
       <td>
-        <%= @phaseone[0][1]["ArP"][0] %>
+        <%= @pumps[0][1]["ArP"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["ArP"][0] %>
+          <%= @pumps[1][1]["ArP"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["ArP"][0] %>
+          <%= @pumps[2][1]["ArP"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["ArP"][0] %>
+          <%= @pumps[3][1]["ArP"][0] %>
       </td>
       </tr>
             <tr>
@@ -317,17 +316,17 @@
       EP
       </td>
       <td>
-        <%= @phaseone[0][1]["EP"][0] %>
+        <%= @pumps[0][1]["EP"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["EP"][0] %>
+          <%= @pumps[1][1]["EP"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["EP"][0] %>
+          <%= @pumps[2][1]["EP"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["EP"][0] %>
+          <%= @pumps[3][1]["EP"][0] %>
       </td>
       </tr>
             <tr>
@@ -338,17 +337,17 @@
       SP
       </td>
       <td>
-        <%= @phaseone[0][1]["SP"][0] %>
+        <%= @pumps[0][1]["SP"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["SP"][0] %>
+          <%= @pumps[1][1]["SP"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["SP"][0] %>
+          <%= @pumps[2][1]["SP"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["SP"][0] %>
+          <%= @pumps[3][1]["SP"][0] %>
       </td>
       </tr>
             <tr>
@@ -359,17 +358,17 @@
       PP
       </td>
       <td>
-        <%= @phaseone[0][1]["PP"][0] %>
+        <%= @pumps[0][1]["PP"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["PP"][0] %>
+          <%= @pumps[1][1]["PP"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["PP"][0] %>
+          <%= @pumps[2][1]["PP"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["PP"][0] %>
+          <%= @pumps[3][1]["PP"][0] %>
       </td>
       </tr>
 
@@ -381,17 +380,17 @@
       GLR
       </td>
       <td>
-        <%= @phaseone[0][1]["GLR"][0] %>
+        <%= @pumps[0][1]["GLR"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["GLR"][0] %>
+          <%= @pumps[1][1]["GLR"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["GLR"][0] %>
+          <%= @pumps[2][1]["GLR"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["GLR"][0] %>
+          <%= @pumps[3][1]["GLR"][0] %>
       </td>
       </tr>
              <tr>
@@ -402,17 +401,17 @@
       APM
       </td>
       <td>
-        <%= @phaseone[0][1]["APM"][0] %>
+        <%= @pumps[0][1]["APM"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["APM"][0] %>
+          <%= @pumps[1][1]["APM"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["APM"][0] %>
+          <%= @pumps[2][1]["APM"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["APM"][0] %>
+          <%= @pumps[3][1]["APM"][0] %>
       </td>
       </tr>
              <tr>
@@ -423,17 +422,17 @@
       SE
       </td>
       <td>
-        <%= @phaseone[0][1]["StE"][0] %>
+        <%= @pumps[0][1]["StE"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["StE"][0] %>
+          <%= @pumps[1][1]["StE"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["StE"][0] %>
+          <%= @pumps[2][1]["StE"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["StE"][0] %>
+          <%= @pumps[3][1]["StE"][0] %>
       </td>
       </tr>
              <tr>
@@ -444,17 +443,17 @@
       AST
       </td>
       <td>
-        <%= @phaseone[0][1]["AST"][0] %>
+        <%= @pumps[0][1]["AST"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["AST"][0] %>
+          <%= @pumps[1][1]["AST"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["AST"][0] %>
+          <%= @pumps[2][1]["AST"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["AST"][0] %>
+          <%= @pumps[3][1]["AST"][0] %>
       </td>
       </tr>
              <tr>
@@ -465,17 +464,17 @@
       PF
       </td>
       <td>
-        <%= @phaseone[0][1]["PF"][0] %>
+        <%= @pumps[0][1]["PF"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["PF"][0] %>
+          <%= @pumps[1][1]["PF"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["PF"][0] %>
+          <%= @pumps[2][1]["PF"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["PF"][0] %>
+          <%= @pumps[3][1]["PF"][0] %>
       </td>
       </tr>
              <tr>
@@ -486,17 +485,17 @@
       PR
       </td>
       <td>
-        <%= @phaseone[0][1]["PR"][0] %>
+        <%= @pumps[0][1]["PR"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["PR"][0] %>
+          <%= @pumps[1][1]["PR"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["PR"][0] %>
+          <%= @pumps[2][1]["PR"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["PR"][0] %>
+          <%= @pumps[3][1]["PR"][0] %>
       </td>
       </tr>
              <tr>
@@ -507,17 +506,17 @@
       SE
       </td>
       <td>
-        <%= @phaseone[0][1]["SE"][0] %>
+        <%= @pumps[0][1]["SE"][0] %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["SE"][0] %>
+          <%= @pumps[1][1]["SE"][0] %>
       </td>
        <td>
-          <%= @phaseone[2][1]["SE"][0] %>
+          <%= @pumps[2][1]["SE"][0] %>
       </td>
        <td>
-          <%= @phaseone[3][1]["SE"][0] %>
+          <%= @pumps[3][1]["SE"][0] %>
       </td>
       </tr>
 
@@ -529,17 +528,17 @@
       positiveSep
       </td>
       <td>
-        <%= @phaseone[0][1]["positiveSep"].round(3)%>
+        <%= @pumps[0][1]["positiveSep"].round(3)%>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["positiveSep"].round(3)%>
+          <%= @pumps[1][1]["positiveSep"].round(3)%>
       </td>
        <td>
-          <%= @phaseone[2][1]["positiveSep"].round(3)%>
+          <%= @pumps[2][1]["positiveSep"].round(3)%>
       </td>
        <td>
-          <%= @phaseone[3][1]["positiveSep"].round(3)%>
+          <%= @pumps[3][1]["positiveSep"].round(3)%>
       </td>
       </tr>
             <tr>
@@ -550,17 +549,17 @@
       negativeSep
       </td>
       <td>
-        <%= @phaseone[0][1]["negativeSep"].round(3) %>
+        <%= @pumps[0][1]["negativeSep"].round(3) %>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["negativeSep"].round(3)%>
+          <%= @pumps[1][1]["negativeSep"].round(3)%>
       </td>
        <td>
-          <%= @phaseone[2][1]["negativeSep"].round(3)%>
+          <%= @pumps[2][1]["negativeSep"].round(3)%>
       </td>
        <td>
-          <%= @phaseone[3][1]["negativeSep"].round(3)%>
+          <%= @pumps[3][1]["negativeSep"].round(3)%>
       </td>
       </tr>
             <tr>
@@ -571,17 +570,17 @@
       ci
       </td>
       <td>
-        <%= @phaseone[0][1]["ci"].round(3)%>
+        <%= @pumps[0][1]["ci"].round(3)%>
 
       </td>
        <td>
-          <%= @phaseone[1][1]["ci"].round(3)%>
+          <%= @pumps[1][1]["ci"].round(3)%>
       </td>
        <td>
-          <%= @phaseone[2][1]["ci"].round(3) %>
+          <%= @pumps[2][1]["ci"].round(3) %>
       </td>
        <td>
-          <%= @phaseone[3][1]["ci"].round(3) %>
+          <%= @pumps[3][1]["ci"].round(3) %>
       </td>
       </tr>
 

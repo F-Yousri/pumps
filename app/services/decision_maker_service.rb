@@ -162,8 +162,14 @@ module DecisionMakerService
                     end
                 end
             end
-            
-            xi_es = Math.sqrt(additionalCriteria['SE_espcp'].to_f ** 2 + additionalCriteria['SE_pcp'].to_f ** 2 + additionalCriteria['SE_esp'].to_f ** 2 + additionalCriteria['SE_rrp'].to_f ** 2)
+
+            #loop throw efficiency inputs yo map them to 1 to 5 measure
+            efficiencyInputs = additionalCriteria.to_unsafe_h
+            .select{|name, rating| name.include? "SE"}.sort{|prop1, prop2| prop2[1] <=> prop1[1]}.to_h
+            .each_with_index.map {|(name, rating), index| [name, (5 - index).to_s] }.to_h                
+            additionalCriteria.merge!(efficiencyInputs)
+
+            xi_es = Math.sqrt(efficiencyInputs['SE_espcp'].to_f ** 2 + efficiencyInputs['SE_pcp'].to_f ** 2 + efficiencyInputs['SE_esp'].to_f ** 2 + efficiencyInputs['SE_rrp'].to_f ** 2)
             bestSolutions['SE'] = additionalCriteria.values.map(&:to_i).max * weightParams["W_ES"].to_f / (xi_es * 100)
             worstSolutions['SE'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_ES"].to_f / (xi_es * 100)
             
