@@ -128,7 +128,9 @@ module DecisionMakerService
             pumpsArray = Pump::select(:name).as_json
             #build a hash of { pump.name => { property.name => pumpProperty.rating, .. }, ..}
             pumpsHash = pumpsArray.map { |pump| [ pump['name'], {}] }.to_h
-
+            #get array of StE properties
+            steArray = matrix.select{|pumpProperty| (pumpProperty.property.name.include? "StE_")}
+            xi_ste = Math.sqrt(steArray.inject(0) {|sum, p| sum + p.rating.to_f ** 2})
             #define hashes to store properties best solution and worst solotuion {property.name =>value}
             bestSolutions = {}
             worstSolutions = {}
@@ -137,6 +139,7 @@ module DecisionMakerService
                 techParams[k] = {val=>matrix.select { |pumpProperty| pumpProperty.property.name == k }}
                 # Iterate through the pump properties to get the ones matching the inputValue
                 techParams[k].each do |val, pumpProperty|
+                    pumpProperty = if k.include? "StE_" then steArray else pumpProperty end
                     propArray = pumpProperty.select { |prop| (prop.property.choice_type == "list_box") ? (prop.choice_id == val.to_f) : (prop.choice.name == val) }
                     if propArray
                         # determine value of X_i which is sqrt(sum(each row value ^2))
@@ -144,7 +147,8 @@ module DecisionMakerService
                         
                         propArray.each do |prop|
                             weightFactor = if prop.property.name.include? "StE" then weightParams["W_SE"]  else weightParams["W_" + k] end
-                            k = if prop.property.name.include? "StE" then "StE"  else k end
+                                xi = if prop.property.name.include? "StE" then xi_ste else xi end
+                                k = if prop.property.name.include? "StE" then "StE"  else k end
                             solution = prop.rating.to_f * weightFactor.to_f / (xi * 100)
                             #add {property.name => ( pumpProperty.rating * property weight / X_i ) } to pumpsHash
                             pumpsHash[prop.pump.name][k] = [prop.rating.to_f, solution]
@@ -158,6 +162,7 @@ module DecisionMakerService
                     end
                 end
             end
+            
             xi_es = Math.sqrt(additionalCriteria['SE_espcp'].to_f ** 2 + additionalCriteria['SE_pcp'].to_f ** 2 + additionalCriteria['SE_esp'].to_f ** 2 + additionalCriteria['SE_rrp'].to_f ** 2)
             bestSolutions['SE'] = additionalCriteria.values.map(&:to_i).max * weightParams["W_ES"].to_f / (xi_es * 100)
             worstSolutions['SE'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_ES"].to_f / (xi_es * 100)
@@ -171,20 +176,20 @@ module DecisionMakerService
             worstSolutions['PF'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_PF"].to_f / (xi_pf * 100)
             additionalCriteria.each do |k, val|
                 if k.include? "SE"
-                    weightFactor = weightParams['W_ES'].to_f
+                    weightFactor = weightParams['W_ES'].to_f / 100
                     xi = xi_es
                     solution = val.to_f * weightFactor / xi
                     if k.include? 'espcp'
-                        pumpsHash['ESPCP']['ES'] = [val.to_f, solution]
+                        pumpsHash['ESPCP']['SE'] = [val.to_f, solution]
                     elsif k.include? 'esp'
-                        pumpsHash['ESP']['ES'] = [val.to_f, solution]
+                        pumpsHash['ESP']['SE'] = [val.to_f, solution]
                     elsif k.include? 'pcp'
-                        pumpsHash['PCP']['ES'] = [val.to_f, solution]
+                        pumpsHash['PCP']['SE'] = [val.to_f, solution]
                     elsif k.include? 'rrp'
-                        pumpsHash['RRP']['ES'] = [val.to_f, solution]
+                        pumpsHash['RRP']['SE'] = [val.to_f, solution]
                     end
                 elsif k.include? "PF"
-                    weightFactor = weightParams['W_PF'].to_f
+                    weightFactor = weightParams['W_PF'].to_f / 100
                     xi = xi_pf
                     solution = val.to_f * weightFactor / xi
                     if k.include? 'espcp'
@@ -197,7 +202,7 @@ module DecisionMakerService
                         pumpsHash['RRP']['PF'] = [val.to_f, solution]
                     end
                 elsif k.include? "PR"
-                    weightFactor = weightParams['W_PR'].to_f
+                    weightFactor = weightParams['W_PR'].to_f / 100
                     xi = xi_pr
                     solution = val.to_f * weightFactor / xi
                     if k.include? 'espcp'
@@ -211,7 +216,6 @@ module DecisionMakerService
                     end
                 end
             end
-            # return techParams
             pumps ={   :pumps=>pumpsHash, 
                 :solutions=>{ 
                     :best=>bestSolutions, :worst=>worstSolutions
