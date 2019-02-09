@@ -166,9 +166,25 @@ module DecisionMakerService
             #loop throw efficiency inputs yo map them to 1 to 5 measure
             efficiencyInputs = additionalCriteria.to_unsafe_h
             .select{|name, rating| name.include? "SE"}.sort{|prop1, prop2| prop2[1] <=> prop1[1]}.to_h
-            .each_with_index.map {|(name, rating), index| [name, (5 - index).to_s] }.to_h                
-            additionalCriteria.merge!(efficiencyInputs)
-
+            
+            ratedEfficiencyInputs = efficiencyInputs.each_with_index.map {|(name, rating), index| [name, (5 - index).to_s] }.to_h   
+            # if 2 SEs have the same value then they should have the same rating
+            efficiencyInputs.each do|input|
+                # a flag so that if one rating is raised then raise all less ratings
+                raiseAll = 0
+                efficiencyInputs.each do |input2|
+                    next unless input[0] != input2[0]
+                    if input2[1] === input[1]
+                        ratedEfficiencyInputs[input2[0]] = ratedEfficiencyInputs[input[0]]
+                        efficiencyInputs[input2[0]] = rand(0..9999999) - efficiencyInputs[input2[0]].to_i 
+                        raiseAll = 1
+                    elsif raiseAll === 1
+                        ratedEfficiencyInputs[input2[0]] = ratedEfficiencyInputs[input2[0]].to_i + 1
+                        efficiencyInputs[input2[0]] = rand(0..9999999) - efficiencyInputs[input2[0]].to_i 
+                    end
+                end
+            end
+            additionalCriteria.merge!(ratedEfficiencyInputs)
             xi_es = Math.sqrt(efficiencyInputs['SE_espcp'].to_f ** 2 + efficiencyInputs['SE_pcp'].to_f ** 2 + efficiencyInputs['SE_esp'].to_f ** 2 + efficiencyInputs['SE_rrp'].to_f ** 2)
             bestSolutions['SE'] = additionalCriteria.values.map(&:to_i).max * weightParams["W_ES"].to_f / (xi_es * 100)
             worstSolutions['SE'] = additionalCriteria.values.map(&:to_i).min * weightParams["W_ES"].to_f / (xi_es * 100)
