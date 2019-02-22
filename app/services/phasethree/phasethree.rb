@@ -74,7 +74,7 @@ module PhaseThree
                 @error ='W/O rig is a must'
             end
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'RRP Crew Daily Rate').final
-            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @ic=(@scc+@spr)*phaseoneparams[:RITR].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_srp]
             pumpone = {
@@ -105,7 +105,14 @@ module PhaseThree
                 ecry:@ecry,
                 papd:@papd,
                 ic:@ic,
-                corrosivity:@corrosivity
+                corrosivity:@corrosivity,
+                SMTTF:phaseoneparams[:SMTTFR].to_f,
+                SMTBF:phaseoneparams[:SMTBFR].to_f,
+                RIT:phaseoneparams[:RITR].to_f,
+                DMTTF:phaseoneparams[:DMTTFR].to_f,
+                DMTBF:phaseoneparams[:DMTBFR].to_f,
+                SDT:phaseoneparams[:SDTR].to_f,
+                DDT:phaseoneparams[:DDTR].to_f,
             }
             @finalpumpone = PhaseThreeCalc.phasethreecalc(pumpone , phaseoneparams )
             @finalpumpone=@finalpumpone.merge(pumpone) 
@@ -147,9 +154,9 @@ module PhaseThree
         @jbp=params[:Junctioncost]
         @sbp=params[:switchprice]
         @trp=params[:trp]
-        @tesc=@jbp+@sbp+@trp
-        @tedc=@esppg+@espmp+@ecpt
-        @cape=(@tesc + @tedc)*1.1
+        @tesc=(@jbp+@sbp+@trp)*1.1
+        @tedc=(@esppg+@espmp+@ecpt)*1.1
+        @cape=@tesc + @tedc
         @AST=phaseoneparams[:AST].to_f
         @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
         @WL=phaseoneparams[:WL].to_f
@@ -166,7 +173,7 @@ module PhaseThree
         @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESP Crew Daily Rate').final
         @papd=(phaseoneparams[:PAP].to_f/365.0).floor
         @ecry=@papd*params[:EC_esp]
-        @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+        @ic=(@scc+@spr)*phaseoneparams[:RITE].to_f
 
         pumptwo={
             esppg:@esppg,
@@ -187,7 +194,14 @@ module PhaseThree
             wl:@WL,
             ic:@ic,
             AST:@AST,
-            corrosivity:@corrosivity
+            corrosivity:@corrosivity,
+            SMTTF:phaseoneparams[:SMTTFE].to_f,
+            SMTBF:phaseoneparams[:SMTBFE].to_f,
+            RIT:phaseoneparams[:RITE].to_f,
+            DMTTF:phaseoneparams[:DMTTFE].to_f,
+            DMTBF:phaseoneparams[:DMTBFE].to_f,
+            SDT:phaseoneparams[:SDTE].to_f,
+            DDT:phaseoneparams[:DDTE].to_f,
         }
 
         @finalpumptwo = PhaseThreeCalc.phasethreecalc(pumptwo , phaseoneparams )
@@ -197,6 +211,7 @@ module PhaseThree
         end
 
         def phasethreepump3 (params,phaseoneparams)
+            @ndp=phaseoneparams[:MD_pump].to_f/25.0
             @RT=phaseoneparams[:RT].to_f
             @RT = TableService.new(Tablegenerate.new('MatchTable').get_table,@RT).final
             @data = TableService.new(Tablegenerate.new('RodStringPriceTable').get_table,@RT).final
@@ -228,9 +243,9 @@ module PhaseThree
             @MHP_Ps=params[:MHP_Ps]
             @data = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_Ps).final
             @pmc=@data[:mcost]
-            @tpdc=@ppp+@cpc
-            @tpsc=@pmc+@phc
-            @capr=(@tpdc+@tpsc)*1.1
+            @tpdc=(@ppp+@cpc)*1.1
+            @tpsc=(@pmc+@phc)*1.1
+            @capr=@tpdc+@tpsc
             @AST=phaseoneparams[:AST].to_f
             @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
             @WL=phaseoneparams[:WL].to_f
@@ -245,11 +260,12 @@ module PhaseThree
                 @error ='W/O rig is a must'
             end
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'PCP Crew Daily Rate').final
-            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @ic=(@scc+@spr)*phaseoneparams[:RITP].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_pcp]
             @ndp=phaseoneparams[:MD_pump].to_f/25.0
             pumpthree= {
+                ndp:@ndp,
                 prc:@prc,
                 cpc:@cpc,
                 ppp:@ppp,
@@ -265,9 +281,15 @@ module PhaseThree
                 ic:@ic,
                 papd:@papd,
                 ecry:@ecry,
-                ndp:@ndp,
-                corrosivity:@corrosivity
+                SMTTF:phaseoneparams[:SMTTFP].to_f,
+                SMTBF:phaseoneparams[:SMTBFP].to_f,
+                RIT:phaseoneparams[:RITP].to_f,
+                DMTTF:phaseoneparams[:DMTTFP].to_f,
+                DMTBF:phaseoneparams[:DMTBFP].to_f,
+                SDT:phaseoneparams[:SDTP].to_f,
+                DDT:phaseoneparams[:DDTP].to_f,
             }
+            
 
             @finalpumpthree = PhaseThreeCalc.phasethreecalc(pumpthree , phaseoneparams )
             @finalpumpthree=@finalpumpthree.merge(pumpthree) 
@@ -301,9 +323,9 @@ module PhaseThree
             @pfsc=params[:pfsc]
             @trp=params[:trp]
 
-            @tpdc=@espp+@ecpt
-            @tpsc=@trp+@pfsc
-            @capr=(@tpdc+@tpsc)*1.1
+            @tpdc=(@espp+@ecpt)*1.1
+            @tpsc=(@trp+@pfsc)*1.1
+            @capr=@tpdc+@tpsc
             @AST=phaseoneparams[:AST].to_f
             @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
             @WL=phaseoneparams[:WL].to_f
@@ -318,7 +340,7 @@ module PhaseThree
                 @error ='W/O rig is a must'
             end
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESPCP Crew Daily Rate').final
-            @ic=(@scc+@spr)*phaseoneparams[:RIT].to_f
+            @ic=(@scc+@spr)*phaseoneparams[:RITEP].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
             @ecry=@papd*params[:EC_espcp]
 
@@ -337,7 +359,13 @@ module PhaseThree
                 ic:@ic,
                 papd:@papd,
                 ecry:@ecry,
-                corrosivity:@corrosivity
+                SMTTF:phaseoneparams[:SMTTFEP].to_f,
+                SMTBF:phaseoneparams[:SMTBFEP].to_f,
+                RIT:phaseoneparams[:RITEP].to_f,
+                DMTTF:phaseoneparams[:DMTTFEP].to_f,
+                DMTBF:phaseoneparams[:DMTBFEP].to_f,
+                SDT:phaseoneparams[:SDTEP].to_f,
+                DDT:phaseoneparams[:DDTEP].to_f,
             }
             @finalpumpfour = PhaseThreeCalc.phasethreecalc(pumpfour , phaseoneparams )
             @finalpumpfour=@finalpumpfour.merge(pumpfour) 

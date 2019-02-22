@@ -243,10 +243,6 @@ module PhaseTwoPumpTwo
             Junctioncost:@Junctioncost,
             trp:@trp,
             motor:@motor,
-            SMTT:@SMTTF,
-            SMTB:@SMTBF,
-            DMTB:@DMTBF,
-            DMTT:@DMTTF
         }
 
 

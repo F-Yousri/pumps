@@ -8,7 +8,6 @@ $ ->
 
     #apply max 100 on all percentages
     $('[unit=percentage').find('input').prop('max', 100)
-    
     inputs = $('input.property')
     #construct properties and fill PropertyFactory
     do ( inputs ) ->
@@ -33,6 +32,11 @@ $ ->
     weights = []
     do ( properties = PropertyFactory.properties ) ->
         for name, obj of properties
+            #fill readonly fields "additional criteria" with data
+            index = gon.readonlyProps.indexOf(name)
+            if index >= 0
+                obj.node.val(gon.vals[index])
+                obj.node.prop('readonly', true)
             if name.includes('W_')
                 weights.push(obj.node)
         weights
@@ -158,5 +162,8 @@ $ ->
             meo_m = meo_o * (1.0 -  (WC / 100.0) )  + meo_w * ( WC / 100.0 )
         $('[name=meo_m]').val(meo_m)
 
-
-
+    $('[name=RT]').change (event) ->
+        alert('Kindly be noted that grades MD, D & XD are used for non corrosive or minor corrosive fluid production. Otherwise, K, KD & HD are used')
+    
+    $('[name=W_WL]').change (event) ->
+        alert('Weigths represent the importance of these parameters in pumping system assessment')

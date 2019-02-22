@@ -2,6 +2,8 @@ ActiveAdmin.register AvailablePumpingUnit do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
+menu :parent => "Database"
+
 permit_params :Max_GR, :PPRL, :Max_Stroke_Length, :Stroke_lengths_1, :Stroke_lengths_2 , :Stroke_lengths_3 , :Stroke_lengths_4 , :cost
 #
 # or

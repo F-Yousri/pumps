@@ -29,8 +29,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
-#use device for authontication
+#use device for authentication
 gem 'devise'
+
+#use gon to send vars from controller to coffescript
+gem 'gon'
 
 #use activeAdmin for admin interface
 gem 'activeadmin'

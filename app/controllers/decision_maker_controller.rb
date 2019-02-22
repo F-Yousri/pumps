@@ -3,6 +3,7 @@ class DecisionMakerController < ApplicationController
     Dir["#{Rails.root}/app/services/phasetwo/*.rb"].each {|file| require file }
     Dir["#{Rails.root}/app/services/phasethree/*.rb"].each {|file| require file }
 
+    before_action :authenticate_user!
     skip_before_action :verify_authenticity_token
     $phaseoneparams
     $pump1
@@ -13,13 +14,17 @@ class DecisionMakerController < ApplicationController
     $costpump2
     $costpump3
     $costpump4
+    $sorted
     
-    def techEvalForm        
+    def techEvalForm
+        gon.readonlyProps = AdditionalCriterium.all.pluck( :name )
+        gon.vals = AdditionalCriterium.all.pluck( :value )
     end
 
     def techEval
         $phaseoneparams=params
-        @params = DecisionMakerService.make(params)
+        @pumps = DecisionMakerService.make(params)
+        #  render json:@pumps
         @resultpump1=self.phaseTwoPump1
         @resultpump2=self.phaseTwoPump2
         @resultpump3=self.phaseTwoPump3
@@ -31,8 +36,9 @@ class DecisionMakerController < ApplicationController
         # render json:@Final[:phasethreepump1]
         render json:@FinalPhase2
         # render json:$phaseoneparams
-        # render json:@resultphasthree['phasethreepump1']
-        # render  template: 'resultphaseone' 
+        # render json:@resultphasthree
+        # render json:@resultphasthree
+        render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1
@@ -76,9 +82,18 @@ class DecisionMakerController < ApplicationController
         @costpump2=self.phasethreepump2
         @costpump3=self.phasethreepump3
         @costpump4=self.phasethreepump4
-        @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4}
-        # render json:@FinalPhase3
-        @FinalPhase3
+        @wsm={
+            'RRP' => @costpump1[:wsm],
+            'PCP' =>@costpump3[:wsm],
+            'ESP' => @costpump2[:wsm],
+            'ESPCP' =>@costpump4[:wsm]
+        }
+
+        @sorted=Hash[@wsm.sort_by{|k, v| v}]
+        @keys=@sorted.keys
+        @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4 }
+         # render json:@FinalPhase3
+
 
     end
 

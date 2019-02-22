@@ -19,10 +19,9 @@
       <tr>
         <th></th>
         <th>Abb.</th>
-        <th>ESP</th>
-         <th>ESPCP</th>
-        <th>PCP</th>
-         <th>RRP</th>
+        <%for pump in @pumps do%>
+          <th> <%= pump[0] %></th>
+        <%end%>
       </tr>
     </thead>
     <tbody>
@@ -34,21 +33,560 @@
       WL
       </td>
       <td>
-        1
+        <%= @pumps[0][1]["WL"][0] %>
+
       </td>
        <td>
-        1
+          <%= @pumps[1][1]["WL"][0] %>
       </td>
        <td>
-        1
+          <%= @pumps[2][1]["WL"][0] %>
       </td>
        <td>
-        1
+          <%= @pumps[3][1]["WL"][0] %>
       </td>
       </tr>
+
+
+         <tr>
+      <td>
+      Measured Well Depth
+      </td>
+      <td>
+      MD
+      </td>
+      <td>
+        <%= @pumps[0][1]["MD"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["MD"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["MD"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["MD"][0] %>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Well Deviation
+      </td>
+      <td>
+      WD
+      </td>
+      <td>
+        <%= @pumps[0][1]["WD"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["WD"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["WD"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["WD"][0] %>
+      </td>
+      </tr>
+
+         <tr>
+      <td>
+      Casing Diameter
+      </td>
+      <td>
+      CSG_ND
+      </td>
+      <td>
+        <%= @pumps[0][1]["CSG_ND"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["CSG_ND"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["CSG_ND"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["CSG_ND"][0] %>
+      </td>
+      </tr>
+
+          <tr>
+      <td>
+      Dogleg Severity
+      </td>
+      <td>
+      DS
+      </td>
+      <td>
+        <%= @pumps[0][1]["DS"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["DS"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["DS"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["DS"][0] %>
+      </td>
+      </tr>
+
+          <tr>
+      <td>
+      Desired Gross Rate
+      </td>
+      <td>
+      GQ
+      </td>
+      <td>
+        <%= @pumps[0][1]["GQ"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["GQ"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["GQ"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["GQ"][0] %>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Productivity Index
+      </td>
+      <td>
+      J
+      </td>
+      <td>
+        <%= @pumps[0][1]["J"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["J"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["J"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["J"][0] %>
+      </td>
+      </tr>
+
+         <tr>
+      <td>
+      Bottomhole Temperature
+      </td>
+      <td>
+      T_bh
+      </td>
+      <td>
+        <%= @pumps[0][1]["T_bh"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["T_bh"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["T_bh"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["T_bh"][0] %>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+     Fluid Viscosity
+      </td>
+      <td>
+      meo_m
+      </td>
+      <td>
+        <%= @pumps[0][1]["meo_m"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["meo_m"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["meo_m"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["meo_m"][0] %>
+      </td>
+      </tr>
+
+            <tr>
+      <td>
+     Oil Gravity
+      </td>
+      <td>
+      API
+      </td>
+      <td>
+        <%= @pumps[0][1]["API"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["API"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["API"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["API"][0] %>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     Abrasives Production
+      </td>
+      <td>
+      AP
+      </td>
+      <td>
+        <%= @pumps[0][1]["AP"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["AP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["AP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["AP"][0] %>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     Corrosive Fluid Production
+      </td>
+      <td>
+      CP
+      </td>
+      <td>
+        <%= @pumps[0][1]["CP"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["CP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["CP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["CP"][0] %>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     Aromatics Production
+      </td>
+      <td>
+      ArP
+      </td>
+      <td>
+        <%= @pumps[0][1]["ArP"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["ArP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["ArP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["ArP"][0] %>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     Emulsion Production
+      </td>
+      <td>
+      EP
+      </td>
+      <td>
+        <%= @pumps[0][1]["EP"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["EP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["EP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["EP"][0] %>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     Scale Production
+      </td>
+      <td>
+      SP
+      </td>
+      <td>
+        <%= @pumps[0][1]["SP"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["SP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["SP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["SP"][0] %>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     Paraffin Production
+      </td>
+      <td>
+      PP
+      </td>
+      <td>
+        <%= @pumps[0][1]["PP"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["PP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["PP"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["PP"][0] %>
+      </td>
+      </tr>
+
+             <tr>
+      <td>
+     Gas Liquid Ratio
+      </td>
+      <td>
+      GLR
+      </td>
+      <td>
+        <%= @pumps[0][1]["GLR"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["GLR"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["GLR"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["GLR"][0] %>
+      </td>
+      </tr>
+             <tr>
+      <td>
+     Available Prime mover
+      </td>
+      <td>
+      APM
+      </td>
+      <td>
+        <%= @pumps[0][1]["APM"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["APM"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["APM"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["APM"][0] %>
+      </td>
+      </tr>
+             <tr>
+      <td>
+     Staff Experience
+      </td>
+      <td>
+      SE
+      </td>
+      <td>
+        <%= @pumps[0][1]["StE"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["StE"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["StE"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["StE"][0] %>
+      </td>
+      </tr>
+             <tr>
+      <td>
+     Available Servicing type
+      </td>
+      <td>
+      AST
+      </td>
+      <td>
+        <%= @pumps[0][1]["AST"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["AST"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["AST"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["AST"][0] %>
+      </td>
+      </tr>
+             <tr>
+      <td>
+     PLS Flexibility
+      </td>
+      <td>
+      PF
+      </td>
+      <td>
+        <%= @pumps[0][1]["PF"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["PF"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["PF"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["PF"][0] %>
+      </td>
+      </tr>
+             <tr>
+      <td>
+     PLS Reliability
+      </td>
+      <td>
+      PR
+      </td>
+      <td>
+        <%= @pumps[0][1]["PR"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["PR"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["PR"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["PR"][0] %>
+      </td>
+      </tr>
+             <tr>
+      <td>
+     System Efficiency
+      </td>
+      <td>
+      SE
+      </td>
+      <td>
+        <%= @pumps[0][1]["SE"][0] %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["SE"][0] %>
+      </td>
+       <td>
+          <%= @pumps[2][1]["SE"][0] %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["SE"][0] %>
+      </td>
+      </tr>
+
+            <tr>
+      <td>
+     Positive Separation
+      </td>
+      <td>
+      positiveSep
+      </td>
+      <td>
+        <%= @pumps[0][1]["positiveSep"].round(3)%>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["positiveSep"].round(3)%>
+      </td>
+       <td>
+          <%= @pumps[2][1]["positiveSep"].round(3)%>
+      </td>
+       <td>
+          <%= @pumps[3][1]["positiveSep"].round(3)%>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     Negative Separation
+      </td>
+      <td>
+      negativeSep
+      </td>
+      <td>
+        <%= @pumps[0][1]["negativeSep"].round(3) %>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["negativeSep"].round(3)%>
+      </td>
+       <td>
+          <%= @pumps[2][1]["negativeSep"].round(3)%>
+      </td>
+       <td>
+          <%= @pumps[3][1]["negativeSep"].round(3)%>
+      </td>
+      </tr>
+            <tr>
+      <td>
+     ci
+      </td>
+      <td>
+      ci
+      </td>
+      <td>
+        <%= @pumps[0][1]["ci"].round(3)%>
+
+      </td>
+       <td>
+          <%= @pumps[1][1]["ci"].round(3)%>
+      </td>
+       <td>
+          <%= @pumps[2][1]["ci"].round(3) %>
+      </td>
+       <td>
+          <%= @pumps[3][1]["ci"].round(3) %>
+      </td>
+      </tr>
+
+
     </tbody>
   </table>
-
 <br>
 <h2>Pump 1 : RRP</h2>
 
@@ -504,7 +1042,11 @@ Pump Service Material :
 
 </tbody>
   </table>
+* M. & R. refers to Maintenance and Replacements
+ <br>
+  ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
 
+<br>
 <h2>Pump 2 : ESP</h2>
 
 <h3>Phase 2 </h3>
@@ -982,6 +1524,943 @@ Pump Service Material :
 
 </tbody>
   </table>
+* M. & R. refers to Maintenance and Replacements
+ <br>
+  ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
+
+<br>
+
+<h2>Pump 3 : PCP</h2>
+
+<h3>Phase 2 </h3>
+  <b>Surface Equipment :</b>   
+  <table class="table table-striped">
+
+    <tbody>
+    
+      <tr>
+      <td>
+      Drivehead Designation 
+      </td>
+      <td>
+      <%= @pump3[:Drive_Head] %>
+      </td>
+       <td>
+         <%= @pump3[:PT1000] %>
+      </td>
+       <td>
+      </td>
+       <td>
+      </td>
+        <td>
+      </td>
+       <td>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      NEMA D Motor
+      </td>
+      <td>
+         <%= @pump3[:MHP_Ps] %>
+      </td>
+      <td>
+      HP
+      </td>
+      </tr>
+         <tr>
+      <td>
+      Thurst Bearing Load
+      </td>
+      <td>
+         <%= @pump3[:TB]/1000.0 %>
+      </td>
+      <td>
+      lb.
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <b>Downhole Equipment :</b> 
+<table class="table table-striped">
+    <tbody>
+  <tr>
+  <td>
+  1-Rod-Characteristics
+  </td>
+  </tr>
+
+  <tr>
+  <td>
+  Rod Size :
+  </td> 
+  <td>
+  
+   <%= @pump3[:PR_ND] %>
+  </td> 
+  </tr>
+    <tr>
+  <td>
+  NO.  Rods  :
+  </td> 
+  <td>
+  <%= @costpump3[:ndp].ceil() %>
+  </td>
+  </tr>
+
+  <tr>
+  <td>
+  Rod Type ( Weatherford Nomenclature ) : 
+  </td>
+   <td>
+    <%= @pump3[:RT]  %> 
+  </td>
+  </tr>
+<tr>
+  <td>
+  2-Downhole Pump Characteristics
+  </td>
+  </tr>
+  <tr>
+   <td>
+    Pump Series (Weatherford Imperial)
+  </td>
+   <td>
+    <%= @pump3[:IQ_PCP]  %> 
+  </td>
+     <td>
+    <%= @pump3[:IH_PCP]  %> 
+  </td>
+  </tr>
+
+    <tr>
+   <td>
+    Pump Stator  Matrial
+  </td>
+   <td>
+    <%= @pump3[:stator_type]  %> 
+  </td>
+  </tr>
+
+    <tr>
+   <td>
+Pump Service Material :
+    </td>
+       <td>
+    <% if @costpump3[:corrosivity] == 1 %>
+    Corrosive Service
+    <% elsif  @costpump3[:corrosivity] == 0  %>
+     Non-corrosive Service
+    <% end %>
+    </td>
+    </tr>
+</tbody>
+  </table>
+
+  <h3>Phase 3 </h3>
+<table class="table table-striped">
+    <tbody>
+    <tr>
+    <td>
+      Years
+    </td>
+  <% for i in 1..@costpump3[:papd] do-%>
+  <td>
+   <%=   i-1  %>-<%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+    <tr>
+    <td>
+    Cashflows
+    </td>
+    <% for i in 1..@costpump3[:papd] do-%>
+  <td>
+   <%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+
+
+        <tr>
+    <td>
+    Capital Cost
+    </td>
+    <% @costpump3[:arraycapr].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+    <tr>
+    <td>
+    Installation Cost
+    </td>
+    <% @costpump3[:arrayic].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+      
+      <tr>
+       <td>
+    M. & R. Costs per Cashflow
+    </td>
+  <td>
+ <%=  (@costpump3[:mrc]/@costpump3[:papd]).ceil()  %>
+  </td>
+    </tr>
+
+      <tr>
+       <td>
+    M.& R. Costs Change Rate (%)
+    </td>
+  <td>
+ <%=  @costpump3[:mir]*100  %>
+  </td>
+    </tr>
+
+      <tr>
+    <td>
+    M. & R. Costs After Change Rate 
+    </td>
+    <% @costpump3[:arraysumm].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+    Anuual M. & R. After Change Rate
+    </td>
+  <td>
+ <%=  @costpump3[:summ].ceil()  %>
+  </td>
+    </tr>
+
+              <tr>
+       <td>
+    Operating Cost
+    </td>
+  <td>
+ <%=  @pump3[:EC_pcp].ceil()  %>
+  </td>
+    </tr>
+
+                <tr>
+       <td>
+    Operating Cost Change Rate (%)
+    </td>
+  <td>
+ <%=  (@costpump3[:oir]*100).round() %>
+  </td>
+    </tr>
+
+         <tr>
+    <td>
+    Operating Cost After Change Rate 
+    </td>
+    <% @costpump3[:arraysumo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+               <tr>
+       <td>
+   Anuual Operating Cost After Change Rate 
+    </td>
+  <td>
+ <%=  @costpump3[:sumo].ceil()  %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Salvage Cost After Project Assessment 
+    </td>
+    <% @costpump3[:arraytse].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+    Oil Production Value
+    </td>
+  <td>
+ <%=  @costpump3[:opt].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+       <td>
+    Oil Prices Change Rate (%)
+        </td>
+  <td>
+ <%=  (@costpump3[:opir]*100.0).round() %>
+  </td>
+    </tr>
+
+    <tr>
+    <td>
+    Oil Production Value After Change Rate
+    </td>
+    <% @costpump3[:arrayopt].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+    <td>
+    Inflow After Rates Of Inflation 
+    </td>
+    <% @costpump3[:arrayipi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+         <tr>
+       <td>
+      Cumulative Inflow
+        </td>
+  <td>
+ <%=  @costpump3[:sumop].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+    <td>
+    Outflow After Rates Of Inflation 
+    </td>
+    <% @costpump3[:arrayofi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+          <tr>
+       <td>
+      Cumulative Outflow
+        </td>
+  <td>
+ <%=  @costpump3[:cuo].ceil() %>
+  </td>
+    </tr>
+
+        <tr>
+       <td>
+      Discount Rate 
+        </td>
+  <td>
+ <%=  (@costpump3[:dr]*100).round() %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Present Inflow Value 
+    </td>
+    <% @costpump3[:arraynpvi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+      Cumulative Discounted Inflow  
+        </td>
+  <td>
+ <%=  (@costpump3[:cdi]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Present Outflow Value 
+    </td>
+    <% @costpump3[:arraynpvo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+      Cumulative Discounted Outflow  
+        </td>
+  <td>
+ <%=  (@costpump3[:cdo]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Net Persent Cashflow Value
+    </td>
+    <% @costpump3[:arrayncf].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+      <tr>
+       <td>
+       Cumulative Discounted Cashflow  
+        </td>
+  <td>
+ <%=  (@costpump3[:cdc]).ceil() %>
+  </td>
+    </tr>
+
+</tbody>
+  </table>
+* M. & R. refers to Maintenance and Replacements
+ <br>
+  ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
+
+<br>
+
+
+
+
+<h2>Pump 4 : ESPCP</h2>
+
+<h3>Phase 2 </h3>
+  <b>Surface Equipment :</b>   
+  <table class="table table-striped">
+
+    <tbody>
+<tr>
+<td>
+Variable Frequency  Drive (VFD)
+</td>
+  <td>
+ <%=  @pump4[:vfs] %>
+  </td>
+</tr>
+
+  <tr>
+      <td>
+  Junctionbox Voltage 
+      </td>
+      <td>
+<%= @pump4[:kv] %>
+      </td>
+          <td>
+        kV
+      </td>
+      </tr>
+
+             <tr>
+      <td>
+  Transformer Power
+      </td>
+      <td>
+<%= @pump4[:st] %>
+      </td>
+          <td>
+        kVA
+      </td>
+      </tr>
+</tbody>
+  </table>
+
+<b>Downhole Equipment :</b>            
+
+  <table class="table table-striped">
+
+    <tbody>
+      <tr>
+      <td>
+      1- Downhole Pump Characteristics
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Pump Rating
+      </td>
+      <td>
+      <%= @pump4[:Model] %>
+      </td>
+      </tr>
+
+          <tr>
+      <td>
+      Pump Model
+      </td>
+      <td>
+<%= @pump4[:pump_maodel] %>
+      </td>
+      </tr>
+
+                <tr>
+      <td>
+      Pump Service
+      </td>
+      <td>
+  <% if @costpump2[:corrosivity] == 1 %>
+    Corrosive Service
+    <% elsif  @costpump2[:corrosivity] == 0  %>
+     Non-corrosive Service
+    <% end %>
+      </td>
+      </tr>
+
+       <tr>
+      <td>
+      Stator Type
+      </td>
+      <td>
+  <%= @pump4[:stator_type]%>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      2 - Electric Cable Characteristics
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Cable Type
+      </td>
+      <td>
+  <%= @pump4[:type]%>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Cable Length, ft: 
+      </td>
+      <td>
+  <%= @pump4[:CL]%>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Conductor Size 
+      </td>
+      <td>
+  <%= @pump4[:SC]%>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+<h3>Phase 3 </h3>
+<table class="table table-striped">
+    <tbody>
+    <tr>
+    <td>
+      Years
+    </td>
+  <% for i in 1..@costpump4[:papd] do-%>
+  <td>
+   <%=   i-1  %>-<%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+    <tr>
+    <td>
+    Cashflows
+    </td>
+    <% for i in 1..@costpump4[:papd] do-%>
+  <td>
+   <%=   i  %>
+  </td>
+<% end -%>
+    </tr>
+
+
+        <tr>
+    <td>
+    Capital Cost
+    </td>
+    <% @costpump4[:arraycapr].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+    <tr>
+    <td>
+    Installation Cost
+    </td>
+    <% @costpump4[:arrayic].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+      
+      <tr>
+       <td>
+    M. & R. Costs per Cashflow
+    </td>
+  <td>
+ <%=  (@costpump4[:mrc]/@costpump4[:papd]).ceil()  %>
+  </td>
+    </tr>
+
+      <tr>
+       <td>
+    M.& R. Costs Change Rate (%)
+    </td>
+  <td>
+ <%=  @costpump4[:mir]*100  %>
+  </td>
+    </tr>
+
+      <tr>
+    <td>
+    M. & R. Costs After Change Rate 
+    </td>
+    <% @costpump4[:arraysumm].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+    Anuual M. & R. After Change Rate
+    </td>
+  <td>
+ <%=  @costpump4[:summ].ceil()  %>
+  </td>
+    </tr>
+
+              <tr>
+       <td>
+    Operating Cost
+    </td>
+  <td>
+ <%=  @pump4[:EC_espcp].ceil()  %>
+  </td>
+    </tr>
+
+                <tr>
+       <td>
+    Operating Cost Change Rate (%)
+    </td>
+  <td>
+ <%=  (@costpump4[:oir]*100).round() %>
+  </td>
+    </tr>
+
+         <tr>
+    <td>
+    Operating Cost After Change Rate 
+    </td>
+    <% @costpump4[:arraysumo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+               <tr>
+       <td>
+   Anuual Operating Cost After Change Rate 
+    </td>
+  <td>
+ <%=  @costpump4[:sumo].ceil()  %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Salvage Cost After Project Assessment 
+    </td>
+    <% @costpump4[:arraytse].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+    Oil Production Value
+    </td>
+  <td>
+ <%=  @costpump4[:opt].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+       <td>
+    Oil Prices Change Rate (%)
+        </td>
+  <td>
+ <%=  (@costpump4[:opir]*100.0).round() %>
+  </td>
+    </tr>
+
+    <tr>
+    <td>
+    Oil Production Value After Change Rate
+    </td>
+    <% @costpump4[:arrayopt].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+    <td>
+    Inflow After Rates Of Inflation 
+    </td>
+    <% @costpump4[:arrayipi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+         <tr>
+       <td>
+      Cumulative Inflow
+        </td>
+  <td>
+ <%=  @costpump4[:sumop].ceil() %>
+  </td>
+    </tr>
+
+           <tr>
+    <td>
+    Outflow After Rates Of Inflation 
+    </td>
+    <% @costpump4[:arrayofi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+          <tr>
+       <td>
+      Cumulative Outflow
+        </td>
+  <td>
+ <%=  @costpump4[:cuo].ceil() %>
+  </td>
+    </tr>
+
+        <tr>
+       <td>
+      Discount Rate 
+        </td>
+  <td>
+ <%=  (@costpump4[:dr]*100).round() %>
+  </td>
+    </tr>
+
+            <tr>
+    <td>
+    Present Inflow Value 
+    </td>
+    <% @costpump4[:arraynpvi].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+       <tr>
+       <td>
+      Cumulative Discounted Inflow  
+        </td>
+  <td>
+ <%=  (@costpump4[:cdi]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Present Outflow Value 
+    </td>
+    <% @costpump4[:arraynpvo].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+        <tr>
+       <td>
+      Cumulative Discounted Outflow  
+        </td>
+  <td>
+ <%=  (@costpump4[:cdo]).ceil() %>
+  </td>
+    </tr>
+
+             <tr>
+    <td>
+    Net Persent Cashflow Value
+    </td>
+    <% @costpump4[:arrayncf].each do |s| -%>
+  <td>
+   <%=   s.ceil() %>
+  </td>
+<% end -%>
+    </tr>
+
+      <tr>
+       <td>
+       Cumulative Discounted Cashflow  
+        </td>
+  <td>
+ <%=  (@costpump4[:cdc]).ceil() %>
+  </td>
+    </tr>
+
+</tbody>
+  </table>
+  * M. & R. refers to Maintenance and Replacements
+  <br>
+  ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
+<br>
+  <h2>Economic Parameters Comparison :</h2>
+
+<table class="table table-striped">
+    <tbody>
+    <tr>
+    <td>
+    Economic Parameter
+    </td>
+    <td>
+    BCR
+    </td>
+     <td>
+    IRR (%)
+    </td>
+    <td>
+    EAC ($)
+    </td>
+   
+     <td>
+    WSM
+    </td>
+    </tr>
+
+    <tr>
+    <td>
+  Weight To Compare
+    </td>
+ <td>
+   <%=  @costpump1[:bcrw]  %>
+    </td>
+    <td>
+   <%=  @costpump1[:irrw]  %>
+    </td>
+    <td>
+   <%=  @costpump1[:eacw]  %>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    RRP
+    </td>
+    <td>
+     <%=  @costpump1[:bcr].round()   %>
+    </td>
+    <td>
+     <%=  @costpump1[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump1[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump1[:wsm].round()  %>
+    </td>
+    </tr>
+
+     <tr>
+    <td>
+    ESP
+    </td>
+    <td>
+     <%=  @costpump2[:bcr].round()  %>
+    </td>
+    <td>
+     <%=  @costpump2[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump2[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump2[:wsm].round()  %>
+    </td>
+    </tr>
+
+     <tr>
+    <td>
+    PCP
+    </td>
+    <td>
+     <%=  @costpump3[:bcr].round()  %>
+    </td>
+    <td>
+     <%=  @costpump3[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump3[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump3[:wsm].round()  %>
+    </td>
+    </tr>
+
+      <tr>
+    <td>
+    ESPCP
+    </td>
+    <td>
+     <%=  @costpump4[:bcr].round()  %>
+    </td>
+    <td>
+     <%=  @costpump4[:irr].round()  %>
+    </td>
+     <td>
+     <%=  @costpump4[:eac].round()  %>
+    </td>
+    <td>
+     <%=  @costpump4[:wsm].round()  %>
+    </td>
+    </tr>
+    </tbody>
+
+    </table>
+
+    <h3>Assessment Recommendations Ascendingly </h3>  &nbsp;&nbsp;   <%= @keys[0] %> &nbsp;&nbsp; &  &nbsp;&nbsp; <%= @keys[1] %> &nbsp;&nbsp; & &nbsp;&nbsp;  <%= @keys[2] %> &nbsp;&nbsp; &  &nbsp;&nbsp; <%= @keys[3] %>
 
 
 <h2>Pump 3 : PCP</h2>
@@ -1799,4 +3278,5 @@ Variable Frequency  Drive (VFD)
 </div>
 
 </body>
+
 </html>

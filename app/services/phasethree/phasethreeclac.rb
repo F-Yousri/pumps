@@ -2,29 +2,29 @@ require "#{Rails.root}/lib/phasetwo/table_generate.rb"
 module PhaseThreeCalc
     class << self
         def phasethreecalc (params,phaseoneparams)
-           @sic = phaseoneparams[:RIT].to_f*params[:spr]
-           @nsr= ((phaseoneparams[:PAP].to_f - 1.0)/ phaseoneparams[:SMTTF].to_f).floor
+           @sic = params[:RIT]*params[:spr]
+           @nsr= ((phaseoneparams[:PAP].to_f - 1.0)/ params[:SMTTF]).floor
            if (@nsr > 0 )
-                @nsr1=(phaseoneparams[:SMTTF].to_f - 1.0 )/phaseoneparams[:SMTBF].to_f
+                @nsr1=(params[:SMTTF] - 1.0 )/params[:SMTBF]
            else 
-            @nsr1=(phaseoneparams[:PAP].to_f - 1.0 )/phaseoneparams[:SMTBF].to_f
+            @nsr1=(phaseoneparams[:PAP].to_f - 1.0 )/params[:SMTBF]
            end
            @nsr1=@nsr1.floor
            if (@nsr > 0 )
-               if( (phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f) > 0 )
-                    @nsr2=((phaseoneparams[:SMTTF].to_f - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+               if( (phaseoneparams[:PAP].to_f - params[:SMTTF]) > 0 )
+                    @nsr2=((params[:SMTTF] - 1.0 )/params[:SMTBF]).floor
                 else
-                    @nsr2=((phaseoneparams[:PAP].to_f -  phaseoneparams[:SMTTF].to_f - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+                    @nsr2=((phaseoneparams[:PAP].to_f -  params[:SMTTF] - 1.0 )/params[:SMTBF]).floor
                end
            elsif
             @nsr2=0.0 
            end
 
            if (@nsr > 1 )
-            if( (phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f*2) > phaseoneparams[:SMTTF].to_f )
-                 @nsr3=((phaseoneparams[:SMTTF].to_f - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+            if( (phaseoneparams[:PAP].to_f - params[:SMTTF]*2) > params[:SMTTF] )
+                 @nsr3=((params[:SMTTF] - 1.0 )/params[:SMTBF]).floor
              else
-                 @nsr3=((phaseoneparams[:PAP].to_f -  phaseoneparams[:SMTTF].to_f*2 - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+                 @nsr3=((phaseoneparams[:PAP].to_f -  params[:SMTTF]*2 - 1.0 )/params[:SMTBF]).floor
             end
         elsif
          @nsr3=0.0 
@@ -32,46 +32,46 @@ module PhaseThreeCalc
 
 
         if (@nsr > 2 )
-            if( (phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f*3) > phaseoneparams[:SMTTF].to_f )
-                 @nsr4=((phaseoneparams[:SMTTF].to_f - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+            if( (phaseoneparams[:PAP].to_f - params[:SMTTF]*3) > params[:SMTTF] )
+                 @nsr4=((params[:SMTTF] - 1.0 )/params[:SMTBF]).floor
              else
-                 @nsr4=((phaseoneparams[:PAP].to_f -  phaseoneparams[:SMTTF].to_f*3 - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+                 @nsr4=((phaseoneparams[:PAP].to_f -  params[:SMTTF]*3 - 1.0 )/params[:SMTBF]).floor
             end
         elsif
          @nsr4=0.0 
         end
         if (@nsr > 3 )
-            if( (phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f*4) > phaseoneparams[:SMTTF].to_f )
-                 @nsr5=((phaseoneparams[:SMTTF].to_f - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+            if( (phaseoneparams[:PAP].to_f - params[:SMTTF]*4) > params[:SMTTF] )
+                 @nsr5=((params[:SMTTF] - 1.0 )/params[:SMTBF]).floor
              else
-                 @nsr5=((phaseoneparams[:PAP].to_f -  phaseoneparams[:SMTTF].to_f*4 - 1.0 )/phaseoneparams[:SMTBF].to_f).floor
+                 @nsr5=((phaseoneparams[:PAP].to_f -  params[:SMTTF]*4 - 1.0 )/params[:SMTBF]).floor
             end
         elsif
          @nsr5=0.0
         end
 
-        @ndr= ((phaseoneparams[:PAP].to_f - 1.0)/ phaseoneparams[:DMTTF].to_f).floor
+        @ndr= ((phaseoneparams[:PAP].to_f - 1.0)/ params[:DMTTF]).floor
            if (@ndr > 0 )
-                @ndr1=(phaseoneparams[:DMTTF].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f
+                @ndr1=(params[:DMTTF] - 1.0 )/params[:DMTBF]
            else 
-            @ndr1=(phaseoneparams[:PAP].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f
+            @ndr1=(phaseoneparams[:PAP].to_f - 1.0 )/params[:DMTBF]
            end
            @ndr1=@ndr1.floor
            if (@ndr > 0 )
-               if( (phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f) > 0 )
-                    @ndr2=((phaseoneparams[:DMTTF].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+               if( (phaseoneparams[:PAP].to_f - params[:DMTTF]) > 0 )
+                    @ndr2=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
                 else
-                    @ndr2=((phaseoneparams[:PAP].to_f -  phaseoneparams[:DMTTF].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+                    @ndr2=((phaseoneparams[:PAP].to_f -  params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
                end
            elsif
             @ndr2=0.0
            end
 
            if (@ndr > 1 )
-            if( (phaseoneparams[:PAP].to_f - (phaseoneparams[:DMTTF].to_f*2.0)) > phaseoneparams[:DMTTF].to_f )
-                 @ndr3=((phaseoneparams[:DMTTF].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+            if( (phaseoneparams[:PAP].to_f - (params[:DMTTF]*2.0)) > params[:DMTTF] )
+                 @ndr3=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
-                 @ndr3=((phaseoneparams[:PAP].to_f - ( phaseoneparams[:DMTTF].to_f*2.0) - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+                 @ndr3=((phaseoneparams[:PAP].to_f - ( params[:DMTTF]*2.0) - 1.0 )/params[:DMTBF]).floor
             end
         elsif
          @ndr3=0.0
@@ -79,29 +79,29 @@ module PhaseThreeCalc
 
 
         if (@ndr > 2 )
-            if( (phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*3) > phaseoneparams[:DMTTF].to_f )
-                 @ndr4=((phaseoneparams[:DMTTF].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+            if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*3) > params[:DMTTF] )
+                 @ndr4=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
-                 @ndr4=((phaseoneparams[:PAP].to_f -  phaseoneparams[:DMTTF].to_f*3 - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+                 @ndr4=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*3 - 1.0 )/params[:DMTBF]).floor
             end
         elsif
          @ndr4=0.0
         end
         if (@ndr > 3 )
-            if( (phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*4) > phaseoneparams[:DMTTF].to_f )
-                 @ndr5=((phaseoneparams[:DMTTF].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+            if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*4) > params[:DMTTF] )
+                 @ndr5=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
-                 @ndr5=((phaseoneparams[:PAP].to_f -  phaseoneparams[:DMTTF].to_f*4 - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+                 @ndr5=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*4 - 1.0 )/params[:DMTBF]).floor
             end
         elsif
          @ndr5=0.0
         end
 
         if (@ndr > 4 )
-            if( (phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*5) > phaseoneparams[:DMTTF].to_f )
-                 @ndr6=((phaseoneparams[:DMTTF].to_f - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+            if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*5) > params[:DMTTF] )
+                 @ndr6=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
-                 @ndr6=((phaseoneparams[:PAP].to_f -  phaseoneparams[:DMTTF].to_f*5 - 1.0 )/phaseoneparams[:DMTBF].to_f).floor
+                 @ndr6=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*5 - 1.0 )/params[:DMTBF]).floor
             end
         elsif
          @ndr6=0.0
@@ -112,37 +112,37 @@ module PhaseThreeCalc
         @snrt=(@nsr+@nsr1+@nsr2+@nsr3+@nsr4+@nsr5)
         @ndrt=(@ndr+@ndr1+@ndr2+@ndr3+@ndr4+@ndr5)
 
-        @mrc=@ndr*params[:trdc]+@nsr*params[:trsc]+@ndrt*(params[:scc]+params[:spr])+@snrt*params[:scc]
+        @mrc=@ndr*params[:trdc]+@nsr*params[:trsc]+@ndrt*(params[:scc]+params[:spr])*params[:DDT]+@snrt*params[:scc]*params[:SDT]
         @papd=params[:papd]
         @ecry=params[:ecry]
         if( @nsr == 0  )
             @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**@papd
         elsif ( @nsr == 1 )
-            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f)/365.0)
+            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - params[:SMTTF])/365.0)
         elsif ( @nsr == 2)
-            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f*2)/365.0)
+            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - params[:SMTTF]*2)/365.0)
         elsif ( @nsr == 3 )
-            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f*3)/365.0)
+            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - params[:SMTTF]*3)/365.0)
         elsif ( @nsr == 4 )
-            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f*4)/365.0)
+            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - params[:SMTTF]*4)/365.0)
         else
-            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:SMTTF].to_f*5)/365.0)
+            @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**((phaseoneparams[:PAP].to_f - params[:SMTTF]*5)/365.0)
         end
 
         if( @ndr == 0  )
             @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**@papd
         elsif ( @ndr == 1 )
-            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f)/365.0)
+            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - params[:DMTTF])/365.0)
         elsif ( @ndr == 2)
-            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*2)/365.0)
+            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - params[:DMTTF]*2)/365.0)
         elsif ( @ndr == 3 )
-            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*3)/365.0)
+            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - params[:DMTTF]*3)/365.0)
         elsif ( @ndr == 4 )
-            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*4)/365.0)
+            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - params[:DMTTF]*4)/365.0)
         else
-            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - phaseoneparams[:DMTTF].to_f*5)/365.0)
+            @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - params[:DMTTF]*5)/365.0)
         end
-        @pdt=(@nsr+@nsr1+@nsr2+@nsr3+@nsr4+@nsr5)*phaseoneparams[:SDT].to_f+(@ndr+@ndr1+@ndr2+@ndr3+@ndr4+@ndr5)*phaseoneparams[:DDT].to_f
+        @pdt=(@nsr+@nsr1+@nsr2+@nsr3+@nsr4+@nsr5)*params[:SDT]+(@ndr+@ndr1+@ndr2+@ndr3+@ndr4+@ndr5)*params[:DDT]
         @tem=@mrc/@papd
         @summ=@tem
         @arraysumm=[]
@@ -233,7 +233,7 @@ module PhaseThreeCalc
         end
         @bcr=@cdi/@cdo
         @irr=((@sumop/@cuo)**(1.0/(@papd))-1.0)*100.0
-        @eac=-params[:ic]*((phaseoneparams[:DR].to_f*(1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))-params[:trsc]*((phaseoneparams[:DR].to_f*(phaseoneparams[:DR].to_f+1.0)**(phaseoneparams[:SMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:SMTTF].to_f/365.0)-1.0))*(1.0+@nsr)-params[:trdc]*((phaseoneparams[:DR].to_f*(1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0))/((1+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))*(1.0+@ndr)+@sse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:SMTTF].to_f/365.0)-1.0))+@dse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(phaseoneparams[:DMTTF].to_f/365.0)-1.0))-@sumo-@summ
+        @eac=-params[:ic]*((phaseoneparams[:DR].to_f*(1+phaseoneparams[:DR].to_f)**(params[:DMTTF]/365.0))/((1+phaseoneparams[:DR].to_f)**(params[:DMTTF]/365.0)-1.0))-params[:trsc]*((phaseoneparams[:DR].to_f*(phaseoneparams[:DR].to_f+1.0)**(params[:SMTTF]/365.0))/((1+phaseoneparams[:DR].to_f)**(params[:SMTTF]/365.0)-1.0))*(1.0+@nsr)-params[:trdc]*((phaseoneparams[:DR].to_f*(1.0+phaseoneparams[:DR].to_f)**(params[:DMTTF]/365.0))/((1+phaseoneparams[:DR].to_f)**(params[:DMTTF]/365.0)-1.0))*(1.0+@ndr)+@sse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(params[:SMTTF]/365.0)-1.0))+@dse*(phaseoneparams[:DR].to_f/((1.0+phaseoneparams[:DR].to_f)**(params[:DMTTF]/365.0)-1.0))-@sumo-@summ
         @bcrw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'BCR').final
         @irrw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'IRR').final
         @eacw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'EAC').final
