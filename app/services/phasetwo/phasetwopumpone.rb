@@ -23,6 +23,10 @@ module PhaseTwoPumpOne
             @SL=phaseoneparams[:SL].to_f
             @N_SRP=phaseoneparams[:N_SRP].to_f
             @ID_SRP=Math.sqrt(phaseoneparams[:GQ].to_f/(0.1166*@SL*@N_SRP))
+            if (@ID_SRP > 3.75)
+                {
+                   @ID_SRP=3.75 
+                }
             @data2 = TableService.new(Tablegenerate.new('AvailableSuckerRodPumpSize').get_table,@ID_SRP).final
             @ID_p=@data2[:Plunger_Diameter]
             @minrod=@data2[:min_Tubing_size]
@@ -128,7 +132,8 @@ module PhaseTwoPumpOne
                 MHP_srpsL:@MHP_srps,
                 mcost:@mcost,
                 spuc:@spuc,
-              
+                data2:@data2
+
 
 
 
