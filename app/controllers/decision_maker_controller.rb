@@ -36,7 +36,7 @@ class DecisionMakerController < ApplicationController
         # render json:@Final[:phasethreepump1]
         # render json:@FinalPhase2
         # render json:$phaseoneparams
-        # render json:@resultphasthree
+        # render json:@resultpump3
         # render json:@resultphasthree
         render  template: 'resultphaseone' 
     end
