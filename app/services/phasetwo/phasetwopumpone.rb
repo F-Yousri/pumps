@@ -86,6 +86,7 @@ module PhaseTwoPumpOne
             @data3 = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
             @MHP_srps=@data3[:MHP_srps]
             @mcost=@data3[:mcost]
+            @MHP_srp=@data3[:mcost]
             @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
             {
                 Delta:@Delta,
@@ -131,7 +132,6 @@ module PhaseTwoPumpOne
                 MHP_srpsL:@MHP_srps,
                 mcost:@mcost,
                 spuc:@spuc,
-                data2:@data2
 
 
 
