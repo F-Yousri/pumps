@@ -2136,6 +2136,7 @@ Variable Frequency  Drive (VFD)
    <%=  @costpump1[:eacw]  %>
     </td>
     </tr>
+    <% if @pump1 %>
     <tr>
     <td>
     RRP
@@ -2153,6 +2154,8 @@ Variable Frequency  Drive (VFD)
      <%=  @costpump1[:wsm].round()  %>
     </td>
     </tr>
+<% end %>
+<% if @pump2 %>
 
      <tr>
     <td>
@@ -2171,8 +2174,12 @@ Variable Frequency  Drive (VFD)
      <%=  @costpump2[:wsm].round()  %>
     </td>
     </tr>
+    <% end %>
+
+    <% if @pump3 %>
 
      <tr>
+
     <td>
     PCP
     </td>
@@ -2189,7 +2196,8 @@ Variable Frequency  Drive (VFD)
      <%=  @costpump3[:wsm].round()  %>
     </td>
     </tr>
-
+    <% end %>
+<% if @pump4 %>
       <tr>
     <td>
     ESPCP
@@ -2207,6 +2215,8 @@ Variable Frequency  Drive (VFD)
      <%=  @costpump4[:wsm].round()  %>
     </td>
     </tr>
+
+    <% end %>
     </tbody>
 
     </table>

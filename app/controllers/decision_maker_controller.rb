@@ -27,16 +27,16 @@ class DecisionMakerController < ApplicationController
         @rightpumps = self.getonlyrightpumps( @pumps)
         @rightpumps.each do |pump|
             if pump.include?("ESP") 
-                @resultpump1=self.phaseTwoPump1
-            end
-            if pump.include?("RRP") 
                 @resultpump2=self.phaseTwoPump2
             end
+            if pump.include?("RRP") 
+                @resultpump1=self.phaseTwoPump1
+            end
             if pump.include?("ESPCP") 
-                @resultpump3=self.phaseTwoPump3
+                @resultpump4=self.phaseTwoPump4
             end
             if pump.include?("PCP") 
-                @resultpump4=self.phaseTwoPump4
+                @resultpump3=self.phaseTwoPump3
             end
         end
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
@@ -92,19 +92,19 @@ class DecisionMakerController < ApplicationController
         @wsm={}
         if params["pump1"]
         @costpump1=self.phasethreepump1
-        @wsm.merge!(ESP: @costpump1[:wsm] )
+        @wsm.merge!(RRP: @costpump1[:wsm] )
         end
         if params["pump2"]
         @costpump2=self.phasethreepump2
-        @wsm.merge!(ESPCP: @costpump2[:wsm] )
+        @wsm.merge!(ESP: @costpump2[:wsm] )
         end
         if params["pump3"]
         @costpump3=self.phasethreepump3
-        @wsm.merge!(RRP: @costpump3[:wsm] )
+        @wsm.merge!(PCP: @costpump3[:wsm] )
         end
         if params["pump4"]
         @costpump4=self.phasethreepump4
-        @wsm.merge!(PCP: @costpump4[:wsm] )
+        @wsm.merge!(ESPCP: @costpump4[:wsm] )
         end
         @sorted=Hash[@wsm.sort_by{|k, v| v}]
         @keys=@sorted.keys
