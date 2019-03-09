@@ -89,25 +89,23 @@ class DecisionMakerController < ApplicationController
     end
 
     def phasethree params
+        @wsm={}
         if params["pump1"]
         @costpump1=self.phasethreepump1
+        @wsm.merge!(ESP: @costpump1[:wsm] )
         end
         if params["pump2"]
         @costpump2=self.phasethreepump2
+        @wsm.merge!(ESPCP: @costpump2[:wsm] )
         end
         if params["pump3"]
         @costpump3=self.phasethreepump3
+        @wsm.merge!(RRP: @costpump3[:wsm] )
         end
         if params["pump4"]
         @costpump4=self.phasethreepump4
+        @wsm.merge!(PCP: @costpump4[:wsm] )
         end
-        @wsm={
-            'RRP' => @costpump1[:wsm],
-            'PCP' =>@costpump3[:wsm],
-            'ESP' => @costpump2[:wsm],
-            'ESPCP' =>@costpump4[:wsm]
-        }
-
         @sorted=Hash[@wsm.sort_by{|k, v| v}]
         @keys=@sorted.keys
         @FinalPhase3={ "phasethreepump1" => @costpump1, "phasethreepump2" => @costpump2 , "phasethreepump3" =>@costpump3, "phasethreepump4" => @costpump4 }

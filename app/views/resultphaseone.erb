@@ -32,21 +32,10 @@
       <td>
       WL
       </td>
-      <td>
-        <%= @pumps[0][1]["WL"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["WL"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["WL"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["WL"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["WL"][0] %></td>
+      <%end%>
       </tr>
-
 
          <tr>
       <td>
@@ -55,19 +44,9 @@
       <td>
       MD
       </td>
-      <td>
-        <%= @pumps[0][1]["MD"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["MD"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["MD"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["MD"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["MD"][0] %></td>
+      <%end%>
       </tr>
 
       <tr>
@@ -77,19 +56,9 @@
       <td>
       WD
       </td>
-      <td>
-        <%= @pumps[0][1]["WD"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["WD"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["WD"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["WD"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["WD"][0] %></td>
+      <%end%>
       </tr>
 
          <tr>
@@ -99,19 +68,9 @@
       <td>
       CSG_ND
       </td>
-      <td>
-        <%= @pumps[0][1]["CSG_ND"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["CSG_ND"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["CSG_ND"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["CSG_ND"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["CSG_ND"][0] %></td>
+      <%end%> 
       </tr>
 
           <tr>
@@ -121,19 +80,9 @@
       <td>
       DS
       </td>
-      <td>
-        <%= @pumps[0][1]["DS"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["DS"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["DS"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["DS"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["DS"][0] %></td>
+      <%end%> 
       </tr>
 
           <tr>
@@ -143,19 +92,9 @@
       <td>
       GQ
       </td>
-      <td>
-        <%= @pumps[0][1]["GQ"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["GQ"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["GQ"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["GQ"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["GQ"][0] %></td>
+      <%end%> 
       </tr>
 
       <tr>
@@ -165,19 +104,9 @@
       <td>
       J
       </td>
-      <td>
-        <%= @pumps[0][1]["J"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["J"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["J"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["J"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["J"][0] %></td>
+      <%end%> 
       </tr>
 
          <tr>
@@ -187,19 +116,9 @@
       <td>
       T_bh
       </td>
-      <td>
-        <%= @pumps[0][1]["T_bh"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["T_bh"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["T_bh"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["T_bh"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["T_bh"][0] %></td>
+      <%end%> 
       </tr>
 
       <tr>
@@ -209,19 +128,9 @@
       <td>
       meo_m
       </td>
-      <td>
-        <%= @pumps[0][1]["meo_m"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["meo_m"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["meo_m"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["meo_m"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["meo_m"][0] %></td>
+      <%end%> 
       </tr>
 
             <tr>
@@ -231,19 +140,9 @@
       <td>
       API
       </td>
-      <td>
-        <%= @pumps[0][1]["API"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["API"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["API"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["API"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["API"][0] %></td>
+      <%end%> 
       </tr>
             <tr>
       <td>
@@ -252,19 +151,9 @@
       <td>
       AP
       </td>
-      <td>
-        <%= @pumps[0][1]["AP"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["AP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["AP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["AP"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["AP"][0] %></td>
+      <%end%> 
       </tr>
             <tr>
       <td>
@@ -273,19 +162,9 @@
       <td>
       CP
       </td>
-      <td>
-        <%= @pumps[0][1]["CP"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["CP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["CP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["CP"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["CP"][0] %></td>
+      <%end%> 
       </tr>
             <tr>
       <td>
@@ -294,19 +173,9 @@
       <td>
       ArP
       </td>
-      <td>
-        <%= @pumps[0][1]["ArP"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["ArP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["ArP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["ArP"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["ArP"][0] %></td>
+      <%end%> 
       </tr>
             <tr>
       <td>
@@ -315,19 +184,9 @@
       <td>
       EP
       </td>
-      <td>
-        <%= @pumps[0][1]["EP"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["EP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["EP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["EP"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["EP"][0] %></td>
+      <%end%> 
       </tr>
             <tr>
       <td>
@@ -336,19 +195,9 @@
       <td>
       SP
       </td>
-      <td>
-        <%= @pumps[0][1]["SP"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["SP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["SP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["SP"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["SP"][0] %></td>
+      <%end%> 
       </tr>
             <tr>
       <td>
@@ -357,19 +206,9 @@
       <td>
       PP
       </td>
-      <td>
-        <%= @pumps[0][1]["PP"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["PP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["PP"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["PP"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["PP"][0] %></td>
+      <%end%> 
       </tr>
 
              <tr>
@@ -379,19 +218,9 @@
       <td>
       GLR
       </td>
-      <td>
-        <%= @pumps[0][1]["GLR"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["GLR"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["GLR"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["GLR"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["GLR"][0] %></td>
+      <%end%> 
       </tr>
              <tr>
       <td>
@@ -400,19 +229,9 @@
       <td>
       APM
       </td>
-      <td>
-        <%= @pumps[0][1]["APM"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["APM"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["APM"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["APM"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["APM"][0] %></td>
+      <%end%> 
       </tr>
              <tr>
       <td>
@@ -421,19 +240,9 @@
       <td>
       SE
       </td>
-      <td>
-        <%= @pumps[0][1]["StE"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["StE"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["StE"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["StE"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["StE"][0] %></td>
+      <%end%> 
       </tr>
              <tr>
       <td>
@@ -442,19 +251,9 @@
       <td>
       AST
       </td>
-      <td>
-        <%= @pumps[0][1]["AST"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["AST"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["AST"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["AST"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["AST"][0] %></td>
+      <%end%> 
       </tr>
              <tr>
       <td>
@@ -463,19 +262,9 @@
       <td>
       PF
       </td>
-      <td>
-        <%= @pumps[0][1]["PF"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["PF"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["PF"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["PF"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["PF"][0] %></td>
+      <%end%> 
       </tr>
              <tr>
       <td>
@@ -484,19 +273,9 @@
       <td>
       PR
       </td>
-      <td>
-        <%= @pumps[0][1]["PR"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["PR"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["PR"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["PR"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["PR"][0] %></td>
+      <%end%> 
       </tr>
              <tr>
       <td>
@@ -505,19 +284,9 @@
       <td>
       SE
       </td>
-      <td>
-        <%= @pumps[0][1]["SE"][0] %>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["SE"][0] %>
-      </td>
-       <td>
-          <%= @pumps[2][1]["SE"][0] %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["SE"][0] %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["SE"][0] %></td>
+      <%end%> 
       </tr>
 
             <tr>
@@ -527,19 +296,10 @@
       <td>
       positiveSep
       </td>
-      <td>
-        <%= @pumps[0][1]["positiveSep"].round(3)%>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["positiveSep"] %></td>
+      <%end%> 
 
-      </td>
-       <td>
-          <%= @pumps[1][1]["positiveSep"].round(3)%>
-      </td>
-       <td>
-          <%= @pumps[2][1]["positiveSep"].round(3)%>
-      </td>
-       <td>
-          <%= @pumps[3][1]["positiveSep"].round(3)%>
-      </td>
       </tr>
             <tr>
       <td>
@@ -548,19 +308,10 @@
       <td>
       negativeSep
       </td>
-      <td>
-        <%= @pumps[0][1]["negativeSep"].round(3) %>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["negativeSep"] %></td>
+      <%end%> 
 
-      </td>
-       <td>
-          <%= @pumps[1][1]["negativeSep"].round(3)%>
-      </td>
-       <td>
-          <%= @pumps[2][1]["negativeSep"].round(3)%>
-      </td>
-       <td>
-          <%= @pumps[3][1]["negativeSep"].round(3)%>
-      </td>
       </tr>
             <tr>
       <td>
@@ -569,25 +320,18 @@
       <td>
       ci
       </td>
-      <td>
-        <%= @pumps[0][1]["ci"].round(3)%>
-
-      </td>
-       <td>
-          <%= @pumps[1][1]["ci"].round(3)%>
-      </td>
-       <td>
-          <%= @pumps[2][1]["ci"].round(3) %>
-      </td>
-       <td>
-          <%= @pumps[3][1]["ci"].round(3) %>
-      </td>
+      <%for pump in @pumps do%>
+        <td> <%= pump[1]["ci"].round(3) %></td>
+      <%end%> 
       </tr>
 
 
     </tbody>
   </table>
 <br>
+
+<% if @pump1 %>
+
 <h2>Pump 1 : RRP</h2>
 
 <h3>Phase 2 </h3>
@@ -1045,7 +789,9 @@ Pump Service Material :
 * M. & R. refers to Maintenance and Replacements
  <br>
   ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
-
+  <% end %>
+  
+<% if @pump2 %>
 <br>
 <h2>Pump 2 : ESP</h2>
 
@@ -1529,6 +1275,8 @@ Pump Service Material :
   ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
 
 <br>
+<% end %>
+<% if @pump3 %>
 
 <h2>Pump 3 : PCP</h2>
 
@@ -1940,7 +1688,8 @@ Pump Service Material :
 
 <br>
 
-
+<% end %>
+<% if @pump4 %>
 
 
 <h2>Pump 4 : ESPCP</h2>
@@ -2019,9 +1768,9 @@ Variable Frequency  Drive (VFD)
       Pump Service
       </td>
       <td>
-  <% if @costpump2[:corrosivity] == 1 %>
+  <% if @costpump4[:corrosivity] == 1 %>
     Corrosive Service
-    <% elsif  @costpump2[:corrosivity] == 0  %>
+    <% elsif  @costpump4[:corrosivity] == 0  %>
      Non-corrosive Service
     <% end %>
       </td>
@@ -2344,6 +2093,8 @@ Variable Frequency  Drive (VFD)
 
 </tbody>
   </table>
+
+  <% end %>
   * M. & R. refers to Maintenance and Replacements
   <br>
   ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
