@@ -68,7 +68,7 @@ module PhaseThree
                 @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Pulling Unit').final
             elsif ( (@WL  == 'Onshore' || @WL == 'Urban' ) && (@AST == 'W/O Rig' ||  @AST == 'Both')  )
                 @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Onshore W/O rig').final
-            elsif ( @WL  == 'Offshore'  && @AST == 'W/O Rig' )
+            elsif ( @WL  == 'Offshore'  && ( @AST == 'W/O Rig' ||  @AST == 'Both') )
                 @spr = TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'Offshore W/O rig').final
             else 
                 @error ='W/O rig is a must'
@@ -105,6 +105,8 @@ module PhaseThree
                 ecry:@ecry,
                 papd:@papd,
                 ic:@ic,
+                WL:@WL,
+                AST:@AST,
                 corrosivity:@corrosivity,
                 SMTTF:phaseoneparams[:SMTTFR].to_f,
                 SMTBF:phaseoneparams[:SMTBFR].to_f,
