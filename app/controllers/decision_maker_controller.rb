@@ -47,7 +47,7 @@ class DecisionMakerController < ApplicationController
         # render json:@Final[:phasethreepump1]
         # render json:@resultpump2
         # render json:$phaseoneparams
-        # render json:@resultpump3
+        # render json:@rightpumps
         # render json:@FinalPhase2
         # render json:@resultphasthree
         render  template: 'resultphaseone' 
@@ -150,9 +150,11 @@ class DecisionMakerController < ApplicationController
     end
 
     def getonlyrightpumps all_pumps
-        rightpumps = all_pumps
+        rightpumps = []
+        count=0
         all_pumps.each_with_index do |pump , index|
-            puts  index
+            puts pump[0]
+            puts pump[1]["GQ"][0]
             if ( (pump[1]["StE"].include?(1.0) ) ||
                  (pump[1]["WL"].include?(1.0) ) || 
                  (pump[1]["MD"].include?(1.0) ) || 
@@ -175,8 +177,34 @@ class DecisionMakerController < ApplicationController
                  (pump[1]["AST"].include?(1.0)) || 
                  (pump[1]["PF"].include?(1.0)) || 
                  (pump[1]["PR"].include?(1.0)) || 
-                 (pump[1]["SE"].include?(1.0)) )
-                rightpumps.delete_at(index)
+                 (pump[1]["SE"].include?(1.0)) ||
+                 (pump[1]["StE"].include?(1) ) ||
+                 (pump[1]["WL"].include?(1) ) || 
+                 (pump[1]["MD"].include?(1) ) || 
+                 (pump[1]["WD"].include?(1) ) ||
+                 (pump[1]["CSG_ND"].include?(1)) ||
+                 (pump[1]["DS"].include?(1)) ||
+                 (pump[1]["GQ"].include?(1)) || 
+                 (pump[1]["J"].include?(1)) ||
+                 (pump[1]["T_bh"].include?(1)) ||
+                 (pump[1]["meo_m"].include?(1)) ||
+                 (pump[1]["API"].include?(1)) ||
+                 (pump[1]["AP"].include?(1)) || 
+                 (pump[1]["CP"].include?(1)) ||
+                 (pump[1]["ArP"].include?(1)) || 
+                 (pump[1]["EP"].include?(1)) || 
+                 (pump[1]["SP"].include?(1)) ||
+                 (pump[1]["PP"].include?(1)) || 
+                 (pump[1]["GLR"].include?(1))  ||
+                 (pump[1]["APM"].include?(1)) || 
+                 (pump[1]["AST"].include?(1)) || 
+                 (pump[1]["PF"].include?(1)) || 
+                 (pump[1]["PR"].include?(1)) || 
+                 (pump[1]["SE"].include?(1)) )
+
+            else
+                rightpumps[count]=pump
+                count = count + 1
             end
         end
         return rightpumps
