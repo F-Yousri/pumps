@@ -39,6 +39,7 @@ class DecisionMakerController < ApplicationController
                 @resultpump3=self.phaseTwoPump3
             end
         end
+        @pumps = DecisionMakerService.make(params)
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
         @resultphasthree=self.phasethree @FinalPhase2
         @Final=@FinalPhase2.merge(@resultphasthree) 
