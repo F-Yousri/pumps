@@ -173,7 +173,7 @@ module PhaseTwoPumpTwo
               V_t: @V_t,
               fgas: @fgas,
               GHE: @GHE,
-              ts: @ts,
+              ts:@ts,
               SG_comp: @SG_comp,
               H_L: @H_L,
               H_WHP: @H_WHP,
@@ -240,7 +240,7 @@ module PhaseTwoPumpTwo
             switchprice:@switchprice,
             Junctioncost:@Junctioncost,
             trp:@trp,
-            motor:@motor,
+            motor:@motor
         }
 
 

@@ -123,7 +123,7 @@ module PhaseThree
         end
 
         def phasethreepump2 (params,phaseoneparams)
-        if ( params[:GHE] == 'AGH is required' ||  params[:ts]= 'Dynamic GS')
+        if ( params[:GHE] == 'AGH is required' ||  params[:ts]== 'Dynamic GS')
         @esppg=1.1*params[:espp]
         else
         @esppg= params[:espp]
