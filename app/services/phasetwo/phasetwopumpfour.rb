@@ -46,6 +46,7 @@ module PhaseTwoPumpFour
             @ESPCP_350Q=@data[:flow_rate350_from]
             @ESPCP_750Q=@data[:flow_rate750_to]
             @ESPCP_500Q=@data[:flow_rate500]
+            @V_espcpmin = @data[:flow_rate750_to]
             if ( @V_espcpmin > @ESPCP_500Q )
               @N_ESPCP =  750-((@ESPCP_750Q - @V_espcpmin)* (750-500)/(@ESPCP_750Q -@ESPCP_500Q ))
             else
@@ -170,6 +171,8 @@ module PhaseTwoPumpFour
                 price6:@Price6,
                 pfsc:@pfsc,
                 trp:@trp,
+                mina:@data,
+                EH_PCP:@EH_PCP,Model:@Model,V_espcpmin:@V_espcpmin
                
             }
         end

@@ -12,9 +12,11 @@ module PhaseTwoPumpTwo
         @V_w = phaseoneparams[:GQ].to_f*phaseoneparams[:WC].to_f/100.0*phaseoneparams[:beta_w].to_f
         @GOR=phaseoneparams[:Q_g].to_f*1000/(phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0))
         @Q_gt = phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*@GOR/1000.0
-        if (phaseoneparams[:R_s].to_f > @GOR)
-        else
         @Q_gs=(phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:R_s].to_f)/1000.0
+        if (phaseoneparams[:R_s].to_f > @GOR)
+        @Q_gf=0.0
+        @V_g=0.0
+        else
         @Q_gf=@Q_gt-@Q_gs
         @V_g=@Q_gf*phaseoneparams[:beta_g].to_f
         end
@@ -171,7 +173,7 @@ module PhaseTwoPumpTwo
               V_t: @V_t,
               fgas: @fgas,
               GHE: @GHE,
-              ts: @ts,
+              ts:@ts,
               SG_comp: @SG_comp,
               H_L: @H_L,
               H_WHP: @H_WHP,
@@ -238,7 +240,7 @@ module PhaseTwoPumpTwo
             switchprice:@switchprice,
             Junctioncost:@Junctioncost,
             trp:@trp,
-            motor:@motor,
+            motor:@motor
         }
 
 

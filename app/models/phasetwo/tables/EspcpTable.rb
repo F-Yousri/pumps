@@ -8,7 +8,10 @@
     def get_data input
         @AvailableThrustLoad=Espcp.select('thrust_load').map(&:thrust_load)
         @new=@AvailableThrustLoad.sort 
-        @TC_s=@new.find { |e| e > input}
+        if (input > @new.last)
+          input = @new.last
+        end
+        @TC_s=@new.find { |e| e >= input}
         @model=Espcp.select('model').where(thrust_load: @TC_s ).map(&:model)
         @data ={
             model: @model[0],
