@@ -39,10 +39,12 @@ module PhaseTwoPumpOne
             elsif (  phaseoneparams[:TBG_ND].to_f == 122 )
                 @TBG_ID=3.958
             end
-            if(@TBG_ID >= @mintbg && @TBG_ID < @minrod )
+            if ((phaseoneparams[:AST].to_f == 68 || phaseoneparams[:AST].to_f == 69) && @TBG_ID < @minrod )
                 @rrpt='Tubing Pump'
-            elsif( @TBG_ID >= @mintbg && @TBG_ID >= @minrod && (phaseoneparams[:AST].to_f == 67 || phaseoneparams[:AST].to_f == 69) )
+            elsif ((phaseoneparams[:AST].to_f == 67 || phaseoneparams[:AST].to_f == 69) && @TBG_ID > @minrod )
                 @rrpt='Rod Pump'
+            else
+                @rrpt='Tubing Pump'
             end
             @array=TableService.new(Tablegenerate.new('RodStringTaperingPercentagesTable').get_table,{ID_p: @ID_p,SR_ND: @SR_ND,pump: 2}).final
             @R1= @array[0]['size_118'] 
@@ -132,7 +134,7 @@ module PhaseTwoPumpOne
                 MHP_srpsL:@MHP_srps,
                 mcost:@mcost,
                 spuc:@spuc,
-
+                mina:@data2
 
 
 
