@@ -26,33 +26,33 @@ class DecisionMakerController < ApplicationController
         @pumps = DecisionMakerService.make(params)
         @wellName = @pumps['wellName']
         @pumps = @pumps['pumps']
-        # @rightpumps = self.getonlyrightpumps( @pumps)
-        # @rightpumps.each do |pump|
-        #     if pump.include?("ESP") 
-        #         @resultpump2=self.phaseTwoPump2
-        #     end
-        #     if pump.include?("RRP") 
-        #         @resultpump1=self.phaseTwoPump1
-        #     end
-        #     if pump.include?("ESPCP") 
-        #         @resultpump4=self.phaseTwoPump4
-        #     end
-        #     if pump.include?("PCP") 
-        #         @resultpump3=self.phaseTwoPump3
-        #     end
-        # end
+        @rightpumps = self.getonlyrightpumps( @pumps)
+        @rightpumps.each do |pump|
+            if pump.include?("ESP") 
+                @resultpump2=self.phaseTwoPump2
+            end
+            if pump.include?("RRP") 
+                @resultpump1=self.phaseTwoPump1
+            end
+            if pump.include?("ESPCP") 
+                @resultpump4=self.phaseTwoPump4
+            end
+            if pump.include?("PCP") 
+                @resultpump3=self.phaseTwoPump3
+            end
+        end
 
-        # @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
-        # @resultphasthree=self.phasethree @FinalPhase2
-        # @Final=@FinalPhase2.merge(@resultphasthree) 
+        @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
+        @resultphasthree=self.phasethree @FinalPhase2
+        @Final=@FinalPhase2.merge(@resultphasthree) 
         # render json:@Final
         # render json:@Final[:phasethreepump1]
         # render json:@resultpump2
         # render json:$phaseoneparams
-        render json:@pumps
+        # render json:@pumps
         # render json:@FinalPhase2
         # render json:@resultphasthree
-        # render  template: 'resultphaseone' 
+        render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1
