@@ -65,7 +65,7 @@ module DecisionMakerService
                 params['DS'] = "Severe"
             end
 
-            case params['GQ']
+            case params['GQ'].to_f
             when 0..199
                 params['GQ'] = "Low Production"
             when 200..1499
