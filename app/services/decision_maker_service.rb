@@ -3,6 +3,7 @@ module DecisionMakerService
 
 
         def make params
+            wellName = params['wellName']
             techParams = self.extractTechParams params
             weightParams = self.extractWeightParams params
             additionalCriteria = self.extractAdditionalCriteria params
@@ -11,6 +12,7 @@ module DecisionMakerService
             pumps = self.match( techParams, weightParams, additionalCriteria )
             pumpsSeparation = self.findSeparation( pumps[:pumps], pumps[:solutions] ) 
             sortedPumps = self.sortByCi pumpsSeparation
+            returnedObject = {'pumps'=> sortedPumps, 'wellName'=>wellName}
         end
 
         def extractTechParams params

@@ -4,6 +4,9 @@
         <h1>Technical Evaluation </h1>
         <p>kindly click the below buttons to fill the technical data</p>
         <%= form_tag techEvalForm_path, :id => 'tech-form' do %>
+            <div style='background:white;'>
+                <input placeholder='Well Name 'type='text' name='wellName' style='color: #fff;background-color: #343a40; width:96.3%;margin: 0.75rem 1.25rem;' required/>
+            </div>
             <div class="accordion" id="tabs">
                 <% for tab in Tab::all do%>
                     <div class="card">
