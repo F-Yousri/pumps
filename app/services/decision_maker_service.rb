@@ -8,17 +8,17 @@ module DecisionMakerService
             additionalCriteria = self.extractAdditionalCriteria params
             params = self.mixtureCalc params
             params = self.check techParams
-            pumps = self.match( techParams, weightParams, additionalCriteria )            
+            pumps = self.match( techParams, weightParams, additionalCriteria )
             pumpsSeparation = self.findSeparation( pumps[:pumps], pumps[:solutions] ) 
             sortedPumps = self.sortByCi pumpsSeparation
         end
 
         def extractTechParams params
-            techParams = params.slice(:StE_rrp, :StE_esp, :StE_espcp, :StE_pcp, :WL, :MD, :WD, :CSG_ND, :DS, :GQ, :J, :T_bh, :meo_m, :API, :AP, :CP, :ArP, :EP, :SP, :PP, :GLR, :APM, :SE, :AST, :PF, :PR )
+            techParams = params.slice(:StE_rrp, :StE_esp, :StE_espcp, :StE_pcp, :WL, :MD_pump, :WD, :CSG_ND, :DS, :GQ, :J, :T_bh, :meo_m, :API, :AP, :CP, :ArP, :EP, :SP, :PP, :GLR, :APM, :SE, :AST, :PF, :PR )
         end
 
         def extractWeightParams params
-            weightParams = params.slice( :W_WL, :W_MD, :W_WD, :W_CSG_ND, :W_DS, :W_GQ, :W_J, :W_T_bh, :W_meo_m, :W_API, :W_AP, :W_CP, :W_ArP, :W_EP, :W_SP, :W_PP, :W_GLR, :W_APM, :W_SE, :W_AST, :W_PF, :W_PR, :W_ES )
+            weightParams = params.slice( :W_WL, :W_MD_pump, :W_WD, :W_CSG_ND, :W_DS, :W_GQ, :W_J, :W_T_bh, :W_meo_m, :W_API, :W_AP, :W_CP, :W_ArP, :W_EP, :W_SP, :W_PP, :W_GLR, :W_APM, :W_SE, :W_AST, :W_PF, :W_PR, :W_ES )
         end
         
         def extractAdditionalCriteria params
@@ -35,15 +35,15 @@ module DecisionMakerService
         #match input with the corresponding property choice
         #this function can be refractored to do better matching but wasn't due to time constraint
         def check params
-            case params['MD'].to_f
+            case params['MD_pump'].to_f
             when 0..4499
-                params['MD'] = "shallow"
+                params['MD_pump'] = "Shallow"
             when 4500..5999
-                params['MD'] = "Intermediate"
+                params['MD_pump'] = "Intermediate"
             when 6000..10000
-                params['MD'] = "Deep"
+                params['MD_pump'] = "Deep"
             else
-                params['MD'] = "Extremely Deep"
+                params['MD_pump'] = "Extremely Deep"
             end
 
             case params['WD'].to_f
@@ -65,7 +65,7 @@ module DecisionMakerService
                 params['DS'] = "Severe"
             end
 
-            case params['GQ']
+            case params['GQ'].to_f
             when 0..199
                 params['GQ'] = "Low Production"
             when 200..1499

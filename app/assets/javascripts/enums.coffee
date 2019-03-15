@@ -52,7 +52,7 @@ exports.enums = {
         ],
         W_WL: [
             'W_WL',
-            'W_MD',
+            'W_MD_pump',
             'W_WD',
             'W_CSG_ND',
             'W_DS',

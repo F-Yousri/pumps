@@ -157,7 +157,7 @@ class DecisionMakerController < ApplicationController
             puts pump[1]["GQ"][0]
             if ( (pump[1]["StE"].include?(1.0) ) ||
                  (pump[1]["WL"].include?(1.0) ) || 
-                 (pump[1]["MD"].include?(1.0) ) || 
+                 (pump[1]["MD_pump"].include?(1.0) ) || 
                  (pump[1]["WD"].include?(1.0) ) ||
                  (pump[1]["CSG_ND"].include?(1.0)) ||
                  (pump[1]["DS"].include?(1.0)) ||
@@ -180,7 +180,7 @@ class DecisionMakerController < ApplicationController
                  (pump[1]["SE"].include?(1.0)) ||
                  (pump[1]["StE"].include?(1) ) ||
                  (pump[1]["WL"].include?(1) ) || 
-                 (pump[1]["MD"].include?(1) ) || 
+                 (pump[1]["MD_pump"].include?(1) ) || 
                  (pump[1]["WD"].include?(1) ) ||
                  (pump[1]["CSG_ND"].include?(1)) ||
                  (pump[1]["DS"].include?(1)) ||
