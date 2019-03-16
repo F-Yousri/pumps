@@ -346,6 +346,7 @@ module PhaseThree
             @ecry=@papd*params[:EC_espcp]
 
           pumpfour=  {
+                corrosivity:@corrosivity,
                 ecp:@ecp,
                 pafc:@pafc,
                 espp:@espp,

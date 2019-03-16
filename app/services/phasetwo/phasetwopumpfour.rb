@@ -118,6 +118,7 @@ module PhaseTwoPumpFour
             @pfsc=@data4[:price]
             @kVA_espcp=1.732*@V_surfe*@I_ESPCP/1000
             @sjb=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surfe).final
+            @kv=@sjb[:kv]
             @data5=TableService.new(Tablegenerate.new('TransformerTable').get_table,@HP_surfe).final
             @st=@data5[:kva]
             @trp=@data5[:price]
@@ -172,7 +173,11 @@ module PhaseTwoPumpFour
                 pfsc:@pfsc,
                 trp:@trp,
                 mina:@data,
-                EH_PCP:@EH_PCP,Model:@Model,V_espcpmin:@V_espcpmin
+                kv:@kv,
+                pump_maodel:@data[:pump_maodel],
+                EH_PCP:@EH_PCP,Model:@Model,V_espcpmin:@V_espcpmin,
+                stator_type:@stator_type,
+                type:@type
                
             }
         end
