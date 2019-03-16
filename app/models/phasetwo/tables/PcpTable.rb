@@ -6,9 +6,14 @@
     end
 
     def get_data input  
-        @array1=Pcp.select('Imperial_Q').map(&:Imperial_Q)
-        @array1=@array1.sort
-        @Imperial_Q=@array1.find { |e| e >= input[:V_min] }
+        @max_imperial=Pcp.maximum("Imperial_Q")
+        if ( input[:V_min] >= @max_imperial  )
+          @Imperial_Q = @max_imperial
+        else
+          @array1=Pcp.select('Imperial_Q').map(&:Imperial_Q)
+          @array1=@array1.sort
+          @Imperial_Q=@array1.find { |e| e >= input[:V_min] }
+        end
         @array2=Pcp.select('Imperial_H').where(Imperial_Q: @Imperial_Q).map(&:Imperial_H)
         @array2=@array2.sort
         @IH_PC=@array2.find { |e| e >= input[:H_PCP] }
