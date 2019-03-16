@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-   <h1 > <b>Full Assessment For Pumping Lift Systems in <%= @wellName%> </b><%= DateTime.now.to_date %></h1>
+   <h2 > <b>Full Assessment For Pumping Lift Systems for   <%= @wellName%> in </b><%= DateTime.now.to_date %></h2>
    <br>
    <h2>Phase one  </h2>
   <table class="table table-striped">
@@ -297,7 +297,7 @@
       positiveSep
       </td>
       <%for pump in @pumps do%>
-        <td> <%= pump[1]["positiveSep"] %></td>
+        <td> <%= pump[1]["positiveSep"].round(3) %></td>
       <%end%> 
 
       </tr>
@@ -309,7 +309,7 @@
       negativeSep
       </td>
       <%for pump in @pumps do%>
-        <td> <%= pump[1]["negativeSep"] %></td>
+        <td> <%= pump[1]["negativeSep"].round(3) %></td>
       <%end%> 
 
       </tr>
