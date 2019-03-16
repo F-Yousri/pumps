@@ -224,7 +224,7 @@ module PhaseThree
             elsif ( params[:PR_ND] == 88 )
                 @prc=@data[:pn8]
             elsif ( params[:PR_ND] == 99 )
-                @prc=@data[:pn]
+                @prc=@data[:pn9]
             end
 
             @cpc=(phaseoneparams[:MD_pump].to_f/25.0)*@prc
