@@ -7,8 +7,12 @@
 
     def get_data params
         @check=EspcpModel.select('flow_rate750_to').where(pump_rating: params[:Model]).order("flow_rate750_to DESC").first
-        if ( params[:V_espcpmin] > @check[:flow_rate750_to])
+        if ( params[:V_espcpmin] >= @check[:flow_rate750_to])
           params[:V_espcpmin] =  @check[:flow_rate750_to]
+        end
+        @check2=EspcpModel.select('flow_rate350_from').where(pump_rating: params[:Model]).order("flow_rate350_from ASC").first
+        if ( params[:V_espcpmin] <=  @check2[:flow_rate350_from])
+          params[:V_espcpmin] =  @check2[:flow_rate350_from]
         end
         @allhead=EspcpModel.select('head').where(pump_rating: params[:Model]).where("flow_rate350_from <= ?", params[:V_espcpmin]).where("flow_rate750_to >= ?", params[:V_espcpmin]).map(&:head)
         @new=@allhead.sort 
@@ -18,11 +22,3 @@
     end 
   end
 
-
-#   {
-#     "EH_PCP": 1396.791,
-#     "Model": "EVONB5A",
-#     "V_espcpmin": 812.5
-# }
-
-#{EH_PCP:@EH_PCP,Model:@Model,V_espcpmin:@V_espcpmin}

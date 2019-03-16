@@ -17,7 +17,7 @@
             @data 
         when 1.125  
             @data=RodTypeTorquLimit.select('t118').where(Weatherford: input[:RT]).map(&:t118)
-            @data[0]
+            @data
         end
     end
   end
