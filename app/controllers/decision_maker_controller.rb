@@ -190,7 +190,7 @@ class DecisionMakerController < ApplicationController
                  (pump[1]["J"].include?(1)) ||
                  (pump[1]["T_bh"].include?(1)) ||
                  (pump[1]["meo_m"].include?(1)) ||
-                 (pump[1]["API"].include?(1.0) && $phaseoneparams[:WC].to_f != 100.0) ||
+                 (pump[1]["API"].include?(1) && $phaseoneparams[:WC].to_f != 100.0) ||
                  (pump[1]["AP"].include?(1)) || 
                  (pump[1]["CP"].include?(1)) ||
                  (pump[1]["ArP"].include?(1)) || 
