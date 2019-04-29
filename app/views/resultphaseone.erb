@@ -645,10 +645,10 @@ Pump Service Material :
   </td>
 <% end -%>
     </tr>
-
+    <%if  $phaseoneparams[:WC] == 100 %>
        <tr>
        <td>
-    Oil Production Sales
+    Oil Production Sales 
     </td>
   <td>
  <%=  @costpump1[:opt].ceil() %>
@@ -698,6 +698,8 @@ Pump Service Material :
   </td>
     </tr>
 
+    <% end %>
+
            <tr>
     <td>
     Outflow After Rates Of Change 
@@ -726,6 +728,7 @@ Pump Service Material :
  <%=  (@costpump1[:dr]*100).round() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
             <tr>
     <td>
@@ -746,7 +749,7 @@ Pump Service Material :
  <%=  (@costpump1[:cdi]).ceil() %>
   </td>
     </tr>
-
+<% end %>
              <tr>
     <td>
     Present Outflow Value 
@@ -766,6 +769,7 @@ Pump Service Material :
  <%=  (@costpump1[:cdo]).ceil() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
              <tr>
     <td>
@@ -786,7 +790,7 @@ Pump Service Material :
  <%=  (@costpump1[:cdc]).ceil() %>
   </td>
     </tr>
-
+<% end %>
 </tbody>
   </table>
 * M. & R. refers to Maintenance and Replacements
@@ -1132,7 +1136,7 @@ Pump Service Material :
   </td>
 <% end -%>
     </tr>
-
+    <%if  $phaseoneparams[:WC] == 100 %>
        <tr>
        <td>
     Oil Production Sales
@@ -1184,7 +1188,7 @@ Pump Service Material :
  <%=  @costpump2[:sumop].ceil() %>
   </td>
     </tr>
-
+      <% end %>
            <tr>
     <td>
     Outflow After Rates Of Change 
@@ -1213,6 +1217,7 @@ Pump Service Material :
  <%=  (@costpump2[:dr]*100).round() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
             <tr>
     <td>
@@ -1233,7 +1238,7 @@ Pump Service Material :
  <%=  (@costpump2[:cdi]).ceil() %>
   </td>
     </tr>
-
+<% end %>
              <tr>
     <td>
     Present Outflow Value 
@@ -1253,6 +1258,7 @@ Pump Service Material :
  <%=  (@costpump2[:cdo]).ceil() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
              <tr>
     <td>
@@ -1273,7 +1279,7 @@ Pump Service Material :
  <%=  (@costpump2[:cdc]).ceil() %>
   </td>
     </tr>
-
+<% end %>
 </tbody>
   </table>
 * M. & R. refers to Maintenance and Replacements
@@ -1536,6 +1542,7 @@ Pump Service Material :
  <%=  @costpump3[:sumo].ceil()  %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
             <tr>
     <td>
@@ -1598,7 +1605,7 @@ Pump Service Material :
  <%=  @costpump3[:sumop].ceil() %>
   </td>
     </tr>
-
+<% end %>
            <tr>
     <td>
     Outflow After Rates Of Change 
@@ -1627,6 +1634,7 @@ Pump Service Material :
  <%=  (@costpump3[:dr]*100).round() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
             <tr>
     <td>
@@ -1647,7 +1655,7 @@ Pump Service Material :
  <%=  (@costpump3[:cdi]).ceil() %>
   </td>
     </tr>
-
+<% end %>
              <tr>
     <td>
     Present Outflow Value 
@@ -1667,6 +1675,7 @@ Pump Service Material :
  <%=  (@costpump3[:cdo]).ceil() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
              <tr>
     <td>
@@ -1687,7 +1696,7 @@ Pump Service Material :
  <%=  (@costpump3[:cdc]).ceil() %>
   </td>
     </tr>
-
+<% end %>
 </tbody>
   </table>
 * M. & R. refers to Maintenance and Replacements
@@ -1949,6 +1958,7 @@ Variable Frequency  Drive (VFD)
  <%=  @costpump4[:sumo].ceil()  %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
             <tr>
     <td>
@@ -2011,7 +2021,7 @@ Variable Frequency  Drive (VFD)
  <%=  @costpump4[:sumop].ceil() %>
   </td>
     </tr>
-
+      <% end %>
            <tr>
     <td>
     Outflow After Rates Of Change 
@@ -2040,6 +2050,7 @@ Variable Frequency  Drive (VFD)
  <%=  (@costpump4[:dr]*100).round() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
             <tr>
     <td>
@@ -2060,7 +2071,7 @@ Variable Frequency  Drive (VFD)
  <%=  (@costpump4[:cdi]).ceil() %>
   </td>
     </tr>
-
+<% end %>
              <tr>
     <td>
     Present Outflow Value 
@@ -2080,6 +2091,7 @@ Variable Frequency  Drive (VFD)
  <%=  (@costpump4[:cdo]).ceil() %>
   </td>
     </tr>
+    <%if  $phaseoneparams[:WC] == 100 %>
 
              <tr>
     <td>
@@ -2100,14 +2112,15 @@ Variable Frequency  Drive (VFD)
  <%=  (@costpump4[:cdc]).ceil() %>
   </td>
     </tr>
-
+<% end %>
 </tbody>
   </table>
 
-  <% end %>
+ 
   * M. & R. refers to Maintenance and Replacements
   <br>
   ** The capital and salvage costs include an additional 10% representing items that are not taken into account while pump parts selection
+  <% end %>
 <br>
   <h2>Economic Parameters Comparison :</h2>
 
