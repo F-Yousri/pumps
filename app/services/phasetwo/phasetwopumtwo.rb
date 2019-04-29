@@ -11,6 +11,10 @@ module PhaseTwoPumpTwo
         @V_o =phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:beta_o].to_f
         @V_w = phaseoneparams[:GQ].to_f*phaseoneparams[:WC].to_f/100.0*phaseoneparams[:beta_w].to_f
         @GOR=phaseoneparams[:Q_g].to_f*1000/(phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0))
+        if ((1-phaseoneparams[:WC].to_f/100.0) == 0)
+
+            @GOR = 0.0
+        end
         @Q_gt = phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*@GOR/1000.0
         @Q_gs=(phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:R_s].to_f)/1000.0
         if (phaseoneparams[:R_s].to_f > @GOR)

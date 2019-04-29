@@ -45,6 +45,7 @@ class DecisionMakerController < ApplicationController
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
         @resultphasthree=self.phasethree @FinalPhase2
         @Final=@FinalPhase2.merge(@resultphasthree) 
+        # render json:@rightpumps
         # render json:@Final
         # render json:@Final[:phasethreepump1]
         # render json:@resultpump2
@@ -52,6 +53,7 @@ class DecisionMakerController < ApplicationController
         # render json:@pumps
         # render json:@FinalPhase2
         # render json:@resultphasthree
+        # render json: $phaseoneparams
         render  template: 'resultphaseone' 
     end
 
@@ -165,7 +167,7 @@ class DecisionMakerController < ApplicationController
                  (pump[1]["J"].include?(1.0)) ||
                  (pump[1]["T_bh"].include?(1.0)) ||
                  (pump[1]["meo_m"].include?(1.0)) ||
-                 (pump[1]["API"].include?(1.0)) ||
+                 (pump[1]["API"].include?(1.0) && $phaseoneparams[:WC].to_f != 100.0) ||
                  (pump[1]["AP"].include?(1.0)) || 
                  (pump[1]["CP"].include?(1.0)) ||
                  (pump[1]["ArP"].include?(1.0)) || 
@@ -188,7 +190,7 @@ class DecisionMakerController < ApplicationController
                  (pump[1]["J"].include?(1)) ||
                  (pump[1]["T_bh"].include?(1)) ||
                  (pump[1]["meo_m"].include?(1)) ||
-                 (pump[1]["API"].include?(1)) ||
+                 (pump[1]["API"].include?(1.0) && $phaseoneparams[:WC].to_f != 100.0) ||
                  (pump[1]["AP"].include?(1)) || 
                  (pump[1]["CP"].include?(1)) ||
                  (pump[1]["ArP"].include?(1)) || 
@@ -201,6 +203,7 @@ class DecisionMakerController < ApplicationController
                  (pump[1]["PF"].include?(1)) || 
                  (pump[1]["PR"].include?(1)) || 
                  (pump[1]["SE"].include?(1)) )
+                 puts pump
 
             else
                 rightpumps[count]=pump
