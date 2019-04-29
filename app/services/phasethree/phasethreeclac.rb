@@ -164,6 +164,7 @@ module PhaseThreeCalc
             @arraysumo.push(@tem)
          end
         @sumo= @sumo/@papd
+        @rdr=phaseoneparams['RDR'].to_f*100
         @opt=phaseoneparams[:OP].to_f*(365.0-@pdt/@papd)*phaseoneparams[:GQ].to_f
         @tse=@dse+@sse
         @arraycapr=[]
@@ -183,7 +184,7 @@ module PhaseThreeCalc
         @arrayopt.push(@tem)
 
         for i in 0..(@papd -2.0)
-            @tem=@tem*(1.0+phaseoneparams[:OPIR].to_f)
+            @tem=@tem*(1.0+phaseoneparams[:OPIR].to_f)*(1-phaseoneparams['RDR'].to_f)
             @sumop=@sumop+@tem
             @arrayopt.push(@tem)
          end
@@ -238,7 +239,6 @@ module PhaseThreeCalc
         @irrw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'IRR').final
         @eacw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'EAC').final
         @wsm=@bcr*@bcrw+@irr*@irrw+@eac.abs*@eacw
-        @rdr=phaseoneparams['RDR'].to_f*100
 
         {
             pdt:@pdt,
