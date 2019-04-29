@@ -289,6 +289,7 @@ module PhaseThree
                 DMTBF:phaseoneparams[:DMTBFP].to_f,
                 SDT:phaseoneparams[:SDTP].to_f,
                 DDT:phaseoneparams[:DDTP].to_f,
+                corrosivity:@corrosivity,
             }
             
 
