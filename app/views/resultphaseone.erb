@@ -656,8 +656,8 @@ Pump Service Material :
   </td>
     </tr>
     <tr>
-    <td> Reservoir Depletion Rate ( 100% )</td>
-    <td> <%= @costpump1[:rdr] %></td>    </tr>
+    <td> Reservoir Depletion Rate ( % )</td>
+    <td> <%= @costpump1[:rdr].to_f.ceil() %></td>    </tr>
 
            <tr>
        <td>
@@ -1148,7 +1148,7 @@ Pump Service Material :
     </tr>
     <tr>
     <td> Reservoir Depletion Rate ( 100% )</td>
-    <td> <%= @costpump2[:rdr] %></td>    </tr>
+    <td> <%= @costpump2[:rdr].to_f.ceil() %></td>    </tr>
 
            <tr>
        <td>
@@ -1566,7 +1566,7 @@ Pump Service Material :
     </tr>
     <tr>
     <td> Reservoir Depletion Rate ( 100% )</td>
-    <td> <%= @costpump3[:rdr] %></td>    </tr>
+    <td> <%= @costpump3[:rdr].to_f.ceil() %></td>    </tr>
            <tr>
        <td>
     Oil Prices Change Rate (%)
@@ -1982,7 +1982,7 @@ Variable Frequency  Drive (VFD)
     </tr>
     <tr>
     <td> Reservoir Depletion Rate ( 100% )</td>
-    <td> <%= @costpump4[:rdr] %></td>    </tr>
+    <td> <%= @costpump4[:rdr].to_f.ceil() %></td>    </tr>
            <tr>
        <td>
     Oil Prices Change Rate (%)
