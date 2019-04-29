@@ -238,6 +238,7 @@ module PhaseThreeCalc
         @irrw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'IRR').final
         @eacw= TableService.new(Tablegenerate.new('EconomicWeightTable').get_table,'EAC').final
         @wsm=@bcr*@bcrw+@irr*@irrw+@eac.abs*@eacw
+        @rdr=phaseoneparams['RDR'].to_f*100
 
         {
             pdt:@pdt,
@@ -287,7 +288,8 @@ module PhaseThreeCalc
             oir:phaseoneparams[:OIR].to_f,
             opir:phaseoneparams[:OPIR].to_f,
             dr:phaseoneparams[:DR].to_f,
-            cdc:@cdc
+            cdc:@cdc,
+            rdr:@rdr
 
                 }
         end
