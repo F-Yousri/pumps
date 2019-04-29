@@ -645,7 +645,8 @@ Pump Service Material :
   </td>
 <% end -%>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
+    mina
        <tr>
        <td>
     Oil Production Sales 
@@ -728,7 +729,7 @@ Pump Service Material :
  <%=  (@costpump1[:dr]*100).round() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
             <tr>
     <td>
@@ -769,7 +770,7 @@ Pump Service Material :
  <%=  (@costpump1[:cdo]).ceil() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
              <tr>
     <td>
@@ -1136,7 +1137,7 @@ Pump Service Material :
   </td>
 <% end -%>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
        <tr>
        <td>
     Oil Production Sales
@@ -1217,7 +1218,7 @@ Pump Service Material :
  <%=  (@costpump2[:dr]*100).round() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
             <tr>
     <td>
@@ -1258,7 +1259,7 @@ Pump Service Material :
  <%=  (@costpump2[:cdo]).ceil() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
              <tr>
     <td>
@@ -1542,7 +1543,7 @@ Pump Service Material :
  <%=  @costpump3[:sumo].ceil()  %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
             <tr>
     <td>
@@ -1634,7 +1635,7 @@ Pump Service Material :
  <%=  (@costpump3[:dr]*100).round() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
             <tr>
     <td>
@@ -1675,7 +1676,7 @@ Pump Service Material :
  <%=  (@costpump3[:cdo]).ceil() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
              <tr>
     <td>
@@ -1958,7 +1959,7 @@ Variable Frequency  Drive (VFD)
  <%=  @costpump4[:sumo].ceil()  %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
             <tr>
     <td>
@@ -2050,7 +2051,7 @@ Variable Frequency  Drive (VFD)
  <%=  (@costpump4[:dr]*100).round() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
             <tr>
     <td>
@@ -2091,7 +2092,7 @@ Variable Frequency  Drive (VFD)
  <%=  (@costpump4[:cdo]).ceil() %>
   </td>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
              <tr>
     <td>
@@ -2130,7 +2131,7 @@ Variable Frequency  Drive (VFD)
     <td>
     Economic Parameter
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
     <td>
     BCR
     </td>
@@ -2142,14 +2143,14 @@ Variable Frequency  Drive (VFD)
     <td>
     EAC ($)
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
      <td>
     WSM
     </td>
     <% end %>
     </tr>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
     <tr>
     <td>
   Weight To Compare
@@ -2170,7 +2171,7 @@ Variable Frequency  Drive (VFD)
     <td>
     RRP
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
     <td>
      <%=  @costpump1[:bcr].round()   %>
     </td>
@@ -2182,7 +2183,7 @@ Variable Frequency  Drive (VFD)
      <td>
      <%=  @costpump1[:eac].round()  %>
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
     <td>
      <%=  @costpump1[:wsm].round()  %>
@@ -2196,7 +2197,7 @@ Variable Frequency  Drive (VFD)
     <td>
     ESP
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
     <td>
      <%=  @costpump2[:bcr].round()  %>
     </td>
@@ -2208,7 +2209,7 @@ Variable Frequency  Drive (VFD)
      <td>
      <%=  @costpump2[:eac].round()  %>
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
     <td>
      <%=  @costpump2[:wsm].round()  %>
@@ -2224,7 +2225,7 @@ Variable Frequency  Drive (VFD)
     <td>
     PCP
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
     <td>
      <%=  @costpump3[:bcr].round()  %>
     </td>
@@ -2236,7 +2237,7 @@ Variable Frequency  Drive (VFD)
      <td>
      <%=  @costpump3[:eac].round()  %>
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
     <td>
      <%=  @costpump3[:wsm].round()  %>
@@ -2249,7 +2250,7 @@ Variable Frequency  Drive (VFD)
     <td>
     ESPCP
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
     <td>
      <%=  @costpump4[:bcr].round()  %>
     </td>
@@ -2261,7 +2262,7 @@ Variable Frequency  Drive (VFD)
      <td>
      <%=  @costpump4[:eac].round()  %>
     </td>
-    <%if  $phaseoneparams[:WC] == 100 %>
+    <%if  $phaseoneparams[:WC].to_f != 100 %>
 
     <td>
      <%=  @costpump4[:wsm].round()  %>
