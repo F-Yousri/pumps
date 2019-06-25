@@ -27,6 +27,7 @@ class DecisionMakerController < ApplicationController
         @wellName = @pumps['wellName']
         @pumps = @pumps['pumps']
         @rightpumps = self.getonlyrightpumps( @pumps)
+        
         @rightpumps.each do |pump|
             if pump.include?("ESP") 
                 @resultpump2=self.phaseTwoPump2
@@ -212,4 +213,8 @@ class DecisionMakerController < ApplicationController
         end
         return rightpumps
     end
+
+    # def phasefour 
+        
+    # end
 end

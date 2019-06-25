@@ -2275,6 +2275,323 @@ Variable Frequency  Drive (VFD)
     </table>
 
     <h3>Assessment Recommendations Ascendingly </h3>  &nbsp;&nbsp;   <%= @keys[0] %> &nbsp;&nbsp; &  &nbsp;&nbsp; <%= @keys[1] %> &nbsp;&nbsp; & &nbsp;&nbsp;  <%= @keys[2] %> &nbsp;&nbsp; &  &nbsp;&nbsp; <%= @keys[3] %>
+    <br>
+    <h1>Phase Four</h1>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Abb.</th>
+        <%for pump in @rightpumps do%>
+          <th> <%= pump[0] %></th>
+        <%end%>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td>
+      Well Location
+      </td>
+      <td>
+      WL
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["WL"][0] %></td>
+      <%end%>
+      </tr>
+
+         <tr>
+      <td>
+      Measured Pump Well Depth
+      </td>
+      <td>
+      MD_pump
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["MD_pump"][0] %></td>
+      <%end%>
+      </tr>
+
+      <tr>
+      <td>
+      Well Deviation
+      </td>
+      <td>
+      WD
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["WD"][0] %></td>
+      <%end%>
+      </tr>
+
+         <tr>
+      <td>
+      Casing Diameter
+      </td>
+      <td>
+      CSG_ND
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["CSG_ND"][0] %></td>
+      <%end%> 
+      </tr>
+
+          <tr>
+      <td>
+      Dogleg Severity
+      </td>
+      <td>
+      DS
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["DS"][0] %></td>
+      <%end%> 
+      </tr>
+
+          <tr>
+      <td>
+      Desired Gross Rate
+      </td>
+      <td>
+      GQ
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["GQ"][0] %></td>
+      <%end%> 
+      </tr>
+
+      <tr>
+      <td>
+      Productivity Index
+      </td>
+      <td>
+      J
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["J"][0] %></td>
+      <%end%> 
+      </tr>
+
+         <tr>
+      <td>
+      Bottomhole Temperature
+      </td>
+      <td>
+      T_bh
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["T_bh"][0] %></td>
+      <%end%> 
+      </tr>
+
+      <tr>
+      <td>
+     Fluid Viscosity
+      </td>
+      <td>
+      meo_m
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["meo_m"][0] %></td>
+      <%end%> 
+      </tr>
+
+            <tr>
+      <td>
+     Oil Gravity
+      </td>
+      <td>
+      API
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["API"][0] %></td>
+      <%end%> 
+      </tr>
+            <tr>
+      <td>
+     Abrasives Production
+      </td>
+      <td>
+      AP
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["AP"][0] %></td>
+      <%end%> 
+      </tr>
+            <tr>
+      <td>
+     Corrosive Fluid Production
+      </td>
+      <td>
+      CP
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["CP"][0] %></td>
+      <%end%> 
+      </tr>
+            <tr>
+      <td>
+     Aromatics Production
+      </td>
+      <td>
+      ArP
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["ArP"][0] %></td>
+      <%end%> 
+      </tr>
+            <tr>
+      <td>
+     Emulsion Production
+      </td>
+      <td>
+      EP
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["EP"][0] %></td>
+      <%end%> 
+      </tr>
+            <tr>
+      <td>
+     Scale Production
+      </td>
+      <td>
+      SP
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["SP"][0] %></td>
+      <%end%> 
+      </tr>
+            <tr>
+      <td>
+     Paraffin Production
+      </td>
+      <td>
+      PP
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["PP"][0] %></td>
+      <%end%> 
+      </tr>
+
+             <tr>
+      <td>
+     Gas Liquid Ratio
+      </td>
+      <td>
+      GLR
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["GLR"][0] %></td>
+      <%end%> 
+      </tr>
+             <tr>
+      <td>
+     Available Prime mover
+      </td>
+      <td>
+      APM
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["APM"][0] %></td>
+      <%end%> 
+      </tr>
+             <tr>
+      <td>
+     Staff Experience
+      </td>
+      <td>
+      SE
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["StE"][0] %></td>
+      <%end%> 
+      </tr>
+             <tr>
+      <td>
+     Available Servicing type
+      </td>
+      <td>
+      AST
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["AST"][0] %></td>
+      <%end%> 
+      </tr>
+             <tr>
+      <td>
+     PLS Flexibility
+      </td>
+      <td>
+      PF
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["PF"][0] %></td>
+      <%end%> 
+      </tr>
+             <tr>
+      <td>
+     PLS Reliability
+      </td>
+      <td>
+      PR
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["PR"][0] %></td>
+      <%end%> 
+      </tr>
+             <tr>
+      <td>
+     System Efficiency
+      </td>
+      <td>
+      SE
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["SE"][0] %></td>
+      <%end%> 
+      </tr>
+
+            <tr>
+      <td>
+     Positive Separation
+      </td>
+      <td>
+      positiveSep
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["positiveSep"].round(3) %></td>
+      <%end%> 
+
+      </tr>
+            <tr>
+      <td>
+     Negative Separation
+      </td>
+      <td>
+      negativeSep
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["negativeSep"].round(3) %></td>
+      <%end%> 
+
+      </tr>
+            <tr>
+      <td>
+     ci
+      </td>
+      <td>
+      ci
+      </td>
+      <%for pump in @rightpumps do%>
+        <td> <%= pump[1]["ci"].round(3) %></td>
+      <%end%> 
+      </tr>
+
+
+    </tbody>
+  </table>
+<br>
 
 </div>
 
