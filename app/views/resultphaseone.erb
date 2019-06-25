@@ -289,42 +289,6 @@
       <%end%> 
       </tr>
 
-            <tr>
-      <td>
-     Positive Separation
-      </td>
-      <td>
-      positiveSep
-      </td>
-      <%for pump in @pumps do%>
-        <td> <%= pump[1]["positiveSep"].round(3) %></td>
-      <%end%> 
-
-      </tr>
-            <tr>
-      <td>
-     Negative Separation
-      </td>
-      <td>
-      negativeSep
-      </td>
-      <%for pump in @pumps do%>
-        <td> <%= pump[1]["negativeSep"].round(3) %></td>
-      <%end%> 
-
-      </tr>
-            <tr>
-      <td>
-     ci
-      </td>
-      <td>
-      ci
-      </td>
-      <%for pump in @pumps do%>
-        <td> <%= pump[1]["ci"].round(3) %></td>
-      <%end%> 
-      </tr>
-
 
     </tbody>
   </table>
