@@ -2365,6 +2365,83 @@ Variable Frequency  Drive (VFD)
         <td> <%= pump[1]["SE"][0] %></td>
       <%end%> 
       </tr>
+      <tr>
+      <td>
+      
+      Benefit Cost Ratio
+      </td>
+      <td>
+    
+      BCR
+      </td>
+      <%for pump in @rightpumps do%>
+        <%if  pump[0] == 'ESPCP' %>
+        <td> <%= @costpump4[:bcr].round() %></td>
+        <% end %>
+        <%if  pump[0] == 'ESP' %>
+        <td> <%= @costpump2[:bcr].round()  %></td>
+    
+        <% end %>
+        <%if  pump[0] == 'RRP' %>
+        <td> <%= @costpump1[:bcr].round()  %></td>
+        <% end %>
+        <%if  pump[0] == 'PCP' %>
+        <td> <%= @costpump3[:bcr].round()  %></td>
+        <% end %>
+      <%end%> 
+    </tr>
+    
+    </tr>
+    <tr>
+    <td>
+    
+    Internal Rate Of Return
+    </td>
+    <td>
+    IRR (%)
+    </td>
+    <%for pump in @rightpumps do%>
+    <%if  pump[0] == 'ESPCP' %>
+    <td> <%= @costpump4[:irr].round() %></td>
+    <% end %>
+    <%if  pump[0] == 'ESP' %>
+    <td> <%= @costpump2[:irr].round()  %></td>
+    
+    <% end %>
+    <%if  pump[0] == 'RRP' %>
+    <td> <%= @costpump1[:irr].round()  %></td>
+    <% end %>
+    <%if  pump[0] == 'PCP' %>
+    <td> <%= @costpump3[:irr].round()  %></td>
+    <% end %>
+    <%end%> 
+    </tr>
+    
+    </tr>
+    <tr>
+    <td>
+    Equivalent Annual Cost
+    </td>
+    <td>
+    EAC ($)	
+    </td>
+    <%for pump in @rightpumps do%>
+    <%if  pump[0] == 'ESPCP' %>
+    <td> <%= @costpump4[:eac].round() %></td>
+    <% end %>
+    <%if  pump[0] == 'ESP' %>
+    <td> <%= @costpump2[:eac].round()  %></td>
+    
+    <% end %>
+    <%if  pump[0] == 'RRP' %>
+    <td> <%= @costpump1[:eac].round()  %></td>
+    <% end %>
+    <%if  pump[0] == 'PCP' %>
+    <td> <%= @costpump3[:eac].round()  %></td>
+    <% end %>
+    <%end%> 
+    </tr>
+      
 
             <tr>
       <td>
@@ -2403,83 +2480,6 @@ Variable Frequency  Drive (VFD)
       </tr>
 
       </tr>
-        <tr>
-  <td>
-  
-  Benefit Cost Ratio
-  </td>
-  <td>
-
-  BCR
-  </td>
-  <%for pump in @rightpumps do%>
-    <%if  pump[0] == 'ESPCP' %>
-    <td> <%= @costpump4[:bcr].round() %></td>
-    <% end %>
-    <%if  pump[0] == 'ESP' %>
-    <td> <%= @costpump2[:bcr].round()  %></td>
-
-    <% end %>
-    <%if  pump[0] == 'RRP' %>
-    <td> <%= @costpump1[:bcr].round()  %></td>
-    <% end %>
-    <%if  pump[0] == 'PCP' %>
-    <td> <%= @costpump3[:bcr].round()  %></td>
-    <% end %>
-  <%end%> 
-</tr>
-
-</tr>
-<tr>
-<td>
-
-Internal Rate Of Return
-</td>
-<td>
-IRR (%)
-</td>
-<%for pump in @rightpumps do%>
-<%if  pump[0] == 'ESPCP' %>
-<td> <%= @costpump4[:irr].round() %></td>
-<% end %>
-<%if  pump[0] == 'ESP' %>
-<td> <%= @costpump2[:irr].round()  %></td>
-
-<% end %>
-<%if  pump[0] == 'RRP' %>
-<td> <%= @costpump1[:irr].round()  %></td>
-<% end %>
-<%if  pump[0] == 'PCP' %>
-<td> <%= @costpump3[:irr].round()  %></td>
-<% end %>
-<%end%> 
-</tr>
-
-</tr>
-<tr>
-<td>
-Equivalent Annual Cost
-</td>
-<td>
-EAC ($)	
-Maintenance
-</td>
-<%for pump in @rightpumps do%>
-<%if  pump[0] == 'ESPCP' %>
-<td> <%= @costpump4[:eac].round() %></td>
-<% end %>
-<%if  pump[0] == 'ESP' %>
-<td> <%= @costpump2[:eac].round()  %></td>
-
-<% end %>
-<%if  pump[0] == 'RRP' %>
-<td> <%= @costpump1[:eac].round()  %></td>
-<% end %>
-<%if  pump[0] == 'PCP' %>
-<td> <%= @costpump3[:eac].round()  %></td>
-<% end %>
-<%end%> 
-</tr>
 
 
     </tbody>
