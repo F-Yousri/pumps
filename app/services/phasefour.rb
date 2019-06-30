@@ -1,9 +1,10 @@
 module PhaseFour
     class << self
-        def make (phaseoneresult,pump,resultphasthree) 
+        def make (phaseoneresult,pump,resultphasthree ,params) 
             finalPumps = getonlyrightpump(phaseoneresult ,pump ) 
             cdcpumps = addcdc(finalPumps , resultphasthree)   
             xiarray  = clacxi (cdcpumps)
+            newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
         end
 
 
@@ -59,7 +60,6 @@ module PhaseFour
             cdcpumps.each{ |pump|  pr =pr +  pump[1]['PR'][0].to_f**2  }
             cdcpumps.each{ |pump|  se =se +  pump[1]['SE'][0].to_f**2  }
             cdcpumps.each{ |pump|  cdc =cdc +  pump[1]['cdc'].to_f**2  }
-
             xiarray[:wl] = Math.sqrt(wl)
             xiarray[:md_pump] = Math.sqrt(md_pump)
             xiarray[:wd] = Math.sqrt(wd)
@@ -84,6 +84,12 @@ module PhaseFour
             xiarray[:se] = Math.sqrt(se)
             xiarray[:cdc] = Math.sqrt(cdc)
             xiarray
+        end
+
+        def newPumpArrayAfterdivXi (xiarray ,cdcpumps ,params)
+            newarray ={}
+            cdcpumps.each{ |pump| newarray[pump[0]] ={ wl: (pump[1]['WL'][0] / xiarray[:wl])*params[:W_WL].to_f/100 }  }
+            newarray
         end
     end
 end

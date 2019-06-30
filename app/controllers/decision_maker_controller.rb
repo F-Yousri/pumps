@@ -51,7 +51,7 @@ class DecisionMakerController < ApplicationController
         @rightpumps.each do |pump|
             pumpsArray.push(pump[0])
           end
-        @finalPump = PhaseFour.make(@pumps, pumpsArray , @resultphasthree)
+        @finalPump = PhaseFour.make(@pumps, pumpsArray , @resultphasthree ,params)
         # render json:@rightpumps
         # render json:@Final
         # render json:@Final[:phasethreepump1]
