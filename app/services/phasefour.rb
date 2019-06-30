@@ -61,6 +61,7 @@ module PhaseFour
             cdcpumps.each{ |pump|  cdc =cdc +  pump[1]['cdc'].to_f**2  }
 
             xiarray[:wl] = Math.sqrt(wl)
+            xiarray[:md_pump] = Math.sqrt(md_pump)
             xiarray[:wd] = Math.sqrt(wd)
             xiarray[:csg_nd] = Math.sqrt(csg_nd)
             xiarray[:ds] = Math.sqrt(ds)
