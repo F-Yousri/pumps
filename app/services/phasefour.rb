@@ -2,7 +2,8 @@ module PhaseFour
     class << self
         def make (phaseoneresult,pump,resultphasthree) 
             finalPumps = getonlyrightpump(phaseoneresult ,pump ) 
-            cdcpumps = addcdc(finalPumps , resultphasthree)
+            cdcpumps = addcdc(finalPumps , resultphasthree)   
+            xiarray  = clacxi (cdcpumps)
         end
 
 
@@ -32,6 +33,14 @@ module PhaseFour
             end
             }
             finalPumps
+        end
+
+        def clacxi cdcpumps
+            xiarray={}
+            xiwl=0
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            xiarray[:xiwl] = Math.sqrt(xiwl)
+            xiarray
         end
     end
 end
