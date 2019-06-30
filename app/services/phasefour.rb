@@ -3,7 +3,7 @@ module PhaseFour
         def make (phaseoneresult,pump,resultphasthree) 
             finalPumps = getonlyrightpump(phaseoneresult ,pump ) 
             cdcpumps = addcdc(finalPumps , resultphasthree)   
-            # xiarray  = clacxi (cdcpumps)
+            xiarray  = clacxi (cdcpumps)
         end
 
 
@@ -13,8 +13,6 @@ module PhaseFour
             for i in 0..pump.length
                 if (pump[i] == phaseoneresult[i][0] )
                     finalphaseone.push(phaseoneresult[i])
-                    puts pump[i]
-                    puts phaseoneresult[i][0]
                 end
              end
             finalphaseone
@@ -37,7 +35,7 @@ module PhaseFour
 
         def clacxi cdcpumps
             xiarray={}
-            wl=md_pump=wd=csg_nd=ds=gq=j=t_bh=meo_m=api=api=cp
+            wl=md_pump=wd=csg_nd=ds=gq=j=t_bh=meo_m=api=ap=cp=arp=0
             cdcpumps.each{ |pump|  wl =wl +  pump[1]['WL'][0].to_f**2  }
             cdcpumps.each{ |pump|  md_pump =md_pump +  pump[1]['MD_pump'][0].to_f**2  }
             cdcpumps.each{ |pump|  wd =wd +  pump[1]['WD'][0].to_f**2  }
@@ -50,6 +48,7 @@ module PhaseFour
             cdcpumps.each{ |pump|  api =api +  pump[1]['API'][0].to_f**2  }
             cdcpumps.each{ |pump|  ap =ap +  pump[1]['AP'][0].to_f**2  }
             cdcpumps.each{ |pump|  cp =cp +  pump[1]['CP'][0].to_f**2  }
+            cdcpumps.each{ |pump|  arp =arp +  pump[1]['ArP'][0].to_f**2  }
 
             xiarray[:wl] = Math.sqrt(wl)
             xiarray[:wd] = Math.sqrt(wd)
@@ -62,6 +61,7 @@ module PhaseFour
             xiarray[:api] = Math.sqrt(api)
             xiarray[:ap] = Math.sqrt(ap)
             xiarray[:cp] = Math.sqrt(cp)
+            xiarray[:arp] = Math.sqrt(arp)
 
 
             xiarray
