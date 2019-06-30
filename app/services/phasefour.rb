@@ -4,7 +4,7 @@ module PhaseFour
             finalPumps = getonlyrightpump(phaseoneresult ,pump ) 
             cdcpumps = addcdc(finalPumps , resultphasthree)   
             xiarray  = clacxi (cdcpumps)
-            # newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
+            newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
         end
 
 
@@ -36,7 +36,7 @@ module PhaseFour
 
         def clacxi cdcpumps
             xiarray={}
-            wl=md_pump=wd=csg_nd=ds=gq=j=t_bh=meo_m=api=ap=cp=arp=ep=sp=pp=glr=apm=ast=pf=pr=se=cdc=0
+            wl=md_pump=wd=csg_nd=ds=gq=j=t_bh=meo_m=api=ap=cp=arp=ep=sp=pp=glr=apm=ast=pf=pr=se=cdc=ste=0
             cdcpumps.each{ |pump|  wl =wl +  pump[1]['WL'][0].to_f**2  }
             cdcpumps.each{ |pump|  md_pump =md_pump +  pump[1]['MD_pump'][0].to_f**2  }
             cdcpumps.each{ |pump|  wd =wd +  pump[1]['WD'][0].to_f**2  }
@@ -60,6 +60,7 @@ module PhaseFour
             cdcpumps.each{ |pump|  pr =pr +  pump[1]['PR'][0].to_f**2  }
             cdcpumps.each{ |pump|  se =se +  pump[1]['SE'][0].to_f**2  }
             cdcpumps.each{ |pump|  cdc =cdc +  pump[1]['cdc'].to_f**2  }
+            cdcpumps.each{ |pump|  ste =ste +  pump[1]['StE'][0].to_f**2  }
             xiarray[:wl] = Math.sqrt(wl)
             xiarray[:md_pump] = Math.sqrt(md_pump)
             xiarray[:wd] = Math.sqrt(wd)
@@ -83,6 +84,7 @@ module PhaseFour
             xiarray[:pr] = Math.sqrt(pr)
             xiarray[:se] = Math.sqrt(se)
             xiarray[:cdc] = Math.sqrt(cdc)
+            xiarray[:ste] = Math.sqrt(ste)
             xiarray
         end
 
@@ -107,13 +109,13 @@ module PhaseFour
             cdcpumps.each{ |pump| newarray[pump[0]][:ap] =(pump[1]['AP'][0] / xiarray[:ap])*params[:W_AP].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:sp] =(pump[1]['SP'][0] / xiarray[:sp])*params[:W_SP].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:pp] =(pump[1]['PP'][0] / xiarray[:pp])*params[:W_PP].to_f/100  }
-            cdcpumps.each{ |pump| newarray[pump[0]][:glr] =(pump[1]['GLP'][0] / xiarray[:glr])*params[:W_GLR].to_f/100  }
+            cdcpumps.each{ |pump| newarray[pump[0]][:glr] =(pump[1]['GLR'][0] / xiarray[:glr])*params[:W_GLR].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:apm] =(pump[1]['APM'][0] / xiarray[:apm])*params[:W_APM].to_f/100  }
-            cdcpumps.each{ |pump| newarray[pump[0]][:ste] =(pump[1]['StE'][0] / xiarray[:ste])*params[:W_STE].to_f/100  }
+            cdcpumps.each{ |pump| newarray[pump[0]][:ste] =(pump[1]['StE'][0] / xiarray[:ste])*params[:W_SE].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:ast] =(pump[1]['AST'][0] / xiarray[:ast])*params[:W_AST].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:pf] =(pump[1]['PF'][0] / xiarray[:pf])*params[:W_PF].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:pr] =(pump[1]['PR'][0] / xiarray[:pr])*params[:W_PR].to_f/100  }
-            cdcpumps.each{ |pump| newarray[pump[0]][:se] =(pump[1]['SE'][0] / xiarray[:se])*params[:W_SE].to_f/100  }
+            cdcpumps.each{ |pump| newarray[pump[0]][:se] =(pump[1]['SE'][0] / xiarray[:se])*params[:W_ES].to_f/100  }
             newarray
         end
     end
