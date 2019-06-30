@@ -2,6 +2,7 @@ class DecisionMakerController < ApplicationController
     require "#{Rails.root}/lib/phasetwo/table_generate.rb"
     Dir["#{Rails.root}/app/services/phasetwo/*.rb"].each {|file| require file }
     Dir["#{Rails.root}/app/services/phasethree/*.rb"].each {|file| require file }
+    Dir["#{Rails.root}/app/services/*.rb"].each {|file| require file }
 
     before_action :authenticate_user!
     skip_before_action :verify_authenticity_token
@@ -45,7 +46,17 @@ class DecisionMakerController < ApplicationController
 
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
         @resultphasthree=self.phasethree @FinalPhase2
-        @Final=@FinalPhase2.merge(@resultphasthree) 
+        @Final=@FinalPhase2.merge(@resultphasthree)
+        newparams = {
+            pump1: 1,
+            pump2: 1,
+            pump3: 1,
+        } 
+        pumpsArray=[];
+        @rightpumps.each do |pump|
+            pumpsArray.push(pump[0])
+          end
+        @mina = PhaseFour.make(@pumps, pumpsArray)
         # render json:@rightpumps
         # render json:@Final
         # render json:@Final[:phasethreepump1]
@@ -55,7 +66,8 @@ class DecisionMakerController < ApplicationController
         # render json:@FinalPhase2
         # render json:@resultphasthree
         # render json: $phaseoneparams
-        render  template: 'resultphaseone' 
+        render json: @mina
+        # render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1
