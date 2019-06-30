@@ -35,7 +35,7 @@ module PhaseFour
 
         def clacxi cdcpumps
             xiarray={}
-            wl=md_pump=wd=csg_nd=ds=gq=j=t_bh=meo_m=api=ap=cp=arp=ep=sp=0
+            wl=md_pump=wd=csg_nd=ds=gq=j=t_bh=meo_m=api=ap=cp=arp=ep=sp=pp=glr=apm=ast=pf=pr=se=cdc=0
             cdcpumps.each{ |pump|  wl =wl +  pump[1]['WL'][0].to_f**2  }
             cdcpumps.each{ |pump|  md_pump =md_pump +  pump[1]['MD_pump'][0].to_f**2  }
             cdcpumps.each{ |pump|  wd =wd +  pump[1]['WD'][0].to_f**2  }
@@ -51,6 +51,14 @@ module PhaseFour
             cdcpumps.each{ |pump|  arp =arp +  pump[1]['ArP'][0].to_f**2  }
             cdcpumps.each{ |pump|  ep =ep +  pump[1]['EP'][0].to_f**2  }
             cdcpumps.each{ |pump|  sp =sp +  pump[1]['SP'][0].to_f**2  }
+            cdcpumps.each{ |pump|  pp =pp +  pump[1]['PP'][0].to_f**2  }
+            cdcpumps.each{ |pump|  glr =glr +  pump[1]['GLR'][0].to_f**2  }
+            cdcpumps.each{ |pump|  apm =apm +  pump[1]['APM'][0].to_f**2  }
+            cdcpumps.each{ |pump|  ast =ast +  pump[1]['AST'][0].to_f**2  }
+            cdcpumps.each{ |pump|  pf =pf +  pump[1]['PF'][0].to_f**2  }
+            cdcpumps.each{ |pump|  pr =pr +  pump[1]['PR'][0].to_f**2  }
+            cdcpumps.each{ |pump|  se =se +  pump[1]['SE'][0].to_f**2  }
+            cdcpumps.each{ |pump|  cdc =cdc +  pump[1]['cdc'].to_f**2  }
 
             xiarray[:wl] = Math.sqrt(wl)
             xiarray[:wd] = Math.sqrt(wd)
@@ -66,8 +74,14 @@ module PhaseFour
             xiarray[:arp] = Math.sqrt(arp)
             xiarray[:ep] = Math.sqrt(ep)
             xiarray[:sp] = Math.sqrt(sp)
-
-
+            xiarray[:pp] = Math.sqrt(pp)
+            xiarray[:glr] = Math.sqrt(glr)
+            xiarray[:apm] = Math.sqrt(apm)
+            xiarray[:ast] = Math.sqrt(ast)
+            xiarray[:pf] = Math.sqrt(pf)
+            xiarray[:pr] = Math.sqrt(pr)
+            xiarray[:se] = Math.sqrt(se)
+            xiarray[:cdc] = Math.sqrt(cdc)
             xiarray
         end
     end
