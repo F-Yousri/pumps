@@ -37,9 +37,33 @@ module PhaseFour
 
         def clacxi cdcpumps
             xiarray={}
-            xiwl=0
+            xiwl=ximd_pump=0
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  ximd_pump =ximd_pump +  pump[1]['MD_pump'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
+            cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
             cdcpumps.each{ |pump|  xiwl =xiwl +  pump[1]['WL'][0].to_f**2  }
             xiarray[:xiwl] = Math.sqrt(xiwl)
+            xiarray[:ximd_pump] = Math.sqrt(ximd_pump)
             xiarray
         end
     end
