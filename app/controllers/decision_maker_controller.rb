@@ -47,26 +47,21 @@ class DecisionMakerController < ApplicationController
         @FinalPhase2={ "pump1" => @resultpump1, "pump2" => @resultpump2 , "pump3" =>@resultpump3, "pump4" => @resultpump4}
         @resultphasthree=self.phasethree @FinalPhase2
         @Final=@FinalPhase2.merge(@resultphasthree)
-        newparams = {
-            pump1: 1,
-            pump2: 1,
-            pump3: 1,
-        } 
         pumpsArray=[];
         @rightpumps.each do |pump|
             pumpsArray.push(pump[0])
           end
-        @mina = PhaseFour.make(@pumps, pumpsArray)
+        @finalPump = PhaseFour.make(@pumps, pumpsArray , @resultphasthree)
         # render json:@rightpumps
         # render json:@Final
         # render json:@Final[:phasethreepump1]
         # render json:@resultpump2
         # render json:$phaseoneparams
         # render json:@pumps
-        # render json:@FinalPhase2
-        # render json:@resultphasthree
+        # render json:@FinalPhase2['pump1']
+        # render json:@resultphasthree['phasethreepump2'][:cdc]
         # render json: $phaseoneparams
-        render json: @mina
+        render json: @finalPump
         # render  template: 'resultphaseone' 
     end
 
