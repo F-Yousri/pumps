@@ -6,6 +6,8 @@ module PhaseFour
             xiarray  = clacxi (cdcpumps)
             newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
             bestandworst = getBestAndWorst(newarray)
+            bestarray = getbestarray( newarray ,bestandworst)
+            worst = getworstarray( newarray ,bestandworst)
         end
 
 
@@ -227,6 +229,32 @@ module PhaseFour
                 cdc:@cdc.min,
                 ste:@ste.min
             }}
+        end
+
+        def getbestarray( newarray ,bestandworst)
+            bestarray={}
+            newarray.each{ |pump ,values|  
+            bestarray[pump]  ={}
+            }
+            newarray.each{ |key, value| 
+            value.each { |k,v|
+            bestarray[key][k]= (v.to_f-bestandworst[:best][k].to_f)**2
+            }
+            }
+            bestarray
+        end
+
+        def getworstarray( newarray ,bestandworst)
+            worstarray={}
+            newarray.each{ |pump ,values|  
+            worstarray[pump]  ={}
+            }
+            newarray.each{ |key, value| 
+            value.each { |k,v|
+            worstarray[key][k]= (v.to_f-bestandworst[:worst][k].to_f)**2
+            }
+            }
+            worstarray
         end
     end
 end
