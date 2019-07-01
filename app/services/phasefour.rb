@@ -5,6 +5,7 @@ module PhaseFour
             cdcpumps = addcdc(finalPumps , resultphasthree)   
             xiarray  = clacxi (cdcpumps)
             newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
+            bestandworst = getBestAndWorst(newarray)
         end
 
 
@@ -116,7 +117,116 @@ module PhaseFour
             cdcpumps.each{ |pump| newarray[pump[0]][:pf] =(pump[1]['PF'][0] / xiarray[:pf])*params[:W_PF].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:pr] =(pump[1]['PR'][0] / xiarray[:pr])*params[:W_PR].to_f/100  }
             cdcpumps.each{ |pump| newarray[pump[0]][:se] =(pump[1]['SE'][0] / xiarray[:se])*params[:W_ES].to_f/100  }
+            cdcpumps.each{ |pump| newarray[pump[0]][:cdc] =(pump[1]['cdc'] / xiarray[:cdc])*params[:W_NPV].to_f/100  }
             newarray
+        end
+
+        def getBestAndWorst newarray
+            @wl=[]
+            @md_pump=[]
+            @wd=[]
+            @csg_nd=[]
+            @ds=[]
+            @gq=[]
+            @j=[]
+            @t_bh=[]
+            @meo_m=[]
+            @api=[]
+            @ap=[]
+            @cp=[]
+            @arp=[]
+            @ep=[]
+            @sp=[]
+            @pp=[]
+            @glr=[]
+            @apm=[]
+            @ast=[]
+            @pf=[]
+            @pr=[]
+            @se=[]
+            @cdc=[]
+            @ste=[]
+            newarray.each { |key, value| 
+            @wl.push(value[:wl])
+            @md_pump.push(value[:md_pump])
+            @wd.push(value[:wd])
+            @csg_nd.push(value[:csg_nd])
+            @ds.push(value[:ds])
+            @gq.push(value[:gq])
+            @j.push(value[:j])
+            @t_bh.push(value[:t_bh])
+            @meo_m.push(value[:meo_m])
+            @api.push(value[:api])
+            @ap.push(value[:ap])
+            @cp.push(value[:cp])
+            @arp.push(value[:arp])
+            @ep.push(value[:ep])
+            @sp.push(value[:sp])
+            @pp.push(value[:pp])
+            @glr.push(value[:glr])
+            @apm.push(value[:apm])
+            @ast.push(value[:ast])
+            @pf.push(value[:pf])
+            @pr.push(value[:pr])
+            @se.push(value[:se])
+            @ste.push(value[:ste])
+            @cdc.push(value[:cdc])
+
+
+        }
+            solution = {
+                best:{
+                wl:@wl.max,
+                md_pump:@md_pump.max,
+                wd:@wd.max,
+                csg_nd:@csg_nd.max,
+                ds:@ds.max,
+                gq:@gq.max,
+                j:@j.max,
+                t_bh:@t_bh.max,
+                meo_m:@meo_m.max,
+                api:@api.max,
+                ap:@ap.max,
+                cp:@cp.max,
+                arp:@arp.max,
+                ep:@ep.max,
+                sp:@sp.max,
+                pp:@pp.max,
+                glr:@glr.max,
+                apm:@apm.max,
+                ast:@ast.max,
+                pf:@pf.max,
+                pr:@pr.max,
+                se:@se.max,
+                cdc:@cdc.max,
+                ste:@ste.max
+            },
+            worst:{
+                wl:@wl.min,
+                md_pump:@md_pump.min,
+                wd:@wd.min,
+                csg_nd:@csg_nd.min,
+                ds:@ds.min,
+                gq:@gq.min,
+                j:@j.min,
+                t_bh:@t_bh.min,
+                meo_m:@meo_m.min,
+                api:@api.min,
+                ap:@ap.min,
+                cp:@cp.min,
+                arp:@arp.min,
+                ep:@ep.min,
+                sp:@sp.min,
+                pp:@pp.min,
+                glr:@glr.min,
+                apm:@apm.min,
+                ast:@ast.min,
+                pf:@pf.min,
+                pr:@pr.min,
+                se:@se.min,
+                cdc:@cdc.min,
+                ste:@ste.min
+            }}
         end
     end
 end
