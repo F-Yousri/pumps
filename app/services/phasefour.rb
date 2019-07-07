@@ -10,11 +10,13 @@ module PhaseFour
             worstarray = getworstarray( newarray ,bestandworst)
             ciarray = createciarray(bestarray ,worstarray)
             cdcarray = getcdcarray(cdcpumps)
+            minci = getminci (ciarray)
             {
                 "ci" => ciarray,
                 "si*"=>bestarray,
                 "si-"=>worstarray,
-                "cdc"=>cdcarray
+                "cdc"=>cdcarray,
+                "min"=>minci
             }
         end
 
@@ -292,6 +294,15 @@ module PhaseFour
                 cdcarray[pump[0]]['cdc']= pump[1]['cdc']
             }
             cdcarray
+        end
+
+        def getminci ciarray
+            hashmap = {}
+            ciarray.each{ |pump ,values|  
+            hashmap[pump]= ciarray[pump]['ci']
+            }
+            hashmap
+            hashmap.group_by{|k, v| v}.min_by{|k, v| k}.last.to_h
         end
     end
 end
