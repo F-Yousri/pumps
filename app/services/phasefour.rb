@@ -242,7 +242,7 @@ module PhaseFour
             count = count +(v.to_f-bestandworst[:worst][k].to_f)**2
             bestarray[key][k]= (v.to_f-bestandworst[:best][k].to_f)**2
             }
-            bestarray[key]['si*']= count
+            bestarray[key]['si*']= Math.sqrt(count)
             }
             bestarray
         end
@@ -258,7 +258,7 @@ module PhaseFour
             count = count +(v.to_f-bestandworst[:worst][k].to_f)**2
             worstarray[key][k]= (v.to_f-bestandworst[:worst][k].to_f)**2
             }
-            worstarray[key]['si-']= count
+            worstarray[key]['si-']= Math.sqrt(count)
             }
             worstarray
         end
