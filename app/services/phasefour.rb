@@ -240,7 +240,7 @@ module PhaseFour
             newarray.each{ |key, value| 
             count = 0
             value.each { |k,v|
-            count = count +(v.to_f-bestandworst[:worst][k].to_f)**2
+            count = count +(v.to_f-bestandworst[:best][k].to_f)**2
             bestarray[key][k]= (v.to_f-bestandworst[:best][k].to_f)**2
             }
             bestarray[key]['si*']= Math.sqrt(count)
