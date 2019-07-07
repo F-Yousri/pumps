@@ -9,10 +9,12 @@ module PhaseFour
             bestarray = getbestarray( newarray ,bestandworst)
             worstarray = getworstarray( newarray ,bestandworst)
             ciarray = createciarray(bestarray ,worstarray)
+            cdcarray = getcdcarray(cdcpumps)
             {
                 "ci" => ciarray,
                 "si*"=>bestarray,
-                "si-"=>worstarray
+                "si-"=>worstarray,
+                "cdc"=>cdcarray
             }
         end
 
@@ -279,6 +281,17 @@ module PhaseFour
             ciarray[pump]['ci']= worstarray[pump]['si-'].to_f/(worstarray[pump]['si-'].to_f+bestarray[pump]['si*'].to_f)   
             } 
             ciarray
+        end
+
+        def getcdcarray cdcpumps
+            cdcarray={}
+            cdcpumps.each{ |pump ,values|  
+            cdcarray[pump]  ={}
+            }
+            cdcpumps.each{ |pump|  
+                cdcarray[pump[0]]['cdc']= pump[1]['cdc']
+            }
+            cdcarray
         end
     end
 end
