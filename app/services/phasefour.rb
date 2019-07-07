@@ -9,6 +9,11 @@ module PhaseFour
             bestarray = getbestarray( newarray ,bestandworst)
             worstarray = getworstarray( newarray ,bestandworst)
             ciarray = createciarray(bestarray ,worstarray)
+            {
+                "ci" => ciarray,
+                "si*"=>bestarray,
+                "si-"=>worstarray
+            }
         end
 
 

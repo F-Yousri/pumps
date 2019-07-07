@@ -61,8 +61,8 @@ class DecisionMakerController < ApplicationController
         # render json:@FinalPhase2['pump1']
         # render json:@resultphasthree['phasethreepump2'][:cdc]
         # render json: $phaseoneparams
-        render json: @finalPump
-        # render  template: 'resultphaseone' 
+        # render json: @finalPump
+        render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1

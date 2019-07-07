@@ -2450,7 +2450,7 @@ Variable Frequency  Drive (VFD)
       positiveSep
       </td>
       <%for pump in @rightpumps do%>
-        <td> <%= pump[1]["positiveSep"].round(3) %></td>
+        <td> <%= @finalPump['si*'][pump[0]]['si*'].round(3) %></td>
       <%end%> 
 
       </tr>
@@ -2462,7 +2462,7 @@ Variable Frequency  Drive (VFD)
       negativeSep
       </td>
       <%for pump in @rightpumps do%>
-        <td> <%= pump[1]["negativeSep"].round(3) %></td>
+        <td> <%= @finalPump['si-'][pump[0]]['si-'].round(3) %></td>
       <%end%> 
 
       </tr>
@@ -2474,7 +2474,7 @@ Variable Frequency  Drive (VFD)
       ci
       </td>
       <%for pump in @rightpumps do%>
-        <td> <%= pump[1]["ci"].round(3) %></td>
+        <td> <%= @finalPump['ci'][pump[0]]['ci'].round(3) %></td>
       <%end%> 
       </tr>
 
