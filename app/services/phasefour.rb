@@ -3,7 +3,7 @@ module PhaseFour
         def make (phaseoneresult,pump,resultphasthree ,params) 
             finalPumps = getonlyrightpump(phaseoneresult ,pump ) 
             cdcpumps = addcdc(finalPumps , resultphasthree)   
-            xiarray  = clacxi (cdcpumps)
+            # xiarray  = clacxi (cdcpumps)
             # newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
             # bestandworst = getBestAndWorst(newarray)
             # bestarray = getbestarray( newarray ,bestandworst)
