@@ -7,7 +7,8 @@ module PhaseFour
             newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
             bestandworst = getBestAndWorst(newarray)
             bestarray = getbestarray( newarray ,bestandworst)
-            # worst = getworstarray( newarray ,bestandworst)
+            worstarray = getworstarray( newarray ,bestandworst)
+            ciarray = createciarray(bestarray ,worstarray)
         end
 
 
@@ -261,6 +262,18 @@ module PhaseFour
             worstarray[key]['si-']= Math.sqrt(count)
             }
             worstarray
+        end
+
+
+        def createciarray (bestarray ,worstarray)
+            ciarray={}
+            bestarray.each{ |pump ,values|  
+            ciarray[pump]  ={}
+            }   
+            bestarray.each{ |pump , value |  
+            ciarray[pump]['ci']= worstarray[pump]['si-'].to_f/(worstarray[pump]['si-'].to_f+bestarray[pump]['si*'].to_f)   
+            } 
+            ciarray
         end
     end
 end
