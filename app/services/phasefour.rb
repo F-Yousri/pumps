@@ -5,8 +5,8 @@ module PhaseFour
             cdcpumps = addcdc(finalPumps , resultphasthree)   
             xiarray  = clacxi (cdcpumps)
             newarray = newPumpArrayAfterdivXi(xiarray ,cdcpumps ,params)
-            # bestandworst = getBestAndWorst(newarray)
-            # bestarray = getbestarray( newarray ,bestandworst)
+            bestandworst = getBestAndWorst(newarray)
+            bestarray = getbestarray( newarray ,bestandworst)
             # worst = getworstarray( newarray ,bestandworst)
         end
 
