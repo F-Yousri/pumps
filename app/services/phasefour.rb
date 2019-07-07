@@ -239,7 +239,7 @@ module PhaseFour
             newarray.each{ |key, value| 
             count = 0
             value.each { |k,v|
-            count = count +v
+            count = count +(v.to_f-bestandworst[:worst][k].to_f)**2
             bestarray[key][k]= (v.to_f-bestandworst[:best][k].to_f)**2
             }
             bestarray[key]['si*']= count
@@ -253,9 +253,9 @@ module PhaseFour
             worstarray[pump]  ={}
             }
             newarray.each{ |key, value| 
-            count = 0
+            count = 0.0
             value.each { |k,v|
-            count = count +v
+            count = count +(v.to_f-bestandworst[:worst][k].to_f)**2
             worstarray[key][k]= (v.to_f-bestandworst[:worst][k].to_f)**2
             }
             worstarray[key]['si-']= count
