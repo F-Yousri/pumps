@@ -89,7 +89,7 @@ module PhaseTwoPumpOne
             @MHP_srps=@data3[:MHP_srps]
             @mcost=@data3[:mcost]
             @MHP_srp=@data3[:mcost]
-            @EC_srp=0.746*@MHP_srp*24*365*phaseoneparams[:EC].to_f
+            @EC_srp=0.746*@MHP_srps*24*365*phaseoneparams[:EC].to_f
             {
                 Delta:@Delta,
                 W_r:@W_r,
