@@ -53,7 +53,7 @@ class DecisionMakerController < ApplicationController
           end
         @finalPump = PhaseFour.make(@pumps, pumpsArray , @resultphasthree ,params)
         # render json:@rightpumps
-        # render json:@Final
+        render json:@Final
         # render json:@Final[:phasethreepump1]
         # render json:@resultpump2
         # render json:$phaseoneparams
@@ -62,7 +62,7 @@ class DecisionMakerController < ApplicationController
         # render json:@resultphasthree['phasethreepump2'][:cdc]
         # render json: $phaseoneparams
         # render json: @finalPump
-        render  template: 'resultphaseone' 
+        # render  template: 'resultphaseone' 
     end
 
     def phaseTwoPump1
