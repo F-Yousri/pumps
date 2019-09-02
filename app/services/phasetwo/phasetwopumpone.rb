@@ -77,7 +77,7 @@ module PhaseTwoPumpOne
             @S_axial=@PPRL/(Math::PI/(4*@SR1_ND**2))
             @MPRL=@W_r*(1-0.128*@sg_m-@Delta)
             @PT=@SL/4*(@PPRL-@MPRL)
-            @data = TableService.new(Tablegenerate.new('AvailablePumpingUnitTable').get_table,{PT: @PT,PPRL: @PPRL}).final
+            @data = TableService.new(Tablegenerate.new('AvailablePumpingUnitTable').get_table,{PT: @PT,PPRL: @PPRL,SL: phaseoneparams[:SL].to_f }).final
             @PPRL100=@data[:PPRL100]
             @PT1000=@data[:PT1000]
             @SL=@data[:SL]
@@ -134,7 +134,7 @@ module PhaseTwoPumpOne
                 MHP_srpsL:@MHP_srps,
                 mcost:@mcost,
                 spuc:@spuc,
-                mina:@data2
+                mina:@data15
 
 
 
