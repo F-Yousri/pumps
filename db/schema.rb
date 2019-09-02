@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_06_221011) do
+ActiveRecord::Schema.define(version: 2019_09_02_001018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 2019_02_06_221011) do
   end
 
   create_table "available_pumping_units", force: :cascade do |t|
-    t.float "Max_GR"
-    t.float "PPRL"
-    t.float "Max_Stroke_Length"
+    t.float "max_gr"
+    t.float "pprl"
+    t.float "max_stroke_length"
     t.float "Stroke_lengths_1"
     t.float "Stroke_lengths_3"
     t.float "Stroke_lengths_2"

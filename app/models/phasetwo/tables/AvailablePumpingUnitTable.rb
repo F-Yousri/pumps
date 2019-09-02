@@ -20,6 +20,8 @@
         @SL=AvailablePumpingUnit.select('Max_Stroke_Length').where(PPRL: @PPRL100).where(Max_GR: @PT1000)
         @cost=AvailablePumpingUnit.select('cost').where(PPRL: @PPRL100).where(Max_GR: @PT1000).map(&:cost)
         @data={PPRL100: @PPRL100 ,PT1000:@PT1000,SL:@SL[0]['Max_Stroke_Length'] ,spuc:@cost[0]}
+        # @TEST = AvailablePumpingUnit.where("Max_GR > ?", params[:PT]).where("PPRL > ?", params[:PPRL]).where("max_stroke_length > ?", 200).last
+
     end 
   end
 
