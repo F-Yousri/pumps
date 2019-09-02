@@ -84,7 +84,7 @@ module PhaseTwoPumpOne
             @spuc=@data[:spuc]
             @HHP_srp=phaseoneparams[:GQ].to_f*phaseoneparams[:VD_pump].to_f/56000
             @FHP_srp=0.000000631*@W_r*phaseoneparams[:SL].to_f*@N_SRP
-            @MHP_srp=(@HHP_srp+@FHP_srp).to_f
+            @MHP_srp=(@HHP_srp+@FHP_srp).to_f/(@m_eff).to_f
             @data3 = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_srp).final
             @MHP_srps=@data3[:MHP_srps]
             @mcost=@data3[:mcost]
