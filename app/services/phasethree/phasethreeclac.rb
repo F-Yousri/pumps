@@ -67,7 +67,7 @@ module PhaseThreeCalc
             @ndr2=0.0
            end
 
-           if (@ndr > 1 )
+           if (@ndr > 2 )
             if( (phaseoneparams[:PAP].to_f - (params[:DMTTF]*3.0)) > params[:DMTTF] )
                  @ndr3=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
@@ -78,7 +78,7 @@ module PhaseThreeCalc
         end
 
 
-        if (@ndr > 2 )
+        if (@ndr > 3 )
             if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*4.0) > params[:DMTTF] )
                  @ndr4=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
@@ -87,7 +87,7 @@ module PhaseThreeCalc
         elsif
          @ndr4=0.0
         end
-        if (@ndr > 3 )
+        if (@ndr > 4 )
             if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*5) > params[:DMTTF] )
                  @ndr5=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
@@ -97,7 +97,7 @@ module PhaseThreeCalc
          @ndr5=0.0
         end
 
-        if (@ndr > 4 )
+        if (@ndr > 5 )
             if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*6) > params[:DMTTF] )
                  @ndr6=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
              else
