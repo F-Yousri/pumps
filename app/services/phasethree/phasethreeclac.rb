@@ -69,9 +69,9 @@ module PhaseThreeCalc
 
            if (@ndr > 2 )
             if( (phaseoneparams[:PAP].to_f - (params[:DMTTF]*3.0)) > params[:DMTTF] )
-                 @ndr3=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
+                 @ndr3=((params[:DMTTF] - 1.0 )/params[:DMTBF]).ceil
              else
-                 @ndr3=((phaseoneparams[:PAP].to_f - ( params[:DMTTF]*3.0) - 1.0 )/params[:DMTBF]).floor
+                 @ndr3=((phaseoneparams[:PAP].to_f - ( params[:DMTTF]*3.0) - 1.0 )/params[:DMTBF]).ceil
             end
         elsif
          @ndr3=0.0
@@ -80,18 +80,18 @@ module PhaseThreeCalc
 
         if (@ndr > 3 )
             if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*4.0) > params[:DMTTF] )
-                 @ndr4=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
+                 @ndr4=((params[:DMTTF] - 1.0 )/params[:DMTBF]).ceil
              else
-                 @ndr4=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*4 - 1.0 )/params[:DMTBF]).floor
+                 @ndr4=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*4 - 1.0 )/params[:DMTBF]).ceil
             end
         elsif
          @ndr4=0.0
         end
         if (@ndr > 4 )
             if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*5) > params[:DMTTF] )
-                 @ndr5=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
+                 @ndr5=((params[:DMTTF] - 1.0 )/params[:DMTBF]).ceil
              else
-                 @ndr5=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*5 - 1.0 )/params[:DMTBF]).floor
+                 @ndr5=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*5 - 1.0 )/params[:DMTBF]).ceil
             end
         elsif
          @ndr5=0.0
@@ -99,9 +99,9 @@ module PhaseThreeCalc
 
         if (@ndr > 5 )
             if( (phaseoneparams[:PAP].to_f - params[:DMTTF]*6) > params[:DMTTF] )
-                 @ndr6=((params[:DMTTF] - 1.0 )/params[:DMTBF]).floor
+                 @ndr6=((params[:DMTTF] - 1.0 )/params[:DMTBF]).ceil
              else
-                 @ndr6=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*6 - 1.0 )/params[:DMTBF]).floor
+                 @ndr6=((phaseoneparams[:PAP].to_f -  params[:DMTTF]*6 - 1.0 )/params[:DMTBF]).ceil
             end
         elsif
          @ndr6=0.0
