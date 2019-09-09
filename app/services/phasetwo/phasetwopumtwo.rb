@@ -43,7 +43,7 @@ module PhaseTwoPumpTwo
         end
         @SG_comp=(5.615*62.4*phaseoneparams[:GQ].to_f*((1-phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:SG_o].to_f+phaseoneparams[:WC].to_f/100.0*phaseoneparams[:SG_w].to_f)+0.0752*phaseoneparams[:SG_g].to_f*phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*@GOR)/(5.615*62.4*phaseoneparams[:GQ].to_f)
         @H_L =(phaseoneparams[:VD_pump].to_f-(@PIP)/(phaseoneparams[:WGD].to_f*@SG_comp))
-        @H_WHP =(phaseoneparams[:WHP].to_f-phaseoneparams[:CHP].to_f)/(phaseoneparams[:WGD].to_f*@SG_comp)
+        @H_WHP =phaseoneparams[:WHP].to_f/(phaseoneparams[:WGD].to_f*@SG_comp)
         if (  phaseoneparams[:TBG_ND].to_f == 119 )
             @TBG_ID=1.995
         elsif (  phaseoneparams[:TBG_ND].to_f == 120 )
