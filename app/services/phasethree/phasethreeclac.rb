@@ -142,7 +142,7 @@ module PhaseThreeCalc
             @dse=params[:trdc]*(1.0 - phaseoneparams[:DSR].to_f )**((phaseoneparams[:PAP].to_f - params[:DMTTF]*5)/365.0)
         end
         @pdt=(@nsr+@nsr1+@nsr2+@nsr3+@nsr4+@nsr5)*params[:SDT]+(@ndr+@ndr1+@ndr2+@ndr3+@ndr4+@ndr5)*params[:DDT]
-        @ecry=(params[:ecry]*((@papd*365)-@pdt)/365).floor #=ROUNDDOWN(EC_rrp*(PAP-PDT_RRP)/365,0)
+        @ecry=(params[:ecry]*((@papd*365)-@pdt)/365).floor
         @tem=@mrc/@papd
         @summ=@tem
         @arraysumm=[]
@@ -154,7 +154,7 @@ module PhaseThreeCalc
          end
         @summ= @summ/@papd
         
-        @tem=@ecry/@papd
+        @tem=@ecry
         @sumo=@tem
         @arraysumo=[]
         @arraysumo.push(@tem)
