@@ -344,7 +344,7 @@ module PhaseThree
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESPCP Crew Daily Rate').final
             @ic=(@scc+@spr)*phaseoneparams[:RITEP].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
-            @ecry=@params[:EC_espcp]
+            @ecry=params[:EC_espcp]
 
           pumpfour=  {
                 corrosivity:@corrosivity,
