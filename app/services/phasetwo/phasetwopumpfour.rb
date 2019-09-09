@@ -19,7 +19,7 @@ module PhaseTwoPumpFour
             elsif (  phaseoneparams[:TBG_ND].to_f == 122 )
                 @TBG_ID=3.958
             end
-            @ERe=1.478*phaseoneparams[:GQ].to_f*@rho_m/(phaseoneparams[:meo_m].to_f*@TBG_ID)
+            @ERe=1.478*phaseoneparams[:GQ].to_f*@rho_m/(phaseoneparams[:meo_m].to_f*@TBG_ID) #=1.478*GQ*rho_m/(meo_m*TBG_ID)
             if(@ERe>2100)
                 @EFR='Turbelant Flow'
             else
@@ -32,7 +32,7 @@ module PhaseTwoPumpFour
             end
             @EP_d=phaseoneparams[:WHP].to_f+@P_DL+@EP_losses
             @P_i=phaseoneparams[:CHP].to_f+@P_G+@P_IL
-            @C_min=phaseoneparams[:C_min].to_f
+            @C_min=phaseoneparams[:C_min].to_f/100
             @PCNL=(@EP_d-@P_i)/@C_min
             @EH_PCP=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)
             @SE_espcp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_espcp').final
