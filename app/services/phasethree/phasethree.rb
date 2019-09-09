@@ -76,7 +76,7 @@ module PhaseThree
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'RRP Crew Daily Rate').final
             @ic=(@scc+@spr)*phaseoneparams[:RITR].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
-            @ecry=@papd*params[:EC_srp]
+            @ecry=params[:EC_srp]
             pumpone = {
                 R1result: @R1result,
                 R2result: @R2result,
@@ -174,7 +174,7 @@ module PhaseThree
         end
         @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESP Crew Daily Rate').final
         @papd=(phaseoneparams[:PAP].to_f/365.0).floor
-        @ecry=@papd*params[:EC_esp]
+        @ecry=params[:EC_esp]
         @ic=(@scc+@spr)*phaseoneparams[:RITE].to_f
 
         pumptwo={
@@ -264,7 +264,7 @@ module PhaseThree
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'PCP Crew Daily Rate').final
             @ic=(@scc+@spr)*phaseoneparams[:RITP].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
-            @ecry=@papd*params[:EC_pcp]
+            @ecry=params[:EC_pcp]
             pumpthree= {
                 ndp:@ndp,
                 prc:@prc,
@@ -344,7 +344,7 @@ module PhaseThree
             @scc =  TableService.new(Tablegenerate.new('InstallationCrewTable').get_table,'ESPCP Crew Daily Rate').final
             @ic=(@scc+@spr)*phaseoneparams[:RITEP].to_f
             @papd=(phaseoneparams[:PAP].to_f/365.0).floor
-            @ecry=@papd*params[:EC_espcp]
+            @ecry=@params[:EC_espcp]
 
           pumpfour=  {
                 corrosivity:@corrosivity,
