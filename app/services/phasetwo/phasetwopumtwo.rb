@@ -150,6 +150,7 @@ module PhaseTwoPumpTwo
         @L_sl=phaseoneparams[:L_sl].to_f
         @CL=phaseoneparams[:MD_pump].to_f+@L_sl
         @V_surf=@V_ESPsm+@max*(phaseoneparams[:MD_pump].to_f/1000.0)
+        @HP_ESPr =1.732*@V_surf*@I_ESPsm*phaseoneparams[:M_eff].to_f*phaseoneparams[:MF].to_f/746
         @kVA_surf=1.732*@V_surf*@I_ESPsm*1.1/1000
         @data5=TableService.new(Tablegenerate.new('JunctionBoxselectionTable').get_table,@V_surf).final
         @sjb=@data5[:kv]
@@ -229,6 +230,7 @@ module PhaseTwoPumpTwo
             SC:@SC,
             CL:@CL,
             V_surf:@V_surf,
+            HP_ESPr:@HP_ESPr,
             kVA_surf:@kVA_surf,
             sjb:@sjb,
             ssw:@ssw, 
