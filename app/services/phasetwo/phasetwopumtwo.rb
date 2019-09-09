@@ -7,7 +7,7 @@ module PhaseTwoPumpTwo
         def pumptwo (params,phaseoneparams)
         @sg_m=(phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:SG_w].to_f+(1-(phaseoneparams[:WC].to_f/100.0))*phaseoneparams[:SG_o].to_f
         @BHP=phaseoneparams[:WGD].to_f*@sg_m*phaseoneparams[:D_perf].to_f
-        @PIP  =  @BHP-(phaseoneparams[:WGD].to_f*@sg_m*(phaseoneparams[:D_perf].to_f-phaseoneparams[:VD_pump].to_f))
+        @PIP  = phaseoneparams[:CHP].to_f+(phaseoneparams[:VD_pump].to_f-phaseoneparams[:VD_FL].to_f )*@sg_m*phaseoneparams[:WGD].to_f+phaseoneparams[:GGD].to_f*phaseoneparams[:SG_g].to_f*phaseoneparams[:VD_FL].to_f #=CHP+(VD_pump-VD_FL)*SG_m*WGD+GGD*SG_g*VD_F
         @V_o =phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0)*phaseoneparams[:beta_o].to_f
         @V_w = phaseoneparams[:GQ].to_f*phaseoneparams[:WC].to_f/100.0*phaseoneparams[:beta_w].to_f
         @GOR=phaseoneparams[:Q_g].to_f*1000/(phaseoneparams[:GQ].to_f*(1-phaseoneparams[:WC].to_f/100.0))

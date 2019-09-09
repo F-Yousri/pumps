@@ -154,7 +154,7 @@ module PhaseThreeCalc
          end
         @summ= @summ/@papd
         
-        @tem=@ecry
+        @tem=@ecry/@papd
         @sumo=@tem
         @arraysumo=[]
         @arraysumo.push(@tem)
