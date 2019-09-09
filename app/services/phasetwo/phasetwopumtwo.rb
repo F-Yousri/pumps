@@ -162,7 +162,7 @@ module PhaseTwoPumpTwo
         @data6=TableService.new(Tablegenerate.new('TransformerTable').get_table,@kVA_surf).final
         @kVA_t=@data6[:kva]
         @trp=@data6[:price]
-        @EC_esp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPsm*0.89*365*24*phaseoneparams[:EC].to_f/1000.0
+        @EC_esp=@HP_ESPr*0.746*24*365*phaseoneparams[:EC].to_f
         
         {
             sg_m: @sg_m,
