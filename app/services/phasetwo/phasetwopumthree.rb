@@ -75,7 +75,7 @@ module PhaseTwoPumpThree
             @pafc=@data3[:price_factor]
             @stator_type=@data3[:elastomer_type]
             @PW_r=@SPW_r*phaseoneparams[:VD_pump].to_f
-            @A_PCP=4*@e*@d_r
+            @A_PCP=8*@e*@PR1_ND+3.14/4*@PR1_ND
             @PAL=@A_PCP*@PCNL
             @AL=@PAL+@PW_r 
             @Tao_h=(8.97e-4)*@IQ_PCP*@PCNL
