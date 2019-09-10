@@ -9,7 +9,6 @@
       @Availablevfs=Vfd.select('PMM').map(&:PMM)
       @new=@Availablevfs.sort 
       @pmm=@new.find { |e| e > input }
-      @pmm
       @vfs=Vfd.select('model').where(PMM: @pmm).map(&:model)
       @price=Vfd.select('price').where(PMM: @pmm).map(&:price)
       {
