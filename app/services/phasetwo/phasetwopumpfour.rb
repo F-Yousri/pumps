@@ -123,7 +123,7 @@ module PhaseTwoPumpFour
             @st=@data5[:kva]
             @trp=@data5[:price]
             @EC_espcp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPCP*@PF_espcp*365*24.0*phaseoneparams[:EC].to_f/1000.0
-            @HP_surfe=1.732*@V_surfe*@I_ESPCP*@eff_espcpm/746
+            @HP_surfe=1.732*@V_surfe*@PF_espcp*@I_ESPCP*@eff_espcpm/746
             {
                 sg_m:@sg_m,
                 P_DL: @P_DL,
