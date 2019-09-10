@@ -97,7 +97,7 @@ module PhaseTwoPumpThree
             @Drive_Head=@data4[:gm]
             @phc=@data4[:phc]
             @I_pcp=@MHP_P/(0.002322*phaseoneparams[:V_ml].to_f*@Eff_m*@MF)
-            @KW_PCP=1.73*phaseoneparams[:V_ml].to_f*@I_PCP*PF/1000 #EC_pcp==KW_PCP*24*365*EC
+            @KW_PCP=1.73*phaseoneparams[:V_ml].to_f*@I_PCP*MF/1000 #EC_pcp==KW_PCP*24*365*EC
             @EC_pcp=@KW_PCP*24*365*phaseoneparams[:EC].to_f
             { 
                 sg_m: @sg_m,
