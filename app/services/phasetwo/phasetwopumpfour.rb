@@ -140,6 +140,7 @@ module PhaseTwoPumpFour
                 EH_PCP:@EH_PCP,
                 Eff_espcp:@eff_espcp,
                 V_espcpmin:@V_espcpmin,
+                Hhp_espcp:@Hhp_espcp,
                 TL:@TL,
                 data:@data1,
                 espp:@espp,
