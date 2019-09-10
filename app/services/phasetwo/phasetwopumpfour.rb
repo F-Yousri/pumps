@@ -57,7 +57,7 @@ module PhaseTwoPumpFour
             @V_espcp=@data[:Voltage]
             @I_ESPCP=@data[:Current]
             @PF_espcp=@data[:power_factor]
-            @eff_espcp=@data[:Efficiency]
+            @eff_espcpm=@data[:Efficiency]
             @espp=@data[:price]
             @T_bh=phaseoneparams[:T_bh].to_f
             @GLR=phaseoneparams[:GLR].to_f
@@ -111,8 +111,8 @@ module PhaseTwoPumpFour
             @SE_espcp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_espcp').final
             @CL=phaseoneparams[:MD_pump].to_f+@L_sl
             @V_surfe=@V_espcp+@max*(phaseoneparams[:MD_pump].to_f/1000.0)
-            @Hhp_espcp=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)*phaseoneparams[:GQ].to_f/@eff_espcp/56000
-            @HP_surfe=1.732*@V_surfe*@I_ESPCP*@PF_espcp*@eff_espcp/746.0/100.0 #
+            @Hhp_espcp=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)*GQ/@SE_espcp/56000
+            @HP_surfe=1.732*@V_surfe*@I_ESPCP*@PF_espcp*@eff_espcpm/746.0/100.0 #
             @data4=TableService.new(Tablegenerate.new('VfsTable').get_table,@HP_surfe).final
             @vfs=@data4[:vfs]
             @pfsc=@data4[:price]
@@ -138,9 +138,8 @@ module PhaseTwoPumpFour
                 C_min:@C_min,
                 PCNL:@PCNL,
                 EH_PCP:@EH_PCP,
-                Eff_espcp:@eff_espcp,
+                Eff_espcpm:@SE_espcp,
                 V_espcpmin:@V_espcpmin,
-                Hhp_espcp:@Hhp_espcp,
                 TL:@TL,
                 data:@data1,
                 espp:@espp,
