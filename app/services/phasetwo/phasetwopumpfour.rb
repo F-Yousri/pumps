@@ -123,7 +123,7 @@ module PhaseTwoPumpFour
             @data5=TableService.new(Tablegenerate.new('TransformerTable').get_table,@MHP_espcp).final
             @st=@data5[:kva]
             @trp=@data5[:price]
-            @EC_espcp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPCP*@PF_espcp*365*24.0*phaseoneparams[:EC].to_f/1000.0
+            @EC_espcp=@HP_surfe*0.746*24*365*phaseoneparams[:EC].to_f
             {
                 sg_m:@sg_m,
                 P_DL: @P_DL,
