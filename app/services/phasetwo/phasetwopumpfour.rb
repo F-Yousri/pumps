@@ -111,7 +111,7 @@ module PhaseTwoPumpFour
             @SE_espcp = TableService.new(Tablegenerate.new('AdditionalCriteriumTable').get_table,'SE_espcp').final
             @CL=phaseoneparams[:MD_pump].to_f+@L_sl
             @V_surfe=@V_espcp+@max*(phaseoneparams[:MD_pump].to_f/1000.0)
-            @Hhp_espcp=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)*GQ/@SE_espcp/56000
+            @Hhp_espcp=@PCNL/(phaseoneparams[:WGD].to_f*@sg_m)*phaseoneparams[:GQ].to_f/@SE_espcp/56000
             @HP_surfe=1.732*@V_surfe*@I_ESPCP*@PF_espcp*@eff_espcpm/746.0/100.0 #
             @data4=TableService.new(Tablegenerate.new('VfsTable').get_table,@HP_surfe).final
             @vfs=@data4[:vfs]
