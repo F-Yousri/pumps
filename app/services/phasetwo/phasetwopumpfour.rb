@@ -123,7 +123,7 @@ module PhaseTwoPumpFour
             @st=@data5[:kva]
             @trp=@data5[:price]
             @EC_espcp=1.73*phaseoneparams[:V_ml].to_f*@I_ESPCP*@PF_espcp*365*24.0*phaseoneparams[:EC].to_f/1000.0
-            @HP_surfe=1.732*@V_surfe*@I_espcp*@eff_espcpm/746
+            # @HP_surfe=1.732*@V_surfe*@I_espcp*@eff_espcpm/746
             {
                 sg_m:@sg_m,
                 P_DL: @P_DL,
@@ -179,7 +179,8 @@ module PhaseTwoPumpFour
                 pump_maodel:@data[:pump_maodel],
                 EH_PCP:@EH_PCP,Model:@Model,V_espcpmin:@V_espcpmin,
                 stator_type:@stator_type,
-                type:@type
+                type:@type,
+                HP_surfe:@HP_surfe
                
             }
         end
