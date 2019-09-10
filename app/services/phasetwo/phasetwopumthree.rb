@@ -88,11 +88,12 @@ module PhaseTwoPumpThree
             @MF=phaseoneparams[:MF].to_f
             @Eff_m=phaseoneparams[:M_eff].to_f
             @MHP_P=@HHP_PCP/(@MF*@Eff_m) #mina el mo3adla sa7 wala eih ?
+            @data6 = TableService.new(Tablegenerate.new('NemaTable').get_table,@MHP_P).final
             @data4=TableService.new(Tablegenerate.new('DriveheadTable').get_table,{T_tot:@T_tot,AL:@AL,MHP_P:@MHP_P}).final
             @SN_pcpm=600
             @ST_tot=@data4[:Torque]
             @TB=@data4[:TB]
-            @MHP_Ps=@data4[:MHP_Ps]
+            @MHP_Ps=@data6[:MHP_srps]
             @Drive_Head=@data4[:gm]
             @phc=@data4[:phc]
             @I_pcp=@MHP_P/(0.002322*phaseoneparams[:V_ml].to_f*@Eff_m*@MF)
