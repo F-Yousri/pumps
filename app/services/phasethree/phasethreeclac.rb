@@ -174,7 +174,7 @@ module PhaseThreeCalc
         @arraycapr.push(params[:capr])
         @arrayic.push(params[:ic])
         for i in 0..(@papd -2.0)
-            @arraycapr.push(0)
+            @arraycapr.push(0) *(1-phaseoneparams[:WC].to_f)
             @arrayic.push(0)  
             @arraytse.push(0)
         end
