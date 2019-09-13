@@ -112,8 +112,9 @@ module PhaseThreeCalc
         @snrt=(@nsr+@nsr1+@nsr2+@nsr3+@nsr4+@nsr5)
         @ndrt=(@ndr+@ndr1+@ndr2+@ndr3+@ndr4+@ndr5)
 
-        @mrc=@ndr*params[:trdc]+@nsr*params[:trsc]+@ndrt*(params[:scc]+params[:spr])*params[:DDT]+@snrt*params[:scc]*params[:SDT]
         @papd=params[:papd]
+        @mrc=(@ndr*params[:trdc]+@nsr*params[:trsc]+@ndrt*(params[:scc]+params[:spr])*params[:DDT]+@snrt*params[:scc]*params[:SDT])/@papd
+
         if( @nsr == 0  )
             @sse=params[:trsc]*(1.0 - phaseoneparams[:SSR].to_f )**@papd
         elsif ( @nsr == 1 )
