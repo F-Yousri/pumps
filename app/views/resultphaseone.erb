@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-   <h2 > <b>Full Assessment For Pumping Lift Systems for   <%= @wellName%> in </b><%= DateTime.now.strftime("%d/%m/%Y") %></h2>
+   <h2 > <b>Full Assessment For Pumping Lift Systems for   <%= @wellName%> in </b><%= DateTime.now.strftime("%d/%m/%") %></h2>
    <br>
   <h2>Phase one : Technical Screening </h2>
   <table class="table table-striped">
@@ -566,7 +566,7 @@ Pump Service Material :
     Operating Cost
     </td>
   <td>
- <%=  @pump1[:EC_srp].ceil()  %>
+ <%=  @pump1[:newecry].ceil()  %>
   </td>
     </tr>
 
@@ -1057,7 +1057,7 @@ Pump Service Material :
     Operating Cost
     </td>
   <td>
- <%=  @pump2[:EC_esp].ceil()  %>
+ <%=  @pump2[:newecry].ceil()  %>
   </td>
     </tr>
 
@@ -1474,7 +1474,7 @@ Pump Service Material :
     Operating Cost
     </td>
   <td>
- <%=  @pump3[:EC_pcp].ceil()  %>
+ <%=  @pump3[:newecry].ceil()  %>
   </td>
     </tr>
 
@@ -1890,7 +1890,7 @@ Variable Frequency  Drive (VFD)
     Operating Cost
     </td>
   <td>
- <%=  @pump4[:EC_espcp].ceil()  %>
+ <%=  @pump4[:newecry].ceil()  %>
   </td>
     </tr>
 
