@@ -291,7 +291,7 @@ module PhaseThreeCalc
             dr:phaseoneparams[:DR].to_f,
             cdc:@cdc,
             rdr:@rdr,
-
+            newecry:@ecry
 
                 }
         end
