@@ -144,7 +144,7 @@ module PhaseThreeCalc
         end
         @pdt=(@nsr+@nsr1+@nsr2+@nsr3+@nsr4+@nsr5)*params[:SDT]+(@ndr+@ndr1+@ndr2+@ndr3+@ndr4+@ndr5)*params[:DDT]
         @ecry=(params[:ecry]/365*((phaseoneparams[:PAP].to_f-@pdt)/@papd)).floor
-        @tem=@mrc/@papd
+        @tem=@mrc
         @summ=@tem
         @arraysumm=[]
         @arraysumm.push(@tem)
@@ -292,8 +292,7 @@ module PhaseThreeCalc
             cdc:@cdc,
             rdr:@rdr,
             newecry:@ecry
-
-                }
+            }
         end
             
     end
