@@ -325,8 +325,8 @@ module PhaseThree
             @pfsc=params[:pfsc]
             @trp=params[:trp]
 
-            @tpdc=(@espp+@ecpt)*1.1
-            @tpsc=(@trp+@pfsc)*1.1
+            @tpsc=(@espp+@ecpt)*1.1
+            @tpdc=(@trp+@pfsc)*1.1
             @capr=@tpdc+@tpsc
             @AST=phaseoneparams[:AST].to_f
             @AST = TableService.new(Tablegenerate.new('MatchTable').get_table,@AST).final
