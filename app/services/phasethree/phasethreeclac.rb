@@ -166,7 +166,7 @@ module PhaseThreeCalc
          end
         @sumo= @sumo/@papd
         @rdr=phaseoneparams['RDR'].to_f*100
-        @opt=(phaseoneparams[:OP].to_f*(365.0-@pdt/@papd)*phaseoneparams[:GQ].to_f)
+        @opt=(1-phaseoneparams[:WC].to_f/100)*(phaseoneparams[:OP].to_f*(365.0-@pdt/@papd)*phaseoneparams[:GQ].to_f)
         @tse=@dse+@sse
         @arraycapr=[]
         @arrayic=[]
@@ -291,7 +291,8 @@ module PhaseThreeCalc
             dr:phaseoneparams[:DR].to_f,
             cdc:@cdc,
             rdr:@rdr,
-            newecry:@ecry
+            newecry:@ecry,
+            test:phaseoneparams[:WC].to_f
             }
         end
             
