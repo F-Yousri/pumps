@@ -213,7 +213,7 @@ module PhaseThree
         end
 
         def phasethreepump3 (params,phaseoneparams)
-            @ndp=phaseoneparams[:MD_pump].to_f/25.0
+            @ndp=(phaseoneparams[:MD_pump].to_f/25.0).ceil
             @RT=phaseoneparams[:RT].to_f
             @RT = TableService.new(Tablegenerate.new('MatchTable').get_table,@RT).final
             @data = TableService.new(Tablegenerate.new('RodStringPriceTable').get_table,@RT).final
