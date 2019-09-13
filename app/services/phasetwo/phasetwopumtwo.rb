@@ -134,16 +134,16 @@ module PhaseTwoPumpTwo
         @dV2=(3.0/11.0)*@I_ESPsm*(1+0.00214*(@T_c2-77))
         @dV1=(3.0/14.0)*@I_ESPsm*(1+0.00214*(@T_c1-77))
         @max=0
-        if ( @dV1 > @dV2 && @dV1 > @dV4 && @dV1 > @dV6)
+        if ( @dV1 > @dV2 && @dV1 > @dV4 && @dV1 > @dV6 &&  @dV1 < 30)
             @SC="#1"
             @max=@dV1
-        elsif ( @dV2 > @dV1 && @dV2 > @dV4 && @dV2 > @dV6)
+        elsif ( @dV2 > @dV1 && @dV2 > @dV4 && @dV2 > @dV6 &&  @dV2 < 30))
             @SC="#2"
             @max=@dV2
-        elsif ( @dV4 > @dV1 && @dV4 > @dV2 && @dV4 > @dV6)
+        elsif ( @dV4 > @dV1 && @dV4 > @dV2 && @dV4 > @dV6 &&  @dV4 < 30))
             @SC="#4"
             @max=@dV4
-        elsif ( @dV6 > @dV1 && @dV6 > @dV2 && @dV6 > @dV4)
+        elsif ( @dV6 > @dV1 && @dV6 > @dV2 && @dV6 > @dV4 &&  @dV6 < 30))
             @SC="#6"
             @max=@dV6
         end
