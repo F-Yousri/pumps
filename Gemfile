@@ -42,7 +42,7 @@ gem 'jquery-rails'
 #dump database to upload data
 gem 'seed_dump'
 #bootstrap for front-end styles
-gem 'bootstrap', '~>4.0.0.alpha3'
+gem 'bootstrap', '~>4.3.1'
 #use pg to sync with production
 gem 'pg', '~> 0.18'
 #sprockets required by bootstrap and sass
